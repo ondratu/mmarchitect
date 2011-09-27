@@ -5,27 +5,23 @@ VALAC = valac
 INSTALL_PROGRAM = install
 INSTALL_DATA = install -m 644
 
-# Set debug or release mode
-CONFIGS = debug release
 
-ifeq (,$(findstring $(CONFIG),$(CONFIGS)))
-    CONFIG = release
-endif
-
-ifeq (,$(findstring debug,$(CONFIG)))
+ifdef RELEASE
     CFLAGS += -O2 -march=i686 -DNDEBUG
 
     ifndef PREFIX
         PREFIX = /usr/local
     endif
+    DATA=$(PREFIX)/share/$(PROGRAM)
         
 else
     VALAFLAGS += -g --save-temps
     CFLAGS += -DDEBUG=1
-    PREFIX = $(shell pwd)/test
+    PREFIX =
+    DATA = ./
 endif
 
-CFLAGS += -DPREFIX='"$(PREFIX)"' -DVERSION='"$(VERSION)"' \
+CFLAGS += -DDATA='"$(DATA)"' -DVERSION='"$(VERSION)"' \
 	-DGETTEXT_PACKAGE='"$(PROGRAM)"' \
 	-DLANG_SUPPORT_DIR='"$(SYSTEM_LANG_DIR)"'
 
@@ -38,9 +34,9 @@ EXT_PKGS = \
 	gmodule-2.0 \
 	gdk-2.0 \
 	gtk+-2.0 \
-	gee-1.0 \
 	cairo \
 	libxml-2.0
+#	gee-1.0 \
 #	librsvg-2.0 \
 
 SRC = $(wildcard src/*.vala)
@@ -48,33 +44,42 @@ OUTPUT=$(PROGRAM)
 
 all: $(OUTPUT)
 
-release:
-	make all CONFIG=release
-
 pkgcheck:
 	@echo Checking packages $(EXT_PKGS)
 	@pkg-config --print-errors --exists $(EXT_PKGS)
 
-$(OUTPUT): $(SRC) pkgcheck
+$(OUTPUT): $(SRC) pkgcheck Makefile
 	@echo Compiling Vala code...
 	$(VALAC) $(VALAFLAGS) \
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
 		$(SRC) -o $(OUTPUT)
 
 install:
-	@echo DESTDIR = $(DESTDIR)
-	@echo PREFIX = $(PREFIX)
+	make do-install RELEASE=1
+
+do-install:
+	@echo "Installing ..."
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(PREFIX)/bin
-	mkdir -p $(DESTDIR)$(PREFIX)/share/$(PROGRAM)/icons
-	$(INSTALL_DATA) icons/* $(DESTDIR)$(PREFIX)/share/$(PROGRAM)/icons
+	mkdir -p $(DESTDIR)$(DATA)/icons
+	$(INSTALL_DATA) icons/* $(DESTDIR)$(DATA)/icons
+	mkdir -p $(DESTDIR)$(DATA)/ui
+	$(INSTALL_DATA) ui/* $(DESTDIR)$(DATA)/ui
 	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
 	$(INSTALL_DATA) icons/$(PROGRAM).svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
-	mkdir -p $(DESTDIR)$(PREFIX)/share/$(PROGRAM)/ui
-	$(INSTALL_DATA) ui/* $(DESTDIR)$(PREFIX)/share/$(PROGRAM)/ui
 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
 	$(INSTALL_DATA) misc/$(PROGRAM).desktop $(DESTDIR)$(PREFIX)/share/applications
 
+uninstall:
+	@echo "Installing ..."
+	$(RM) $(DESTDIR)$(PREFIX)/bin/$(PROGRAM)
+	$(RM) -r $(DESTDIR)$(DATA)/$(PROGRAM)
+	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/$(PROGRAM).svg
+	$(RM) $(DESTDIR)$(PREFIX)/share/applications/$(PROGRAM).desktop
+
 clean:
-	$(RM) $(OUTPUT)
-	$(RM) *~ *.bak *.c src/*.c src/*~
+	@echo "Cleaning ..."
+	@$(RM) $(OUTPUT)
+	@$(RM) *~ *.bak *.c src/*.c src/*~
+	@$(RM) -rf ./_deb_
+	@(dh_clean || echo 'Never mind, it is ok ;)')

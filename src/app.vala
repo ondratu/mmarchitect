@@ -1,5 +1,5 @@
 extern const string GETTEXT_PACKAGE;
-extern const string PREFIX;
+extern const string DATA;
 
 const string PROGRAM = GETTEXT_PACKAGE;
 
@@ -16,20 +16,19 @@ public class App : GLib.Object {
         node_clipboard = null;
         app_settings = new AppSettings();
         stdout.printf("GETTEXT_PACKAGE: %s \n", GETTEXT_PACKAGE);
-        stdout.printf("PREFIX: %s \n", PREFIX);
+        stdout.printf("DATA: %s \n", DATA);
     }
 
     public void loadui () throws Error {
         var builder = new Gtk.Builder ();
-        builder.add_from_file (PREFIX + "/share/" + PROGRAM + "/ui/main.ui");
+        builder.add_from_file (DATA + "/ui/main.ui");
         builder.connect_signals (this);
         
         window = builder.get_object("window") as Gtk.Window;
         notebook = builder.get_object("notebook") as Gtk.Notebook;
         set_tooltips (builder);
 
-        window.set_default_icon_from_file (
-                PREFIX + "/share/"+ PROGRAM + "/icons/" + PROGRAM + ".png");
+        window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
         new_file (window);
 
         window.destroy.connect (Gtk.main_quit);
@@ -111,7 +110,7 @@ public class App : GLib.Object {
     private bool ask_for_save (FileTab file) {
         try {
             var builder = new Gtk.Builder ();
-            builder.add_from_file (PREFIX + "/share/" + PROGRAM + "/ui/close_file_dialog.ui");
+            builder.add_from_file (DATA + "/ui/close_file_dialog.ui");
 
             var d = builder.get_object("dialog") as Gtk.Dialog;
             var w = builder.get_object("warning_label") as Gtk.Label;
@@ -282,12 +281,10 @@ public class App : GLib.Object {
     public void about (Gtk.Widget w) {
         try {
             var builder = new Gtk.Builder ();
-            builder.add_from_file (
-                    PREFIX + "/share/" + PROGRAM + "/ui/about_dialog.ui");
+            builder.add_from_file (DATA + "/ui/about_dialog.ui");
 
             var d = builder.get_object ("aboutdialog") as Gtk.AboutDialog;
-            var p = new Gdk.Pixbuf.from_file (
-                    PREFIX + "/share/"+ PROGRAM + "/icons/" + PROGRAM + ".png");
+            var p = new Gdk.Pixbuf.from_file (DATA + "/icons/" + PROGRAM + ".png");
             
             d.set_logo (p);
             d.run();
