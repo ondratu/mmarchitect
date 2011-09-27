@@ -6,7 +6,7 @@ INSTALL_PROGRAM = install
 INSTALL_DATA = install -m 644
 
 
-ifdef RELEASE
+ifndef DEBUG
     CFLAGS += -O2 -march=i686 -DNDEBUG
 
     ifndef PREFIX
@@ -44,6 +44,9 @@ OUTPUT=$(PROGRAM)
 
 all: $(OUTPUT)
 
+debug:
+	make DEBUG=1
+
 pkgcheck:
 	@echo Checking packages $(EXT_PKGS)
 	@pkg-config --print-errors --exists $(EXT_PKGS)
@@ -54,8 +57,9 @@ $(OUTPUT): $(SRC) pkgcheck Makefile
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
 		$(SRC) -o $(OUTPUT)
 
+ifndef DEBUG
 install:
-	make do-install RELEASE=1
+	make do-install
 
 do-install:
 	@echo "Installing ..."
@@ -76,6 +80,7 @@ uninstall:
 	$(RM) -r $(DESTDIR)$(DATA)/$(PROGRAM)
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/$(PROGRAM).svg
 	$(RM) $(DESTDIR)$(PREFIX)/share/applications/$(PROGRAM).desktop
+endif
 
 clean:
 	@echo "Cleaning ..."

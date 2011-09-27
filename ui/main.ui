@@ -86,6 +86,26 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkSeparatorMenuItem" id="separator_file3">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_export">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Export</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="app_export_current_file"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_import">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Import</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkSeparatorMenuItem" id="separator_file2">
                         <property name="visible">True</property>
                       </object>

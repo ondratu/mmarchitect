@@ -49,6 +49,15 @@ public class App : GLib.Object {
         tb.set_tooltip_text(_("Save file as"));
     }
 
+    public Gtk.FileFilter create_filter (string name, string [] patterns) {
+        var filter = new Gtk.FileFilter();
+        filter.set_name (name);
+        foreach (var it in patterns){
+            filter.add_pattern (it);
+        }
+        return filter;
+    }
+
     [CCode (instance_pos = -1)]
     [CCode (cname = "G_MODULE_EXPORT app_new_file")]
     public void new_file (Gtk.Widget w) {
@@ -196,6 +205,70 @@ public class App : GLib.Object {
         d.destroy();
         return false;
         
+    }
+
+    [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT app_export_current_file")]
+    public void export_current_file (Gtk.Widget w) {
+        var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
+        on_export_file(file);
+    }
+
+    public bool on_export_file (FileTab file){
+        var d = new Gtk.FileChooserDialog(
+                    _("Export file as"),
+                    window,
+                    Gtk.FileChooserAction.SAVE,
+                    Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                    Gtk.Stock.SAVE, Gtk.ResponseType.ACCEPT);
+
+        var txt = create_filter (_("Plain Text"), {"*.txt"});
+        d.add_filter (txt);
+        var html = create_filter (_("Simple Web Page"), {"*.html", "*.htm"});
+        d.add_filter (html);
+        var dhtml = create_filter (_("Dynamic Web Page"), {"*.dhtml", "*.dhtm"});
+        d.add_filter (dhtml);
+        var mm = create_filter ("Free Mind", {"*.mm"});
+        d.add_filter (mm);
+       
+        d.set_do_overwrite_confirmation (true);
+
+        if (file.filepath == "") {
+            d.set_current_folder(GLib.Environment.get_home_dir());
+            d.set_current_name(file.title);
+        } else {
+            d.set_current_folder(GLib.Path.get_dirname(file.filepath));
+            string fname = GLib.Path.get_basename(file.filepath);
+            d.set_current_name(fname.substring(0, fname.length-4)); // .txt
+        }
+        
+        bool retval = false;
+
+        if (d.run() == Gtk.ResponseType.ACCEPT){
+            var fname = d.get_filename();
+            var filter = d.get_filter();
+
+            if (filter == txt) {
+                if (!fname.down().has_suffix(".txt"))
+                    fname += ".txt";
+                retval = Exporter.export_to_txt(fname, file.mindmap.root);
+            } else if (filter == html) {
+                if (!fname.down().has_suffix(".htm") && !fname.down().has_suffix(".html"))
+                    fname += ".html";
+                retval = Exporter.export_to_html(fname, file.mindmap.root);
+            } else if (filter == dhtml) {
+                if (!fname.down().has_suffix(".dhtm") && !fname.down().has_suffix(".dhtml"))
+                    fname += ".dhtml";
+                retval = Exporter.export_to_dhtml(fname, file.mindmap.root);
+            } else if (filter == mm) {
+                if (!fname.down().has_suffix(".mm"))
+                    fname += ".mm";
+                retval = Exporter.export_to_mm(fname, file.mindmap.root);
+            }
+        }
+
+        d.destroy();
+        return retval;
     }
 
     // nodes
