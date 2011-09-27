@@ -1,11 +1,15 @@
 PROGRAM = mmarchitect
 VERSION = "$(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\)-.*).*/\1/p"))"
 
+VALAC = valac
+INSTALL_PROGRAM = install
+INSTALL_DATA = install -m 644
+
 # Set debug or release mode
 CONFIGS = debug release
 
 ifeq (,$(findstring $(CONFIG),$(CONFIGS)))
-    CONFIG = debug
+    CONFIG = release
 endif
 
 ifeq (,$(findstring debug,$(CONFIG)))
@@ -18,7 +22,7 @@ ifeq (,$(findstring debug,$(CONFIG)))
 else
     VALAFLAGS += -g --save-temps
     CFLAGS += -DDEBUG=1
-    PREFIX = .
+    PREFIX = $(shell pwd)/test
 endif
 
 CFLAGS += -DPREFIX='"$(PREFIX)"' -DVERSION='"$(VERSION)"' \
@@ -29,8 +33,6 @@ CFLAGS += -DPREFIX='"$(PREFIX)"' -DVERSION='"$(VERSION)"' \
 ifdef CFLAGS
     VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
 endif
-
-VALAC = valac
 
 EXT_PKGS = \
 	gmodule-2.0 \
@@ -58,7 +60,21 @@ $(OUTPUT): $(SRC) pkgcheck
 	$(VALAC) $(VALAFLAGS) \
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
 		$(SRC) -o $(OUTPUT)
- 
+
+install:
+	@echo DESTDIR = $(DESTDIR)
+	@echo PREFIX = $(PREFIX)
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(PREFIX)/bin
+	mkdir -p $(DESTDIR)$(PREFIX)/share/$(PROGRAM)/icons
+	$(INSTALL_DATA) icons/* $(DESTDIR)$(PREFIX)/share/$(PROGRAM)/icons
+	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
+	$(INSTALL_DATA) icons/$(PROGRAM).svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
+	mkdir -p $(DESTDIR)$(PREFIX)/share/$(PROGRAM)/ui
+	$(INSTALL_DATA) ui/* $(DESTDIR)$(PREFIX)/share/$(PROGRAM)/ui
+	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
+	$(INSTALL_DATA) misc/$(PROGRAM).desktop $(DESTDIR)$(PREFIX)/share/applications
+
 clean:
 	$(RM) $(OUTPUT)
 	$(RM) *~ *.bak *.c src/*.c src/*~

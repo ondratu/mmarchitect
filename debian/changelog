@@ -2,4 +2,4 @@ mmarchitect (0.1.0-1) unstable; urgency=low
 
   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
 
- -- Ondrej Tuma <mcbig@compaq.zeropage.cz>  Mon, 26 Sep 2011 22:46:05 +0200
+ -- Ondrej Tuma <mcbig@zeropage.cz>  Mon, 26 Sep 2011 22:46:05 +0200

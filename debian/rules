@@ -10,4 +10,10 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@ 
+	dh $@
+
+override_dh_auto_build:
+	make PREFIX=/usr
+
+override_dh_auto_install:
+	make install DESTDIR=$(CURDIR)/debian/mmarchitect PREFIX=/usr

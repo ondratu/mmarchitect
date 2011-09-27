@@ -1,0 +1,2 @@
+?package(mmarchitect):needs="X11" section="Applications/Office"\
+  title="Mind Map Achitect" command="/usr/bin/mmarchitect"
