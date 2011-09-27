@@ -1,0 +1,13 @@
+Source: mmarchitect
+Section: unknown
+Priority: extra
+Maintainer: Ondrej Tuma <mcbig@compaq.zeropage.cz>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.8.4
+Homepage: <insert the upstream URL, if relevant>
+
+Package: mmarchitect
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Software for working with mind maps
+ <insert long description, indented with spaces>
