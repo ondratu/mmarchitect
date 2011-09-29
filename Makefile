@@ -1,17 +1,19 @@
 PROGRAM = mmarchitect
 VERSION = "$(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\)-.*).*/\1/p"))"
 
-VALAC = valac
-INSTALL_PROGRAM = install
-INSTALL_DATA = install -m 644
+VALAC ?= valac
+VALAC_MIN_VERSION = 0.12.1
+INSTALL ?= install
 
+INSTALL_PROGRAM ?= $(INSTALL)
+INSTALL_DATA ?= $(INSTALL) -m 644
+
+CONF = $(shell (if [ -f configure.mk ]; then echo 1; else echo 0; fi;))
 
 ifndef DEBUG
     CFLAGS += -O2 -march=i686 -DNDEBUG
 
-    ifndef PREFIX
-        PREFIX = /usr/local
-    endif
+    PREFIX ?= /usr/local
     DATA=$(PREFIX)/share/$(PROGRAM)
         
 else
@@ -21,9 +23,8 @@ else
     DATA = ./
 endif
 
-CFLAGS += -DDATA='"$(DATA)"' -DVERSION='"$(VERSION)"' \
-	-DGETTEXT_PACKAGE='"$(PROGRAM)"' \
-	-DLANG_SUPPORT_DIR='"$(SYSTEM_LANG_DIR)"'
+CFLAGS += -DGETTEXT_PACKAGE=\'\"$(PROGRAM)\"\' \
+	-DLANG_SUPPORT_DIR=\'\"$(SYSTEM_LANG_DIR)\"\'
 
 
 ifdef CFLAGS
@@ -44,14 +45,52 @@ OUTPUT=$(PROGRAM)
 
 all: $(OUTPUT)
 
-debug:
-	make DEBUG=1
-
 pkgcheck:
 	@echo Checking packages $(EXT_PKGS)
 	@pkg-config --print-errors --exists $(EXT_PKGS)
 
-$(OUTPUT): $(SRC) pkgcheck Makefile
+valacheck:
+	@echo -n "Min Vala support version is $(VALAC_MIN_VERSION)"
+	@echo ", you are using $(shell $(VALAC) --version)"
+
+configure:
+	@make clean
+	@make do-configure
+
+do-configure: valacheck pkgcheck
+	@echo "Generating src/config.vala ..."
+	@echo 'const string DATA = "$(DATA)";' > src/config.vala
+	@echo 'const string PROGRAM = "$(PROGRAM)";' >> src/config.vala
+	@echo 'const string VERSION = $(VERSION);' >> src/config.vala
+	@echo "Generating configure.mk ..."
+	@echo PREFIX = $(PREFIX) > configure.mk
+	@echo DATA = $(DATA) >> configure.mk
+	@echo CFLAGS = $(CFLAGS) >> configure.mk
+	@echo VALAFLAGS = $(VALAFLAGS) >> configure.mk
+
+help:
+	@echo \
+            "make [RULE] [OPTIONS] \n" \
+            "   RULES are: \n" \
+            "       configure   - configure build enviroment\n" \
+            "       all         - (default rule) build binaries\n" \
+            "       clean       - clean all files from configure and all rule \n" \
+            "       install     - install binaries to system\n" \
+            "       uninstall   - uninstall binaries from system\n" \
+            "\n" \
+            "   OPTIONS are :\n" \
+            "       PREFIX      - for installation \n" \
+            "       DEBUG       - for debug build (installation is not possible) \n" \
+            "       CFLAGS      - additional CFLAGS \n" \
+            "       VALAC       - vala compiler \n" \
+            "       INSTALL     - install binary \n" \
+            ""
+
+
+ifeq (1, $(CONF))
+    include configure.mk
+
+$(OUTPUT): $(SRC) Makefile configure.mk
 	@echo Compiling Vala code...
 	$(VALAC) $(VALAFLAGS) \
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
@@ -59,10 +98,7 @@ $(OUTPUT): $(SRC) pkgcheck Makefile
 
 ifndef DEBUG
 install:
-	make do-install
-
-do-install:
-	@echo "Installing ..."
+	@echo "Installing $(PROGRAM) to $(DESTDIR)$(PREFIX) ..."
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(PREFIX)/bin
 	mkdir -p $(DESTDIR)$(DATA)/icons
@@ -75,16 +111,22 @@ do-install:
 	$(INSTALL_DATA) misc/$(PROGRAM).desktop $(DESTDIR)$(PREFIX)/share/applications
 
 uninstall:
-	@echo "Installing ..."
+	@echo "Uninstalling $(PROGRAM) from $(DESTDIR)$(PREFIX) ..."
 	$(RM) $(DESTDIR)$(PREFIX)/bin/$(PROGRAM)
 	$(RM) -r $(DESTDIR)$(DATA)/$(PROGRAM)
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/$(PROGRAM).svg
 	$(RM) $(DESTDIR)$(PREFIX)/share/applications/$(PROGRAM).desktop
-endif
+endif # end DEBUG
+
+else
+$(OUTPUT):
+	@if [ ! -f configure.mk ]; then echo "You must run make configure first"; exit 1; fi;
+endif # end is configure.mk
 
 clean:
 	@echo "Cleaning ..."
 	@$(RM) $(OUTPUT)
+	@$(RM) configure.mk src/config.vala
 	@$(RM) *~ *.bak *.c src/*.c src/*~
 	@$(RM) -rf ./_deb_
 	@(dh_clean || echo 'Never mind, it is ok ;)')

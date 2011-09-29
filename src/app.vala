@@ -1,7 +1,4 @@
 extern const string GETTEXT_PACKAGE;
-extern const string DATA;
-
-const string PROGRAM = GETTEXT_PACKAGE;
 
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
