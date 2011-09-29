@@ -313,10 +313,10 @@ public class App : GLib.Object {
     }
 
     [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT app_node_rollup")]
-    public void node_rollup (Gtk.Widget w) {
+    [CCode (cname = "G_MODULE_EXPORT app_node_collapse")]
+    public void node_collapse (Gtk.Widget w) {
         var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
-        file.mindmap.node_rollup();
+        file.mindmap.node_collapse();
     }
 
     [CCode (instance_pos = -1)]
@@ -327,10 +327,10 @@ public class App : GLib.Object {
     }
 
     [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT app_rollup_all")]
-    public void rollup_all (Gtk.Widget w) {
+    [CCode (cname = "G_MODULE_EXPORT app_collapse_all")]
+    public void collapse_all (Gtk.Widget w) {
         var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
-        file.mindmap.node_rollup_all ();
+        file.mindmap.node_collapse_all ();
     }
 
     [CCode (instance_pos = -1)]

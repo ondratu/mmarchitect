@@ -170,7 +170,7 @@ public class Node : GLib.Object {
     public void expand () {
         is_expand = true;
     }
-    public void rollup () {
+    public void collapse () {
         is_expand = false;
     }
 
@@ -180,10 +180,10 @@ public class Node : GLib.Object {
             it.expand_all ();
     }
 
-    public void rollup_all () {
+    public void collapse_all () {
         is_expand = false;
         foreach (var it in children)
-            it.rollup_all ();
+            it.collapse_all ();
     }
 
     public void get_size_request (out int width, out int height) {
@@ -202,6 +202,8 @@ public class Node : GLib.Object {
         la.get_size (out t_width, out t_height);
         width = (t_width / Pango.SCALE) + TEXT_PADDING * 2;
         height = (t_height / Pango.SCALE) + TEXT_PADDING * 2;
+        if (text.length > 0)
+            width += ICO_SIZE + 1;
     }
 
     public void set_size_request () {
@@ -348,6 +350,14 @@ public class Node : GLib.Object {
             la.set_font_description(font_desc);
             la.set_text(title, -1);
             Pango.cairo_show_layout (cr, la);
+        }
+        
+        if (text.length > 0) {
+            var ico = new Cairo.ImageSurface.from_png (DATA + "/icons/sticky_notes_pin.png");
+            cr.set_source_surface (ico, area.x + area.width - ICO_SIZE - 2,
+                                        area.y + (area.height - ICO_SIZE) /2 );
+            cr.paint ();
+            cr.set_source_rgb (0, 0, 0);
         }
 
         // draw line to parent

@@ -141,11 +141,12 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuitem_rollup">
+                      <object class="GtkMenuItem" id="menuitem_collapse">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Rollup</property>
+                        <property name="right_justified">True</property>
+                        <property name="label" translatable="yes">Collapse</property>
                         <property name="use_underline">True</property>
-                        <signal name="activate" handler="app_node_rollup"/>
+                        <signal name="activate" handler="app_node_collapse"/>
                       </object>
                     </child>
                     <child>
@@ -204,7 +205,7 @@
                     <child>
                       <object class="GtkMenuItem" id="menuitem_expand_all">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Expand all</property>
+                        <property name="label" translatable="yes">Expand all nodes</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="app_expand_all"/>
                       </object>
@@ -212,9 +213,9 @@
                     <child>
                       <object class="GtkMenuItem" id="menuitem_rollup_all">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Rollup all</property>
+                        <property name="label" translatable="yes">Collapse all nodes</property>
                         <property name="use_underline">True</property>
-                        <signal name="activate" handler="app_rollup_all"/>
+                        <signal name="activate" handler="app_collapse_all"/>
                       </object>
                     </child>
                   </object>
