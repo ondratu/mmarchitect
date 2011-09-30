@@ -200,7 +200,7 @@ public class Node : GLib.Object {
 
         int t_width, t_height;
         la.get_size (out t_width, out t_height);
-        width = (t_width / Pango.SCALE) + TEXT_PADDING * 2;
+        width = (t_width / Pango.SCALE) + TEXT_PADDING * 8;
         height = (t_height / Pango.SCALE) + TEXT_PADDING * 2;
         if (text.length > 0)
             width += ICO_SIZE + 1;
@@ -335,17 +335,17 @@ public class Node : GLib.Object {
         // roundable rectangle
         draw_rectangle (cr, area, (area.height / 2) + 2);
         if (is_focus){
-            cr.set_source_rgb (0.6, 0.6, 0.6);
+            cr.set_source_rgb (0.9, 0.9, 0.9);
             cr.fill_preserve();
         }
-        cr.set_source_rgb (0.2, 0.2, 0.2);
+        cr.set_source_rgb (0.5, 0.5, 0.5);
         cr.stroke ();
 
         // text
-        cr.set_source_rgb (0, 0, 0);
-        cr.move_to (area.x + TEXT_PADDING, area.y + TEXT_PADDING);
-
         if (title.length > 0){
+            cr.set_source_rgb (0, 0, 0);
+            cr.move_to (area.x + TEXT_PADDING * 4, area.y + TEXT_PADDING);
+
             var la = Pango.cairo_create_layout (cr);
             la.set_font_description(font_desc);
             la.set_text(title, -1);
@@ -357,19 +357,42 @@ public class Node : GLib.Object {
             cr.set_source_surface (ico, area.x + area.width - ICO_SIZE - 2,
                                         area.y + (area.height - ICO_SIZE) /2 );
             cr.paint ();
-            cr.set_source_rgb (0, 0, 0);
         }
+
+        cr.set_line_width (0.7 * (1 + (weight / LINE_RISE)));
+        cr.set_source_rgb (0.5, 0.5, 0.5);
 
         // draw line to parent
         if (parent != null) {
+            // TODO: draw technique could be set
             if (direction == Direction.RIGHT) {
+                double nx = area.x;
+                double ny = area.y + area.height / 2;
+                double px = parent.area.x + parent.area.width;
+                double py = parent.area.y + parent.area.height / 2;
+                /*
                 cr.move_to (area.x, area.y + area.height / 2);
                 cr.line_to (parent.area.x + parent.area.width,
                             parent.area.y + parent.area.height / 2);
+                */
+                cr.move_to (px, py);
+                cr.curve_to (px + NODE_PADDING_WEIGHT / 1.5, py,
+                             nx - NODE_PADDING_WEIGHT / 1.5, ny,
+                             nx, ny);
             } else {
+                double nx = area.x + area.width;
+                double ny = area.y + area.height / 2;
+                double px = parent.area.x;
+                double py = parent.area.y + parent.area.height / 2;
+                /*
                 cr.move_to (area.x + area.width, area.y + area.height / 2);
                 cr.line_to (parent.area.x,
                             parent.area.y + parent.area.height / 2);
+                */
+                cr.move_to (nx, ny);
+                cr.curve_to (nx + NODE_PADDING_WEIGHT / 1.5, ny,
+                             px - NODE_PADDING_WEIGHT / 1.5, py,
+                             px, py);
             }
             cr.stroke ();
         }
@@ -394,7 +417,7 @@ public class Node : GLib.Object {
         draw_rectangle (cr, earea, 2);
         cr.set_source_rgb (1, 1, 1);
         cr.fill_preserve();
-        cr.set_source_rgb (0.2, 0.2, 0.2);
+        cr.set_source_rgb (0.5, 0.5, 0.5);
         cr.stroke();
     }
 

@@ -1,4 +1,11 @@
+mmarchitect (0.2.1) unstable; urgency=low
+
+  * new line style
+
+ -- Ondrej Tuma <mcbig@zeropage.cz>  Mon, 30 Sep 2011 21:22:05 +0200
+
 mmarchitect (0.2.0-1) unstable; urgency=low
+
   * src/app.vala, src/import.vala, ui/main.ui: FreeMind file basic
     import
   * debian/copyright, src/editform.vala, src/mindmap.vala,
