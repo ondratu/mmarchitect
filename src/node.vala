@@ -412,9 +412,13 @@ public class Node : GLib.Object {
     }
 
     public void set_title (string title) {
-        this._title = title;
+        this._title = title.strip();
         get_size_request (out area.width, out area.height);
-        //set_position (area.x, area.y);
+    }
+
+    public void set_text (string text) {
+        this.text = text.strip();
+        get_size_request (out area.width, out area.height);
     }
 
     public unowned Node? event_on (double x, double y) {
