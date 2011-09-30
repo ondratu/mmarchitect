@@ -1,3 +1,21 @@
+mmarchitect (0.2.0-1) unstable; urgency=low
+  * src/app.vala, src/import.vala, ui/main.ui: FreeMind file basic
+    import
+  * debian/copyright, src/editform.vala, src/mindmap.vala,
+    src/node.vala, src/settings.vala: Editform for node have smart
+    position now
+  * icons/comment_edit.png, icons/sticky_notes_pin.png, src/app.vala,
+    src/consts.vala, src/mindmap.vala, src/node.vala,
+    src/settings.vala, ui/main.ui: text notes support in gui,
+    collaps label
+  * Makefile, debian/rules, src/app.vala: better makefile
+  * Makefile, debian/rules, src/app.vala, src/export.vala,
+    src/import.vala, ui/main.ui: Testing export to txt
+  * Makefile, debian/rules, debian/source/format, src/app.vala: #!
+    Makefile fixes and debian full build-package support
+
+ -- Ondrej Tuma <mcbig@zeropage.cz>  Mon, 30 Sep 2011 15:39:05 +0200
+
 mmarchitect (0.1.0-1) unstable; urgency=low
 
   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
