@@ -103,6 +103,7 @@
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Import</property>
                         <property name="use_underline">True</property>
+                        <signal name="activate" handler="app_import_file"/>
                       </object>
                     </child>
                     <child>

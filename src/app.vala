@@ -97,6 +97,43 @@ public class App : GLib.Object {
     }
     
     [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT app_import_file")]
+    public void import_file (Gtk.Widget w){
+        var d = new Gtk.FileChooserDialog(
+                _("Import file"),
+                window,
+                Gtk.FileChooserAction.OPEN,
+                Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT
+                );
+        
+        var mm = create_filter ("Free Mind", {"*.mm"});
+        d.add_filter (mm);
+
+        d.set_current_folder(GLib.Environment.get_home_dir());
+
+        if (d.run() == Gtk.ResponseType.ACCEPT){
+            string fname = GLib.Path.get_basename(d.get_filename());
+            fname = fname.substring(0, fname.length-3); // .mm
+
+            var file = new FileTab.empty (fname, app_settings);
+            Importer.import_from_mm (d.get_filename(), ref file.mindmap.root);
+            file.on_mindmap_change (); // file is changed            
+            file.closed.connect (on_close_file);
+
+            FileTab ? cur = null;
+            var pn = notebook.get_current_page ();
+            if (pn >= 0)            
+                 cur = notebook.get_nth_page (pn) as FileTab;
+            if (cur != null && cur.is_saved() && cur.filepath == ""){
+                notebook.remove_page (pn);
+            }
+            notebook.set_current_page (notebook.append_page (file, file.tab));
+        }
+        d.destroy();
+    }
+
+    [CCode (instance_pos = -1)]
     [CCode (cname = "G_MODULE_EXPORT app_close_current_file")]
     public void close_current_file (Gtk.Widget w) {
         var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
