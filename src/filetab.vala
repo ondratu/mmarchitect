@@ -1,3 +1,13 @@
+/*
+ * FILE             $Id: $
+ * DESCRIPTION      FileTab Class
+ * PROJECT          Mind Map Architect
+ * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>
+ *
+ * Copyright (C) Ondrej Tuma 2011
+ * Code is present with BSD licence.
+ */
+
 public class CloseIco : Gtk.EventBox {
     public CloseIco () {
         add (new Gtk.Image.from_stock (Gtk.Stock.CLOSE,
@@ -123,6 +133,9 @@ public class FileTab : Gtk.ScrolledWindow {
         w.write_attribute ("title", node.title);
         w.write_attribute ("direction", node.direction.to_string());
         w.write_attribute ("expand", node.is_expand.to_string());
+        
+        if (node.parent != null && !node.color.equal(node.parent.color))
+            w.write_attribute ("color", node.color.to_string());
 
         if (node.text != "")
             w.write_element ("text", node.text);
@@ -169,6 +182,8 @@ public class FileTab : Gtk.ScrolledWindow {
                 c.direction = int.parse(it->children->content);
             } else if (it->name == "expand"){
                 c.is_expand = bool.parse(it->children->content);
+            } else if (it->name == "color"){
+                Gdk.Color.parse (it->children->content, out c.color);
             }
         }
     }
@@ -183,6 +198,10 @@ public class FileTab : Gtk.ScrolledWindow {
                 var c = CoreNode();
                 read_node_attr(it, ref c);
                 var child = n.add(c.title, c.direction, c.is_expand);
+
+                if (!c.color.equal(mindmap.app_settings.default_color))
+                    child.color = c.color;
+
                 read_node(it, child);
 
             } else if (it->name == "text"){

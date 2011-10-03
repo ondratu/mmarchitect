@@ -1,3 +1,13 @@
+/*
+ * FILE             $Id: $
+ * DESCRIPTION      Node Class
+ * PROJECT          Mind Map Architect
+ * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>
+ *
+ * Copyright (C) Ondrej Tuma 2011
+ * Code is present with BSD licence.
+ */
+
 enum Direction {
     LEFT,
     RIGHT,
@@ -8,9 +18,13 @@ public struct CoreNode {
     public string title;
     public uint direction;
     public bool is_expand;
+    public double points;
+    public Gdk.Color color;
 
     public CoreNode () {
         is_expand = true;
+        points = 0;
+        color = { 0, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };
     }
 }
 
@@ -24,6 +38,7 @@ public class Node : GLib.Object {
     public string text;
     public uint direction;
     public uint weight;
+    public Gdk.Color color;
 
     public Gdk.Rectangle area;
     public Gdk.Rectangle full_left;
@@ -52,6 +67,8 @@ public class Node : GLib.Object {
 
         // Direction set ...
         if (parent != null){                        // i have parent
+            this.color = parent.color;
+
             if (parent.direction != Direction.AUTO) // parent is not root
                 this.direction = parent.direction;
             else if (direction != Direction.AUTO)   // parent is root, and direction is set
@@ -60,6 +77,7 @@ public class Node : GLib.Object {
                 this.direction =  parent.children.length() % 2;
         } else {                                    // I'm root
             this.direction = Direction.AUTO;
+            this.color = { 0, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };
         }
 
         this.children = new List<Node> ();
@@ -338,7 +356,11 @@ public class Node : GLib.Object {
             cr.set_source_rgb (0.9, 0.9, 0.9);
             cr.fill_preserve();
         }
-        cr.set_source_rgb (0.5, 0.5, 0.5);
+
+        cr.set_source_rgb ( 1.0 * color.red / uint16.MAX,
+                            1.0 * color.green / uint16.MAX,
+                            1.0 * color.blue / uint16.MAX);
+
         cr.stroke ();
 
         // text
@@ -359,11 +381,13 @@ public class Node : GLib.Object {
             cr.paint ();
         }
 
-        cr.set_line_width (0.7 * (1 + (weight / LINE_RISE)));
-        cr.set_source_rgb (0.5, 0.5, 0.5);
-
         // draw line to parent
         if (parent != null) {
+            cr.set_line_width (0.7 * (1 + (weight / LINE_RISE)));
+            cr.set_source_rgb ( 1.0 * color.red / uint16.MAX,
+                                1.0 * color.green / uint16.MAX,
+                                1.0 * color.blue / uint16.MAX);
+
             // TODO: draw technique could be set
             if (direction == Direction.RIGHT) {
                 double nx = area.x;

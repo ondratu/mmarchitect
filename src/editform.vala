@@ -8,11 +8,67 @@
  * Code is present with BSD licence.
  */
 
+
+public class BgLabel : Gtk.Widget {
+    private static string label;
+    private Pango.Layout layout;
+ 
+    public BgLabel (string label) {
+        this.label = label;
+        this.layout = create_pango_layout (label);
+    }
+
+    public override void size_request (out Gtk.Requisition requisition) {
+        int width, height;
+ 
+        this.layout.get_size (out width, out height);
+        requisition.width = width / Pango.SCALE;
+        requisition.height = height / Pango.SCALE;
+    }
+
+    public override void realize () {
+        var attrs = Gdk.WindowAttr () {
+            window_type = Gdk.WindowType.CHILD,
+            wclass = Gdk.WindowClass.INPUT_OUTPUT,
+            event_mask = get_events () | Gdk.EventMask.EXPOSURE_MASK
+        };
+        this.window = new Gdk.Window (get_parent_window (), attrs, 0);
+        this.window.move_resize (this.allocation.x, this.allocation.y,
+                                 this.allocation.width, this.allocation.height);
+ 
+        this.window.set_user_data (this);
+
+        this.style = this.style.attach (this.window);
+        this.style.set_background (this.window, Gtk.StateType.NORMAL);
+        
+        set_flags (Gtk.WidgetFlags.REALIZED);
+    }
+
+    public override bool expose_event (Gdk.EventExpose event) {
+        var cr = Gdk.cairo_create (this.window);
+ 
+        Gdk.cairo_set_source_color (cr, this.style.fg[this.state]);
+ 
+        // And draw the text in the middle of the allocated space
+        int fontw, fonth;
+        this.layout.get_pixel_size (out fontw, out fonth);
+        cr.move_to ((this.allocation.width - fontw) / 2,
+                    (this.allocation.height - fonth) / 2);
+        Pango.cairo_update_layout (cr, this.layout);
+        Pango.cairo_show_layout (cr, this.layout);
+ 
+        return true;
+    }
+}
+
 public class EditForm : Gtk.VBox {
     public Node node;
     public Gtk.Entry entry;
     public Gtk.ScrolledWindow text_scroll;
     public Gtk.TextView text_view;
+    public BgLabel label;
+    public Gtk.Entry point;
+    public Gtk.ColorButton btn_color;
     public Gtk.Button btn_save;
     public Gtk.Button btn_close;
     public signal void close();
@@ -67,15 +123,27 @@ public class EditForm : Gtk.VBox {
         text_scroll.add_with_viewport (text_view);
         text_scroll.set_size_request (-1, VIEW_HEIGHT);
 
+        btn_color = new Gtk.ColorButton.with_color (node.color);
+        label = new BgLabel (_("Point") + ":");
+        point = new Gtk.Entry ();
+
         var box = new Gtk.HBox(false, 0);
         box.pack_start(entry);
         box.pack_start(btn_save);
         box.pack_start(btn_close);
+
+        var box2 = new Gtk.HBox(false, 0);
+        box2.pack_start (btn_color);
+        box2.pack_start (label);
+        box2.pack_start (point);
+
         pack_start(box);
+        pack_start(box2);
         pack_start(text_scroll);
 
         collapse ();
         box.show ();
+        box2.show ();
         entry.show_all ();
         show ();
     }
@@ -88,6 +156,7 @@ public class EditForm : Gtk.VBox {
         buffer.get_start_iter (out start);
         buffer.get_end_iter (out end);
         node.set_text (buffer.get_text (start, end, true));
+        btn_color.get_color (out node.color);
     }
 
     public bool on_key_press_event (Gdk.EventKey e){
@@ -131,6 +200,8 @@ public class EditForm : Gtk.VBox {
 
     public void collapse () {
         is_expand = false;
+        label.hide ();
+        point.hide ();
         text_scroll.hide ();
         btn_save.hide ();
         btn_close.hide ();
