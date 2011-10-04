@@ -78,7 +78,7 @@
                 <property name="label" translatable="yes">Zav&#x159;&#xED;t _bez ulo&#x17E;en&#xED;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="receives_default">False</property>
+                <property name="receives_default">True</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -111,7 +111,6 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <property name="yalign">0.4699999988079071</property>
               </object>
               <packing>
                 <property name="expand">False</property>

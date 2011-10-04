@@ -218,7 +218,9 @@ public class Node : GLib.Object {
 
         int t_width, t_height;
         la.get_size (out t_width, out t_height);
-        width = (t_width / Pango.SCALE) + TEXT_PADDING * 8;
+        width = (title.length > 0) ?
+                (t_width / Pango.SCALE) + TEXT_PADDING * 8 :
+                NONE_TITLE.length * FONT_SIZE ;
         height = (t_height / Pango.SCALE) + TEXT_PADDING * 2;
         if (text.length > 0)
             width += ICO_SIZE + 1;
@@ -242,6 +244,14 @@ public class Node : GLib.Object {
         foreach (var node in children){
             node.corect_y(fix);
         }
+    }
+
+    public void set_color (Gdk.Color color) {
+        foreach (var node in children){
+            if (node.color.equal(this.color))
+                node.set_color(color);
+        }
+        this.color = color;
     }
 
     public int set_position (int left, int top) {

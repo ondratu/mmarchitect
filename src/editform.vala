@@ -104,7 +104,8 @@ public class EditForm : Gtk.VBox {
                 node.area.width : NONE_TITLE.length * FONT_SIZE;
         int ico_size = (node.text.length > 0) ? 0 : ICO_SIZE;
         entry.set_size_request (width + TEXT_PADDING * 2 + ico_size, -1);
-        
+
+        btn_color = new Gtk.ColorButton.with_color (node.color);
         btn_save = new Gtk.Button.from_stock (Gtk.Stock.SAVE);
         btn_save.clicked.connect(() => {save(); close();});
         btn_close = new Gtk.Button.from_stock (Gtk.Stock.CLOSE);
@@ -123,27 +124,28 @@ public class EditForm : Gtk.VBox {
         text_scroll.add_with_viewport (text_view);
         text_scroll.set_size_request (-1, VIEW_HEIGHT);
 
-        btn_color = new Gtk.ColorButton.with_color (node.color);
         label = new BgLabel (_("Point") + ":");
         point = new Gtk.Entry ();
 
         var box = new Gtk.HBox(false, 0);
         box.pack_start(entry);
+        box.pack_start (btn_color);
         box.pack_start(btn_save);
         box.pack_start(btn_close);
 
+        /*
         var box2 = new Gtk.HBox(false, 0);
-        box2.pack_start (btn_color);
         box2.pack_start (label);
         box2.pack_start (point);
+        */
 
         pack_start(box);
-        pack_start(box2);
+        //pack_start(box2);
         pack_start(text_scroll);
 
         collapse ();
         box.show ();
-        box2.show ();
+        //box2.show ();
         entry.show_all ();
         show ();
     }
@@ -156,7 +158,9 @@ public class EditForm : Gtk.VBox {
         buffer.get_start_iter (out start);
         buffer.get_end_iter (out end);
         node.set_text (buffer.get_text (start, end, true));
-        btn_color.get_color (out node.color);
+        Gdk.Color color;
+        btn_color.get_color (out color);
+        node.set_color (color);
     }
 
     public bool on_key_press_event (Gdk.EventKey e){
@@ -200,9 +204,10 @@ public class EditForm : Gtk.VBox {
 
     public void collapse () {
         is_expand = false;
-        label.hide ();
-        point.hide ();
+        //label.hide ();
+        //point.hide ();
         text_scroll.hide ();
+        btn_color.hide ();
         btn_save.hide ();
         btn_close.hide ();
     }

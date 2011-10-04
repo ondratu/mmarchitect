@@ -143,9 +143,11 @@ public class App : GLib.Object {
     public bool delete_event (Gdk.Event event) {
         for (int i = 0; i < notebook.get_n_pages (); i++) {
             var file = notebook.get_nth_page (i) as FileTab;
-            if (!file.is_saved()) 
+            if (!file.is_saved()){ 
+                notebook.set_current_page (i);
                 if (!ask_for_save (file))
                     return true;
+            }
         }
         return false;
     }
