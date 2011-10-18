@@ -28,7 +28,7 @@ public class FileTab : Gtk.ScrolledWindow {
     private Gtk.Label label;
     private bool saved;
 
-    private FileTab(string t, AppSettings app_settings){
+    private FileTab(string t, Preferences pref){
         title = t;
         tab = new Gtk.HBox(false, 0);
         label = new Gtk.Label(title);
@@ -40,23 +40,23 @@ public class FileTab : Gtk.ScrolledWindow {
 
         tab.show_all();
         
-        mindmap = new MindMap (app_settings);
+        mindmap = new MindMap (pref);
         mindmap.change.connect (on_mindmap_change);
         mindmap.focus_changed.connect (on_focus_changed);
         set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         add_with_viewport(mindmap);
     }
 
-    public FileTab.empty(string title, AppSettings app_settings){
-        this(title, app_settings);
+    public FileTab.empty(string title, Preferences pref){
+        this(title, pref);
         saved = true;
         label.label = title+"*";
         filepath = "";
         show_all();
     }
 
-    public FileTab.from_file(string path, AppSettings app_settings){
-        this(GLib.Path.get_basename(path), app_settings);
+    public FileTab.from_file(string path, Preferences pref){
+        this(GLib.Path.get_basename(path), pref);
         do_load(path);
         mindmap.refresh_tree();
         show_all();
@@ -199,7 +199,7 @@ public class FileTab : Gtk.ScrolledWindow {
                 read_node_attr(it, ref c);
                 var child = n.add(c.title, c.direction, c.is_expand);
 
-                if (!c.color.equal(mindmap.app_settings.default_color))
+                if (!c.color.equal(mindmap.pref.default_color))
                     child.color = c.color;
 
                 read_node(it, child);

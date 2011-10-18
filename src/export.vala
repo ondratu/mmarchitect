@@ -1,4 +1,9 @@
 namespace Exporter {
+    
+    public errordomain ExportError {
+        NOT_SUPPORT_YET
+    }
+
 
     // TODO: text of node
     void write_txt (DataOutputStream dos, Node node, int lvl = 0) throws IOError {
@@ -29,8 +34,8 @@ namespace Exporter {
 
     bool export_to_html (string path, Node root) {
         try {
-            stderr.printf ("Not support yet!\n");
-            return true;
+            throw new ExportError.NOT_SUPPORT_YET ("HTML is not support yet!");
+            //return true;
         } catch (Error e) {
             stderr.printf ("%s\n", e.message);
             return false;
@@ -39,8 +44,8 @@ namespace Exporter {
 
     bool export_to_dhtml (string path, Node root) {
         try {
-            stderr.printf ("Not support yet!\n");
-            return true;
+            throw new ExportError.NOT_SUPPORT_YET ("DHTML is not support yet!");
+            //return true;
         } catch (Error e) {
             stderr.printf ("%s\n", e.message);
             return false;
@@ -49,8 +54,8 @@ namespace Exporter {
 
     bool export_to_mm (string path, Node root) {
         try {
-            stderr.printf ("Not support yet!\n");
-            return true;
+            throw new ExportError.NOT_SUPPORT_YET ("FreeMind is not support yet!");
+            //return true;
         } catch (Error e) {
             stderr.printf ("%s\n", e.message);
             return false;

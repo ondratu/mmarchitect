@@ -5,13 +5,13 @@ public class App : GLib.Object {
     private Gtk.Window window;
     private int tabs_counter;
     private Node ? node_clipboard;
-    private AppSettings app_settings;
+    private Preferences pref;
 
 
     public App () {
         tabs_counter = 0;
         node_clipboard = null;
-        app_settings = new AppSettings();
+        pref = new Preferences();
         stdout.printf("GETTEXT_PACKAGE: %s \n", GETTEXT_PACKAGE);
         stdout.printf("DATA: %s \n", DATA);
     }
@@ -59,7 +59,7 @@ public class App : GLib.Object {
     [CCode (cname = "G_MODULE_EXPORT app_new_file")]
     public void new_file (Gtk.Widget w) {
         string index = (++tabs_counter).to_string();
-        var file = new FileTab.empty ("map"+index, app_settings);
+        var file = new FileTab.empty ("map"+index, pref);
         file.closed.connect (on_close_file);
         notebook.set_current_page (notebook.append_page (file, file.tab));
     }
@@ -81,7 +81,7 @@ public class App : GLib.Object {
         d.set_current_folder(GLib.Environment.get_home_dir());
 
         if (d.run() == Gtk.ResponseType.ACCEPT){
-            var file = new FileTab.from_file (d.get_filename(), app_settings);
+            var file = new FileTab.from_file (d.get_filename(), pref);
             file.closed.connect (on_close_file);
 
             FileTab ? cur = null;
@@ -116,7 +116,7 @@ public class App : GLib.Object {
             string fname = GLib.Path.get_basename(d.get_filename());
             fname = fname.substring(0, fname.length-3); // .mm
 
-            var file = new FileTab.empty (fname, app_settings);
+            var file = new FileTab.empty (fname, pref);
             Importer.import_from_mm (d.get_filename(), ref file.mindmap.root);
             file.on_mindmap_change (); // file is changed            
             file.closed.connect (on_close_file);
@@ -383,6 +383,19 @@ public class App : GLib.Object {
         }
         
         Gtk.main_quit ();
+    }
+
+
+    [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT app_preferences")]
+    public void preferences (Gtk.Widget w) {
+        stdout.printf ("app method : %s\n", this.ref_count.to_string());
+        if (pref.dialog()) {
+            for (int i = 0; i < notebook.get_n_pages (); i++) {
+                var file = notebook.get_nth_page (i) as FileTab;
+                file.mindmap.apply_style();
+            }
+        }
     }
 
     [CCode (instance_pos = -1)]

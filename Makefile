@@ -4,21 +4,25 @@ VERSION = "$(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\)-.*).*/\1/p
 VALAC ?= valac
 VALAC_MIN_VERSION = 0.12.1
 INSTALL ?= install
+CC = gcc-4.3
 
 INSTALL_PROGRAM ?= $(INSTALL)
 INSTALL_DATA ?= $(INSTALL) -m 644
 
+BUILD_DIR ?= .build
+
 CONF = $(shell (if [ -f configure.mk ]; then echo 1; else echo 0; fi;))
 
+CFLAGS ?= -g -O2
+
 ifndef DEBUG
-    CFLAGS += -O2 -march=i686 -DNDEBUG
+    #CFLAGS += -DNDEBUG
 
     PREFIX ?= /usr/local
     DATA=$(PREFIX)/share/$(PROGRAM)
         
 else
-    VALAFLAGS += -g --save-temps
-    CFLAGS += -DDEBUG=1
+    #CFLAGS += -DDEBUG=1
     PREFIX =
     DATA = ./
 endif
@@ -26,6 +30,7 @@ endif
 CFLAGS += -DGETTEXT_PACKAGE=\'\"$(PROGRAM)\"\' \
 	-DLANG_SUPPORT_DIR=\'\"$(SYSTEM_LANG_DIR)\"\'
 
+VALAFLAGS = --save-temps
 
 ifdef CFLAGS
     VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
@@ -40,7 +45,15 @@ EXT_PKGS = \
 #	gee-1.0 \
 #	librsvg-2.0 \
 
-SRC = $(wildcard src/*.vala)
+
+VALA_STAMP := $(BUILD_DIR)/.stamp
+SRC_VALA = $(wildcard src/*.vala)
+SRC_C = $(foreach file,$(subst src,$(BUILD_DIR),$(SRC_VALA)),$(file:.vala=.c))
+OBJS = $(SRC_C:%.c=%.o)
+
+PKG_CFLAGS = $(shell pkg-config --cflags $(EXT_PKGS))
+PKG_LDFLAGS = $(shell pkg-config --libs $(EXT_PKGS)) 
+
 OUTPUT=$(PROGRAM)
 
 all: $(OUTPUT)
@@ -90,11 +103,26 @@ help:
 ifeq (1, $(CONF))
     include configure.mk
 
-$(OUTPUT): $(SRC) Makefile configure.mk
+$(VALA_STAMP): $(SRC_VALA) Makefile configure.mk
 	@echo Compiling Vala code...
-	$(VALAC) $(VALAFLAGS) \
+	@mkdir -p $(BUILD_DIR)
+	$(VALAC) --ccode --directory=$(BUILD_DIR) --basedir=src \
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
-		$(SRC) -o $(OUTPUT)
+		$(VALAFLAGS) \
+		$(SRC_VALA)
+	@touch $@
+
+$(SRC_C): $(VALA_STAMP)
+	@
+
+$(BUILD_DIR)/%.o: $(BUILD_DIR)/%.c
+	$(CC) -MMD $(CFLAGS) $(PKG_CFLAGS) -c $< -o $@
+
+$(OUTPUT): $(OBJS)
+	$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS)
+
+# object depences creates by $(CC) -MMD
+-include $(OBJS:.o=.d)
 
 ifndef DEBUG
 install:
@@ -126,7 +154,7 @@ endif # end is configure.mk
 clean:
 	@echo "Cleaning ..."
 	@$(RM) $(OUTPUT)
+	@$(RM) -rf $(BUILD_DIR)
 	@$(RM) configure.mk src/config.vala
-	@$(RM) *~ *.bak *.c src/*.c src/*~
-	@$(RM) -rf ./_deb_
+	@$(RM) *~ src/*~
 	@(dh_clean || echo 'Never mind, it is ok ;)')

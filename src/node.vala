@@ -43,7 +43,7 @@ public class Node : GLib.Object {
     public Gdk.Rectangle area;
     public Gdk.Rectangle full_left;
     public Gdk.Rectangle full_right;
-    public AppSettings app_set;
+    public Preferences pref;
     public Pango.FontDescription font_desc;
     public bool is_expand;
     public bool is_focus {get; private set;}
@@ -117,7 +117,7 @@ public class Node : GLib.Object {
         assert (child != null);
         child.is_expand = is_expand;
         if (this.window != null)
-            child.realize(this.window, app_set);
+            child.realize(this.window, pref);
         children.append (child);
         return child;
     }
@@ -130,7 +130,7 @@ public class Node : GLib.Object {
         else if (direction != Direction.AUTO)
             node.corect_direction (direction);
         
-        node.realize(this.window, app_set);
+        node.realize(this.window, pref);
         children.append (node);
     }
 
@@ -138,7 +138,7 @@ public class Node : GLib.Object {
         var child = new Node ("", this);
         assert (child != null);
         if (this.window != null)
-            child.realize(this.window, app_set);
+            child.realize(this.window, pref);
         children.insert(child, pos);
         return child;
     }
@@ -164,12 +164,12 @@ public class Node : GLib.Object {
         return null;
     }
 
-    public void realize (Gdk.Drawable window, AppSettings app_set) {
+    public void realize (Gdk.Drawable window, Preferences pref) {
         this.window = window;
-        this.app_set = app_set;
+        this.pref = pref;
         get_size_request (out area.width, out area.height);
         foreach (var child in children) {
-            child.realize (window, app_set);
+            child.realize (window, pref);
         }
     }
 
@@ -208,10 +208,10 @@ public class Node : GLib.Object {
         var cr = Gdk.cairo_create (this.window);
         var la = Pango.cairo_create_layout (cr);
 
-        font_desc = app_set.font_desc.copy();
+        font_desc = pref.node_font.copy();
 
-        var font_size = font_desc.get_size() * (1 + (weight / FONT_RISE)) * (app_set.dpi / 100);
-        font_desc.set_size((int) GLib.Math.lrint (font_size));
+        var font_size = font_desc.get_size() * (1 + (weight / pref.font_rise)) * (pref.dpi / 100.0);
+        font_desc.set_size((int) font_size);
 
         la.set_font_description(font_desc);
         la.set_text((title.length > 0) ? title : NONE_TITLE, -1);
@@ -220,14 +220,19 @@ public class Node : GLib.Object {
         la.get_size (out t_width, out t_height);
         width = (title.length > 0) ?
                 (t_width / Pango.SCALE) + TEXT_PADDING * 8 :
-                NONE_TITLE.length * FONT_SIZE ;
+                NONE_TITLE.length * (int) (font_size / Pango.SCALE) + TEXT_PADDING * 2 + ICO_SIZE;
         height = (t_height / Pango.SCALE) + TEXT_PADDING * 2;
         if (text.length > 0)
             width += ICO_SIZE + 1;
     }
 
-    public void set_size_request () {
+    public void set_size_request (bool recursive = false) {
         get_size_request (out area.width, out area.height);
+        if (!recursive)
+            return;
+        foreach (var node in children){
+            node.set_size_request(true);
+        }
     }
 
     private void corect_direction (uint direction) {
@@ -362,15 +367,13 @@ public class Node : GLib.Object {
 
         // roundable rectangle
         draw_rectangle (cr, area, (area.height / 2) + 2);
+
         if (is_focus){
             cr.set_source_rgb (0.9, 0.9, 0.9);
             cr.fill_preserve();
         }
 
-        cr.set_source_rgb ( 1.0 * color.red / uint16.MAX,
-                            1.0 * color.green / uint16.MAX,
-                            1.0 * color.blue / uint16.MAX);
-
+        Gdk.cairo_set_source_color (cr, color);
         cr.stroke ();
 
         // text
@@ -393,10 +396,8 @@ public class Node : GLib.Object {
 
         // draw line to parent
         if (parent != null) {
-            cr.set_line_width (0.7 * (1 + (weight / LINE_RISE)));
-            cr.set_source_rgb ( 1.0 * color.red / uint16.MAX,
-                                1.0 * color.green / uint16.MAX,
-                                1.0 * color.blue / uint16.MAX);
+            cr.set_line_width (0.7 * (1 + (weight / pref.line_rise)));
+            Gdk.cairo_set_source_color (cr, color);
 
             // TODO: draw technique could be set
             if (direction == Direction.RIGHT) {

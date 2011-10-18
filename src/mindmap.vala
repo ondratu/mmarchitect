@@ -9,16 +9,17 @@
  */
 
 public class MindMap : Gtk.Fixed {
-    public AppSettings app_settings;
+    public Preferences pref;
     public EditForm? editform;
     public Node root;
     public unowned Node? focused;
+    public unowned Node? last;
     public signal void change();
     public signal void focus_changed(double x, double y,
                                      double width, double height);
     
-    public MindMap(AppSettings app_set) {
-        app_settings = app_set;
+    public MindMap(Preferences pref) {
+        this.pref = pref;
 
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK
                   | Gdk.EventMask.BUTTON_RELEASE_MASK
@@ -39,7 +40,7 @@ public class MindMap : Gtk.Fixed {
         base.realize();
         if (root == null)
             create_new_root();
-        root.realize(this.window, app_settings);
+        root.realize(this.window, pref);
         refresh_tree();
     }
 
@@ -56,8 +57,6 @@ public class MindMap : Gtk.Fixed {
             return;
         if (node == focused)        // node to focused is focused yet
             return;
-
-        grab_focus();
 
         double x, y;
         get_translation (out x, out y);
@@ -82,6 +81,7 @@ public class MindMap : Gtk.Fixed {
         // musim poslat takovey rozmer, aby bylo vse videt
         focus_changed (focused.area.x + xx, focused.area.y + yy,
                        focused.area.width,  focused.area.height);
+        grab_focus();
     }
 
     public void get_translation (out double x, out double y) {
@@ -101,6 +101,11 @@ public class MindMap : Gtk.Fixed {
         set_size_request (root.full_left.width + root.full_right.width + PAGE_PADDING * 2,
                               root.get_higher_full() + PAGE_PADDING * 2);
         queue_draw();
+    }
+
+    public void apply_style() {
+        root.set_size_request(true);
+        refresh_tree();
     }
     
     public override bool expose_event (Gdk.EventExpose event) {
@@ -123,6 +128,7 @@ public class MindMap : Gtk.Fixed {
         return base.expose_event (event);
     }
 
+    /* For mouse button press event (select or open or close node) */
     public override bool button_press_event (Gdk.EventButton event) {
         //stdout.printf ("Fixed: button_press_event %s -> (%f x %f > %s)\n",
         //        event.type.to_string(),event.x, event.y, event.button.to_string());
@@ -145,6 +151,24 @@ public class MindMap : Gtk.Fixed {
         return false;
     }
 
+    public override bool focus_in_event (Gdk.EventFocus event) {
+        if (focused == null) {
+            if (last != null)
+                set_focus (last);
+            else
+                set_focus (root);
+        }
+
+        return base.focus_out_event (event);
+    }
+
+    public override bool focus_out_event (Gdk.EventFocus event) {
+        last = focused;
+        set_focus (null);
+        return base.focus_out_event (event);
+    }
+
+    /* For key press event (move over nodes or insert, edit and delete nodes) */
     public bool on_key_press_event (Gdk.EventKey event) {
         /*
                 KP_Enter    - 65421,
@@ -160,7 +184,7 @@ public class MindMap : Gtk.Fixed {
                 Tab         - 65289,
         */
 
-        if (focused != null) {
+        if (focused != null && editform == null) {
             if (event.keyval == 65421 || event.keyval == 65293){// enter
                 // new node
                 if (focused == root){
@@ -311,7 +335,7 @@ public class MindMap : Gtk.Fixed {
             int xx = (int) GLib.Math.lrint(x);
             int yy = (int) GLib.Math.lrint(y);
 
-            editform = new EditForm(focused, newone, app_settings);
+            editform = new EditForm(focused, newone, pref);
             editform.close.connect (on_close_editform);
             editform.save.connect (() => {change();});
             editform.size_allocate.connect (on_change_editform);
@@ -324,8 +348,17 @@ public class MindMap : Gtk.Fixed {
         double x, y;
         get_translation (out x, out y);
 
-        int new_x = focused.area.x + (int) GLib.Math.lrint(x);
-        int new_y = focused.area.y + (int) GLib.Math.lrint(y);
+        int new_x = focused.area.x + (int) GLib.Math.lrint(x) - 1;
+        int new_y = focused.area.y + (int) GLib.Math.lrint(y) - 1;
+
+        if (focused.direction == Direction.LEFT &&
+            focused.area.width < NONE_TITLE.length * FONT_SIZE)
+        {
+            int ico_size = (focused.text.length > 0 || focused.title.length == 0) ? 0 : ICO_SIZE;
+            int tmp_x = new_x + focused.area.width - NONE_TITLE.length * FONT_SIZE - ico_size - TEXT_PADDING * 2;
+            if (tmp_x > 0)
+                new_x =  tmp_x;
+        }
 
         // move editform to left if it is needed allways
         if ((new_x + aloc.width) > allocation.width)

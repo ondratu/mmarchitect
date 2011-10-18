@@ -61,6 +61,22 @@ public class BgLabel : Gtk.Widget {
     }
 }
 
+public class WidgetRound {
+    public WidgetRound ? next;
+    public Gtk.Widget widget;
+
+    public WidgetRound (Gtk.Widget w) {
+        widget = w;
+        next = null;
+    }
+
+    public unowned WidgetRound append (Gtk.Widget w) {
+        next = new WidgetRound (w);
+        return next;
+    }
+
+}
+
 public class EditForm : Gtk.VBox {
     public Node node;
     public Gtk.Entry entry;
@@ -75,12 +91,19 @@ public class EditForm : Gtk.VBox {
     public signal void expand_change(bool is_expand, int width, int height);
     public bool newone;
     public bool is_expand;
+    public WidgetRound ? actives;
+    public List<Gtk.Widget> focusable_widgets;
 
-    public EditForm (Node node, bool newone, AppSettings app_set){
+    public EditForm (Node node, bool newone, Preferences pref){
         this.node = node;
         this.newone = newone;
 
         entry = new Gtk.Entry();
+        actives = new WidgetRound (entry);
+        var last = actives;
+        focusable_widgets = new List<Gtk.Widget> ();
+        set_focus_chain (focusable_widgets);
+
         try {
             var ico = new Gdk.Pixbuf.from_file (DATA + "/icons/comment_edit.png");
             entry.set_icon_from_pixbuf (Gtk.EntryIconPosition.SECONDARY, ico);
@@ -97,25 +120,37 @@ public class EditForm : Gtk.VBox {
         
         var font_desc = node.font_desc.copy();
         font_desc.set_size ((int) GLib.Math.lrint (
-                font_desc.get_size() / (app_set.dpi / 102.0)));
+                font_desc.get_size() / (pref.dpi / 102.0)));
 
         entry.modify_font(font_desc);
         int width = (node.area.width > NONE_TITLE.length * FONT_SIZE) ?
                 node.area.width : NONE_TITLE.length * FONT_SIZE;
-        int ico_size = (node.text.length > 0) ? 0 : ICO_SIZE;
+        int ico_size = (node.text.length > 0 || node.title.length == 0) ? 0 : ICO_SIZE;
         entry.set_size_request (width + TEXT_PADDING * 2 + ico_size, -1);
+        focusable_widgets.append (entry);
 
         btn_color = new Gtk.ColorButton.with_color (node.color);
+        btn_color.set_can_focus (true);
+        last = last.append (btn_color);
+        focusable_widgets.append (btn_color);
+
         btn_save = new Gtk.Button.from_stock (Gtk.Stock.SAVE);
         btn_save.clicked.connect(() => {save(); close();});
+        last = last.append (btn_save);
+        focusable_widgets.append (btn_save);
+        
         btn_close = new Gtk.Button.from_stock (Gtk.Stock.CLOSE);
         btn_close.clicked.connect(() => {close();});
+        last = last.append (btn_close);
+        focusable_widgets.append (btn_close);
 
         text_view = new Gtk.TextView ();
-        font_desc = app_set.font_desc.copy();
+        font_desc = pref.font_desc.copy();
         font_desc.set_size (VIEW_FONT_SIZE * Pango.SCALE);
         text_view.modify_font (font_desc);
         text_view.get_buffer().set_text(node.text);
+        last = last.append (text_view);
+        focusable_widgets.append (text_view);
 
         text_scroll = new Gtk.ScrolledWindow (null, null);
         text_scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
@@ -175,8 +210,25 @@ public class EditForm : Gtk.VBox {
             do_change_expand ();
             return true;
         } else if (e.keyval == 65289 && is_expand) {
-            btn_save.grab_focus ();
+            return false;
+            /*var it = actives;
+            while (it != null) {
+                if (it.widget.has_focus) {
+                    if (it.next != null)
+                        it.next.widget.grab_focus ();
+                    else
+                        actives.widget.grab_focus ();
+
+                    stdout.printf ("next Widget %s has focus\n" ,it.next.widget.name);
+                    break;
+                }
+                stdout.printf ("Widget %s has not focus\n" ,it.widget.name);
+                it = it.next;
+            
+            }
+            actives.widget.grab_focus ();
             return true;
+            */
         }
 
         //stdout.printf ("EditForm key press %s (%u)\n",
@@ -200,6 +252,13 @@ public class EditForm : Gtk.VBox {
         //int width, height;
         //get_size_request (out width, out height);
         //expand_change(is_expand, allocation.width, allocation.height);
+    }
+
+    public override void set_focus_child (Gtk.Widget ? widget) {
+        if (widget != null)
+            stdout.printf ("focused child %s\n" ,widget.name);
+        else
+            stdout.printf ("no child focused\n");
     }
 
     public void collapse () {
