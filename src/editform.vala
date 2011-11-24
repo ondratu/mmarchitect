@@ -117,16 +117,16 @@ public class EditForm : Gtk.VBox {
         entry.set_text (node.title);
         entry.key_press_event.connect (on_key_press_event);
         entry.icon_release.connect (on_change_expand);
-        
+
         var font_desc = node.font_desc.copy();
         font_desc.set_size ((int) GLib.Math.lrint (
-                font_desc.get_size() / (pref.dpi / 102.0)));
+                font_desc.get_size() / (pref.dpi / 100.0)));
 
         entry.modify_font(font_desc);
-        int width = (node.area.width > NONE_TITLE.length * FONT_SIZE) ?
-                node.area.width : NONE_TITLE.length * FONT_SIZE;
+        int width = (node.area.width > NONE_TITLE.length * pref.node_font_size) ?
+                node.area.width : NONE_TITLE.length * pref.node_font_size;
         int ico_size = (node.text.length > 0 || node.title.length == 0) ? 0 : ICO_SIZE;
-        entry.set_size_request (width + TEXT_PADDING * 2 + ico_size, -1);
+        entry.set_size_request (width + pref.font_padding * 2 + ico_size, -1);
         focusable_widgets.append (entry);
 
         btn_color = new Gtk.ColorButton.with_color (node.color);
@@ -145,9 +145,7 @@ public class EditForm : Gtk.VBox {
         focusable_widgets.append (btn_close);
 
         text_view = new Gtk.TextView ();
-        font_desc = pref.font_desc.copy();
-        font_desc.set_size (VIEW_FONT_SIZE * Pango.SCALE);
-        text_view.modify_font (font_desc);
+        text_view.modify_font (pref.text_font);
         text_view.get_buffer().set_text(node.text);
         last = last.append (text_view);
         focusable_widgets.append (text_view);
@@ -157,7 +155,7 @@ public class EditForm : Gtk.VBox {
         text_scroll.get_hscrollbar ().set_size_request (-1,7);
         text_scroll.get_vscrollbar ().set_size_request (7,-1);
         text_scroll.add_with_viewport (text_view);
-        text_scroll.set_size_request (-1, VIEW_HEIGHT);
+        text_scroll.set_size_request (-1, pref.text_height);
 
         label = new BgLabel (_("Point") + ":");
         point = new Gtk.Entry ();

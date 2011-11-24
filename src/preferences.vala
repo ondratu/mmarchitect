@@ -44,12 +44,14 @@ public class PreferenceWidgets : GLib.Object {
     // map tab
     public Gtk.RadioButton rise_method_disable;
     public Gtk.RadioButton rise_method_branches;
-    public Gtk.RadioButton rise_methos_min;
-    public Gtk.RadioButton rise_methos_max;
-    public Gtk.RadioButton rise_methos_avg;
+    public Gtk.RadioButton rise_method_min;
+    public Gtk.RadioButton rise_method_max;
+    public Gtk.RadioButton rise_method_avg;
     public Gtk.RadioButton points_ignore;
     public Gtk.RadioButton points_sum;
     public Gtk.RadioButton points_replace;
+    public Gtk.CheckButton rise_ideas;
+    public Gtk.CheckButton rise_branches;
 
     public PreferenceWidgets () {}
     
@@ -82,16 +84,16 @@ public class PreferenceWidgets : GLib.Object {
         line_rise.set_range (1, 100);
 
         font_padding = builder.get_object("font_padding") as Gtk.SpinButton;
-        font_padding.set_increments (5, 10);
-        font_padding.set_range (0, 200);
+        font_padding.set_increments (1, 5);
+        font_padding.set_range (1, 200);
 
         height_padding = builder.get_object("height_padding") as Gtk.SpinButton;
-        height_padding.set_increments (5, 10);
-        height_padding.set_range (0, 200);
+        height_padding.set_increments (1, 5);
+        height_padding.set_range (1, 200);
 
         width_padding = builder.get_object("width_padding") as Gtk.SpinButton;
-        width_padding.set_increments (5, 10);
-        width_padding.set_range (0, 200);
+        width_padding.set_increments (1, 5);
+        width_padding.set_range (1, 200);
 
         text_system_font =builder.get_object("text_system_font")
                     as Gtk.CheckButton;
@@ -101,7 +103,21 @@ public class PreferenceWidgets : GLib.Object {
         text_height.set_range (100, 1000);
 
         // map tab
-        rise_method_disable = builder.get_object("rise_method_disable") as Gtk.RadioButton;
+        rise_method_disable = builder.get_object("rise_method_disable")
+                    as Gtk.RadioButton;
+        rise_method_branches = builder.get_object("rise_method_branches")
+                    as Gtk.RadioButton;
+        rise_method_min = builder.get_object("rise_method_min")
+                    as Gtk.RadioButton;
+        rise_method_max = builder.get_object("rise_method_max")
+                    as Gtk.RadioButton;
+        rise_method_avg = builder.get_object("rise_method_avg")
+                    as Gtk.RadioButton;
+        points_ignore = builder.get_object("points_ignore") as Gtk.RadioButton;
+        points_sum = builder.get_object("points_sum") as Gtk.RadioButton;
+        points_replace = builder.get_object("points_replace") as Gtk.RadioButton;
+        rise_ideas = builder.get_object("rise_ideas") as Gtk.CheckButton;
+        rise_branches = builder.get_object("rise_branches") as Gtk.CheckButton;
     }
 
     [CCode (instance_pos = -1)]
@@ -120,7 +136,6 @@ public class PreferenceWidgets : GLib.Object {
 public class Preferences : GLib.Object {
 
     public Gtk.Settings gtk_sett;
-    public Pango.FontDescription font_desc;
     public int dpi;
     public Gdk.Color default_color;
 
@@ -133,19 +148,25 @@ public class Preferences : GLib.Object {
 
     public bool node_system_font;
     public Pango.FontDescription node_font;
+    public int node_font_size;
     public double font_rise;
     public double line_rise;
-    public double font_padding;
-    public double height_padding;
-    public double width_padding;
+    public int font_padding;
+    public int height_padding;
+    public int width_padding;
     public bool text_system_font;
     public Pango.FontDescription text_font;
-    public double text_height;
+    public int text_font_size;
+    public int text_height;
+
+    public uint rise_method;
+    public uint points;
+    public bool rise_ideas;
+    public bool rise_branches;
 
     public Preferences () {
 
         gtk_sett = Gtk.Settings.get_default ();
-        font_desc = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
         dpi = gtk_sett.gtk_xft_dpi/1024;
         default_color = { uint32.MIN, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };
 
@@ -161,6 +182,7 @@ public class Preferences : GLib.Object {
 
         node_system_font = true;
         node_font = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
+        node_font_size = (node_font.get_size() / Pango.SCALE) * (dpi / 100);
         font_rise = FONT_RISE;
         line_rise = LINE_RISE;
         font_padding = FONT_PADDING;
@@ -168,7 +190,13 @@ public class Preferences : GLib.Object {
         width_padding = NODE_PADDING_WEIGHT;
         text_system_font = true;
         text_font = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
+        text_font_size = (text_font.get_size() / Pango.SCALE) * (dpi / 100);
         text_height = TEXT_HEIGHT;
+
+        rise_method = RisingMethod.BRANCHES;
+        points = IdeaPoints.IGNORE;
+        rise_ideas = true;
+        rise_branches = true;
     }
 
     private void load_from_ui() {
@@ -186,18 +214,47 @@ public class Preferences : GLib.Object {
             
         // style tab
         node_system_font = pw.node_system_font.get_active();
-        node_font = Pango.FontDescription.from_string (pw.node_font.font_name);
+        if (!node_system_font)
+            node_font = Pango.FontDescription.from_string (pw.node_font.font_name);
+        else
+            node_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
+        node_font_size = (node_font.get_size() / Pango.SCALE) * (dpi / 100);
         font_rise = pw.font_rise.get_value ();
         line_rise = pw.line_rise.get_value ();
-        font_padding = pw.font_padding.get_value ();
-        height_padding = pw.height_padding.get_value ();
-        width_padding = pw.width_padding.get_value ();
+        font_padding = (int) pw.font_padding.get_value ();
+        height_padding = (int) pw.height_padding.get_value ();
+        width_padding = (int) pw.width_padding.get_value ();
         text_system_font = pw.text_system_font.get_active();
-        text_font = Pango.FontDescription.from_string (pw.text_font.font_name);
-        text_height = pw.text_height.get_value ();
+        if (!text_system_font)
+            text_font = Pango.FontDescription.from_string (pw.text_font.font_name);
+        else
+            text_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
+        text_font_size = (text_font.get_size() / Pango.SCALE) * (dpi / 100);
+        text_height = (int) pw.text_height.get_value ();
 
         // map tab
+        if (pw.rise_method_branches.get_active ()){
+            rise_method = RisingMethod.BRANCHES;
+        } else if (pw.rise_method_min.get_active ()){
+            rise_method = RisingMethod.MIN;
+        } else if (pw.rise_method_max.get_active ()){
+            rise_method = RisingMethod.MAX;
+        } else if (pw.rise_method_avg.get_active ()){
+            rise_method = RisingMethod.AVG;
+        } else {
+            rise_method = RisingMethod.DISABLE;
+        }
         
+        if (pw.points_sum.get_active ()){
+            points = IdeaPoints.SUM;
+        } else if (pw.points_replace.get_active ()){
+            points = IdeaPoints.REPLACE;
+        } else {
+            points = IdeaPoints.IGNORE;
+        }
+
+        rise_ideas = pw.rise_ideas.get_active ();
+        rise_branches = pw.rise_branches.get_active ();
     }
 
     private void save_to_ui() {
@@ -223,6 +280,35 @@ public class Preferences : GLib.Object {
         pw.text_system_font.set_active (text_system_font);
         pw.text_font.set_font_name (text_font.to_string ());
         pw.text_height.set_value (text_height);
+
+        // map tab
+        switch (rise_method) {
+            case RisingMethod.BRANCHES:
+                pw.rise_method_branches.set_active (true);
+                break;
+            case RisingMethod.MIN:
+                pw.rise_method_min.set_active (true);
+                break;
+            case RisingMethod.MAX:
+                pw.rise_method_max.set_active (true);
+                break;
+            case RisingMethod.AVG:
+                pw.rise_method_avg.set_active (true);
+                break;
+            case RisingMethod.DISABLE:
+            default:
+                pw.rise_method_disable.set_active (true);
+                break;
+        }
+        if (points == IdeaPoints.SUM)
+            pw.points_sum.set_active (true);
+        else if (points == IdeaPoints.REPLACE)
+            pw.points_replace.set_active (true);
+        else
+            pw.points_ignore.set_active (true);
+
+        pw.rise_ideas.set_active (rise_ideas);
+        pw.rise_branches.set_active (rise_branches);
     }
 
     public bool dialog () {

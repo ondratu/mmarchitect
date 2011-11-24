@@ -45,7 +45,6 @@ EXT_PKGS = \
 #	gee-1.0 \
 #	librsvg-2.0 \
 
-
 VALA_STAMP := $(BUILD_DIR)/.stamp
 SRC_VALA = $(wildcard src/*.vala)
 SRC_C = $(foreach file,$(subst src,$(BUILD_DIR),$(SRC_VALA)),$(file:.vala=.c))
@@ -124,7 +123,6 @@ $(OUTPUT): $(OBJS)
 # object depences creates by $(CC) -MMD
 -include $(OBJS:.o=.d)
 
-ifndef DEBUG
 install:
 	@echo "Installing $(PROGRAM) to $(DESTDIR)$(PREFIX) ..."
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
@@ -135,16 +133,26 @@ install:
 	$(INSTALL_DATA) ui/* $(DESTDIR)$(DATA)/ui
 	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
 	$(INSTALL_DATA) icons/$(PROGRAM).svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
+	mkdir -p $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
+	$(INSTALL_DATA) glib-2.0/schemas/apps.$(PROGRAM).gschema.xml $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
 	$(INSTALL_DATA) misc/$(PROGRAM).desktop $(DESTDIR)$(PREFIX)/share/applications
+	@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real installation!"
 
 uninstall:
 	@echo "Uninstalling $(PROGRAM) from $(DESTDIR)$(PREFIX) ..."
 	$(RM) $(DESTDIR)$(PREFIX)/bin/$(PROGRAM)
 	$(RM) -r $(DESTDIR)$(DATA)/$(PROGRAM)
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/$(PROGRAM).svg
+	$(RM) $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas/apps.$(PROGRAM).gschema.xml
 	$(RM) $(DESTDIR)$(PREFIX)/share/applications/$(PROGRAM).desktop
-endif # end DEBUG
+	@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
+
+# for debug only
+mmarchitect.sh:
+	XDG_DATA_DIRS=./ glib-compile-schemas ./glib-2.0/schemas
+	echo "XDG_DATA_DIRS=./ ./mmarchitect" >> mmarchitect.sh
+	chmod a+x mmarchitect.sh
 
 else
 $(OUTPUT):
@@ -155,6 +163,7 @@ clean:
 	@echo "Cleaning ..."
 	@$(RM) $(OUTPUT)
 	@$(RM) -rf $(BUILD_DIR)
-	@$(RM) configure.mk src/config.vala
-	@$(RM) *~ src/*~
+	@$(RM) -f configure.mk src/config.vala
+	@$(RM) -f *~ src/*~
+	@$(RM) -f mmarchitect.sh
 	@(dh_clean || echo 'Never mind, it is ok ;)')

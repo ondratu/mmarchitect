@@ -58,7 +58,6 @@ public class FileTab : Gtk.ScrolledWindow {
     public FileTab.from_file(string path, Preferences pref){
         this(GLib.Path.get_basename(path), pref);
         do_load(path);
-        mindmap.refresh_tree();
         show_all();
         event_after.connect(center_root_node);
     }
@@ -115,6 +114,7 @@ public class FileTab : Gtk.ScrolledWindow {
 
     public void center_root_node () {
         double x, y;
+        mindmap.refresh_tree();
         mindmap.get_translation (out x, out y);
         int xx = (int) GLib.Math.lrint(x);
         int yy = (int) GLib.Math.lrint(y);

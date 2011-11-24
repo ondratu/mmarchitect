@@ -763,8 +763,8 @@
                             <property name="visible">True</property>
                             <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkCheckButton" id="rise_ida">
-                                <property name="label" translatable="yes">checkbutton</property>
+                              <object class="GtkCheckButton" id="rise_ideas">
+                                <property name="label" translatable="yes">Ideas</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -775,8 +775,8 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkCheckButton" id="rise_branche">
-                                <property name="label" translatable="yes">checkbutton</property>
+                              <object class="GtkCheckButton" id="rise_branches">
+                                <property name="label" translatable="yes">Branches</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>

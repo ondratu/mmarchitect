@@ -165,6 +165,9 @@ public class Node : GLib.Object {
     }
 
     public void realize (Gdk.Drawable window, Preferences pref) {
+        assert (window != null);
+        assert (pref != null);
+
         this.window = window;
         this.pref = pref;
         get_size_request (out area.width, out area.height);
@@ -218,10 +221,10 @@ public class Node : GLib.Object {
 
         int t_width, t_height;
         la.get_size (out t_width, out t_height);
-        width = (title.length > 0) ?
-                (t_width / Pango.SCALE) + TEXT_PADDING * 8 :
-                NONE_TITLE.length * (int) (font_size / Pango.SCALE) + TEXT_PADDING * 2 + ICO_SIZE;
-        height = (t_height / Pango.SCALE) + TEXT_PADDING * 2;
+        width = (int) GLib.Math.lrint ( (title.length > 0) ?
+                (t_width / Pango.SCALE) + pref.font_padding * 8 :
+                NONE_TITLE.length * (int) (font_size / Pango.SCALE) + pref.font_padding * 2 + ICO_SIZE);
+        height = (int) GLib.Math.lrint ((t_height / Pango.SCALE) + pref.font_padding * 2);
         if (text.length > 0)
             width += ICO_SIZE + 1;
     }
@@ -260,13 +263,15 @@ public class Node : GLib.Object {
     }
 
     public int set_position (int left, int top) {
+        assert (pref != null);
+
         area.x = left;
         area.y = top;
 
         full_left.width = area.width;
         full_right.width = area.width;
-        full_left.height = area.height + NODE_PADDING_HEIGHT;
-        full_right.height = area.height + NODE_PADDING_HEIGHT;
+        full_left.height = area.height + pref.height_padding;
+        full_right.height = area.height + pref.height_padding;
         
         int leftjmp = 0;
         int rightjmp = 0;
@@ -280,11 +285,11 @@ public class Node : GLib.Object {
                 // this is right orientation from top
                 if (node.direction == Direction.RIGHT) {
                     if (i > 0)
-                        rightjmp += node.set_position (area.x + area.width + NODE_PADDING_WEIGHT,
+                        rightjmp += node.set_position (area.x + area.width + pref.width_padding,
                                         area.y + rightjmp);
                     else
-                        rightjmp += node.set_position (area.x + area.width + NODE_PADDING_WEIGHT,
-                                        area.y + i * (area.height + NODE_PADDING_HEIGHT));
+                        rightjmp += node.set_position (area.x + area.width + pref.width_padding,
+                                        area.y + i * (area.height + pref.height_padding));
 
                     int full_width = node.area.x - area.x + node.full_right.width;
                     full_right.width = (full_right.width < full_width) ? full_width : full_right.width;
@@ -292,11 +297,11 @@ public class Node : GLib.Object {
 
                 } else {
                     if (i > 0)
-                        leftjmp += node.set_position (area.x - node.area.width - NODE_PADDING_WEIGHT,
+                        leftjmp += node.set_position (area.x - node.area.width - pref.width_padding,
                                         area.y + leftjmp);
                     else
-                        leftjmp += node.set_position (area.x - node.area.width - NODE_PADDING_WEIGHT,
-                                        area.y + i * (area.height + NODE_PADDING_HEIGHT));
+                        leftjmp += node.set_position (area.x - node.area.width - pref.width_padding,
+                                        area.y + i * (area.height + pref.height_padding));
 
                     int full_width = ((node.area.x + node.area.width) - (area.x + area.width)).abs()  + node.full_left.width;
                     full_left.width = (full_left.width < full_width) ? full_width : full_left.width;
@@ -305,14 +310,14 @@ public class Node : GLib.Object {
             }
             
             if (full_right.height > area.height)
-                full_right.height -= area.height + NODE_PADDING_HEIGHT;
+                full_right.height -= area.height + pref.height_padding;
             if (full_left.height > area.height)
-                full_left.height -= area.height + NODE_PADDING_HEIGHT;
+                full_left.height -= area.height + pref.height_padding;
             
             if (parent == null){
                 full_left.width -= area.width;
-                full_left.height -= NODE_PADDING_HEIGHT;
-                full_right.height -= NODE_PADDING_HEIGHT;
+                full_left.height -= pref.height_padding;
+                full_right.height -= pref.height_padding;
                 // TODO: posun mensiho bloku o pulku rozdilu niz
                 // y axis correction
                 int dist = (full_left.height - full_right.height).abs() / 2;
@@ -327,11 +332,11 @@ public class Node : GLib.Object {
             }
             
             int jmp = (rightjmp > leftjmp) ? rightjmp : leftjmp;
-            area.y = area.y + jmp / 2 - (area.height + NODE_PADDING_HEIGHT)/ 2;
+            area.y = area.y + jmp / 2 - (area.height + pref.height_padding)/ 2;
             return jmp;
         }
 
-        return area.height + NODE_PADDING_HEIGHT;
+        return area.height + pref.height_padding;
     }
 
     public int get_higher_full () {
@@ -379,7 +384,7 @@ public class Node : GLib.Object {
         // text
         if (title.length > 0){
             cr.set_source_rgb (0, 0, 0);
-            cr.move_to (area.x + TEXT_PADDING * 4, area.y + TEXT_PADDING);
+            cr.move_to (area.x + pref.font_padding * 4, area.y + pref.font_padding);
 
             var la = Pango.cairo_create_layout (cr);
             la.set_font_description(font_desc);
@@ -411,8 +416,8 @@ public class Node : GLib.Object {
                             parent.area.y + parent.area.height / 2);
                 */
                 cr.move_to (px, py);
-                cr.curve_to (px + NODE_PADDING_WEIGHT / 1.5, py,
-                             nx - NODE_PADDING_WEIGHT / 1.5, ny,
+                cr.curve_to (px + pref.width_padding / 1.5, py,
+                             nx - pref.width_padding / 1.5, ny,
                              nx, ny);
             } else {
                 double nx = area.x + area.width;
@@ -425,8 +430,8 @@ public class Node : GLib.Object {
                             parent.area.y + parent.area.height / 2);
                 */
                 cr.move_to (nx, ny);
-                cr.curve_to (nx + NODE_PADDING_WEIGHT / 1.5, ny,
-                             px - NODE_PADDING_WEIGHT / 1.5, py,
+                cr.curve_to (nx + pref.width_padding / 1.5, ny,
+                             px - pref.width_padding / 1.5, py,
                              px, py);
             }
             cr.stroke ();

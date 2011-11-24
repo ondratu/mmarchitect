@@ -352,21 +352,21 @@ public class MindMap : Gtk.Fixed {
         int new_y = focused.area.y + (int) GLib.Math.lrint(y) - 1;
 
         if (focused.direction == Direction.LEFT &&
-            focused.area.width < NONE_TITLE.length * FONT_SIZE)
+            focused.area.width < NONE_TITLE.length * pref.node_font_size)
         {
             int ico_size = (focused.text.length > 0 || focused.title.length == 0) ? 0 : ICO_SIZE;
-            int tmp_x = new_x + focused.area.width - NONE_TITLE.length * FONT_SIZE - ico_size - TEXT_PADDING * 2;
+            int tmp_x = new_x + focused.area.width - NONE_TITLE.length * pref.node_font_size - ico_size - pref.font_padding * 2;
             if (tmp_x > 0)
                 new_x =  tmp_x;
         }
 
         // move editform to left if it is needed allways
         if ((new_x + aloc.width) > allocation.width)
-            new_x = allocation.width - TEXT_PADDING - aloc.width;
+            new_x = allocation.width - pref.font_padding - aloc.width;
 
         // move editform up needed when is expand
         if (editform.is_expand && (new_y + aloc.height) > allocation.height) {
-            new_y = allocation.height - TEXT_PADDING - aloc.height;
+            new_y = allocation.height - pref.font_padding - aloc.height;
         }
         
         move (editform, new_x, new_y);
