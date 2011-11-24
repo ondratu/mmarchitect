@@ -4,7 +4,7 @@ VERSION = "$(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\)-.*).*/\1/p
 VALAC ?= valac
 VALAC_MIN_VERSION = 0.12.1
 INSTALL ?= install
-CC = gcc-4.3
+#CC = gcc-4.3
 
 INSTALL_PROGRAM ?= $(INSTALL)
 INSTALL_DATA ?= $(INSTALL) -m 644
