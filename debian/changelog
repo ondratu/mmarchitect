@@ -1,3 +1,24 @@
+mmarchitect (0.3.0) unstable; urgency=low
+
+  * src/editform.vala, src/filetab.vala, src/node.vala,
+    src/settings.vala: Colors support and points prepare
+  * src/app.vala, src/editform.vala, src/node.vala,
+    ui/close_file_dialog.ui: some bug fixes
+  * Makefile, debian/control, src/app.vala, src/consts.vala,
+    src/editform.vala, src/export.vala, src/filetab.vala,
+    src/mindmap.vala, src/node.vala, src/preferences.vala,
+    src/settings.vala, ui/main.ui, ui/preferences.ui: debian right
+    gcc depends, preference dialog, fonts buf fix, focus bug fix,
+    better cairo colors using,  per file building
+  * Makefile, src/consts.vala, src/editform.vala, src/filetab.vala,
+    src/mindmap.vala, src/node.vala, src/preferences.vala,
+    ui/preferences.ui: Preferences
+  * Makefile, debian/control: Wheezy modification
+  * Makefile, src/app.vala, src/preferences.vala: Preferences are
+    saved to user config
+
+ -- Ondrej Tuma <mcbig@compaq.zeropage.cz>  Fri, 02 Dec 2011 13:32:29 +0100
+
 mmarchitect (0.2.1) unstable; urgency=low
 
   * new line style
