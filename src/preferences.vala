@@ -4,6 +4,27 @@ enum Start {
     MAP
 }
 
+public string StartToString(uint start){
+    switch (start) {
+        case Start.LAST:
+            return "LAST";
+        case Start.MAP:
+            return "MAP";
+        case Start.EMPTY:
+        default:
+            return "EMPTY";
+    } 
+}
+
+public uint StartFromString(string start){
+    if (start == "LAST")
+        return Start.LAST;
+    if (start == "MAP")
+        return Start.MAP;
+    else // EMPTY and default
+        return Start.EMPTY;
+}
+
 enum RisingMethod {
     DISABLE,
     BRANCHES,
@@ -12,10 +33,60 @@ enum RisingMethod {
     AVG
 }
 
+public string RisingMethodToString(uint rising){
+    switch (rising) {
+        case RisingMethod.DISABLE:
+            return "DISABLE";
+        case RisingMethod.MIN:
+            return "MIN";
+        case RisingMethod.MAX:
+            return "MAX";
+        case RisingMethod.AVG:
+            return "AVG";
+        case RisingMethod.BRANCHES:
+        default:
+            return "BRANCHES";
+    } 
+}
+
+public uint RisingMethodFromString(string rising){
+    if (rising == "DISABLE")
+        return RisingMethod.DISABLE;
+    if (rising == "MIN")
+        return RisingMethod.MIN;
+    if (rising == "MAX")
+        return RisingMethod.MAX;
+    if (rising == "AVG")
+        return RisingMethod.AVG;
+    else // BRANCHES and default
+        return RisingMethod.BRANCHES;
+}
+
 enum IdeaPoints {
     IGNORE,             // node points are ignore when chlidren have points
     SUM,                // node points are sumary with all children points
     REPLACE             // node points are replace when children have poins
+}
+
+public string IdeaPointsToString(uint points){
+    switch (points) {
+        case IdeaPoints.SUM:
+            return "SUM";
+        case IdeaPoints.REPLACE:
+            return "REPLACE";
+        case IdeaPoints.IGNORE:
+        default:
+            return "IGNORE";
+    } 
+}
+
+public uint IdeaPointsFromString(string points){
+    if (points == "SUM")
+        return IdeaPoints.SUM;
+    if (points == "REPLACE")
+        return IdeaPoints.REPLACE;
+    else // IGNORE and default
+        return IdeaPoints.IGNORE;
 }
 
 public class PreferenceWidgets : GLib.Object {
@@ -171,7 +242,7 @@ public class Preferences : GLib.Object {
         default_color = { uint32.MIN, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };
 
         load_default ();
-        //load_from_config ();
+        load_from_config ();
     }
 
     private void load_default() {
@@ -197,6 +268,106 @@ public class Preferences : GLib.Object {
         points = IdeaPoints.IGNORE;
         rise_ideas = true;
         rise_branches = true;
+    }
+
+    private void read_general_node(Xml.Node* node) {
+        for (Xml.Node* it = node->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+        
+            if (it->name == "author_name"){
+                author_name = it->get_content().strip();
+            } else if (it->name == "author_surname"){
+                author_surname = it->get_content().strip();
+            } else if (it->name == "default_directory"){
+                default_directory = it->get_content().strip();
+            } else if (it->name == "start_with"){
+                start_with = StartFromString (it->get_content().strip());
+            }
+        }
+    }
+
+    private void read_style_node(Xml.Node* node) {
+        for (Xml.Node* it = node->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+        
+            if (it->name == "node_system_font"){
+                node_system_font = bool.parse(it->get_content().strip());
+            } else if (it->name == "node_font"){
+                if (!node_system_font)
+                    node_font = Pango.FontDescription.from_string(
+                            it->get_content().strip());
+            } else if (it->name == "font_rise"){
+                font_rise = int.parse(it->get_content().strip());
+            } else if (it->name == "line_rise"){
+                line_rise = int.parse(it->get_content().strip());
+            } else if (it->name == "font_padding"){
+                font_padding = int.parse(it->get_content().strip());
+            } else if (it->name == "height_padding"){
+                height_padding = int.parse(it->get_content().strip());
+            } else if (it->name == "width_padding"){
+                width_padding = int.parse(it->get_content().strip());
+            } else if (it->name == "text_system_font"){
+                text_system_font = bool.parse(it->get_content().strip());
+            } else if (it->name == "text_font"){
+                if (!text_system_font)
+                    text_font = Pango.FontDescription.from_string(
+                            it->get_content().strip());
+            } else if (it->name == "text_height"){
+                text_height = int.parse(it->get_content().strip());
+            }
+        }
+    }
+
+    private void read_map_node(Xml.Node* node) {
+        for (Xml.Node* it = node->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+        
+            if (it->name == "rise_method"){
+                rise_method = RisingMethodFromString(it->get_content().strip());
+            } else if (it->name == "points"){
+                points = IdeaPointsFromString(it->get_content().strip());
+            } else if (it->name == "rise_ideas"){
+                rise_ideas = bool.parse(it->get_content().strip());
+            } else if (it->name == "rise_branches"){
+                rise_branches = bool.parse(it->get_content().strip());
+            }
+        }
+    }
+
+    private void load_from_config () {
+        var path = GLib.Environment.get_user_config_dir() + "/"+PROGRAM+".conf";
+        if (!GLib.File.new_for_path (path).query_exists())
+            return;
+
+        var r = new Xml.TextReader.filename (path);
+        r.read();
+        
+        Xml.Node* x = r.expand ();
+        if (x == null)
+            return;
+        
+        // read the file
+        for (Xml.Node* it = x->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+            
+            if (it->name == "general"){
+                read_general_node(it);
+            }
+            if (it->name == "style"){
+                read_style_node(it);
+            }
+            if (it->name == "map"){
+                read_map_node(it);
+            }
+        }
     }
 
     private void load_from_ui() {
@@ -311,6 +482,72 @@ public class Preferences : GLib.Object {
         pw.rise_branches.set_active (rise_branches);
     }
 
+
+    private void write_general_node (Xml.TextWriter w) {
+        w.start_element ("general");
+        
+        w.write_element ("author_name", author_name);
+        w.write_element ("author_surname", author_surname);
+        w.write_element ("default_directory", default_directory);
+        w.write_element ("start_with", StartToString (start_with));
+
+        w.end_element ();
+    }
+
+    private void write_style_node (Xml.TextWriter w) {
+        w.start_element ("style");
+        
+        w.write_element ("node_system_font", node_system_font.to_string ());
+        if (!node_system_font)
+            w.write_element ("node_font", node_font.to_string ());
+        w.write_element ("font_rise", font_rise.to_string ());
+        w.write_element ("line_rise", line_rise.to_string ());
+        w.write_element ("font_padding", font_padding.to_string ());
+        w.write_element ("width_padding", width_padding.to_string ());
+        w.write_element ("text_system_font", text_system_font.to_string ());
+        if (!text_system_font)
+            w.write_element ("text_font", text_font.to_string ());
+        w.write_element ("text_font_size", text_font_size.to_string ());
+        w.write_element ("text_height", text_height.to_string ());
+
+        w.end_element ();
+    }
+
+    private void write_map_node (Xml.TextWriter w) {
+        w.start_element ("map");
+
+        w.write_element ("rise_method", RisingMethodToString (rise_method));
+        w.write_element ("points", IdeaPointsToString (points));
+        w.write_element ("rise_ideas", rise_ideas.to_string ());
+        w.write_element ("rise_branches", rise_branches.to_string ());
+
+        w.end_element ();
+    }
+
+    private void save_to_config() throws Error {
+        string config_dir_str = GLib.Environment.get_user_config_dir();
+        var config_dir = GLib.File.new_for_path(config_dir_str);
+        if (!config_dir.query_exists())
+            GLib.DirUtils.create_with_parents(config_dir_str, 0755);
+        if (config_dir.query_file_type (0) != FileType.DIRECTORY)
+            throw new GLib.FileError.NOTDIR (config_dir_str + " is not directory!");
+
+        var w = new Xml.TextWriter.filename (config_dir_str + "/"+PROGRAM+".conf");
+        w.set_indent (true);
+        w.set_indent_string ("\t");
+
+        w.start_document ();
+        w.start_element ("appconfig");
+
+        write_general_node (w);
+        write_style_node (w);
+        write_map_node (w);
+
+        w.end_element();
+        w.end_document();
+        w.flush();
+    }
+
     public bool dialog () {
         var pref_widgets = new PreferenceWidgets ();
         pw = pref_widgets;
@@ -328,7 +565,11 @@ public class Preferences : GLib.Object {
 
         if (retval) {
             load_from_ui ();
-            // save_to_config ();
+            try {
+                save_to_config ();
+            } catch (Error e) {
+                stderr.printf ("%s\n", e.message);
+            }
             // redraw_all_tabs ();
         }
 

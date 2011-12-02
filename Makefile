@@ -1,5 +1,5 @@
 PROGRAM = mmarchitect
-VERSION = "$(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\)-.*).*/\1/p"))"
+VERSION = "$(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\).*).*/\1/p"))"
 
 VALAC ?= valac
 VALAC_MIN_VERSION = 0.12.1

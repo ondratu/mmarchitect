@@ -389,7 +389,6 @@ public class App : GLib.Object {
     [CCode (instance_pos = -1)]
     [CCode (cname = "G_MODULE_EXPORT app_preferences")]
     public void preferences (Gtk.Widget w) {
-        stdout.printf ("app method : %s\n", this.ref_count.to_string());
         if (pref.dialog()) {
             for (int i = 0; i < notebook.get_n_pages (); i++) {
                 var file = notebook.get_nth_page (i) as FileTab;
