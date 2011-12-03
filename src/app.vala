@@ -408,6 +408,7 @@ public class App : GLib.Object {
             var p = new Gdk.Pixbuf.from_file (DATA + "/icons/" + PROGRAM + ".png");
             
             d.set_logo (p);
+            d.set_version (VERSION);
             d.run();
             d.destroy();
         }  catch (Error e) {
