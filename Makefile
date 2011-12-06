@@ -4,33 +4,35 @@ VERSION = "$(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\).*).*/\1/p"
 VALAC ?= valac
 VALAC_MIN_VERSION = 0.12.1
 INSTALL ?= install
-#CC = gcc-4.3
 
 INSTALL_PROGRAM ?= $(INSTALL)
 INSTALL_DATA ?= $(INSTALL) -m 644
 
 BUILD_DIR ?= .build
 
+HAVE_CONFIG = $(wildcard configure.mk)
 CONF = $(shell (if [ -f configure.mk ]; then echo 1; else echo 0; fi;))
 
 CFLAGS ?= -g -O2
+VALAFLAGS ?= --save-temps
+
+ifeq ($(OS), Windows_NT)
+    RM = del /f /q
+    CFLAGS += -mwindows
+    VALAFLAGS += -D WINDOWS
+endif
 
 ifndef DEBUG
-    #CFLAGS += -DNDEBUG
-
     PREFIX ?= /usr/local
     DATA=$(PREFIX)/share/$(PROGRAM)
-        
 else
-    #CFLAGS += -DDEBUG=1
+    VALAFLAGS += -D DEBUG
     PREFIX =
     DATA = ./
 endif
 
 CFLAGS += -DGETTEXT_PACKAGE=\'\"$(PROGRAM)\"\' \
 	-DLANG_SUPPORT_DIR=\'\"$(SYSTEM_LANG_DIR)\"\'
-
-VALAFLAGS = --save-temps
 
 ifdef CFLAGS
     VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
@@ -43,7 +45,6 @@ EXT_PKGS = \
 	cairo \
 	libxml-2.0
 #	gee-1.0 \
-#	librsvg-2.0 \
 
 VALA_STAMP := $(BUILD_DIR)/.stamp
 SRC_VALA = $(wildcard src/*.vala)
@@ -58,7 +59,7 @@ OUTPUT=$(PROGRAM)
 all: $(OUTPUT)
 
 pkgcheck:
-	@echo Checking packages $(EXT_PKGS)
+	@echo "Checking packages $(EXT_PKGS)"
 	@pkg-config --print-errors --exists $(EXT_PKGS)
 
 valacheck:
@@ -66,8 +67,8 @@ valacheck:
 	@echo ", you are using $(shell $(VALAC) --version)"
 
 configure:
-	@make clean
-	@make do-configure
+	@$(MAKE) clean
+	@$(MAKE) do-configure
 
 do-configure: valacheck pkgcheck
 	@echo "Generating src/config.vala ..."
@@ -99,17 +100,17 @@ help:
             ""
 
 
-ifeq (1, $(CONF))
+ifneq ($(strip $(HAVE_CONFIG)),)
     include configure.mk
 
 $(VALA_STAMP): $(SRC_VALA) Makefile configure.mk
-	@echo Compiling Vala code...
+	@echo "Compiling Vala code..."
 	@mkdir -p $(BUILD_DIR)
 	$(VALAC) --ccode --directory=$(BUILD_DIR) --basedir=src \
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
 		$(VALAFLAGS) \
 		$(SRC_VALA)
-	@touch $@
+	@echo "" > $@
 
 $(SRC_C): $(VALA_STAMP)
 	@
@@ -149,10 +150,10 @@ uninstall:
 	@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
 
 # for debug only
-mmarchitect.sh:
-	XDG_DATA_DIRS=./ glib-compile-schemas ./glib-2.0/schemas
-	echo "XDG_DATA_DIRS=./ ./mmarchitect" >> mmarchitect.sh
-	chmod a+x mmarchitect.sh
+#mmarchitect.sh:
+#	XDG_DATA_DIRS=./ glib-compile-schemas ./glib-2.0/schemas
+#	echo "XDG_DATA_DIRS=./ ./mmarchitect" >> mmarchitect.sh
+#	chmod a+x mmarchitect.sh
 
 else
 $(OUTPUT):
@@ -162,8 +163,8 @@ endif # end is configure.mk
 clean:
 	@echo "Cleaning ..."
 	@$(RM) $(OUTPUT)
-	@$(RM) -rf $(BUILD_DIR)
-	@$(RM) -f configure.mk src/config.vala
-	@$(RM) -f *~ src/*~
-	@$(RM) -f mmarchitect.sh
+	@$(RM) -r $(BUILD_DIR)
+	@$(RM) configure.mk src/config.vala
+	@$(RM) *~ src/*~
+	@$(RM) mmarchitect.sh
 	@(dh_clean || echo 'Never mind, it is ok ;)')

@@ -93,8 +93,7 @@ public class PreferenceWidgets : GLib.Object {
     public Gtk.Dialog dialog;
 
     // general tab
-    public Gtk.Entry author_name;
-    public Gtk.Entry author_surname;
+    public Gtk.Entry author;
     public Gtk.FileChooserButton default_directory;
     public Gtk.RadioButton start_empty;
     public Gtk.RadioButton start_last;
@@ -134,8 +133,7 @@ public class PreferenceWidgets : GLib.Object {
         dialog = builder.get_object ("dialog") as Gtk.Dialog;
 
         // general tab
-        author_name = builder.get_object ("author_name") as Gtk.Entry;
-        author_surname = builder.get_object ("author_surname") as Gtk.Entry;
+        author = builder.get_object ("author") as Gtk.Entry;
         default_directory = builder.get_object("default_directory") 
                     as Gtk.FileChooserButton;
         start_empty = builder.get_object("start_empty") as Gtk.RadioButton;
@@ -212,8 +210,7 @@ public class Preferences : GLib.Object {
 
     public unowned PreferenceWidgets pw;
 
-    public string author_name;
-    public string author_surname;
+    public string author;
     public string default_directory;
     public uint start_with;
 
@@ -238,7 +235,11 @@ public class Preferences : GLib.Object {
     public Preferences () {
 
         gtk_sett = Gtk.Settings.get_default ();
+#if ! WINDOWS
         dpi = gtk_sett.gtk_xft_dpi/1024;
+#else
+        dpi = 96;               // there is no gtk_xft_dpi property on windows
+#endif
         default_color = { uint32.MIN, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };
 
         load_default ();
@@ -246,8 +247,7 @@ public class Preferences : GLib.Object {
     }
 
     private void load_default() {
-        author_name = "";           // TODO: get from system
-        author_surname = "";
+        author = GLib.Environment.get_real_name();
         default_directory = GLib.Environment.get_home_dir();
         start_with = Start.EMPTY;
 
@@ -276,16 +276,14 @@ public class Preferences : GLib.Object {
                 continue;
             }
         
-            if (it->name == "author_name"){
-                author_name = it->get_content().strip();
-            } else if (it->name == "author_surname"){
-                author_surname = it->get_content().strip();
+            if (it->name == "author"){
+                author = it->get_content().strip();
             } else if (it->name == "default_directory"){
                 default_directory = it->get_content().strip();
             } else if (it->name == "start_with"){
                 start_with = StartFromString (it->get_content().strip());
             }
-        }
+        }        
     }
 
     private void read_style_node(Xml.Node* node) {
@@ -372,8 +370,7 @@ public class Preferences : GLib.Object {
 
     private void load_from_ui() {
         // general tab
-        author_name = pw.author_name.get_text ();
-        author_surname = pw.author_surname.get_text ();
+        author = pw.author.get_text ();
         default_directory = pw.default_directory.get_current_folder ();
         if (pw.start_map.get_active ()){
             start_with = Start.MAP;
@@ -430,8 +427,7 @@ public class Preferences : GLib.Object {
 
     private void save_to_ui() {
         // general tab
-        pw.author_name.set_text (author_name);
-        pw.author_surname.set_text (author_surname);
+        pw.author.set_text (author);
         pw.default_directory.set_current_folder (default_directory);
         if (start_with == Start.MAP)
             pw.start_map.set_active (true);
@@ -485,9 +481,8 @@ public class Preferences : GLib.Object {
 
     private void write_general_node (Xml.TextWriter w) {
         w.start_element ("general");
-        
-        w.write_element ("author_name", author_name);
-        w.write_element ("author_surname", author_surname);
+       
+        w.write_element ("author", author);
         w.write_element ("default_directory", default_directory);
         w.write_element ("start_with", StartToString (start_with));
 

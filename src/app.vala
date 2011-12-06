@@ -12,8 +12,10 @@ public class App : GLib.Object {
         tabs_counter = 0;
         node_clipboard = null;
         pref = new Preferences();
+#if DEBUG
         stdout.printf("GETTEXT_PACKAGE: %s \n", GETTEXT_PACKAGE);
         stdout.printf("DATA: %s \n", DATA);
+#endif
     }
 
     public void loadui () throws Error {
@@ -26,7 +28,7 @@ public class App : GLib.Object {
         set_tooltips (builder);
 
         window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
-        new_file (window);
+        new_file_private (window);
 
         window.destroy.connect (Gtk.main_quit);
         window.delete_event.connect (delete_event);
@@ -58,6 +60,10 @@ public class App : GLib.Object {
     [CCode (instance_pos = -1)]
     [CCode (cname = "G_MODULE_EXPORT app_new_file")]
     public void new_file (Gtk.Widget w) {
+        new_file_private(w);
+    }
+
+    public void new_file_private (Gtk.Widget w) {
         string index = (++tabs_counter).to_string();
         var file = new FileTab.empty ("map"+index, pref);
         file.closed.connect (on_close_file);
@@ -78,7 +84,7 @@ public class App : GLib.Object {
         filter.set_name ("Mind Map Architect");
         filter.add_pattern ("*.mma");
         d.add_filter (filter);
-        d.set_current_folder(GLib.Environment.get_home_dir());
+        d.set_current_folder(pref.default_directory);
 
         if (d.run() == Gtk.ResponseType.ACCEPT){
             var file = new FileTab.from_file (d.get_filename(), pref);
@@ -110,7 +116,7 @@ public class App : GLib.Object {
         var mm = create_filter ("Free Mind", {"*.mm"});
         d.add_filter (mm);
 
-        d.set_current_folder(GLib.Environment.get_home_dir());
+        d.set_current_folder(pref.default_directory);
 
         if (d.run() == Gtk.ResponseType.ACCEPT){
             string fname = GLib.Path.get_basename(d.get_filename());
@@ -221,7 +227,7 @@ public class App : GLib.Object {
         d.set_do_overwrite_confirmation (true);
 
         if (file.filepath == "") {
-            d.set_current_folder(GLib.Environment.get_home_dir());
+            d.set_current_folder(default_directory);
             d.set_current_name(file.title);
         } else {
             d.set_current_folder(GLib.Path.get_dirname(file.filepath));
@@ -270,7 +276,7 @@ public class App : GLib.Object {
         d.set_do_overwrite_confirmation (true);
 
         if (file.filepath == "") {
-            d.set_current_folder(GLib.Environment.get_home_dir());
+            d.set_current_folder(default_directory);
             d.set_current_name(file.title);
         } else {
             d.set_current_folder(GLib.Path.get_dirname(file.filepath));
