@@ -17,22 +17,32 @@ CFLAGS ?= -g -O2
 VALAFLAGS ?= --save-temps
 
 ifeq ($(OS), Windows_NT)
-    RM = del /f /q
-    CFLAGS += -mwindows
+    LDFLAGS += -Wl,-subsystem,windows
     VALAFLAGS += -D WINDOWS
+    INSTALL_AS_COPY = 1
+    UX ?= C:\vala-0.12.0\bin\\
 endif
 
-ifndef DEBUG
+ifdef DEBUG
+    INSTALL_AS_COPY = 1
+    VALAFLAGS += -D DEBUG
+endif
+
+ifndef INSTALL_AS_COPY
     PREFIX ?= /usr/local
     DATA=$(PREFIX)/share/$(PROGRAM)
 else
-    VALAFLAGS += -D DEBUG
     PREFIX =
     DATA = ./
 endif
 
-CFLAGS += -DGETTEXT_PACKAGE=\'\"$(PROGRAM)\"\' \
+ifeq ($(OS), Windows_NT)
+    CFLAGS += -DGETTEXT_PACKAGE=\"\\"\"$(PROGRAM)\\"\"\" \
+	-DLANG_SUPPORT_DIR=\"\\"\"$(SYSTEM_LANG_DIR)\\"\"\"
+else
+    CFLAGS += -DGETTEXT_PACKAGE=\'\"$(PROGRAM)\"\' \
 	-DLANG_SUPPORT_DIR=\'\"$(SYSTEM_LANG_DIR)\"\'
+endif
 
 ifdef CFLAGS
     VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
@@ -59,30 +69,30 @@ OUTPUT=$(PROGRAM)
 all: $(OUTPUT)
 
 pkgcheck:
-	@echo "Checking packages $(EXT_PKGS)"
+	@$(UX)echo "Checking packages $(EXT_PKGS)"
 	@pkg-config --print-errors --exists $(EXT_PKGS)
 
 valacheck:
-	@echo -n "Min Vala support version is $(VALAC_MIN_VERSION)"
-	@echo ", you are using $(shell $(VALAC) --version)"
+	@$(UX)echo -n "Min Vala support version is $(VALAC_MIN_VERSION)"
+	@$(UX)echo ", you are using $(shell $(VALAC) --version)"
 
 configure:
 	@$(MAKE) clean
 	@$(MAKE) do-configure
 
 do-configure: valacheck pkgcheck
-	@echo "Generating src/config.vala ..."
-	@echo 'const string DATA = "$(DATA)";' > src/config.vala
-	@echo 'const string PROGRAM = "$(PROGRAM)";' >> src/config.vala
-	@echo 'const string VERSION = $(VERSION);' >> src/config.vala
-	@echo "Generating configure.mk ..."
-	@echo PREFIX = $(PREFIX) > configure.mk
-	@echo DATA = $(DATA) >> configure.mk
-	@echo CFLAGS = $(CFLAGS) >> configure.mk
-	@echo VALAFLAGS = $(VALAFLAGS) >> configure.mk
+	@$(UX)echo "Generating src/config.vala ..."
+	@$(UX)echo "const string DATA = \"$(DATA)\";" > src/config.vala
+	@$(UX)echo "const string PROGRAM = \"$(PROGRAM)\";" >> src/config.vala
+	@$(UX)echo "const string VERSION = \"$(VERSION)\";" >> src/config.vala
+	@$(UX)echo "Generating configure.mk ..."
+	@$(UX)echo PREFIX = $(PREFIX) > configure.mk
+	@$(UX)echo DATA = $(DATA) >> configure.mk
+	@$(UX)echo CFLAGS = $(CFLAGS) >> configure.mk
+	@$(UX)echo VALAFLAGS = $(VALAFLAGS) >> configure.mk
 
 help:
-	@echo \
+	@$(UX)echo \
             "make [RULE] [OPTIONS] \n" \
             "   RULES are: \n" \
             "       configure   - configure build enviroment\n" \
@@ -104,8 +114,8 @@ ifneq ($(strip $(HAVE_CONFIG)),)
     include configure.mk
 
 $(VALA_STAMP): $(SRC_VALA) Makefile configure.mk
-	@echo "Compiling Vala code..."
-	@mkdir -p $(BUILD_DIR)
+	@$(UX)echo "Compiling Vala code..."
+	@$(UX)mkdir -p $(BUILD_DIR)
 	$(VALAC) --ccode --directory=$(BUILD_DIR) --basedir=src \
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
 		$(VALAFLAGS) \
@@ -161,10 +171,10 @@ $(OUTPUT):
 endif # end is configure.mk
 
 clean:
-	@echo "Cleaning ..."
+	@$(UX)echo "Cleaning ..."
 	@$(RM) $(OUTPUT)
 	@$(RM) -r $(BUILD_DIR)
 	@$(RM) configure.mk src/config.vala
 	@$(RM) *~ src/*~
 	@$(RM) mmarchitect.sh
-	@(dh_clean || echo 'Never mind, it is ok ;)')
+	@dh_clean || $(UX)echo 'Never mind, it is ok ;)'

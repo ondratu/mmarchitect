@@ -1,3 +1,11 @@
+mmarchitect (0.3.2) unstable; urgency=low
+  * src/app.vala: default directory bug fix
+  * Makefile, debian/README.Win32: better windows compilation support
+  * icons/mmarchitect.ico: icon for windows
+
+mmarchitect (0.3.1) unstable; urgency=low
+  * src/app.vala, ui/about_dialog.ui: #! version and web fix
+
 mmarchitect (0.3.0) unstable; urgency=low
 
   * src/editform.vala, src/filetab.vala, src/node.vala,

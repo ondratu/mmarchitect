@@ -227,7 +227,7 @@ public class App : GLib.Object {
         d.set_do_overwrite_confirmation (true);
 
         if (file.filepath == "") {
-            d.set_current_folder(default_directory);
+            d.set_current_folder(pref.default_directory);
             d.set_current_name(file.title);
         } else {
             d.set_current_folder(GLib.Path.get_dirname(file.filepath));
@@ -276,7 +276,7 @@ public class App : GLib.Object {
         d.set_do_overwrite_confirmation (true);
 
         if (file.filepath == "") {
-            d.set_current_folder(default_directory);
+            d.set_current_folder(pref.default_directory);
             d.set_current_name(file.title);
         } else {
             d.set_current_folder(GLib.Path.get_dirname(file.filepath));

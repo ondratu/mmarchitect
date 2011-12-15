@@ -1,0 +1,27 @@
+mmarchitect for Win32
+---------------------
+
+Sources are possible to compile with Valac for windows. See 
+http://live.gnome.org/Vala/ValaOnWindows. After that, you will need unzip some
+tools from UnxUtils https://sourceforge.net/projects/unxutils/ to valac bin
+directory. You will need this tools:
+    echo.exe
+    head.exe
+    mkdir.exe
+    rm.exe
+    sed.exe
+    touch.exe
+
+In mmarchitect source directory, set vala as primary directory (becouse echo
+must be use from unxutils) and do make:
+
+    mingw32-make configure
+    mingw32-make
+
+If your unix utils are not not in c:\vala-0.12.0\bin then set UX to right path:
+
+    mingw32-make configure UX=c:\unixtools\bin
+    mingw32-make UX=c:\unixtools\bin
+
+Installation is only copy mmarchitect.exe, ui icons and dll from vala to
+your destination directory.
