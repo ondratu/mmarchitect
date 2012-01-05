@@ -111,6 +111,15 @@ public class PreferenceWidgets : GLib.Object {
     public Gtk.FontButton text_font;
     public Gtk.SpinButton text_height;
 
+    // color tab
+    public Gtk.CheckButton system_colors;
+    public Gtk.ColorButton default_color;
+    public Gtk.ColorButton canvas_color;
+    public Gtk.ColorButton text_normal;
+    public Gtk.ColorButton text_selected;
+    public Gtk.ColorButton back_normal;
+    public Gtk.ColorButton back_selected;
+
     // map tab
     public Gtk.RadioButton rise_method_disable;
     public Gtk.RadioButton rise_method_branches;
@@ -164,12 +173,21 @@ public class PreferenceWidgets : GLib.Object {
         width_padding.set_increments (1, 5);
         width_padding.set_range (1, 200);
 
-        text_system_font =builder.get_object("text_system_font")
+        text_system_font = builder.get_object("text_system_font")
                     as Gtk.CheckButton;
         text_font = builder.get_object("text_font") as Gtk.FontButton;
         text_height = builder.get_object("text_height") as Gtk.SpinButton;
         text_height.set_increments (5, 10);
         text_height.set_range (100, 1000);
+
+        // color tab
+        system_colors = builder.get_object("system_colors") as Gtk.CheckButton;
+        default_color = builder.get_object("default_color") as Gtk.ColorButton;
+        canvas_color = builder.get_object("canvas_color") as Gtk.ColorButton;
+        text_normal = builder.get_object("text_normal") as Gtk.ColorButton;
+        text_selected = builder.get_object("text_selected") as Gtk.ColorButton;
+        back_normal = builder.get_object("back_normal") as Gtk.ColorButton;
+        back_selected = builder.get_object("back_selected") as Gtk.ColorButton;
 
         // map tab
         rise_method_disable = builder.get_object("rise_method_disable")
@@ -200,13 +218,23 @@ public class PreferenceWidgets : GLib.Object {
     public void toggled_text_font (Gtk.Widget sender) {
         text_font.set_sensitive(!text_system_font.get_active());
     }
+
+    [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT preference_widgets_toggled_system_colors")]
+    public void toggled_system_colors (Gtk.Widget sender) {
+        default_color.set_sensitive(!system_colors.get_active());
+        canvas_color.set_sensitive(!system_colors.get_active());
+        text_normal.set_sensitive(!system_colors.get_active());
+        text_selected.set_sensitive(!system_colors.get_active());
+        back_normal.set_sensitive(!system_colors.get_active());
+        back_selected.set_sensitive(!system_colors.get_active());
+    }
 }
 
 public class Preferences : GLib.Object {
 
     public Gtk.Settings gtk_sett;
     public int dpi;
-    public Gdk.Color default_color;
 
     public unowned PreferenceWidgets pw;
 
@@ -227,6 +255,14 @@ public class Preferences : GLib.Object {
     public int text_font_size;
     public int text_height;
 
+    public bool system_colors;
+    public Gdk.Color default_color;
+    public Gdk.Color canvas_color;
+    public Gdk.Color text_normal; 
+    public Gdk.Color text_selected;
+    public Gdk.Color back_normal; 
+    public Gdk.Color back_selected;
+
     public uint rise_method;
     public uint points;
     public bool rise_ideas;
@@ -240,10 +276,21 @@ public class Preferences : GLib.Object {
 #else
         dpi = 96;               // there is no gtk_xft_dpi property on windows
 #endif
-        default_color = { uint32.MIN, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };
 
         load_default ();
         load_from_config ();
+    }
+
+    public void set_style(Gtk.Style style) {
+        if (! system_colors)
+            return;
+
+        default_color   = style.fg[Gtk.StateType.NORMAL];
+        canvas_color    = style.bg[Gtk.StateType.NORMAL];
+        text_normal     = style.text[Gtk.StateType.NORMAL];
+        text_selected   = style.text[Gtk.StateType.SELECTED];
+        back_normal     = style.bg[Gtk.StateType.NORMAL];
+        back_selected   = style.bg[Gtk.StateType.SELECTED];        
     }
 
     private void load_default() {
@@ -263,6 +310,14 @@ public class Preferences : GLib.Object {
         text_font = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
         text_font_size = (text_font.get_size() / Pango.SCALE) * (dpi / 100);
         text_height = TEXT_HEIGHT;
+
+        system_colors = true;
+        default_color = { uint32.MIN, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };   // gray
+        canvas_color = { uint32.MIN, uint16.MAX, uint16.MAX, uint16.MAX };          // white
+        text_normal   = { uint32.MIN, uint16.MIN, uint16.MIN, uint16.MIN };         // black
+        text_selected = canvas_color;
+        back_normal   = canvas_color;
+        back_selected = default_color;
 
         rise_method = RisingMethod.BRANCHES;
         points = IdeaPoints.IGNORE;
@@ -320,6 +375,33 @@ public class Preferences : GLib.Object {
         }
     }
 
+    private void read_colors_node(Xml.Node* node) {
+        for (Xml.Node* it = node->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+        
+            // XXX: tady pokud neni system colors false prvni tak to neklapne
+            if (it->name == "system_colors"){
+                system_colors = bool.parse(it->get_content().strip());
+            } else if (!system_colors) {
+                if (it->name == "default_color"){
+                    Gdk.Color.parse(it->get_content(), out default_color);
+                } else if (it->name == "canvas_color"){
+                    Gdk.Color.parse(it->get_content(), out canvas_color);
+                } else if (it->name == "text_normal"){
+                    Gdk.Color.parse(it->get_content(), out text_normal);
+                } else if (it->name == "text_selected"){
+                    Gdk.Color.parse(it->get_content(), out text_selected);
+                } else if (it->name == "back_normal"){
+                    Gdk.Color.parse(it->get_content(), out back_normal);
+                } else if (it->name == "back_selected"){
+                    Gdk.Color.parse(it->get_content(), out back_selected);
+                }
+            }
+        }        
+    }
+
     private void read_map_node(Xml.Node* node) {
         for (Xml.Node* it = node->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
@@ -362,13 +444,16 @@ public class Preferences : GLib.Object {
             if (it->name == "style"){
                 read_style_node(it);
             }
+            if (it->name == "colors"){
+                read_colors_node(it);
+            }
             if (it->name == "map"){
                 read_map_node(it);
             }
         }
     }
 
-    private void load_from_ui() {
+    private void load_from_ui(Gtk.Style style) {
         // general tab
         author = pw.author.get_text ();
         default_directory = pw.default_directory.get_current_folder ();
@@ -399,6 +484,19 @@ public class Preferences : GLib.Object {
             text_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
         text_font_size = (text_font.get_size() / Pango.SCALE) * (dpi / 100);
         text_height = (int) pw.text_height.get_value ();
+
+        // colors map
+        system_colors = pw.system_colors.get_active();
+        if (!system_colors) {
+            pw.default_color.get_color(out default_color);
+            pw.canvas_color.get_color(out canvas_color);
+            pw.text_normal.get_color(out text_normal);
+            pw.text_selected.get_color(out text_selected);
+            pw.back_normal.get_color(out back_normal);
+            pw.back_selected.get_color(out back_selected);
+        } else {
+            set_style (style);
+        }
 
         // map tab
         if (pw.rise_method_branches.get_active ()){
@@ -447,6 +545,15 @@ public class Preferences : GLib.Object {
         pw.text_system_font.set_active (text_system_font);
         pw.text_font.set_font_name (text_font.to_string ());
         pw.text_height.set_value (text_height);
+
+        // colors map
+        pw.system_colors.set_active (system_colors);
+        pw.default_color.set_color (default_color);
+        pw.canvas_color.set_color (canvas_color);
+        pw.text_normal.set_color (text_normal);
+        pw.text_selected.set_color (text_selected);
+        pw.back_normal.set_color (back_normal);
+        pw.back_selected.set_color (back_selected);
 
         // map tab
         switch (rise_method) {
@@ -508,6 +615,22 @@ public class Preferences : GLib.Object {
         w.end_element ();
     }
 
+    private void write_colors_node (Xml.TextWriter w) {
+        w.start_element ("colors");
+       
+        w.write_element ("system_colors", system_colors.to_string ());
+        if (!system_colors) {
+            w.write_element ("default_color", default_color.to_string());
+            w.write_element ("canvas_color", canvas_color.to_string());
+            w.write_element ("text_normal", text_normal.to_string());
+            w.write_element ("text_selected", text_selected.to_string());
+            w.write_element ("back_normal", back_normal.to_string());
+            w.write_element ("back_selected", back_selected.to_string());
+        }
+
+        w.end_element ();
+    }
+
     private void write_map_node (Xml.TextWriter w) {
         w.start_element ("map");
 
@@ -536,6 +659,7 @@ public class Preferences : GLib.Object {
 
         write_general_node (w);
         write_style_node (w);
+        write_colors_node (w);
         write_map_node (w);
 
         w.end_element();
@@ -544,6 +668,12 @@ public class Preferences : GLib.Object {
     }
 
     public bool dialog () {
+        // TODO: set modal !!
+        if (pw != null) {
+            stderr.printf("Preferences are open yet.\n");
+            return false;
+        }
+
         var pref_widgets = new PreferenceWidgets ();
         pw = pref_widgets;
 
@@ -559,7 +689,7 @@ public class Preferences : GLib.Object {
         var retval = (pw.dialog.run() == 1);
 
         if (retval) {
-            load_from_ui ();
+            load_from_ui (pw.dialog.style);
             try {
                 save_to_config ();
             } catch (Error e) {

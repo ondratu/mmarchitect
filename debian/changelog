@@ -1,3 +1,6 @@
+mmarchitect (0.3.3) unstable; urgency=low
+  * color settings from system or user preferences
+
 mmarchitect (0.3.2) unstable; urgency=low
   * src/app.vala: default directory bug fix
   * Makefile, debian/README.Win32: better windows compilation support

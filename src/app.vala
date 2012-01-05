@@ -7,7 +7,6 @@ public class App : GLib.Object {
     private Node ? node_clipboard;
     private Preferences pref;
 
-
     public App () {
         tabs_counter = 0;
         node_clipboard = null;
@@ -24,6 +23,7 @@ public class App : GLib.Object {
         builder.connect_signals (this);
         
         window = builder.get_object("window") as Gtk.Window;
+        window.realize.connect (on_realize);
         notebook = builder.get_object("notebook") as Gtk.Notebook;
         set_tooltips (builder);
 
@@ -33,6 +33,10 @@ public class App : GLib.Object {
         window.destroy.connect (Gtk.main_quit);
         window.delete_event.connect (delete_event);
         window.show_all ();
+    }
+
+    public void on_realize() {
+        pref.set_style(window.style);   
     }
 
     public void set_tooltips(Gtk.Builder builder) {

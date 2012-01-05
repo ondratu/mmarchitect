@@ -38,6 +38,8 @@ public class MindMap : Gtk.Fixed {
     // realize method is good place to load file if is present....
     public override void realize () {
         base.realize();
+        modify_bg(Gtk.StateType.NORMAL, pref.canvas_color);
+
         if (root == null)
             create_new_root();
         root.realize(this.window, pref);

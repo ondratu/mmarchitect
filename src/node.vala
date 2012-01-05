@@ -19,12 +19,14 @@ public struct CoreNode {
     public uint direction;
     public bool is_expand;
     public double points;
+    public bool default_color;
     public Gdk.Color color;
 
     public CoreNode () {
         is_expand = true;
         points = 0;
-        color = { 0, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };
+        default_color = true;
+        color = Gdk.Color();
     }
 }
 
@@ -48,6 +50,7 @@ public class Node : GLib.Object {
     public bool is_expand;
     public bool is_focus {get; private set;}
     public bool visible;
+    public bool default_color;
 
     public Node (string title, Node? parent = null,
             uint direction = Direction.AUTO)
@@ -68,6 +71,7 @@ public class Node : GLib.Object {
         // Direction set ...
         if (parent != null){                        // i have parent
             this.color = parent.color;
+            this.default_color = parent.default_color;
 
             if (parent.direction != Direction.AUTO) // parent is not root
                 this.direction = parent.direction;
@@ -77,7 +81,8 @@ public class Node : GLib.Object {
                 this.direction =  parent.children.length() % 2;
         } else {                                    // I'm root
             this.direction = Direction.AUTO;
-            this.color = { 0, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };
+            this.default_color = true;
+            this.color = Gdk.Color();
         }
 
         this.children = new List<Node> ();
@@ -170,6 +175,9 @@ public class Node : GLib.Object {
 
         this.window = window;
         this.pref = pref;
+        if (this.default_color)
+            this.color = pref.default_color;
+
         get_size_request (out area.width, out area.height);
         foreach (var child in children) {
             child.realize (window, pref);
@@ -260,6 +268,7 @@ public class Node : GLib.Object {
                 node.set_color(color);
         }
         this.color = color;
+        this.default_color = false;
     }
 
     public int set_position (int left, int top) {
@@ -374,16 +383,25 @@ public class Node : GLib.Object {
         draw_rectangle (cr, area, (area.height / 2) + 2);
 
         if (is_focus){
-            cr.set_source_rgb (0.9, 0.9, 0.9);
-            cr.fill_preserve();
-        }
+            Gdk.cairo_set_source_color (cr, pref.back_selected);
+        } else
+            Gdk.cairo_set_source_color (cr, pref.back_normal);
 
-        Gdk.cairo_set_source_color (cr, color);
+        cr.fill_preserve();
+       
+        if (default_color)
+            Gdk.cairo_set_source_color (cr, pref.default_color);
+        else
+            Gdk.cairo_set_source_color (cr, color);
+
         cr.stroke ();
 
         // text
         if (title.length > 0){
-            cr.set_source_rgb (0, 0, 0);
+            if (is_focus)
+                Gdk.cairo_set_source_color (cr, pref.text_selected);
+            else
+                Gdk.cairo_set_source_color (cr, pref.text_normal);
             cr.move_to (area.x + pref.font_padding * 4, area.y + pref.font_padding);
 
             var la = Pango.cairo_create_layout (cr);
@@ -402,7 +420,11 @@ public class Node : GLib.Object {
         // draw line to parent
         if (parent != null) {
             cr.set_line_width (0.7 * (1 + (weight / pref.line_rise)));
-            Gdk.cairo_set_source_color (cr, color);
+
+            if (default_color)
+                Gdk.cairo_set_source_color (cr, pref.default_color);
+            else
+                Gdk.cairo_set_source_color (cr, color);
 
             // TODO: draw technique could be set
             if (direction == Direction.RIGHT) {

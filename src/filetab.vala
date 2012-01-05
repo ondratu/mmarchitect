@@ -134,7 +134,9 @@ public class FileTab : Gtk.ScrolledWindow {
         w.write_attribute ("direction", node.direction.to_string());
         w.write_attribute ("expand", node.is_expand.to_string());
         
-        if (node.parent != null && !node.color.equal(node.parent.color))
+        if (node.parent == null && !node.default_color)
+            w.write_attribute ("color", node.color.to_string());
+        else if (node.parent != null && !node.color.equal(node.parent.color))
             w.write_attribute ("color", node.color.to_string());
 
         if (node.text != "")
@@ -184,6 +186,7 @@ public class FileTab : Gtk.ScrolledWindow {
                 c.is_expand = bool.parse(it->children->content);
             } else if (it->name == "color"){
                 Gdk.Color.parse (it->children->content, out c.color);
+                c.default_color = false;
             }
         }
     }
@@ -199,7 +202,7 @@ public class FileTab : Gtk.ScrolledWindow {
                 read_node_attr(it, ref c);
                 var child = n.add(c.title, c.direction, c.is_expand);
 
-                if (!c.color.equal(mindmap.pref.default_color))
+                if (!c.default_color)
                     child.color = c.color;
 
                 read_node(it, child);
