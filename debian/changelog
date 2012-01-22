@@ -1,5 +1,6 @@
 mmarchitect (0.3.3) unstable; urgency=low
   * color settings from system or user preferences
+  * color dialog with default, parent and own choice
 
 mmarchitect (0.3.2) unstable; urgency=low
   * src/app.vala: default directory bug fix

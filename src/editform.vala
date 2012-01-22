@@ -8,7 +8,6 @@
  * Code is present with BSD licence.
  */
 
-
 public class BgLabel : Gtk.Widget {
     private static string label;
     private Pango.Layout layout;
@@ -61,6 +60,138 @@ public class BgLabel : Gtk.Widget {
     }
 }
 
+public class ColorButton : Gtk.Button {
+    private Node node;
+    private Gtk.DrawingArea color_widget;
+    private Gdk.Color color;
+    private bool default_color;
+
+    private Gtk.ColorSelection ? color_selection;
+    private Gtk.DrawingArea ? drawing_color;
+    private Gtk.RadioButton ? radio_default;
+    private Gtk.RadioButton ? radio_parent;
+    private Gtk.RadioButton ? radio_own;
+
+    public ColorButton (Node node) {
+        this.node = node;
+        color = node.color;
+        default_color = node.default_color;
+
+        color_widget = new Gtk.DrawingArea ();
+        color_widget.modify_bg(Gtk.StateType.NORMAL, color);
+        color_widget.modify_bg(Gtk.StateType.PRELIGHT, color);
+        color_widget.set_size_request(20, 20);
+        set_image (color_widget);
+
+        clicked.connect(() => {dialog();});
+    }
+
+    public void get_color (out Gdk.Color color) {
+        color = this.color;
+    }
+
+    public void dialog () {
+        try {
+            var builder = new Gtk.Builder ();
+            builder.add_from_file (DATA + "/ui/color_dialog.ui");
+            builder.connect_signals (this);
+
+            var dialog = builder.get_object ("color_dialog")
+                        as Gtk.ColorSelectionDialog;
+            //dialog.set_modal(true);
+            
+            var button_internal = builder.get_object ("colorsel-ok_button1")
+                        as Gtk.Widget;
+            button_internal.hide_all();
+
+            var button_ok = new Gtk.Button.from_stock(Gtk.Stock.OK);
+            button_ok.show_all();
+            dialog.add_action_widget (button_ok, Gtk.ResponseType.OK);
+
+            color_selection = dialog.get_color_selection() as Gtk.ColorSelection;
+        
+            drawing_color = builder.get_object ("drawing_color")
+                        as Gtk.DrawingArea;
+            drawing_color.modify_bg(Gtk.StateType.NORMAL, color);
+
+            // couse this settings call dialog_color_changed event
+            radio_default = builder.get_object ("radio_default")
+                        as Gtk.RadioButton;
+            radio_parent = builder.get_object ("radio_parent")
+                        as Gtk.RadioButton;
+            radio_own = builder.get_object ("radio_own")
+                        as Gtk.RadioButton;
+            if (default_color)
+                radio_default.set_active(true);
+            else if (node.parent == null)
+                radio_own.set_active(true);
+            else
+                radio_parent.set_active(true);
+
+            color_selection.set_current_color(color);
+      
+            //stdout.printf("dialog response %s\n", dialog.run().to_string());
+            if (dialog.run() == Gtk.ResponseType.OK) {
+                if (radio_default.get_active()) {
+                    color = node.pref.default_color;
+                    default_color = true;
+                } else if (radio_own.get_active()) {
+                    color = color_selection.current_color;
+                    default_color = false;
+                } else {
+                    default_color = true;
+                    if (node.parent != null)
+                        color = node.parent.color;
+                    else
+                        color = node.pref.default_color;
+                }
+                color_widget.modify_bg(Gtk.StateType.NORMAL, color);
+                color_widget.modify_bg(Gtk.StateType.PRELIGHT, color);
+            }
+
+            dialog.destroy();
+
+            drawing_color = null;
+            radio_default = null;
+            radio_parent = null;
+            radio_own = null;
+            color_selection = null;
+        } catch (Error e) {
+            stderr.printf ("Could not load app UI: %s\n", e.message);
+        }
+    }
+
+    [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT color_button_dialog_color_changed")]
+    public void dialog_color_changed (Gtk.Widget sender) {
+        if (radio_own.get_active())
+            drawing_color.modify_bg(Gtk.StateType.NORMAL, color_selection.current_color);
+    }
+    
+    [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT color_button_dialog_default_toggled")]
+    public void dialog_default_toggled (Gtk.Widget sender) {
+        stdout.printf("dialog_default_toggled ...\n");
+        drawing_color.modify_bg(Gtk.StateType.NORMAL, node.pref.default_color);
+    }
+
+    [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT color_button_dialog_parent_toggled")]
+    public void dialog_parent_toggled (Gtk.Widget sender) {
+        stdout.printf("dialog_parent_toggled ...\n");
+        if (node.parent != null)
+            drawing_color.modify_bg(Gtk.StateType.NORMAL, node.parent.color);
+        else
+            drawing_color.modify_bg(Gtk.StateType.NORMAL, node.pref.default_color);
+    }
+
+    [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT color_button_dialog_own_toggled")]
+    public void dialog_radio_toggled (Gtk.Widget sender) {
+        drawing_color.modify_bg(Gtk.StateType.NORMAL, color_selection.current_color);
+    }
+}
+
 public class WidgetRound {
     public WidgetRound ? next;
     public Gtk.Widget widget;
@@ -84,7 +215,8 @@ public class EditForm : Gtk.VBox {
     public Gtk.TextView text_view;
     public BgLabel label;
     public Gtk.Entry point;
-    public Gtk.ColorButton btn_color;
+    //public Gtk.ColorButton btn_color;
+    public ColorButton btn_color;
     public Gtk.Button btn_save;
     public Gtk.Button btn_close;
     public signal void close();
@@ -129,7 +261,7 @@ public class EditForm : Gtk.VBox {
         entry.set_size_request (width + pref.font_padding * 2 + ico_size, -1);
         focusable_widgets.append (entry);
 
-        btn_color = new Gtk.ColorButton.with_color (node.color);
+        btn_color = new ColorButton (node);
         btn_color.set_can_focus (true);
         last = last.append (btn_color);
         focusable_widgets.append (btn_color);

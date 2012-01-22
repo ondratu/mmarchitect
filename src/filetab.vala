@@ -202,8 +202,10 @@ public class FileTab : Gtk.ScrolledWindow {
                 read_node_attr(it, ref c);
                 var child = n.add(c.title, c.direction, c.is_expand);
 
-                if (!c.default_color)
+                if (!c.default_color) {
                     child.color = c.color;
+                    child.default_color = false;
+                }
 
                 read_node(it, child);
 
