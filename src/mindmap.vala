@@ -30,6 +30,7 @@ public class MindMap : Gtk.Fixed {
         set_has_window (true);
         set_can_focus (true);
         
+        set_has_tooltip (true);
         key_press_event.connect(on_key_press_event);
         show_all();
     }
@@ -44,6 +45,21 @@ public class MindMap : Gtk.Fixed {
             create_new_root();
         root.realize(this.window, pref);
         refresh_tree();
+    }
+
+    // nodes have their own tooltips (text)
+    public override bool query_tooltip (int x, int y, bool keyboard_tooltip,
+            Gtk.Tooltip tooltip)
+    {
+        double tx, ty;
+        get_translation (out tx, out ty);
+        var node = root.event_on(x - tx, y - ty);
+        if (node != null && node.text.length > 0) {
+            tooltip.set_text (node.text);
+            return true;
+        }
+        // no tooltip to show
+        return false;
     }
 
     public Node create_new_root (CoreNode core = CoreNode(){title = _("Main Idea")}) {
