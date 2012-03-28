@@ -6,6 +6,7 @@ public class App : GLib.Object {
     private int tabs_counter;
     private Node ? node_clipboard;
     private Preferences pref;
+    private string title;
 
     public App () {
         tabs_counter = 0;
@@ -24,6 +25,7 @@ public class App : GLib.Object {
         
         window = builder.get_object("window") as Gtk.Window;
         window.realize.connect (on_realize);
+        title = window.title;
         notebook = builder.get_object("notebook") as Gtk.Notebook;
         set_tooltips (builder);
 
@@ -106,6 +108,13 @@ public class App : GLib.Object {
         d.destroy();
     }
     
+    [CCode (instance_pos = -1)]
+    [CCode (cname = "G_MODULE_EXPORT app_switch_page")]
+    public void switch_page (Gtk.Widget w, Gtk.NotebookPage pg, int pn){
+            var cur = notebook.get_nth_page (pn) as FileTab;
+            window.title = cur.title.split(".")[0];
+    }
+
     [CCode (instance_pos = -1)]
     [CCode (cname = "G_MODULE_EXPORT app_import_file")]
     public void import_file (Gtk.Widget w){
@@ -198,6 +207,9 @@ public class App : GLib.Object {
 
         var pn = notebook.page_num (file);
         notebook.remove_page (pn);
+
+        if (notebook.get_n_pages () == 0)
+            window.title = title;
     }
 
     [CCode (instance_pos = -1)]
@@ -243,6 +255,8 @@ public class App : GLib.Object {
             if (fname.substring(-4).down() != ".mma")
                 fname += ".mma";
             file.do_save_as(fname);
+            
+            window.title = GLib.Path.get_basename(fname).split(".")[0];
 
             d.destroy();
             return true;
