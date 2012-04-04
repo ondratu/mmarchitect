@@ -74,6 +74,7 @@ public class App : GLib.Object {
         var file = new FileTab.empty ("map"+index, pref);
         file.closed.connect (on_close_file);
         notebook.set_current_page (notebook.append_page (file, file.tab));
+        file.mindmap.grab_focus();
     }
 
     [CCode (instance_pos = -1)]
@@ -104,6 +105,7 @@ public class App : GLib.Object {
                 notebook.remove_page (pn);
             }
             notebook.set_current_page (notebook.append_page (file, file.tab));
+            file.mindmap.grab_focus();
         }
         d.destroy();
     }
@@ -148,6 +150,7 @@ public class App : GLib.Object {
                 notebook.remove_page (pn);
             }
             notebook.set_current_page (notebook.append_page (file, file.tab));
+            file.mindmap.grab_focus();
         }
         d.destroy();
     }
