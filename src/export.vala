@@ -19,9 +19,10 @@ namespace Exporter {
     bool export_to_txt (string path, Node root) {
         try {
             var file = File.new_for_path (path);
-
+            
+            // TODO: making backup (second param) could be configurable
             var dos = new DataOutputStream (
-                    file.create (FileCreateFlags.REPLACE_DESTINATION));
+                    file.replace (null, false, FileCreateFlags.REPLACE_DESTINATION));
 
             write_txt (dos, root);
 
