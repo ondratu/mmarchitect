@@ -77,8 +77,10 @@ public class Node : GLib.Object {
                 this.direction = parent.direction;
             else if (direction != Direction.AUTO)   // parent is root, and direction is set
                 this.direction = direction;
-            else                                    // parent is root, and direction is not set
+            else {                                   // parent is root, and direction is not set
                 this.direction =  parent.children.length() % 2;
+                parent.zip();
+            }
         } else {                                    // I'm root
             this.direction = Direction.AUTO;
             this.default_color = true;
@@ -155,17 +157,169 @@ public class Node : GLib.Object {
         parent.children.remove(node);
     }
 
-    public Node? get_next() {
+    // sort child with zip right on direction
+    public void zip () {
+        bool direction = false;
+        uint len = children.length();
+        for (int i = 0; i < len;){
+            var a = children.nth_data(i);
+            // direction is right cik cak
+            if (a.direction == (uint) direction){
+                direction = !direction; 
+                i++;
+                continue;
+            }
+
+            // find node with right cik cak direction
+            int l;
+            for (l = i+1; l < len; l++){
+                var b = children.nth_data(l);
+                if (b.direction == (uint) direction) {
+                    children.remove(b);
+                    children.insert(b,i);
+                    direction = !direction;
+                    i++;
+                    break;
+                }
+            }
+
+            // if threre is no other children, stop
+            if (l == len)
+                return;
+        }
+    }
+
+    public void move_up () {
+        if (parent == null)
+            return;
+
         int pos = get_position();
-        if (parent.children.length()-1 > pos)
-            return parent.children.nth_data(pos + 1);
+        if (pos == 0)
+            return;
+        
+        if (parent.parent != null) { // not child of root
+            parent.children.remove(this);
+            parent.children.insert(this, pos - 1);
+        } else {
+            for (int i = pos - 1; i >= 0; i--){
+                var node = parent.children.nth_data(i);
+                if (node.direction == this.direction) {
+                    parent.children.remove(this);
+                    parent.children.insert(this, i);
+                    parent.zip();
+                    return;
+                }
+            }
+        }
+    }
+
+    public void move_down () {
+        if (parent == null)
+            return;
+
+        int pos = get_position();
+        uint len = parent.children.length();
+
+        if (pos == len - 1)
+            return;
+
+        if (parent.parent != null) { // not child of root
+            parent.children.remove(this);
+            parent.children.insert(this, pos + 1);
+        } else {
+            for (int i = pos + 1; i < len; i++){
+                var node = parent.children.nth_data(i);
+                if (node.direction == this.direction) {
+                    parent.children.remove(this);
+                    parent.children.insert(this, i);
+                    parent.zip();
+                    return;
+                }
+            }
+        }
+    }
+
+    public void move_left () {
+        if (parent == null) return;
+
+        // not right child of root
+        if (!(parent.parent == null && this.direction == Direction.RIGHT)) {
+            Node new_parent;
+            if (this.direction == Direction.LEFT){
+                int pos = get_position();
+                if (pos > 0)
+                    new_parent = get_prev(Direction.LEFT);
+                else if (pos +1 < parent.children.length())
+                    new_parent = get_next(Direction.LEFT);
+                else
+                    return;
+
+                parent.children.remove(this);
+                new_parent.paste(this);
+            } else {            // Direction.RIGHT
+                new_parent = parent.parent;
+                parent.children.remove(this);
+                new_parent.children.insert(this, parent.get_position() +1);
+                this.parent = new_parent;
+                this.parent.zip();
+            } 
+        } else {
+            int pos = get_position();
+            if (pos > 0){
+                parent.children.remove(this);
+                parent.children.insert(this, pos -1);
+            }
+            corect_direction(Direction.LEFT);
+            parent.zip();
+        }
+    }
+
+    public void move_right () {
+        if (parent == null) return;
+
+        // not left child of root
+        if (!(parent.parent == null && this.direction == Direction.LEFT)) {
+            Node new_parent;
+            if (this.direction == Direction.RIGHT){
+                int pos = get_position();
+                if (pos > 0)
+                    new_parent = get_prev(Direction.RIGHT);
+                else if (pos +1 < parent.children.length())
+                    new_parent = get_next(Direction.RIGHT);
+                else
+                    return;
+
+                parent.children.remove(this);
+                new_parent.paste(this);
+            } else {            // Direction.RIGHT
+                new_parent = parent.parent;
+                parent.children.remove(this);
+                new_parent.children.insert(this, parent.get_position() +1);
+                this.parent = new_parent;
+                this.parent.zip();
+            }
+        } else {
+            corect_direction(Direction.RIGHT);
+            parent.zip();
+        }
+    }
+
+    public Node? get_next(uint direction = Direction.AUTO) {
+        uint len = parent.children.length();
+        for (int i = get_position()+1; i < len; i++) {
+            var node = parent.children.nth_data(i);
+            if (direction == Direction.AUTO || node.direction == direction)
+                return node;
+        }
         return null;
     }
 
-    public Node? get_prev() {
-        int pos = get_position();
-        if (pos > 0)
-            return parent.children.nth_data(pos - 1);
+    public Node? get_prev(uint direction = Direction.AUTO) {
+        for (int i = get_position()-1; i >= 0; i--) {
+            var node = parent.children.nth_data(i);
+            if (direction == Direction.AUTO || node.direction == direction)
+                return node;
+        }
         return null;
     }
 
@@ -247,9 +401,10 @@ public class Node : GLib.Object {
     }
 
     private void corect_direction (uint direction) {
-        if (direction == Direction.AUTO)
+        if (direction == Direction.AUTO) {
             this.direction =  parent.children.length() % 2;
-        else
+            parent.zip();
+        } else
             this.direction = direction;
         foreach (var it in children)
             it.corect_direction (direction);

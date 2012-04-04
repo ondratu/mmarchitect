@@ -18,6 +18,10 @@ public class MindMap : Gtk.Fixed {
     public signal void focus_changed(double x, double y,
                                      double width, double height);
     
+    private bool mod_ctrl;
+    private bool mod_alt;
+    private bool mod_shift;
+
     public MindMap(Preferences pref) {
         this.pref = pref;
 
@@ -32,6 +36,7 @@ public class MindMap : Gtk.Fixed {
         
         set_has_tooltip (true);
         key_press_event.connect(on_key_press_event);
+        key_release_event.connect(on_key_release_event);
         show_all();
     }
         
@@ -186,6 +191,8 @@ public class MindMap : Gtk.Fixed {
         return base.focus_out_event (event);
     }
 
+    
+
     /* For key press event (move over nodes or insert, edit and delete nodes) */
     public bool on_key_press_event (Gdk.EventKey event) {
         /*
@@ -201,6 +208,14 @@ public class MindMap : Gtk.Fixed {
                 Insert      - 65379,
                 Tab         - 65289,
         */
+
+        // unset modificators
+        if (event.keyval == 65507 || event.keyval == 65508)
+            mod_ctrl = true;
+        if (event.keyval == 65513 || event.keyval == 65527)
+            mod_alt = true;
+        if (event.keyval == 65505 || event.keyval == 65506)
+            mod_shift = true;
 
         if (focused != null && editform == null) {
             if (event.keyval == 65421 || event.keyval == 65293){// enter
@@ -226,6 +241,18 @@ public class MindMap : Gtk.Fixed {
                 return true;
             } else if (event.keyval == 65471) {                 // F2
                 node_edit();
+                return true;
+            } else if (mod_ctrl && event.keyval == 65362) {     // Ctrl + Up
+                node_move_up();
+                return true;
+            } else if (mod_ctrl && event.keyval == 65364) {     // Ctrl + Down
+                node_move_down();
+                return true;
+            } else if (mod_ctrl && event.keyval == 65361) {     // Ctrl + Left
+                node_move_left();
+                return true;
+            } else if (mod_ctrl && event.keyval == 65363) {     // Ctrl + Right
+                node_move_right();
                 return true;
             } else if (event.keyval == 65362) {                 // Up
                 if (focused == root)
@@ -303,10 +330,36 @@ public class MindMap : Gtk.Fixed {
             return true;
         }
 
-        //stdout.printf ("keyval : %u, hardware_keycode: %u, unicode: %u, string: %s\n",
-        //        event.keyval, event.hardware_keycode,
-        //        Gdk.keyval_to_unicode(event.keyval),
-        //        Gdk.keyval_name(event.keyval));
+        return false;
+    }
+
+    public bool on_key_release_event (Gdk.EventKey event) {
+        /*
+            Modificators:
+                Control_L   - 65507,
+                Control_R   - 65508,
+                Alt_L       - 65513,
+                ISO_Level3_Shift - 65027 (Alt r),
+                Shift_L     - 65505,
+                Shift_R     - 65506,
+                Menu        - 65383 (context menu),
+                Super_L     - 65515 (Win key),
+        */
+
+        // unset modificators
+        if (event.keyval == 65507 || event.keyval == 65508)
+            mod_ctrl = false;
+        if (event.keyval == 65513 || event.keyval == 65527)
+            mod_alt = false;
+        if (event.keyval == 65505 || event.keyval == 65506)
+            mod_shift = false;
+
+        /*
+        stdout.printf ("release keyval : %u, hardware_keycode: %u, unicode: %u, string: %s\n",
+                event.keyval, event.hardware_keycode,
+                Gdk.keyval_to_unicode(event.keyval),
+                Gdk.keyval_name(event.keyval));
+        */
         return false;
     }
 
@@ -327,6 +380,38 @@ public class MindMap : Gtk.Fixed {
             focused.paste(node.copy());
             refresh_tree();
             set_focus(node);
+            change();
+        }
+    }
+
+    public void node_move_up() {
+        if (focused != null) {
+            focused.move_up();
+            refresh_tree();
+            change();
+        }
+    }
+
+    public void node_move_down() {
+        if (focused != null) {
+            focused.move_down();
+            refresh_tree();
+            change();
+        }
+    }
+
+    public void node_move_left() {
+        if (focused != null) {
+            focused.move_left();
+            refresh_tree();
+            change();
+        }
+    }
+
+    public void node_move_right() {
+        if (focused != null) {
+            focused.move_right();
+            refresh_tree();
             change();
         }
     }
