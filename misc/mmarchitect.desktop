@@ -7,6 +7,6 @@ Exec=mmarchitect %U
 Icon=mmarchitect
 Terminal=false
 Type=Application
-MimeType=;
+MimeType=application/x-mmarchitect;
 Categories=Office;GNOME;GTK;
 X-GIO-NoFuse=true
