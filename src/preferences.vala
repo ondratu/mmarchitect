@@ -207,20 +207,17 @@ public class PreferenceWidgets : GLib.Object {
         rise_branches = builder.get_object("rise_branches") as Gtk.CheckButton;
     }
 
-    [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT preference_widgets_toggled_node_font")]
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_node_font")]
     public void toggled_node_font (Gtk.Widget sender) {
         node_font.set_sensitive(!node_system_font.get_active());
     }
 
-    [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT preference_widgets_toggled_text_font")]
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_text_font")]
     public void toggled_text_font (Gtk.Widget sender) {
         text_font.set_sensitive(!text_system_font.get_active());
     }
 
-    [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT preference_widgets_toggled_system_colors")]
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_system_colors")]
     public void toggled_system_colors (Gtk.Widget sender) {
         default_color.set_sensitive(!system_colors.get_active());
         canvas_color.set_sensitive(!system_colors.get_active());

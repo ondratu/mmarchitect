@@ -144,20 +144,20 @@ install:
 	$(INSTALL_DATA) ui/* $(DESTDIR)$(DATA)/ui
 	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
 	$(INSTALL_DATA) icons/$(PROGRAM).svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
-	mkdir -p $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
-	$(INSTALL_DATA) glib-2.0/schemas/apps.$(PROGRAM).gschema.xml $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
+	#mkdir -p $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
+	#$(INSTALL_DATA) glib-2.0/schemas/apps.$(PROGRAM).gschema.xml $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
 	$(INSTALL_DATA) misc/$(PROGRAM).desktop $(DESTDIR)$(PREFIX)/share/applications
-	@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real installation!"
+	#@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real installation!"
 
 uninstall:
 	@echo "Uninstalling $(PROGRAM) from $(DESTDIR)$(PREFIX) ..."
 	$(RM) $(DESTDIR)$(PREFIX)/bin/$(PROGRAM)
 	$(RM) -r $(DESTDIR)$(DATA)/$(PROGRAM)
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/$(PROGRAM).svg
-	$(RM) $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas/apps.$(PROGRAM).gschema.xml
+	#$(RM) $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas/apps.$(PROGRAM).gschema.xml
 	$(RM) $(DESTDIR)$(PREFIX)/share/applications/$(PROGRAM).desktop
-	@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
+	#@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
 
 # for debug only
 #mmarchitect.sh:

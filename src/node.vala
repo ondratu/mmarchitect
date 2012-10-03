@@ -131,12 +131,12 @@ public class Node : GLib.Object {
 
     public void paste (Node node) {
         node.parent = this;
-        
+
         if (node.direction == Direction.AUTO && direction == Direction.AUTO)
             node.corect_direction (children.length() % 2);
         else if (direction != Direction.AUTO)
             node.corect_direction (direction);
-        
+
         node.realize(this.window, pref);
         children.append (node);
     }
@@ -436,7 +436,7 @@ public class Node : GLib.Object {
         full_right.width = area.width;
         full_left.height = area.height + pref.height_padding;
         full_right.height = area.height + pref.height_padding;
-        
+
         int leftjmp = 0;
         int rightjmp = 0;
 

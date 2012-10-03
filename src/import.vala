@@ -27,7 +27,7 @@ namespace  Importer {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-        
+
             if (it->name == "node"){
                 var c = CoreNode();
                 read_mm_node_attr(it, ref c);
@@ -40,7 +40,7 @@ namespace  Importer {
         }
     }
 
-    bool import_from_mm (string path, ref Node root) {
+    bool import_from_mm (string path, out Node root) {
         var r = new Xml.TextReader.filename (path);
         r.read();
 
@@ -55,7 +55,7 @@ namespace  Importer {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-            
+
             if (it->name == "node"){
                 var c = CoreNode();
                 read_mm_node_attr(it, ref c);

@@ -17,7 +17,7 @@ public class MindMap : Gtk.Fixed {
     public signal void change();
     public signal void focus_changed(double x, double y,
                                      double width, double height);
-    
+
     private bool mod_ctrl;
     private bool mod_alt;
     private bool mod_shift;
@@ -33,14 +33,14 @@ public class MindMap : Gtk.Fixed {
 
         set_has_window (true);
         set_can_focus (true);
-        
+
         set_has_tooltip (true);
         key_press_event.connect(on_key_press_event);
         key_release_event.connect(on_key_release_event);
         show_all();
     }
-        
-    
+
+
     // realize method is good place to load file if is present....
     public override void realize () {
         base.realize();

@@ -11,15 +11,15 @@
 public class BgLabel : Gtk.Widget {
     private static string label;
     private Pango.Layout layout;
- 
+
     public BgLabel (string label) {
         this.label = label;
         this.layout = create_pango_layout (label);
     }
 
-    public override void size_request (out Gtk.Requisition requisition) {
+    public override void size_request (ref Gtk.Requisition requisition) {
         int width, height;
- 
+
         this.layout.get_size (out width, out height);
         requisition.width = width / Pango.SCALE;
         requisition.height = height / Pango.SCALE;
@@ -34,20 +34,20 @@ public class BgLabel : Gtk.Widget {
         this.window = new Gdk.Window (get_parent_window (), attrs, 0);
         this.window.move_resize (this.allocation.x, this.allocation.y,
                                  this.allocation.width, this.allocation.height);
- 
+
         this.window.set_user_data (this);
 
         this.style = this.style.attach (this.window);
         this.style.set_background (this.window, Gtk.StateType.NORMAL);
-        
+
         set_flags (Gtk.WidgetFlags.REALIZED);
     }
 
     public override bool expose_event (Gdk.EventExpose event) {
         var cr = Gdk.cairo_create (this.window);
- 
+
         Gdk.cairo_set_source_color (cr, this.style.fg[this.state]);
- 
+
         // And draw the text in the middle of the allocated space
         int fontw, fonth;
         this.layout.get_pixel_size (out fontw, out fonth);
@@ -55,7 +55,7 @@ public class BgLabel : Gtk.Widget {
                     (this.allocation.height - fonth) / 2);
         Pango.cairo_update_layout (cr, this.layout);
         Pango.cairo_show_layout (cr, this.layout);
- 
+
         return true;
     }
 }
@@ -99,7 +99,7 @@ public class ColorButton : Gtk.Button {
             var dialog = builder.get_object ("color_dialog")
                         as Gtk.ColorSelectionDialog;
             //dialog.set_modal(true);
-            
+
             var button_internal = builder.get_object ("colorsel-ok_button1")
                         as Gtk.Widget;
             button_internal.hide_all();
@@ -109,7 +109,7 @@ public class ColorButton : Gtk.Button {
             dialog.add_action_widget (button_ok, Gtk.ResponseType.OK);
 
             color_selection = dialog.get_color_selection() as Gtk.ColorSelection;
-        
+
             drawing_color = builder.get_object ("drawing_color")
                         as Gtk.DrawingArea;
             drawing_color.modify_bg(Gtk.StateType.NORMAL, color);
@@ -129,7 +129,7 @@ public class ColorButton : Gtk.Button {
                 radio_parent.set_active(true);
 
             color_selection.set_current_color(color);
-      
+
             //stdout.printf("dialog response %s\n", dialog.run().to_string());
             if (dialog.run() == Gtk.ResponseType.OK) {
                 if (radio_default.get_active()) {
@@ -161,22 +161,19 @@ public class ColorButton : Gtk.Button {
         }
     }
 
-    [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT color_button_dialog_color_changed")]
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_color_changed")]
     public void dialog_color_changed (Gtk.Widget sender) {
         if (radio_own.get_active())
             drawing_color.modify_bg(Gtk.StateType.NORMAL, color_selection.current_color);
     }
-    
-    [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT color_button_dialog_default_toggled")]
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_default_toggled")]
     public void dialog_default_toggled (Gtk.Widget sender) {
         stdout.printf("dialog_default_toggled ...\n");
         drawing_color.modify_bg(Gtk.StateType.NORMAL, node.pref.default_color);
     }
 
-    [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT color_button_dialog_parent_toggled")]
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_parent_toggled")]
     public void dialog_parent_toggled (Gtk.Widget sender) {
         stdout.printf("dialog_parent_toggled ...\n");
         if (node.parent != null)
@@ -185,8 +182,7 @@ public class ColorButton : Gtk.Button {
             drawing_color.modify_bg(Gtk.StateType.NORMAL, node.pref.default_color);
     }
 
-    [CCode (instance_pos = -1)]
-    [CCode (cname = "G_MODULE_EXPORT color_button_dialog_own_toggled")]
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_own_toggled")]
     public void dialog_radio_toggled (Gtk.Widget sender) {
         drawing_color.modify_bg(Gtk.StateType.NORMAL, color_selection.current_color);
     }
@@ -243,7 +239,7 @@ public class EditForm : Gtk.VBox {
             stderr.printf ("%s\n", e.message);
             entry.set_icon_from_stock (Gtk.EntryIconPosition.SECONDARY, Gtk.Stock.EDIT);
         }
-        
+
         entry.set_icon_sensitive (Gtk.EntryIconPosition.SECONDARY, true);
         entry.set_icon_tooltip_text (Gtk.EntryIconPosition.SECONDARY, _("Extends edit"));
         entry.set_text (node.title);
@@ -270,7 +266,7 @@ public class EditForm : Gtk.VBox {
         btn_save.clicked.connect(() => {save(); close();});
         last = last.append (btn_save);
         focusable_widgets.append (btn_save);
-        
+
         btn_close = new Gtk.Button.from_stock (Gtk.Stock.CLOSE);
         btn_close.clicked.connect(() => {close();});
         last = last.append (btn_close);
@@ -354,7 +350,7 @@ public class EditForm : Gtk.VBox {
                 }
                 stdout.printf ("Widget %s has not focus\n" ,it.widget.name);
                 it = it.next;
-            
+
             }
             actives.widget.grab_focus ();
             return true;

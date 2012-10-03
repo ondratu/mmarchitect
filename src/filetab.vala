@@ -20,7 +20,7 @@ public class FileTab : Gtk.ScrolledWindow {
     public MindMap mindmap;
 
     public signal void closed(FileTab file);
-    
+
     public string filepath;
     public string title;
 
@@ -39,7 +39,7 @@ public class FileTab : Gtk.ScrolledWindow {
         tab.add(close_button);
 
         tab.show_all();
-        
+
         mindmap = new MindMap (pref);
         mindmap.change.connect (on_mindmap_change);
         mindmap.focus_changed.connect (on_focus_changed);
@@ -133,7 +133,7 @@ public class FileTab : Gtk.ScrolledWindow {
         w.write_attribute ("title", node.title);
         w.write_attribute ("direction", node.direction.to_string());
         w.write_attribute ("expand", node.is_expand.to_string());
-        
+
         if (node.parent == null && !node.default_color)
             w.write_attribute ("color", node.color.to_string());
         else if (node.parent != null && !node.color.equal(node.parent.color))
@@ -141,7 +141,7 @@ public class FileTab : Gtk.ScrolledWindow {
 
         if (node.text != "")
             w.write_element ("text", node.text);
-        
+
         foreach (var n in node.children) {
             write_node(n, w);
         }
@@ -155,7 +155,7 @@ public class FileTab : Gtk.ScrolledWindow {
 
         w.start_document ();
         w.start_element ("map");
-        
+
         // w.write_comment ("Some info about software");
         // write_file_info (w);
         // write_file_settings (w);
@@ -196,7 +196,7 @@ public class FileTab : Gtk.ScrolledWindow {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-        
+
             if (it->name == "node"){
                 var c = CoreNode();
                 read_node_attr(it, ref c);
@@ -225,7 +225,7 @@ public class FileTab : Gtk.ScrolledWindow {
                     GLib.Path.get_basename(path));
             return false;
         }
-        
+
         // read the file
         Node ? root = null;
         for (Xml.Node* it = x->children; it != null; it = it->next) {
@@ -237,12 +237,12 @@ public class FileTab : Gtk.ScrolledWindow {
                 // read_file_info(it);
                 continue;
             }
-            
+
             if (it->name == "settings"){
                 //read_file_settings(it);
                 continue;
             }
-            
+
             if (it->name == "node"){
                 var c = CoreNode();
                 read_node_attr(it, ref c);
