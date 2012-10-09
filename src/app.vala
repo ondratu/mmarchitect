@@ -18,7 +18,7 @@ public class App : GLib.Object {
 #endif
     }
 
-    public void loadui () throws Error {
+    public void loadui (string filename) throws Error {
         var builder = new Gtk.Builder ();
         builder.add_from_file (DATA + "/ui/main.ui");
         builder.connect_signals (this);
@@ -30,7 +30,7 @@ public class App : GLib.Object {
         set_tooltips (builder);
 
         window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
-        new_file_private (window);
+        new_file_from_args(window, filename);
 
         window.destroy.connect (Gtk.main_quit);
         window.delete_event.connect (delete_event);
@@ -63,15 +63,63 @@ public class App : GLib.Object {
         return filter;
     }
 
+    private void new_file_from_args (Gtk.Window w, owned string fname) {
+        if (fname.length == 0) {             // filename is not specified
+            new_file_private (w);
+            return;
+        }
+
+        var osfile = File.new_for_commandline_arg(fname);
+        if (osfile.query_exists()) {
+            if (fname.substring(-4).down() == ".mma") {
+                open_file_private (fname);
+                return;
+            }
+            if ( ! import_file_private(fname)) {
+                var d = new Gtk.MessageDialog(window,
+                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                        Gtk.MessageType.ERROR,
+                        Gtk.ButtonsType.CLOSE,
+                        _(@"File $fname can't be imported!"));
+                d.run();
+                d.destroy();
+                // todo: info ze to neklaplo
+                new_file_private (w);
+            }
+        } else {
+            if (fname.substring(-4).down() == ".mma")
+                fname = fname.substring(-4);
+            new_file_private (w, fname);
+        }
+    }
+
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_new_file")]
     public void new_file (Gtk.Widget w) {
         new_file_private(w);
     }
 
-    public void new_file_private (Gtk.Widget w) {
-        string index = (++tabs_counter).to_string();
-        var file = new FileTab.empty ("map"+index, pref);
+    public void new_file_private (Gtk.Widget w, owned string fname = "") {
+        if (fname.length == 0) {
+            string index = (++tabs_counter).to_string();
+            fname = "map"+index;
+        }
+        var file = new FileTab.empty (fname, pref);
         file.closed.connect (on_close_file);
+        notebook.set_current_page (notebook.append_page (file, file.tab));
+        file.mindmap.grab_focus();
+    }
+
+    private void open_file_private(string fname){
+        var file = new FileTab.from_file (fname, pref);
+        file.closed.connect (on_close_file);
+
+        FileTab ? cur = null;
+        var pn = notebook.get_current_page ();
+        if (pn >= 0)
+                cur = notebook.get_nth_page (pn) as FileTab;
+        if (cur != null && cur.is_saved() && cur.filepath == ""){
+            notebook.remove_page (pn);
+        }
         notebook.set_current_page (notebook.append_page (file, file.tab));
         file.mindmap.grab_focus();
     }
@@ -92,18 +140,7 @@ public class App : GLib.Object {
         d.set_current_folder(pref.default_directory);
 
         if (d.run() == Gtk.ResponseType.ACCEPT){
-            var file = new FileTab.from_file (d.get_filename(), pref);
-            file.closed.connect (on_close_file);
-
-            FileTab ? cur = null;
-            var pn = notebook.get_current_page ();
-            if (pn >= 0)
-                 cur = notebook.get_nth_page (pn) as FileTab;
-            if (cur != null && cur.is_saved() && cur.filepath == ""){
-                notebook.remove_page (pn);
-            }
-            notebook.set_current_page (notebook.append_page (file, file.tab));
-            file.mindmap.grab_focus();
+            open_file_private (d.get_filename());
         }
         d.destroy();
     }
@@ -112,6 +149,36 @@ public class App : GLib.Object {
     public void switch_page (Gtk.Widget w, Gtk.NotebookPage pg, int pn){
             var cur = notebook.get_nth_page (pn) as FileTab;
             window.title = cur.title.split(".")[0];
+    }
+
+    private bool import_file_private (string fpath) {
+        string fname = GLib.Path.get_basename(fpath);
+
+        // TODO: to je spatne, tohle zalezi na extend !!!
+        string ext = fname.substring(-3).down();    // .mm
+        fname = fname.substring(0, fname.length-3); // .mm
+
+        var file = new FileTab.empty (fname, pref);
+        if (ext == ".mm")
+            Importer.import_from_mm (fpath, out file.mindmap.root);
+        else {
+            file.destroy();
+            return false;
+        }
+
+        file.on_mindmap_change (); // file is changed
+        file.closed.connect (on_close_file);
+
+        FileTab ? cur = null;
+        var pn = notebook.get_current_page ();
+        if (pn >= 0)
+            cur = notebook.get_nth_page (pn) as FileTab;
+        if (cur != null && cur.is_saved() && cur.filepath == ""){
+            notebook.remove_page (pn);
+        }
+        notebook.set_current_page (notebook.append_page (file, file.tab));
+        file.mindmap.grab_focus();
+        return true;
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_import_file")]
@@ -130,23 +197,7 @@ public class App : GLib.Object {
         d.set_current_folder(pref.default_directory);
 
         if (d.run() == Gtk.ResponseType.ACCEPT){
-            string fname = GLib.Path.get_basename(d.get_filename());
-            fname = fname.substring(0, fname.length-3); // .mm
-
-            var file = new FileTab.empty (fname, pref);
-            Importer.import_from_mm (d.get_filename(), out file.mindmap.root);
-            file.on_mindmap_change (); // file is changed
-            file.closed.connect (on_close_file);
-
-            FileTab ? cur = null;
-            var pn = notebook.get_current_page ();
-            if (pn >= 0)
-                 cur = notebook.get_nth_page (pn) as FileTab;
-            if (cur != null && cur.is_saved() && cur.filepath == ""){
-                notebook.remove_page (pn);
-            }
-            notebook.set_current_page (notebook.append_page (file, file.tab));
-            file.mindmap.grab_focus();
+            import_file_private (d.get_filename());
         }
         d.destroy();
     }
