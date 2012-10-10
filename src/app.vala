@@ -83,7 +83,6 @@ public class App : GLib.Object {
                         _(@"File $fname can't be imported!"));
                 d.run();
                 d.destroy();
-                // todo: info ze to neklaplo
                 new_file_private (w);
             }
         } else {

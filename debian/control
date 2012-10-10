@@ -8,9 +8,16 @@ Build-Depends: debhelper (>= 7.0.50~),
                libxml2-dev (>= 2.6.32)
 Standards-Version: 3.8.4
 Homepage: https://sourceforge.net/p/mmarchitect/
+Vcs-Svn: svn://svn.code.sf.net/p/mmarchitect/code/trunk mmarchitect-code
 
 Package: mmarchitect
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Software for working with mind maps
- <insert long description, indented with spaces>
+Description: Mind Map Architect
+ Mind map architect program is good tool for brainstorming for single
+ person just as for team. Mind mapping tools can be usable for todo
+ lists, notes, or work planning. Some Mind Map Architect futures 
+  * colors for each ideas and it's branches
+  * auto width of lines for branches
+  * plain text notes for each ideas
+  * editor styling (fonts, colors, rising)
