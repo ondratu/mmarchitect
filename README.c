@@ -16,4 +16,9 @@ On debian (squeeze for example) coud be use this:
     $ dh_auto_build
     $ dh_auto_test
     $ fakeroot make -f debian/rules binary
-    $ sudo dpkg -i ../mmarchitect_0.3.3_amd64.deb
+    $ sudo dpkg -i ../mmarchitect_${VERSION}_amd64.deb
+
+If you can create sing changes file do:
+
+    $ dpkg-genchanges > ../mmarchitect_${VERSION}_amd64.changes
+    $ debsign ../mmarchitect_${VERSION}_amd64.changes
