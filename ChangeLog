@@ -1,0 +1,190 @@
+2012-10-11 06:55  ondratu
+
+	* Makefile, debian/changelog, debian/mmarchitect.mime,
+	  misc/mmarchitect.desktop, misc/mmarchitect.xml: Adding mime type
+	  for system
+
+2012-10-10 07:23  ondratu
+
+	* debian/control, debian/watch, debian/watch.ex, src/app.vala:
+	  Description update and watch setting
+
+2012-10-09 19:20  ondratu
+
+	* src/app.vala, src/main.vala: Open file from command line argument
+
+2012-10-03 11:44  ondratu
+
+	* Makefile, src/app.vala, src/editform.vala, src/filetab.vala,
+	  src/import.vala, src/mindmap.vala, src/node.vala,
+	  src/preferences.vala: Bug fix with importing mm files
+
+2012-10-03 09:39  ondratu
+
+	* debian/changelog: changelog fix
+
+2012-09-02 06:43  ondratu
+
+	* misc/mmarchitect.desktop: Set MIME type
+
+2012-04-04 05:14  ondratu
+
+	* src/export.vala: Bug fix with replacing exported files
+
+2012-04-04 04:56  ondratu
+
+	* src/filetab.vala, src/mindmap.vala, src/node.vala: Move with
+	  minds (nodes) across map with ctrl + arrow keys
+
+2012-04-04 04:54  ondratu
+
+	* src/app.vala: Map focus bug fix
+
+2012-03-28 14:00  ondratu
+
+	* src/app.vala, ui/main.ui: Window have title with open file name
+	  now.
+
+2012-03-28 03:52  ondratu
+
+	* src/mindmap.vala: Nodes text is show in tooltip
+
+2012-01-22 21:01  ondratu
+
+	* debian/changelog, src/editform.vala, src/filetab.vala,
+	  ui/color_dialog.ui, ui/main.ui: Color dialog with default, parent
+	  and own choice
+
+2012-01-05 19:46  ondratu
+
+	* debian/changelog, src/app.vala, src/filetab.vala,
+	  src/layers.vala, src/mindmap.vala, src/node.vala,
+	  src/preferences.vala, ui/main.ui, ui/preferences.ui: Color
+	  preferences
+
+2011-12-15 17:40  ondratu
+
+	* Makefile, debian/README.Win32, debian/changelog,
+	  icons/mmarchitect.ico, src/app.vala: Mostly win support
+
+2011-12-06 20:26  ondratu
+
+	* Makefile, src/app.vala, src/preferences.vala, ui/preferences.ui:
+	  use directory from preference, join author name to one property,
+	  prepare for windows version
+
+2011-12-03 08:09  ondratu
+
+	* src/app.vala, ui/about_dialog.ui: #! version and web fix
+
+2011-12-02 12:56  ondratu
+
+	* debian/changelog: up version to 0.3.0
+
+2011-12-02 11:29  ondratu
+
+	* Makefile, src/app.vala, src/preferences.vala: Preferences are
+	  saved to user config
+
+2011-11-24 20:13  ondratu
+
+	* Makefile, debian/control: Wheezy modification
+
+2011-11-24 19:53  ondratu
+
+	* Makefile, src/consts.vala, src/editform.vala, src/filetab.vala,
+	  src/mindmap.vala, src/node.vala, src/preferences.vala,
+	  ui/preferences.ui: Preferences
+
+2011-10-18 13:22  ondratu
+
+	* Makefile, debian/control, src/app.vala, src/consts.vala,
+	  src/editform.vala, src/export.vala, src/filetab.vala,
+	  src/mindmap.vala, src/node.vala, src/preferences.vala,
+	  src/settings.vala, ui/main.ui, ui/preferences.ui: debian right
+	  gcc depends
+	  preference dialog
+	  fonts buf fix
+	  focus bug fix
+	  better cairo colors using
+	  per file building
+
+2011-10-04 20:54  ondratu
+
+	* src/app.vala, src/editform.vala, src/node.vala,
+	  ui/close_file_dialog.ui: some bug fixes
+
+2011-10-03 21:40  ondratu
+
+	* src/editform.vala, src/filetab.vala, src/node.vala,
+	  src/settings.vala: Colors support and points prepare
+
+2011-09-30 19:22  ondratu
+
+	* debian/changelog, src/consts.vala, src/node.vala: new line style
+
+2011-09-30 13:40  ondratu
+
+	* debian/changelog: up to version
+
+2011-09-30 13:30  ondratu
+
+	* src/app.vala, src/import.vala, ui/main.ui: FreeMind file basic
+	  import
+
+2011-09-30 07:44  ondratu
+
+	* debian/copyright, src/editform.vala, src/mindmap.vala,
+	  src/node.vala, src/settings.vala: Editform for node have smart
+	  position now
+
+2011-09-29 21:32  ondratu
+
+	* icons/comment_edit.png, icons/sticky_notes_pin.png, src/app.vala,
+	  src/consts.vala, src/mindmap.vala, src/node.vala,
+	  src/settings.vala, ui/main.ui: text notes support in gui,
+	  collaps label
+
+2011-09-29 06:45  ondratu
+
+	* Makefile, debian/rules, src/app.vala: better makefile
+
+2011-09-27 19:45  ondratu
+
+	* Makefile, debian/rules, src/app.vala, src/export.vala,
+	  src/import.vala, ui/main.ui: Testing export to txt
+
+2011-09-27 13:43  ondratu
+
+	* Makefile, debian/rules, debian/source/format, src/app.vala: #!
+	  Makefile fixes and debian full build-package support
+
+2011-09-27 07:56  ondratu
+
+	* Makefile, debian/README.Debian, debian/changelog, debian/control,
+	  debian/copyright, debian/menu, debian/menu.ex, debian/rules,
+	  icons/mindmap_architect.png, icons/mindmap_architect.svg,
+	  icons/mmarchitect.png, icons/mmarchitect.svg, misc,
+	  misc/mmarchitect.desktop, src/app.vala: First debian release
+
+2011-09-27 06:29  ondratu
+
+	* Makefile: only Makefile
+
+2011-09-27 06:28  ondratu
+
+	* debian, debian/README.Debian, debian/README.source,
+	  debian/changelog, debian/compat, debian/control,
+	  debian/copyright, debian/docs, debian/menu.ex, debian/postrm.ex,
+	  debian/rules, debian/source, debian/source/format,
+	  debian/watch.ex, icons, icons/mindmap_architect.png,
+	  icons/mindmap_architect.svg, src, src/app.vala, src/consts.vala,
+	  src/filetab.vala, src/layers.vala, src/main.vala,
+	  src/mindmap.vala, src/node.vala, src/settings.vala, ui,
+	  ui/about_dialog.ui, ui/close_file_dialog.ui, ui/main.ui: First
+	  commit
+
+2011-09-27 06:18  ondratu
+
+	* .: Trunk directory
+

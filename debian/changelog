@@ -1,3 +1,16 @@
+mmarchitect (0.3.4) unstable; urgency=low
+
+  * Nodes text is show in tooltip
+  * Window have title with open file name
+  * Move with minds (nodes) across map with ctrl + arrow keys
+  * Bug fix with replacing exported files
+  * Set MIME type and adding mime type for system
+  * Bug fix with importing mm files
+  * Open file from command line argument
+  * Description update and watch setting for debian packaging
+
+ -- Ondrej Tuma <mcbig@zeropage.cz>  Thu, 11 Oct 2012 08:40:57 +0000
+
 mmarchitect (0.3.3) unstable; urgency=low
   * color settings from system or user preferences
   * color dialog with default, parent and own choice

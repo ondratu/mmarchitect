@@ -1,0 +1,31 @@
+
+Mind Map Architect (mmarchitect) Instalation
+--------------------------------------------
+
+To build and install Mind Map Architect, you can this commands:
+
+    $ make configure
+    $ make
+    # make install
+    # update-mime-database
+
+By default, mmarchitect will install under /usr/local directory. To configure
+this settings, use PREFIX variable. For more help about configuration and
+installation run:
+
+    $ make help
+
+If you use DEBUG settings, you can run mmarchitect from source.
+
+    $ make configure DEBUG=1
+
+If you can uninstall mmarchitect from source directory, use uninstall rule:
+
+    # make uninstall
+
+For compiling only from c files (without vala) try to use -c- source package and
+read README.c.
+
+For compiling mmarchitect on windows, please read README.Win32.
+
+Copyright 2011-2012 Ondrej Tuma

@@ -12,6 +12,13 @@ directory. You will need this tools:
     sed.exe
     touch.exe
 
+And if you can crate source tarball, you will need this tools:
+    find.exe
+    cp.exe
+    xargs.exe
+    tar.exe
+    bzip2.exe
+
 In mmarchitect source directory, set vala as primary directory (becouse echo
 must be use from unxutils) and do make:
 

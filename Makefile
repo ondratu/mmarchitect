@@ -95,18 +95,22 @@ help:
 	@$(UX)echo \
             "make [RULE] [OPTIONS] \n" \
             "   RULES are: \n" \
-            "       configure   - configure build enviroment\n" \
             "       all         - (default rule) build binaries\n" \
             "       clean       - clean all files from configure and all rule \n" \
+            "       pkgcheck    - check libraries for c compiling\n" \
+            "       valacheck   - information about vala support version\n" \
+            "       configure   - configure build enviroment\n" \
             "       install     - install binaries to system\n" \
             "       uninstall   - uninstall binaries from system\n" \
+            "       source      - create source tarball ../$(PROGRAM)-$(VERSION).tar.bz2\n" \
+            "       c-source    - create c source ready tarball ../$(PROGRAM)-c-$(VERSION).tar.bz2\n" \
             "\n" \
             "   OPTIONS are :\n" \
             "       PREFIX      - for installation \n" \
             "       DEBUG       - for debug build (installation is not possible) \n" \
             "       CFLAGS      - additional CFLAGS \n" \
             "       VALAC       - vala compiler \n" \
-            "       INSTALL     - install binary \n" \
+            "       INSTALL     - install tool\n" \
             ""
 
 
@@ -183,3 +187,40 @@ clean:
 	@$(RM) *~ src/*~
 	@$(RM) mmarchitect.sh
 	@dh_clean || $(UX)echo 'Never mind, it is ok ;)'
+
+../$(PROGRAM)-$(VERSION).tar.bz2: clean
+	@$(UX)echo "Creating source package ../$(PROGRAM)-$(VERSION).tar.bz2 ..."
+	@$(RM) -rf ../$(PROGRAM)-$(VERSION)
+	@$(UX)mkdir -p ../$(PROGRAM)-$(VERSION)
+	@$(UX)cp -a src ../$(PROGRAM)-$(VERSION)/
+	@$(UX)cp -a ui ../$(PROGRAM)-$(VERSION)/
+	@$(UX)cp -a misc ../$(PROGRAM)-$(VERSION)/
+	@$(UX)cp -a icons ../$(PROGRAM)-$(VERSION)/
+	@$(UX)cp -a debian ../$(PROGRAM)-$(VERSION)/
+	@$(UX)cp -a Makefile ../$(PROGRAM)-$(VERSION)/
+	@$(UX)cp -a README* ../$(PROGRAM)-$(VERSION)/
+	@$(UX)find ../$(PROGRAM)-$(VERSION) -type d -name .svn | $(UX)xargs $(RM) -rf
+	@(cd ../ && tar cjf $(PROGRAM)-$(VERSION).tar.bz2 $(PROGRAM)-$(VERSION))
+	@$(RM) -rf ../$(PROGRAM)-$(VERSION)
+
+../$(PROGRAM)-c-$(VERSION).tar.bz2: clean
+	@$(UX)echo "Creating source package ../$(PROGRAM)-c-$(VERSION).tar.bz2 ..."
+	@$(RM) -rf ../$(PROGRAM)-$(VERSION)
+	@$(UX)mkdir -p ../$(PROGRAM)-c-$(VERSION)
+	@$(UX)cp -a src ../$(PROGRAM)-c-$(VERSION)/
+	@$(UX)cp -a ui ../$(PROGRAM)-c-$(VERSION)/
+	@$(UX)cp -a misc ../$(PROGRAM)-c-$(VERSION)/
+	@$(UX)cp -a icons ../$(PROGRAM)-c-$(VERSION)/
+	@$(UX)cp -a debian ../$(PROGRAM)-c-$(VERSION)/
+	@$(UX)cp -a Makefile ../$(PROGRAM)-c-$(VERSION)/
+	@$(UX)cp -a README* ../$(PROGRAM)-c-$(VERSION)/
+	@$(UX)find ../$(PROGRAM)-c-$(VERSION) -type d -name .svn | $(UX)xargs $(RM) -rf
+	@(cd ../$(PROGRAM)-c-$(VERSION) && $(MAKE) configure)
+	@(cd ../$(PROGRAM)-c-$(VERSION) && $(MAKE) $(SRC_C))
+	@(cd ../ && tar cjf $(PROGRAM)-c-$(VERSION).tar.bz2 $(PROGRAM)-c-$(VERSION))
+	@$(RM) -rf ../$(PROGRAM)-c-$(VERSION)
+
+
+source: ../$(PROGRAM)-$(VERSION).tar.bz2
+
+c-source: ../$(PROGRAM)-c-$(VERSION).tar.bz2
