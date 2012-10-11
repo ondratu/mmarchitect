@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/x-mmarchitect">
+	<comment xml:lang="cs">Mind Map Architect Mapa</comment>
+	<comment xml:lang="de">Mind Map Architect Map</comment>
+	<comment xml:lang="dk">Mind Map Architect Map</comment>
+	<comment xml:lang="en">Mind Map Architect Map</comment>
+	<comment xml:lang="es">Mind Map Architect Mapa</comment>
+	<comment xml:lang="fr">Mind Map Architect Carte Mentale</comment>
+	<comment xml:lang="hu">Mind Map Architect Térkép</comment>
+	<comment xml:lang="it">Mind Map Architect Mappa</comment>
+	<comment xml:lang="ja">Mind Map Architect マップ</comment>
+	<comment xml:lang="kr">Mind Map Architect 맵</comment>
+	<comment xml:lang="lt">Mind Map Architect Žemėlapis</comment>
+	<comment xml:lang="nl">Mind Map Architect Map</comment>
+	<comment xml:lang="no">Mind Map Architect Map</comment>
+	<comment xml:lang="pl">Mind Map Architect Mapa</comment>
+	<comment xml:lang="pt">Mind Map Architect Mapa</comment>
+	<comment xml:lang="pt">Mind Map Architect Mapa</comment>
+	<comment xml:lang="ru">Mind Map Architect Ассоциативная арта</comment>
+	<comment xml:lang="sl">Mind Map Architect Miselni vzorec</comment>
+	<comment xml:lang="zh_CN">Mind Map Architect 思维导图</comment>
+	<comment xml:lang="zh">Mind Map Architect 心智圖</comment>
+	<glob pattern="*.mma" />
+	<magic priority="65">
+		<match type="string" value="&lt;map" offset="0" />
+	</magic>
+	<sub-class-of type="text/plain" />
+    </mime-type>
+</mime-info>

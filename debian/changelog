@@ -2,19 +2,19 @@ mmarchitect (0.3.3) unstable; urgency=low
   * color settings from system or user preferences
   * color dialog with default, parent and own choice
 
- -- Ondrej Tuma <ondrej.tuma@firma.seznam.cz>  Tue, 02 Oct 2012 11:00:04 +0200
+ -- Ondrej Tuma <mcbig@zeropage.cz>  Tue, 02 Oct 2012 11:00:04 +0200
 
 mmarchitect (0.3.2) unstable; urgency=low
   * src/app.vala: default directory bug fix
   * Makefile, debian/README.Win32: better windows compilation support
   * icons/mmarchitect.ico: icon for windows
 
- -- Ondrej Tuma <ondrej.tuma@firma.seznam.cz>  Tue, 02 Oct 2012 11:00:04 +0200
+ -- Ondrej Tuma <mcbig@zeropage.cz>  Tue, 02 Oct 2012 11:00:04 +0200
 
 mmarchitect (0.3.1) unstable; urgency=low
   * src/app.vala, ui/about_dialog.ui: #! version and web fix
 
- -- Ondrej Tuma <ondrej.tuma@firma.seznam.cz>  Tue, 02 Oct 2012 11:00:04 +0200
+ -- Ondrej Tuma <mcbig@zeropage.cz>  Tue, 02 Oct 2012 11:00:04 +0200
 
 mmarchitect (0.3.0) unstable; urgency=low
 
@@ -35,7 +35,7 @@ mmarchitect (0.3.0) unstable; urgency=low
   * Makefile, src/app.vala, src/preferences.vala: Preferences are
     saved to user config
 
- -- Ondrej Tuma <mcbig@compaq.zeropage.cz>  Fri, 02 Dec 2011 13:32:29 +0100
+ -- Ondrej Tuma <mcbig@zeropage.cz>  Fri, 02 Dec 2011 13:32:29 +0100
 
 mmarchitect (0.2.1) unstable; urgency=low
 
