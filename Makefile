@@ -1,5 +1,5 @@
 PROGRAM = mmarchitect
-VERSION = "$(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\).*).*/\1/p"))"
+VERSION = $(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\).*).*/\1/p"))
 
 VALAC ?= valac
 VALAC_MIN_VERSION = 0.12.1
@@ -19,19 +19,20 @@ VALAFLAGS ?= --save-temps
 ifeq ($(OS), Windows_NT)
     LDFLAGS += -Wl,-subsystem,windows
     VALAFLAGS += -D WINDOWS
-    INSTALL_AS_COPY = 1
+    WINDOWS = 1
     UX ?= C:\vala-0.12.0\bin\\
 endif
 
-ifdef DEBUG
-    INSTALL_AS_COPY = 1
-    VALAFLAGS += -D DEBUG
-endif
-
-ifndef INSTALL_AS_COPY
+ifndef DEBUG
+  ifndef WINDOWS
     PREFIX ?= /usr/local
     DATA=$(PREFIX)/share/$(PROGRAM)
-else
+  else
+    PREFIX =
+    DATA = ../share/$(PROGRAM)
+  endif
+else # debug is set
+    VALAFLAGS += -D DEBUG
     PREFIX =
     DATA = ./
 endif
@@ -132,8 +133,16 @@ $(SRC_C): $(VALA_STAMP)
 $(BUILD_DIR)/%.o: $(BUILD_DIR)/%.c
 	$(CC) -MMD $(CFLAGS) $(PKG_CFLAGS) -c $< -o $@
 
+misc/$(PROGRAM).res: misc/$(PROGRAM).rc
+	windres misc/$(PROGRAM).rc -O coff -o misc/$(PROGRAM).res
+
+ifndef WINDOWS
 $(OUTPUT): $(OBJS)
 	$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS)
+else
+$(OUTPUT): $(OBJS) misc/$(PROGRAM).res
+	$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS) misc/$(PROGRAM).res
+endif
 
 # object depences creates by $(CC) -MMD
 -include $(OBJS:.o=.d)
@@ -168,6 +177,12 @@ uninstall:
 	#@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
 	@echo "Do not forget to run update-mime-database after real uninstallation!"
 
+mmarchitect-setup-$(VERSION).exe: $(PROGRAM) misc/$(PROGRAM).iss
+	iscc misc\mmarchitect.iss
+	$(UX)mv setup.exe mmarchitect-setup-$(VERSION).exe
+
+installer: mmarchitect-setup-$(VERSION).exe
+
 # for debug only
 #mmarchitect.sh:
 #	XDG_DATA_DIRS=./ glib-compile-schemas ./glib-2.0/schemas
@@ -182,10 +197,12 @@ endif # end is configure.mk
 clean:
 	@$(UX)echo "Cleaning ..."
 	@$(RM) $(OUTPUT)
+	@$(RM) $(OUTPUT).exe
 	@$(RM) -r $(BUILD_DIR)
 	@$(RM) configure.mk src/config.vala
 	@$(RM) *~ src/*~
 	@$(RM) mmarchitect.sh
+	@$(RM) mmarchitect-setup-$(VERSION).exe
 	@dh_clean || $(UX)echo 'Never mind, it is ok ;)'
 
 ../$(PROGRAM)-$(VERSION).tar.bz2: clean
