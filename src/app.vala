@@ -333,6 +333,8 @@ public class App : GLib.Object {
         d.add_filter (html);
         var dhtml = create_filter (_("Dynamic Web Page"), {"*.dhtml", "*.dhtm"});
         d.add_filter (dhtml);
+        var png = create_filter (_("PNG Image"), {"*.png", "*.png"});
+        d.add_filter (png);
         var mm = create_filter ("Free Mind", {"*.mm"});
         d.add_filter (mm);
        
@@ -365,6 +367,10 @@ public class App : GLib.Object {
                 if (!fname.down().has_suffix(".dhtm") && !fname.down().has_suffix(".dhtml"))
                     fname += ".dhtml";
                 retval = Exporter.export_to_dhtml(fname, file.mindmap.root);
+            } else if (filter == png) {
+                if (!fname.down().has_suffix(".png"))
+                    fname += ".png";
+                retval = Exporter.export_to_png(fname, file.mindmap.root);
             } else if (filter == mm) {
                 if (!fname.down().has_suffix(".mm"))
                     fname += ".mm";
