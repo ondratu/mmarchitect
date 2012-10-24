@@ -64,7 +64,7 @@ namespace Exporter {
     }
 
 
-    void png_get_translation (int width, int height, Node node, out double x, out double y) {
+    void cairo_get_translation (int width, int height, Node node, out double x, out double y) {
         int dist = (node.full_right.width - node.full_left.width).abs()  / 2;
 
         if (node.full_right.width > node.full_left.width){
@@ -89,7 +89,7 @@ namespace Exporter {
         cr.fill_preserve();
 
         double x, y;
-        png_get_translation (width, height, node, out x, out y);
+        cairo_get_translation (width, height, node, out x, out y);
 
         cr.translate (x, y);
         node.draw_tree(cr);

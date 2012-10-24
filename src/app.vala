@@ -3,6 +3,12 @@ extern const string GETTEXT_PACKAGE;
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
     private Gtk.Window window;
+    
+    private Gtk.ImageMenuItem menu_item_cut;
+    private Gtk.ImageMenuItem menu_item_copy;
+    private Gtk.ImageMenuItem menu_item_paste;
+    private Gtk.ImageMenuItem menu_item_delete;
+
     private int tabs_counter;
     private Node ? node_clipboard;
     private Preferences pref;
@@ -29,6 +35,11 @@ public class App : GLib.Object {
         notebook = builder.get_object("notebook") as Gtk.Notebook;
         set_tooltips (builder);
 
+        menu_item_cut = builder.get_object("menuitem_cut") as Gtk.ImageMenuItem;
+        menu_item_copy = builder.get_object("menuitem_copy") as Gtk.ImageMenuItem;
+        menu_item_paste = builder.get_object("menuitem_paste") as Gtk.ImageMenuItem;
+        menu_item_delete = builder.get_object("menuitem_delete") as Gtk.ImageMenuItem;
+
         window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
         new_file_from_args(window, filename);
 
@@ -37,8 +48,23 @@ public class App : GLib.Object {
         window.show_all ();
     }
 
+    public void set_sensitive_menu_edit (bool sensitive){
+        menu_item_cut.set_sensitive(sensitive);
+        menu_item_copy.set_sensitive(sensitive);
+        menu_item_paste.set_sensitive(sensitive);
+        menu_item_delete.set_sensitive(sensitive);
+    }
+
+    public void disable_menu_edit () {
+        set_sensitive_menu_edit(false);
+    }
+    
+    public void enable_menu_edit () {
+        set_sensitive_menu_edit(true);
+    }
+
     public void on_realize() {
-        pref.set_style(window.style);   
+        pref.set_style(window.style);
     }
 
     public void set_tooltips(Gtk.Builder builder) {
@@ -104,6 +130,8 @@ public class App : GLib.Object {
         }
         var file = new FileTab.empty (fname, pref);
         file.closed.connect (on_close_file);
+        file.mindmap.editform_open.connect (disable_menu_edit);
+        file.mindmap.editform_close.connect (enable_menu_edit);
         notebook.set_current_page (notebook.append_page (file, file.tab));
         file.mindmap.grab_focus();
     }
@@ -111,6 +139,8 @@ public class App : GLib.Object {
     private void open_file_private(string fname){
         var file = new FileTab.from_file (fname, pref);
         file.closed.connect (on_close_file);
+        file.mindmap.editform_open.connect (disable_menu_edit);
+        file.mindmap.editform_close.connect (enable_menu_edit);
 
         FileTab ? cur = null;
         var pn = notebook.get_current_page ();
@@ -167,6 +197,8 @@ public class App : GLib.Object {
 
         file.on_mindmap_change (); // file is changed
         file.closed.connect (on_close_file);
+        file.mindmap.editform_open.connect (disable_menu_edit);
+        file.mindmap.editform_close.connect (enable_menu_edit);
 
         FileTab ? cur = null;
         var pn = notebook.get_current_page ();
@@ -380,6 +412,17 @@ public class App : GLib.Object {
 
         d.destroy();
         return retval;
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_print_current_file")]
+    public void print_current_file (Gtk.Widget w) {
+        var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
+        on_print_file(file);
+    }
+
+    public void on_print_file (FileTab file){
+        var print = new Print();
+        print.run(window,  file.mindmap.root);
     }
 
     // nodes

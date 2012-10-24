@@ -32,6 +32,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
+                        <property name="always_show_image">True</property>
                         <accelerator key="n" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="app_new_file"/>
                       </object>
@@ -48,6 +49,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
+                        <property name="always_show_image">True</property>
                         <accelerator key="o" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="app_open_file"/>
                       </object>
@@ -59,6 +61,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
+                        <property name="always_show_image">True</property>
                         <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="app_save_current_file"/>
                       </object>
@@ -70,6 +73,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
+                        <property name="always_show_image">True</property>
                         <accelerator key="s" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="app_save_as_current_file"/>
                       </object>
@@ -81,12 +85,30 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
+                        <property name="always_show_image">True</property>
                         <accelerator key="w" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="app_close_current_file"/>
                       </object>
                     </child>
                     <child>
                       <object class="GtkSeparatorMenuItem" id="separator_file3">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_print">
+                        <property name="label">gtk-print</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="accel_group">accelgroup</property>
+                        <property name="always_show_image">True</property>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="app_print_current_file"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator_file4">
                         <property name="visible">True</property>
                       </object>
                     </child>
@@ -161,6 +183,8 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="accel_group">accelgroup</property>
+                        <accelerator key="x" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="app_node_cut"/>
                       </object>
                     </child>
@@ -170,6 +194,8 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="accel_group">accelgroup</property>
+                        <accelerator key="c" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="app_node_copy"/>
                       </object>
                     </child>
@@ -179,6 +205,8 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="accel_group">accelgroup</property>
+                        <accelerator key="v" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="app_node_paste"/>
                       </object>
                     </child>
@@ -188,6 +216,7 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="accel_group">accelgroup</property>
                         <signal name="activate" handler="app_node_delete"/>
                       </object>
                     </child>
@@ -202,6 +231,7 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="accel_group">accelgroup</property>
                       </object>
                     </child>
                     <child>

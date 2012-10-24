@@ -17,6 +17,8 @@ public class MindMap : Gtk.Fixed {
     public signal void change();
     public signal void focus_changed(double x, double y,
                                      double width, double height);
+    public signal void editform_open();
+    public signal void editform_close();
 
     private bool mod_ctrl;
     private bool mod_alt;
@@ -438,6 +440,7 @@ public class MindMap : Gtk.Fixed {
             int xx = (int) GLib.Math.lrint(x);
             int yy = (int) GLib.Math.lrint(y);
 
+            editform_open();        // emit signal that editform will be open
             editform = new EditForm(focused, newone, pref);
             editform.close.connect (on_close_editform);
             editform.save.connect (() => {change();});
@@ -482,6 +485,7 @@ public class MindMap : Gtk.Fixed {
 
         remove (editform);
         editform = null; // delete editform
+        editform_close();       // emit signal that editform is close
         grab_focus();
         refresh_tree();
     }
