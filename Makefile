@@ -34,18 +34,18 @@ endif
 ifndef DEBUG
   ifndef WINDOWS
     PREFIX ?= /usr/local
-    DATA=$(PREFIX)/share/$(PROGRAM)
-    SYSTEM_LANG_DIR=$(PREFIX)/share/locale
+    DATA = $(PREFIX)/share/$(PROGRAM)
+    LOCALE_DIR ?= $(PREFIX)/share/locale
   else
     PREFIX =
     DATA = ../share/$(PROGRAM)
-    SYSTEM_LANG_DIR = ../share/locale
+    LOCALE_DIR = ../share/locale
   endif
 else # debug is set
     VALAFLAGS += -D DEBUG
     PREFIX =
     DATA = ./
-    SYSTEM_LANG_DIR = ./$(LANG_DIR)
+    LOCALE_DIR = ./$(LANG_DIR)
 endif
 
 ifeq ($(OS), Windows_NT)
@@ -98,13 +98,15 @@ po/$(PROGRAM).pot: $(SRC_VALA) $(FILES_UI)
 	$(silent)xgettext -o $@ -j --language=Glade --keyword=translatable --from-code utf-8 ui/*.ui
 
 $(LANG_STAMP): $(FILES_PO) po/$(PROGRAM).pot
-	@$(UX)echo "merging $(FILES_PO)"
-	$(silent)$(foreach lang,$(LANGUGAGES),`mv po/$(lang).po po/$(lang).bak ; \
-            msgmerge po/$(lang).bak po/$(PROGRAM).pot > po/$(lang).po`)
 	@$(UX)echo "  GETTEXT $(FILES_PO)"
 	$(silent)$(foreach lang,$(LANGUGAGES),`mkdir -p $(LANG_DIR)/$(lang)/LC_MESSAGES ; \
             msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po`)
 	@$(UX)echo "" > $@
+
+updatelangs:
+	@$(UX)echo "merging $(FILES_PO)"
+	$(silent)$(foreach lang,$(LANGUGAGES),`mv po/$(lang).po po/$(lang).bak ; \
+            msgmerge po/$(lang).bak po/$(PROGRAM).pot > po/$(lang).po`)
 
 configure:
 	@$(MAKE) clean
@@ -115,7 +117,7 @@ do-configure: valacheck pkgcheck
 	@$(UX)echo "const string DATA = \"$(DATA)\";" > src/config.vala
 	@$(UX)echo "const string PROGRAM = \"$(PROGRAM)\";" >> src/config.vala
 	@$(UX)echo "const string VERSION = \"$(VERSION)\";" >> src/config.vala
-	@$(UX)echo "const string SYSTEM_LANG_DIR = \"$(SYSTEM_LANG_DIR)\";" >> src/config.vala
+	@$(UX)echo "const string LOCALE_DIR = \"$(LOCALE_DIR)\";" >> src/config.vala
 	@$(UX)echo "Generating configure.mk ..."
 	@$(UX)echo PREFIX = $(PREFIX) > configure.mk
 	@$(UX)echo DATA = $(DATA) >> configure.mk
@@ -130,6 +132,8 @@ help:
             "       clean       - clean all files from configure and all rule \n" \
             "       pkgcheck    - check libraries for c compiling\n" \
             "       valacheck   - information about vala support version\n" \
+            "       updatelangs - call msgmerge to all po files from LANGUGAGES list:\n" \
+            "                     $(LANGUGAGES)\n" \
             "       configure   - configure build enviroment\n" \
             "       install     - install binaries to system\n" \
             "       uninstall   - uninstall binaries from system\n" \
@@ -138,7 +142,9 @@ help:
             "\n" \
             "   OPTIONS are :\n" \
             "       PREFIX      - for installation \n" \
+            "       LOCALE_DIR  - for locales installation \n" \
             "       DEBUG       - for debug build (installation is not possible) \n" \
+            "       V           - if V = 1 (default is 0) then verbose mod is enabled\n" \
             "       CFLAGS      - additional CFLAGS \n" \
             "       VALAC       - vala compiler \n" \
             "       INSTALL     - install tool\n" \
@@ -179,7 +185,7 @@ endif
 # object depences creates by $(CC) -MMD
 -include $(OBJS:.o=.d)
 
-install:
+install: $(OUTPUT) $(LANG_STAMP)
 	@echo "Installing $(PROGRAM) to $(DESTDIR)$(PREFIX) ..."
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(PREFIX)/bin
@@ -188,7 +194,13 @@ install:
 	mkdir -p $(DESTDIR)$(DATA)/ui
 	$(INSTALL_DATA) ui/* $(DESTDIR)$(DATA)/ui
 	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
+	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/64x64/apps
+	mkdir -p $(DESTDIR)$(PREFIX)/share/pixmaps
 	$(INSTALL_DATA) icons/$(PROGRAM).svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
+	$(INSTALL_DATA) icons/$(PROGRAM).png $(DESTDIR)$(PREFIX)/share/icons/hicolor/64x64/apps
+	$(INSTALL_DATA) icons/$(PROGRAM).png $(DESTDIR)$(PREFIX)/share/pixmaps
+	$(foreach lang,$(LANGUGAGES),`mkdir -p $(DESTDIR)$(LOCALE_DIR)/$(lang)/LC_MESSAGES ; \
+            $(INSTALL_DATA) $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo $(DESTDIR)$(LOCALE_DIR)/$(lang)/LC_MESSAGES`)
 	#mkdir -p $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
 	#$(INSTALL_DATA) glib-2.0/schemas/apps.$(PROGRAM).gschema.xml $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
@@ -201,15 +213,18 @@ install:
 uninstall:
 	@echo "Uninstalling $(PROGRAM) from $(DESTDIR)$(PREFIX) ..."
 	$(RM) $(DESTDIR)$(PREFIX)/bin/$(PROGRAM)
-	$(RM) -r $(DESTDIR)$(DATA)/$(PROGRAM)
+	$(RM) -r $(DESTDIR)$(DATA)
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/$(PROGRAM).svg
+	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/64x64/apps/$(PROGRAM).png
+	$(RM) $(DESTDIR)$(PREFIX)/share/pixmaps/$(PROGRAM).png
+	$(foreach lang,$(LANGUGAGES),`$(RM) $(DESTDIR)$(LOCALE_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo`)
 	#$(RM) $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas/apps.$(PROGRAM).gschema.xml
 	$(RM) $(DESTDIR)$(PREFIX)/share/applications/$(PROGRAM).desktop
 	$(RM) $(DESTDIR)$(PREFIX)/share/mime/packages/$(PROGRAM).xml
 	#@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
 	@echo "Do not forget to run update-mime-database after real uninstallation!"
 
-$(PROGRAM)-setup-$(VERSION).exe: $(PROGRAM) misc/$(PROGRAM).iss
+$(PROGRAM)-setup-$(VERSION).exe: $(PROGRAM) misc/$(PROGRAM).iss $(LANG_STAMP)
 	iscc misc\$(PROGRAM).iss
 	$(UX)mv setup.exe $(PROGRAM)-setup-$(VERSION).exe
 

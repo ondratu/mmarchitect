@@ -39,6 +39,7 @@ Source: "c:\vala-0.12.0\bin\zlib1.dll"; DestDir: "{app}\bin"
 
 Source: "icons\*"; DestDir: "{app}\share\mmarchitect\icons"
 Source: "ui\*"; DestDir: "{app}\share\mmarchitect\ui"
+Source: ".langs\*"; DestDir: "{app}\share\locale"
 Source: "mmarchitect.exe"; DestDir: "{app}\bin\"
 
 [Run]

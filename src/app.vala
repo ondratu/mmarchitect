@@ -1,5 +1,3 @@
-extern const string GETTEXT_PACKAGE;
-
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
     private Gtk.Window window;
@@ -18,10 +16,6 @@ public class App : GLib.Object {
         tabs_counter = 0;
         node_clipboard = null;
         pref = new Preferences();
-#if DEBUG
-        stdout.printf("GETTEXT_PACKAGE: %s \n", GETTEXT_PACKAGE);
-        stdout.printf("DATA: %s \n", DATA);
-#endif
     }
 
     public void loadui (string filename) throws Error {
