@@ -1,0 +1,381 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Mind Map Architect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-24 22:41+0200\n"
+"PO-Revision-Date: 2012-10-24 22:12+0100\n"
+"Last-Translator: Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Language-Team: cs <mcbig@zeropage.cz>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Czech\n"
+"X-Poedit-Country: CZECH REPUBLIC\n"
+
+#: src/app.vala:74 src/app.vala:159
+msgid "Open file"
+msgstr "Otevřít soubor"
+
+#: src/app.vala:76
+msgid "New file"
+msgstr ""
+
+#: src/app.vala:78
+msgid "Save file"
+msgstr ""
+
+#: src/app.vala:80 src/app.vala:312
+msgid "Save file as"
+msgstr ""
+
+#: src/app.vala:109
+msgid "File $fname can't be imported!"
+msgstr ""
+
+#: src/app.vala:218
+msgid "Import file"
+msgstr ""
+
+#: src/app.vala:356
+msgid "Export file as"
+msgstr ""
+
+#: src/app.vala:362
+msgid "Plain Text"
+msgstr ""
+
+#: src/app.vala:364
+msgid "Simple Web Page"
+msgstr ""
+
+#: src/app.vala:366
+msgid "Dynamic Web Page"
+msgstr ""
+
+#: src/app.vala:368
+msgid "PNG Image"
+msgstr ""
+
+#: src/editform.vala:244
+msgid "Extends edit"
+msgstr ""
+
+#: src/editform.vala:288
+msgid "Point"
+msgstr ""
+
+#: src/main.vala:17
+#, c-format
+msgid "Could not load app UI: %s\n"
+msgstr ""
+
+#: src/mindmap.vala:72
+msgid "Main Idea"
+msgstr ""
+
+#: src/print.vala:29
+msgid "Printing error:"
+msgstr ""
+
+#: ui/about_dialog.ui:7
+msgid "About Application Mind Map Architect"
+msgstr ""
+
+#: ui/about_dialog.ui:14
+msgid "Copyright (c) 2011-2012, Ondřej Tůma"
+msgstr ""
+
+#: ui/about_dialog.ui:15
+msgid "Tool for working with mind maps. "
+msgstr ""
+
+#: ui/about_dialog.ui:17
+msgid ""
+"Copyright (c) 2011-2012, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions are met:\n"
+"1. Redistributions of source code must retain the above copyright\n"
+"   notice, this list of conditions and the following disclaimer.\n"
+"2. Redistributions in binary form must reproduce the above copyright\n"
+"   notice, this list of conditions and the following disclaimer in the\n"
+"   documentation and/or other materials provided with the distribution.\n"
+"3. All advertising materials mentioning features or use of this software\n"
+"   must display the following acknowledgement:\n"
+"   This product includes software developed by Ondřej Tůma.\n"
+"4. Neither the name of authors nor the\n"
+"   names of its contributors may be used to endorse or promote products\n"
+"   derived from this software without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY ONDŘEJ TǓMA ''AS IS'' AND ANY\n"
+"EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
+"WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
+"DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
+"DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
+"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
+"SERVICES;\n"
+"LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
+"ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
+"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
+"THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+
+#: ui/close_file_dialog.ui:7
+msgid "Uložit změny v dokumentu ?"
+msgstr ""
+
+#: ui/close_file_dialog.ui:40
+msgid "Uložit změny do dokumentu %s před ukončením?"
+msgstr ""
+
+#: ui/close_file_dialog.ui:55
+msgid "Pokud je neuložíte, budou vaše změny ztraceny."
+msgstr ""
+
+#: ui/close_file_dialog.ui:78
+msgid "Zavřít _bez uložení"
+msgstr ""
+
+#: ui/color_dialog.ui:22
+msgid "Default color"
+msgstr ""
+
+#: ui/color_dialog.ui:36
+msgid "Parent color"
+msgstr ""
+
+#: ui/color_dialog.ui:51
+msgid "Own color"
+msgstr ""
+
+#: ui/main.ui:7
+msgid "Mind Map Architect"
+msgstr ""
+
+#: ui/main.ui:23
+msgid "_Soubor"
+msgstr ""
+
+#: ui/main.ui:118
+msgid "Export"
+msgstr ""
+
+#: ui/main.ui:126
+msgid "Import"
+msgstr ""
+
+#: ui/main.ui:153
+msgid "_Upravit"
+msgstr ""
+
+#: ui/main.ui:161
+msgid "Expand"
+msgstr "Rozbalit"
+
+#: ui/main.ui:170
+msgid "Collapse"
+msgstr ""
+
+#: ui/main.ui:258
+msgid "_Zobrazit"
+msgstr ""
+
+#: ui/main.ui:266
+msgid "Expand all nodes"
+msgstr ""
+
+#: ui/main.ui:274
+msgid "Collapse all nodes"
+msgstr ""
+
+#: ui/main.ui:286
+msgid "_Nápověda"
+msgstr ""
+
+#: ui/preferences.ui:7
+msgid "Mind Map Architect Preferences"
+msgstr ""
+
+#: ui/preferences.ui:46
+msgid "<b>Author</b>"
+msgstr ""
+
+#: ui/preferences.ui:72
+msgid "Choose directory"
+msgstr ""
+
+#: ui/preferences.ui:80
+msgid "<b>Default dokuments directory</b>"
+msgstr ""
+
+#: ui/preferences.ui:107
+msgid "_Empty document"
+msgstr ""
+
+#: ui/preferences.ui:121
+msgid "_Last opened documents"
+msgstr ""
+
+#: ui/preferences.ui:136
+msgid "_Map of last opend document"
+msgstr ""
+
+#: ui/preferences.ui:156
+msgid "<b>Start program with</b>"
+msgstr ""
+
+#: ui/preferences.ui:172
+msgid "General"
+msgstr ""
+
+#: ui/preferences.ui:198 ui/preferences.ui:478
+msgid "Use system font"
+msgstr ""
+
+#: ui/preferences.ui:231
+msgid "<b>Idea font</b>"
+msgstr ""
+
+#: ui/preferences.ui:260
+msgid "Font"
+msgstr ""
+
+#: ui/preferences.ui:266
+msgid "Line"
+msgstr ""
+
+#: ui/preferences.ui:311
+msgid "<b>Rising</b>"
+msgstr ""
+
+#: ui/preferences.ui:340
+msgid "Text padding"
+msgstr ""
+
+#: ui/preferences.ui:346
+msgid "Height padding"
+msgstr ""
+
+#: ui/preferences.ui:356
+msgid "Width padding"
+msgstr ""
+
+#: ui/preferences.ui:410
+msgid "<b>Idea's padding</b>"
+msgstr ""
+
+#: ui/preferences.ui:454
+msgid "Height"
+msgstr ""
+
+#: ui/preferences.ui:497
+msgid "<b>Note's text</b>"
+msgstr ""
+
+#: ui/preferences.ui:517
+msgid "Style"
+msgstr ""
+
+#: ui/preferences.ui:539
+msgid "Use system colors"
+msgstr ""
+
+#: ui/preferences.ui:552
+msgid "<b>System colors</b>"
+msgstr ""
+
+#: ui/preferences.ui:622
+msgid "Default line color"
+msgstr ""
+
+#: ui/preferences.ui:631
+msgid "Canvas color"
+msgstr ""
+
+#: ui/preferences.ui:642
+msgid "Text normal color"
+msgstr ""
+
+#: ui/preferences.ui:698
+msgid "Text selected color"
+msgstr ""
+
+#: ui/preferences.ui:709
+msgid "Background normal color"
+msgstr ""
+
+#: ui/preferences.ui:720
+msgid "Background selected color"
+msgstr ""
+
+#: ui/preferences.ui:735
+msgid "<b>Colors definitions</b>"
+msgstr ""
+
+#: ui/preferences.ui:752
+msgid "Colors"
+msgstr ""
+
+#: ui/preferences.ui:780
+msgid "_disable"
+msgstr ""
+
+#: ui/preferences.ui:794
+msgid "count _branches"
+msgstr ""
+
+#: ui/preferences.ui:809
+msgid "_min (points)"
+msgstr ""
+
+#: ui/preferences.ui:824
+msgid "ma_x (points)"
+msgstr ""
+
+#: ui/preferences.ui:839
+msgid "_avg (points)"
+msgstr ""
+
+#: ui/preferences.ui:859
+msgid "<b>Rising method</b>"
+msgstr ""
+
+#: ui/preferences.ui:887
+msgid "_ignore parent's points"
+msgstr ""
+
+#: ui/preferences.ui:901
+msgid "_sum with branches points"
+msgstr ""
+
+#: ui/preferences.ui:916
+msgid "_replace branches points"
+msgstr ""
+
+#: ui/preferences.ui:936
+msgid "<b>Branches and Idea poinst</b>"
+msgstr ""
+
+#: ui/preferences.ui:962
+msgid "Ideas"
+msgstr ""
+
+#: ui/preferences.ui:974
+msgid "Branches"
+msgstr ""
+
+#: ui/preferences.ui:991
+msgid "<b>Rise elemens</b>"
+msgstr ""
+
+#: ui/preferences.ui:1009
+msgid "Map"
+msgstr "Mapa"

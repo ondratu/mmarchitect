@@ -9,12 +9,20 @@ INSTALL_PROGRAM ?= $(INSTALL)
 INSTALL_DATA ?= $(INSTALL) -m 644
 
 BUILD_DIR ?= .build
+LANG_DIR ?= .langs
 
 HAVE_CONFIG = $(wildcard configure.mk)
 CONF = $(shell (if [ -f configure.mk ]; then echo 1; else echo 0; fi;))
 
 CFLAGS ?= -g -O2
 VALAFLAGS ?= --save-temps
+
+V ?= 0
+ifeq ($(V), 0)
+    silent=@
+else
+    silent=
+endif
 
 ifeq ($(OS), Windows_NT)
     LDFLAGS += -Wl,-subsystem,windows
@@ -27,22 +35,23 @@ ifndef DEBUG
   ifndef WINDOWS
     PREFIX ?= /usr/local
     DATA=$(PREFIX)/share/$(PROGRAM)
+    SYSTEM_LANG_DIR=$(PREFIX)/share/locale
   else
     PREFIX =
     DATA = ../share/$(PROGRAM)
+    SYSTEM_LANG_DIR = ../share/locale
   endif
 else # debug is set
     VALAFLAGS += -D DEBUG
     PREFIX =
     DATA = ./
+    SYSTEM_LANG_DIR = ./$(LANG_DIR)
 endif
 
 ifeq ($(OS), Windows_NT)
-    CFLAGS += -DGETTEXT_PACKAGE=\"\\"\"$(PROGRAM)\\"\"\" \
-	-DLANG_SUPPORT_DIR=\"\\"\"$(SYSTEM_LANG_DIR)\\"\"\"
+    CFLAGS += -DGETTEXT_PACKAGE=\"\\"\"$(PROGRAM)\\"\"\"
 else
-    CFLAGS += -DGETTEXT_PACKAGE=\'\"$(PROGRAM)\"\' \
-	-DLANG_SUPPORT_DIR=\'\"$(SYSTEM_LANG_DIR)\"\'
+    CFLAGS += -DGETTEXT_PACKAGE=\'\"$(PROGRAM)\"\'
 endif
 
 ifdef CFLAGS
@@ -62,12 +71,18 @@ SRC_VALA = $(wildcard src/*.vala)
 SRC_C = $(foreach file,$(subst src,$(BUILD_DIR),$(SRC_VALA)),$(file:.vala=.c))
 OBJS = $(SRC_C:%.c=%.o)
 
+FILES_UI = $(wildcard ui/*.ui)
+FILES_PO = $(wildcard po/*.po)
+
+LANG_STAMP := $(LANG_DIR)/.stamp
+LANGUGAGES = cs
+
 PKG_CFLAGS = $(shell pkg-config --cflags $(EXT_PKGS))
 PKG_LDFLAGS = $(shell pkg-config --libs $(EXT_PKGS)) 
 
 OUTPUT=$(PROGRAM)
 
-all: $(OUTPUT)
+all: $(OUTPUT) $(LANG_STAMP)
 
 pkgcheck:
 	@$(UX)echo "Checking packages $(EXT_PKGS)"
@@ -76,6 +91,20 @@ pkgcheck:
 valacheck:
 	@$(UX)echo -n "Min Vala support version is $(VALAC_MIN_VERSION)"
 	@$(UX)echo ", you are using $(shell $(VALAC) --version)"
+
+po/$(PROGRAM).pot: $(SRC_VALA) $(FILES_UI)
+	@$(UX)echo "updating po/$(PROGRAM).pot"
+	$(silent)xgettext -o $@ --language=C --keyword=_ --from-code utf-8 --escape src/*.vala
+	$(silent)xgettext -o $@ -j --language=Glade --keyword=translatable --from-code utf-8 ui/*.ui
+
+$(LANG_STAMP): $(FILES_PO) po/$(PROGRAM).pot
+	@$(UX)echo "merging $(FILES_PO)"
+	$(silent)$(foreach lang,$(LANGUGAGES),`mv po/$(lang).po po/$(lang).bak ; \
+            msgmerge po/$(lang).bak po/$(PROGRAM).pot > po/$(lang).po`)
+	@$(UX)echo "  GETTEXT $(FILES_PO)"
+	$(silent)$(foreach lang,$(LANGUGAGES),`mkdir -p $(LANG_DIR)/$(lang)/LC_MESSAGES ; \
+            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po`)
+	@$(UX)echo "" > $@
 
 configure:
 	@$(MAKE) clean
@@ -86,6 +115,7 @@ do-configure: valacheck pkgcheck
 	@$(UX)echo "const string DATA = \"$(DATA)\";" > src/config.vala
 	@$(UX)echo "const string PROGRAM = \"$(PROGRAM)\";" >> src/config.vala
 	@$(UX)echo "const string VERSION = \"$(VERSION)\";" >> src/config.vala
+	@$(UX)echo "const string SYSTEM_LANG_DIR = \"$(SYSTEM_LANG_DIR)\";" >> src/config.vala
 	@$(UX)echo "Generating configure.mk ..."
 	@$(UX)echo PREFIX = $(PREFIX) > configure.mk
 	@$(UX)echo DATA = $(DATA) >> configure.mk
@@ -119,26 +149,28 @@ ifneq ($(strip $(HAVE_CONFIG)),)
     include configure.mk
 
 $(VALA_STAMP): $(SRC_VALA) Makefile configure.mk
-	@$(UX)echo "Compiling Vala code..."
+	@$(UX)echo "  VALAC $(SRC_VALA)"
 	@$(UX)mkdir -p $(BUILD_DIR)
-	$(VALAC) --ccode --directory=$(BUILD_DIR) --basedir=src \
+	$(silent)$(VALAC) --ccode --directory=$(BUILD_DIR) --basedir=src \
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
 		$(VALAFLAGS) \
 		$(SRC_VALA)
-	@echo "" > $@
+	@$(UX)echo "" > $@
 
 $(SRC_C): $(VALA_STAMP)
 	@
 
 $(BUILD_DIR)/%.o: $(BUILD_DIR)/%.c
-	$(CC) -MMD $(CFLAGS) $(PKG_CFLAGS) -c $< -o $@
+	@$(UX)echo "  CC $@"
+	$(silent)$(CC) -MMD $(CFLAGS) $(PKG_CFLAGS) -c $< -o $@
 
 misc/$(PROGRAM).res: misc/$(PROGRAM).rc
 	windres misc/$(PROGRAM).rc -O coff -o misc/$(PROGRAM).res
 
 ifndef WINDOWS
 $(OUTPUT): $(OBJS)
-	$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS)
+	@$(UX)echo "  LD $@"
+	$(silent)$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS)
 else
 $(OUTPUT): $(OBJS) misc/$(PROGRAM).res
 	$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS) misc/$(PROGRAM).res
@@ -177,11 +209,11 @@ uninstall:
 	#@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
 	@echo "Do not forget to run update-mime-database after real uninstallation!"
 
-mmarchitect-setup-$(VERSION).exe: $(PROGRAM) misc/$(PROGRAM).iss
-	iscc misc\mmarchitect.iss
-	$(UX)mv setup.exe mmarchitect-setup-$(VERSION).exe
+$(PROGRAM)-setup-$(VERSION).exe: $(PROGRAM) misc/$(PROGRAM).iss
+	iscc misc\$(PROGRAM).iss
+	$(UX)mv setup.exe $(PROGRAM)-setup-$(VERSION).exe
 
-installer: mmarchitect-setup-$(VERSION).exe
+installer: $(PROGRAM)-setup-$(VERSION).exe
 
 # for debug only
 #mmarchitect.sh:
@@ -198,11 +230,11 @@ clean:
 	@$(UX)echo "Cleaning ..."
 	@$(RM) $(OUTPUT)
 	@$(RM) $(OUTPUT).exe
-	@$(RM) -r $(BUILD_DIR)
+	@$(RM) -r $(BUILD_DIR) $(LANG_DIR)        
 	@$(RM) configure.mk src/config.vala
 	@$(RM) *~ src/*~
 	@$(RM) mmarchitect.sh
-	@$(RM) mmarchitect-setup-$(VERSION).exe
+	@$(RM) $(PROGRAM)-setup-$(VERSION).exe
 	@dh_clean || $(UX)echo 'Never mind, it is ok ;)'
 
 ../$(PROGRAM)-$(VERSION).tar.bz2: clean
@@ -211,6 +243,7 @@ clean:
 	@$(UX)mkdir -p ../$(PROGRAM)-$(VERSION)
 	@$(UX)cp -a src ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a ui ../$(PROGRAM)-$(VERSION)/
+	@$(UX)cp -a po ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a misc ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a icons ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a debian ../$(PROGRAM)-$(VERSION)/
@@ -226,6 +259,7 @@ clean:
 	@$(UX)mkdir -p ../$(PROGRAM)-c-$(VERSION)
 	@$(UX)cp -a src ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)cp -a ui ../$(PROGRAM)-c-$(VERSION)/
+	@$(UX)cp -a po ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)cp -a misc ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)cp -a icons ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)cp -a debian ../$(PROGRAM)-c-$(VERSION)/
