@@ -5,32 +5,32 @@ public class Print : GLib.Object {
     protected Node ? node;
     protected Preferences pref;
 
-    public Print (Preferences pref) {
+    public Print (Preferences pref, Node node) {
+        // XXX: page orientation and output-uri could be saved to
+        // map file
         this.pref = pref;
+        this.node = node;
+
         po = new Gtk.PrintOperation ();
-        //po.set_embed_page_setup (true);
+        po.set_embed_page_setup (true);
 
         // load page setup from preference file
         var page_setup = new Gtk.PageSetup ();
-        page_setup.set_orientation (Gtk.PageOrientation.LANDSCAPE);
+        page_setup.set_orientation (Gtk.PageOrientation.LANDSCAPE); // default
         // pref.load_page_setup (page_setup);
         po.set_default_page_setup(page_setup);
 
         // load settings from preference file
         var print_settings = new Gtk.PrintSettings ();
         pref.load_print_settings (print_settings);
+        //print_settings.set("output-uri", filename);
         po.set_print_settings (print_settings);
 
         po.begin_print.connect (begin_print);
         po.draw_page.connect (draw_page);
     }
 
-    public void run (Gtk.Window parent, Node node) {
-        // TODO:
-        // default filename to export
-        // default page orientation to landscape
-        this.node = node;
-
+    public void run (Gtk.Window parent) {
         try {
             var res = po.run (Gtk.PrintOperationAction.PRINT_DIALOG, parent);
             
@@ -59,14 +59,24 @@ public class Print : GLib.Object {
 
     protected void draw_page (Gtk.PrintContext context, int page_nr) {
         int width, height;
-        double x, y;
+        double x, y, page_height, page_width, scale_width, scale_height;
+
         var cr = context.get_cairo_context ();
 
         node.window.get_size(out width, out height);
+        page_width = context.get_width ();
+        page_height = context.get_height ();
+        
+        scale_width = page_width / width;
+        scale_height = page_height / height;
 
         Exporter.cairo_get_translation (width, height, node, out x, out y);
-        // TODO: scale and rotate to page...
-        
+
+        if (scale_width < 1 && scale_width < scale_height )
+            cr.scale (scale_width, scale_width);
+        else if (scale_height < 1 && scale_height < scale_width )
+            cr.scale (scale_height, scale_height);
+            
         cr.translate (x, y);
         node.draw_tree(cr);
     }

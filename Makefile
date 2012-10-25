@@ -97,7 +97,7 @@ po/$(PROGRAM).pot: $(SRC_VALA) $(FILES_UI)
 	$(silent)xgettext -o $@ --language=C --keyword=_ --from-code utf-8 --escape src/*.vala
 	$(silent)xgettext -o $@ -j --language=Glade --keyword=translatable --from-code utf-8 ui/*.ui
 
-$(LANG_STAMP): $(FILES_PO) po/$(PROGRAM).pot
+$(LANG_STAMP): $(FILES_PO)
 	@$(UX)echo "  GETTEXT $(FILES_PO)"
 	$(silent)$(foreach lang,$(LANGUGAGES),`mkdir -p $(LANG_DIR)/$(lang)/LC_MESSAGES ; \
             msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po`)

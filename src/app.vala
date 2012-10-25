@@ -415,8 +415,8 @@ public class App : GLib.Object {
     }
 
     public void on_print_file (FileTab file){
-        var print = new Print(pref);
-        print.run(window,  file.mindmap.root);
+        var print = new Print(pref, file.mindmap.root);
+        print.run(window);
     }
 
     // nodes
