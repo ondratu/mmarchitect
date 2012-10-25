@@ -415,7 +415,7 @@ public class App : GLib.Object {
     }
 
     public void on_print_file (FileTab file){
-        var print = new Print();
+        var print = new Print(pref);
         print.run(window,  file.mindmap.root);
     }
 

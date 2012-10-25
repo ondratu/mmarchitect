@@ -89,6 +89,16 @@ public uint IdeaPointsFromString(string points){
         return IdeaPoints.IGNORE;
 }
 
+public class KeyValue {
+    public string key;
+    public string val;
+
+    public KeyValue(string key, string val) {
+        this.key = key;
+        this.val = val;
+    }
+}
+
 public class PreferenceWidgets : GLib.Object {
     public Gtk.Dialog dialog;
 
@@ -265,7 +275,10 @@ public class Preferences : GLib.Object {
     public bool rise_ideas;
     public bool rise_branches;
 
+    private Gee.HashMap<string, string> print_settings;
+
     public Preferences () {
+        this.print_settings = new Gee.HashMap<string, string> ();
 
         gtk_sett = Gtk.Settings.get_default ();
 #if ! WINDOWS
@@ -446,6 +459,9 @@ public class Preferences : GLib.Object {
             }
             if (it->name == "map"){
                 read_map_node(it);
+            }
+            if (it->name == "print"){
+                read_print_node(it);
             }
         }
     }
@@ -658,6 +674,7 @@ public class Preferences : GLib.Object {
         write_style_node (w);
         write_colors_node (w);
         write_map_node (w);
+        write_print_node (w);
 
         w.end_element();
         w.end_document();
@@ -692,13 +709,47 @@ public class Preferences : GLib.Object {
             } catch (Error e) {
                 stderr.printf ("%s\n", e.message);
             }
-            // redraw_all_tabs ();
         }
 
         pw.dialog.destroy();
         pw = null;
 
         return retval;
+    }
+
+    private void read_from_print_settings (string key, string val) {
+        print_settings.set(key, val); 
+    }
+
+    public void load_print_settings (Gtk.PrintSettings settings) {
+        foreach (var it in print_settings.entries){
+            settings.set(it.key, it.value);
+        }
+    }
+
+    private void write_print_node (Xml.TextWriter w) {
+        w.start_element ("print");
+
+        foreach (var it in print_settings.entries){
+            w.write_element (it.key, it.value);
+        }
+
+        w.end_element ();
+    }
+
+    private void read_print_node (Xml.Node* node) {
+        for (Xml.Node* it = node->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+
+            print_settings.set(it->name, it->get_content()); 
+        }
+    }
+
+    public void save_print_settings(Gtk.PrintSettings settings)  throws Error {
+        settings.foreach (read_from_print_settings);
+        save_to_config ();
     }
 
 }

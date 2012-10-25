@@ -3,23 +3,37 @@ public class Print : GLib.Object {
 
     protected Gtk.PrintOperation po;
     protected Node ? node;
+    protected Preferences pref;
 
-    public Print () {
-        po = new Gtk.PrintOperation();
-        po.begin_print.connect(begin_print);
-        po.draw_page.connect(draw_page);
+    public Print (Preferences pref) {
+        this.pref = pref;
+        po = new Gtk.PrintOperation ();
+
+        // load settings from preference file
+        var ps = new Gtk.PrintSettings ();
+        pref.load_print_settings (ps);
+        po.set_print_settings (ps);
+
+        po.begin_print.connect (begin_print);
+        po.draw_page.connect (draw_page);
     }
 
     public void run (Gtk.Window parent, Node node) {
-        // TODO: save setiings
+        // TODO:
         // default filename to export
         // default page orientation to landscape
         this.node = node;
 
         try {
             var res = po.run (Gtk.PrintOperationAction.PRINT_DIALOG, parent);
+            
             if (res == Gtk.PrintOperationResult.ERROR)
-                po.get_error();                
+                po.get_error();
+
+            // store settings to preference file
+            if (res != Gtk.PrintOperationResult.CANCEL)
+                pref.save_print_settings(po.get_print_settings ());
+
         } catch (Error e) {
             var dialog = new Gtk.MessageDialog(
                     parent,

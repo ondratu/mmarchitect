@@ -63,8 +63,8 @@ EXT_PKGS = \
 	gdk-2.0 \
 	gtk+-2.0 \
 	cairo \
-	libxml-2.0
-#	gee-1.0 \
+	libxml-2.0 \
+	gee-1.0 
 
 VALA_STAMP := $(BUILD_DIR)/.stamp
 SRC_VALA = $(wildcard src/*.vala)
