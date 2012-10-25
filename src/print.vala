@@ -8,11 +8,18 @@ public class Print : GLib.Object {
     public Print (Preferences pref) {
         this.pref = pref;
         po = new Gtk.PrintOperation ();
+        //po.set_embed_page_setup (true);
+
+        // load page setup from preference file
+        var page_setup = new Gtk.PageSetup ();
+        page_setup.set_orientation (Gtk.PageOrientation.LANDSCAPE);
+        // pref.load_page_setup (page_setup);
+        po.set_default_page_setup(page_setup);
 
         // load settings from preference file
-        var ps = new Gtk.PrintSettings ();
-        pref.load_print_settings (ps);
-        po.set_print_settings (ps);
+        var print_settings = new Gtk.PrintSettings ();
+        pref.load_print_settings (print_settings);
+        po.set_print_settings (print_settings);
 
         po.begin_print.connect (begin_print);
         po.draw_page.connect (draw_page);
