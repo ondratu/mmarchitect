@@ -340,7 +340,7 @@ public class Preferences : GLib.Object {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-        
+
             if (it->name == "author"){
                 author = it->get_content().strip();
             } else if (it->name == "default_directory"){
@@ -348,7 +348,7 @@ public class Preferences : GLib.Object {
             } else if (it->name == "start_with"){
                 start_with = StartFromString (it->get_content().strip());
             }
-        }        
+        }
     }
 
     private void read_style_node(Xml.Node* node) {
@@ -356,7 +356,7 @@ public class Preferences : GLib.Object {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-        
+
             if (it->name == "node_system_font"){
                 node_system_font = bool.parse(it->get_content().strip());
             } else if (it->name == "node_font"){
@@ -390,7 +390,7 @@ public class Preferences : GLib.Object {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-        
+
             // XXX: tady pokud neni system colors false prvni tak to neklapne
             if (it->name == "system_colors"){
                 system_colors = bool.parse(it->get_content().strip());
@@ -409,7 +409,7 @@ public class Preferences : GLib.Object {
                     Gdk.Color.parse(it->get_content(), out back_selected);
                 }
             }
-        }        
+        }
     }
 
     private void read_map_node(Xml.Node* node) {
@@ -417,7 +417,7 @@ public class Preferences : GLib.Object {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-        
+
             if (it->name == "rise_method"){
                 rise_method = RisingMethodFromString(it->get_content().strip());
             } else if (it->name == "points"){
@@ -437,17 +437,17 @@ public class Preferences : GLib.Object {
 
         var r = new Xml.TextReader.filename (path);
         r.read();
-        
+
         Xml.Node* x = r.expand ();
         if (x == null)
             return;
-        
+
         // read the file
         for (Xml.Node* it = x->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-            
+
             if (it->name == "general"){
                 read_general_node(it);
             }
@@ -477,7 +477,7 @@ public class Preferences : GLib.Object {
         } else {
             start_with = Start.EMPTY;
         }
-            
+
         // style tab
         node_system_font = pw.node_system_font.get_active();
         if (!node_system_font)
@@ -523,7 +523,7 @@ public class Preferences : GLib.Object {
         } else {
             rise_method = RisingMethod.DISABLE;
         }
-        
+
         if (pw.points_sum.get_active ()){
             points = IdeaPoints.SUM;
         } else if (pw.points_replace.get_active ()){
@@ -601,7 +601,7 @@ public class Preferences : GLib.Object {
 
     private void write_general_node (Xml.TextWriter w) {
         w.start_element ("general");
-       
+
         w.write_element ("author", author);
         w.write_element ("default_directory", default_directory);
         w.write_element ("start_with", StartToString (start_with));
@@ -611,7 +611,7 @@ public class Preferences : GLib.Object {
 
     private void write_style_node (Xml.TextWriter w) {
         w.start_element ("style");
-        
+
         w.write_element ("node_system_font", node_system_font.to_string ());
         if (!node_system_font)
             w.write_element ("node_font", node_font.to_string ());
@@ -630,7 +630,7 @@ public class Preferences : GLib.Object {
 
     private void write_colors_node (Xml.TextWriter w) {
         w.start_element ("colors");
-       
+
         w.write_element ("system_colors", system_colors.to_string ());
         if (!system_colors) {
             w.write_element ("default_color", default_color.to_string());
