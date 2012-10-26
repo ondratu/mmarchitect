@@ -1,3 +1,12 @@
+/*
+ * DESCRIPTION      Printing support of mind map.
+ * PROJECT          Mind Map Architect
+ * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>
+ *
+ * Copyright (C) Ondrej Tuma 2011
+ * Code is present with BSD licence.
+ */
+
 // XXX: could be singleton
 public class Print : GLib.Object {
 

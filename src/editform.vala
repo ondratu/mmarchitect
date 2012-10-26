@@ -1,5 +1,4 @@
 /*
- * FILE             $Id: $
  * DESCRIPTION      Edit form for nodes.
  * PROJECT          Mind Map Architect
  * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>

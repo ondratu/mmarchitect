@@ -1,5 +1,4 @@
 /*
- * FILE             $Id: $
  * DESCRIPTION      FileTab Class
  * PROJECT          Mind Map Architect
  * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>
@@ -8,37 +7,28 @@
  * Code is present with BSD licence.
  */
 
-public class CloseIco : Gtk.EventBox {
-    public CloseIco () {
-        add (new Gtk.Image.from_stock (Gtk.Stock.CLOSE,
-                                       Gtk.IconSize.SMALL_TOOLBAR));
-    }
-}
+public class FileTab : Gtk.ScrolledWindow, ITab {
+    public TabLabel tablabel { get; private set; }
+    public string title { get; set; }
 
-public class FileTab : Gtk.ScrolledWindow {
-    public Gtk.HBox tab {get; private set;}
     public MindMap mindmap;
 
-    public signal void closed(FileTab file);
+    //public signal void closed(FileTab file);
 
     public string filepath;
-    public string title;
 
-    private CloseIco close_button;
-    private Gtk.Label label;
     private bool saved;
 
     private FileTab(string t, Preferences pref){
         title = t;
-        tab = new Gtk.HBox(false, 0);
-        label = new Gtk.Label(title);
-        tab.add(label);
 
-        close_button = new CloseIco();
-        close_button.button_press_event.connect(on_close_button_press);
-        tab.add(close_button);
-
-        tab.show_all();
+        tablabel = new TabLabel (title);
+        //tablabel.close_button.button_press_event.connect(on_close_button_press);
+        tablabel.close_button.button_press_event.connect(
+                (e) => {
+                    closed(this);
+                    return true;
+                });
 
         mindmap = new MindMap (pref);
         mindmap.change.connect (on_mindmap_change);
@@ -50,7 +40,7 @@ public class FileTab : Gtk.ScrolledWindow {
     public FileTab.empty(string title, Preferences pref){
         this(title, pref);
         saved = true;
-        label.label = title+"*";
+        tablabel.set_title (title+"*");
         filepath = "";
         show_all();
     }
@@ -75,9 +65,9 @@ public class FileTab : Gtk.ScrolledWindow {
             title = newtitle;
 
         if (saved)
-            label.label = title;
+            tablabel.set_title (title);
         else
-            label.label = title+"*";
+            tablabel.set_title (title+"*");
     }
 
     public bool is_saved (){

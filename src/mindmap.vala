@@ -1,5 +1,4 @@
 /*
- * FILE             $Id: $
  * DESCRIPTION      Map canvas for drawing nodes tree.
  * PROJECT          Mind Map Architect
  * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>

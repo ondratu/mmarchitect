@@ -1,3 +1,12 @@
+/*
+ * DESCRIPTION      Main graphics application object.
+ * PROJECT          Mind Map Architect
+ * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>
+ *
+ * Copyright (C) Ondrej Tuma 2011
+ * Code is present with BSD licence.
+ */
+
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
     private Gtk.Window window;
@@ -85,7 +94,7 @@ public class App : GLib.Object {
 
     private void new_file_from_args (Gtk.Window w, owned string fname) {
         if (fname.length == 0) {             // filename is not specified
-            new_file_private (w);
+            start_application (w);
             return;
         }
 
@@ -103,13 +112,24 @@ public class App : GLib.Object {
                         _(@"File $fname can't be imported!"));
                 d.run();
                 d.destroy();
-                new_file_private (w);
+                start_application (w);
             }
         } else {
             if (fname.substring(-4).down() == ".mma")
                 fname = fname.substring(-4);
             new_file_private (w, fname);
         }
+    }
+
+    /* If welcome tab is set in pref and no welcome tab is not in notebook,
+       create welcome tab, else create new file tab */
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_start_application")]
+    public void start_application (Gtk.Widget w) {
+        var tab = new WelcomeTab (pref);
+        tab.closed.connect (on_close_tab);
+        notebook.set_current_page (notebook.append_page (tab, tab.tablabel));
+
+        // new_file_private (w);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_new_file")]
@@ -123,27 +143,30 @@ public class App : GLib.Object {
             fname = "map"+index;
         }
         var file = new FileTab.empty (fname, pref);
-        file.closed.connect (on_close_file);
+        file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
-        notebook.set_current_page (notebook.append_page (file, file.tab));
+        notebook.set_current_page (notebook.append_page (file, file.tablabel));
         file.mindmap.grab_focus();
     }
 
     private void open_file_private(string fname){
         var file = new FileTab.from_file (fname, pref);
-        file.closed.connect (on_close_file);
+        file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
 
         FileTab ? cur = null;
         var pn = notebook.get_current_page ();
-        if (pn >= 0)
-                cur = notebook.get_nth_page (pn) as FileTab;
+        if (pn >= 0) {
+            var tab = notebook.get_nth_page (pn) as ITab;
+            if (tab is FileTab)
+                cur = tab as FileTab;
+        }
         if (cur != null && cur.is_saved() && cur.filepath == ""){
             notebook.remove_page (pn);
         }
-        notebook.set_current_page (notebook.append_page (file, file.tab));
+        notebook.set_current_page (notebook.append_page (file, file.tablabel));
         file.mindmap.grab_focus();
     }
 
@@ -170,7 +193,7 @@ public class App : GLib.Object {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_switch_page")]
     public void switch_page (Gtk.Widget w, Gtk.NotebookPage pg, int pn){
-            var cur = notebook.get_nth_page (pn) as FileTab;
+            var cur = notebook.get_nth_page (pn) as ITab;
             window.title = cur.title.split(".")[0];
     }
 
@@ -190,7 +213,7 @@ public class App : GLib.Object {
         }
 
         file.on_mindmap_change (); // file is changed
-        file.closed.connect (on_close_file);
+        file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
 
@@ -201,7 +224,7 @@ public class App : GLib.Object {
         if (cur != null && cur.is_saved() && cur.filepath == ""){
             notebook.remove_page (pn);
         }
-        notebook.set_current_page (notebook.append_page (file, file.tab));
+        notebook.set_current_page (notebook.append_page (file, file.tablabel));
         file.mindmap.grab_focus();
         return true;
     }
@@ -229,13 +252,17 @@ public class App : GLib.Object {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_close_current_file")]
     public void close_current_file (Gtk.Widget w) {
-        var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
-        on_close_file(file);
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        on_close_tab(tab);
     }
 
     public bool delete_event (Gdk.Event event) {
         for (int i = 0; i < notebook.get_n_pages (); i++) {
-            var file = notebook.get_nth_page (i) as FileTab;
+            var tab = notebook.get_nth_page (i) as ITab;
+            if (tab is WelcomeTab)
+                continue;
+
+            var file = tab as FileTab;
             if (!file.is_saved()){
                 notebook.set_current_page (i);
                 if (!ask_for_save (file))
@@ -273,7 +300,7 @@ public class App : GLib.Object {
         return true;
     }
 
-    private void on_close_file (FileTab file){
+    private void on_close_file (FileTab file){       
         if (!file.is_saved()){
             if (!ask_for_save (file))
                 return;
@@ -286,9 +313,29 @@ public class App : GLib.Object {
             window.title = title;
     }
 
+    private void on_close_tab (ITab tab){
+        if (tab is FileTab) {
+            var file = tab as FileTab;
+            if (!file.is_saved()){
+                if (!ask_for_save (file))
+                    return;
+            }
+        }
+
+        var pn = notebook.page_num (tab as Gtk.Widget);
+        notebook.remove_page (pn);
+
+        if (notebook.get_n_pages () == 0)
+            window.title = title;
+    }
+
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_save_current_file")]
     public void save_current_file (Gtk.Widget w) {
-        var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+        
+        var file = tab as FileTab;
         if (file.filepath != "")
             file.do_save();
         else
@@ -297,7 +344,11 @@ public class App : GLib.Object {
     
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_save_as_current_file")]
     public void save_as_current_file (Gtk.Widget w) {
-        var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+
+        var file = tab as FileTab;
         on_save_file_as(file);
     }
 
@@ -341,7 +392,11 @@ public class App : GLib.Object {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_export_current_file")]
     public void export_current_file (Gtk.Widget w) {
-        var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+
+        var file = tab as FileTab;
         on_export_file(file);
     }
 
@@ -410,7 +465,11 @@ public class App : GLib.Object {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_print_current_file")]
     public void print_current_file (Gtk.Widget w) {
-        var file = notebook.get_nth_page (notebook.get_current_page ()) as FileTab;
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+        
+        var file = tab as FileTab;
         on_print_file(file);
     }
 
@@ -478,7 +537,11 @@ public class App : GLib.Object {
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_check_quit")]
     public void check_quit (Gtk.Widget w) {
         for (int i = 0; i < notebook.get_n_pages (); i++) {
-            var file = notebook.get_nth_page (i) as FileTab;
+            var tab = notebook.get_nth_page (i) as ITab;
+            if (tab is WelcomeTab)
+                continue;
+        
+            var file = tab as FileTab;
             if (!file.is_saved()) 
                 if (!ask_for_save (file))
                     return;
@@ -492,8 +555,11 @@ public class App : GLib.Object {
     public void preferences (Gtk.Widget w) {
         if (pref.dialog()) {
             for (int i = 0; i < notebook.get_n_pages (); i++) {
-                var file = notebook.get_nth_page (i) as FileTab;
-                file.mindmap.apply_style();
+                var tab = notebook.get_nth_page (i) as ITab;
+                if (tab is FileTab) {
+                    var file = tab as FileTab;
+                    file.mindmap.apply_style();
+                }
             }
         }
     }
