@@ -5,7 +5,7 @@
   <object class="GtkAccelGroup" id="accelgroup"/>
   <object class="GtkWindow" id="window">
     <property name="title" translatable="yes">Mind Map Architect</property>
-    <property name="default_width">800</property>
+    <property name="default_width">900</property>
     <property name="default_height">600</property>
     <accel-groups>
       <group name="accelgroup"/>

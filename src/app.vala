@@ -125,9 +125,13 @@ public class App : GLib.Object {
        create welcome tab, else create new file tab */
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_start_application")]
     public void start_application (Gtk.Widget w) {
-        var tab = new WelcomeTab (pref);
-        tab.closed.connect (on_close_tab);
-        notebook.set_current_page (notebook.append_page (tab, tab.tablabel));
+        try {
+            var tab = new WelcomeTab (pref);
+            tab.closed.connect (on_close_tab);
+            notebook.set_current_page (notebook.append_page (tab, tab.tablabel));
+        } catch (Error e) {
+            stderr.printf ("%s\n", e.message);
+        }
 
         // new_file_private (w);
     }
@@ -298,19 +302,6 @@ public class App : GLib.Object {
             return false;
         }
         return true;
-    }
-
-    private void on_close_file (FileTab file){       
-        if (!file.is_saved()){
-            if (!ask_for_save (file))
-                return;
-        }
-
-        var pn = notebook.page_num (file);
-        notebook.remove_page (pn);
-
-        if (notebook.get_n_pages () == 0)
-            window.title = title;
     }
 
     private void on_close_tab (ITab tab){

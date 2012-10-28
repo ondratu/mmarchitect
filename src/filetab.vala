@@ -23,7 +23,6 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         title = t;
 
         tablabel = new TabLabel (title);
-        //tablabel.close_button.button_press_event.connect(on_close_button_press);
         tablabel.close_button.button_press_event.connect(
                 (e) => {
                     closed(this);
@@ -250,11 +249,6 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         root.zip();    // sort main node children
         filepath = path;
         set_saved(true);
-        return true;
-    }
-
-    private bool on_close_button_press(Gdk.EventButton e){
-        closed(this);
         return true;
     }
 

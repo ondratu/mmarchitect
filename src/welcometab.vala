@@ -7,13 +7,12 @@
  * Code is present with BSD licence.
  */
 
-public class WelcomeTab : Gtk.VBox, ITab {
+public class WelcomeTab : Gtk.ScrolledWindow, ITab {
     public TabLabel tablabel { get; private set; }
     public string title { get; set; }
 
-    //public signal void closed(ITab tab);
-    
-    public WelcomeTab (Preferences pref) {
+
+    public WelcomeTab (Preferences pref) throws Error {
         title = _("Start here");
 
         tablabel = new TabLabel (title);
@@ -22,5 +21,33 @@ public class WelcomeTab : Gtk.VBox, ITab {
                     closed(this);
                     return true;
                 });
+
+        set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+        loadui();
+        show_all();
+    }
+
+    public void loadui () throws Error {
+        var builder = new Gtk.Builder();
+        builder.add_from_file (DATA + "/ui/welcome.ui");
+        builder.connect_signals (this);
+
+        var mainbox = builder.get_object ("mainbox") as Gtk.HBox;
+        add_with_viewport (mainbox);
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT welcome_tab_new_file")]
+    public void new_file (Gtk.Widget w) {
+        stdout.printf ("welcometab_new_file\n");
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT welcome_tab_open_file")]
+    public void open_file (Gtk.Widget w) {
+        stdout.printf ("welcometab_open_file\n");
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT welcome_tab_next_tip")]
+    public void next_tip (Gtk.Widget w) {
+        stdout.printf ("welcometab_next_tip\n");
     }
 } 
