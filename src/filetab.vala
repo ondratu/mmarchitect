@@ -13,8 +13,6 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
 
     public MindMap mindmap;
 
-    //public signal void closed(FileTab file);
-
     public string filepath;
 
     private bool saved;

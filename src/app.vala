@@ -128,6 +128,9 @@ public class App : GLib.Object {
         try {
             var tab = new WelcomeTab (pref);
             tab.closed.connect (on_close_tab);
+            tab.sig_new_file.connect (on_new_file);
+            tab.sig_open_file.connect (on_open_file);
+            tab.sig_open_path.connect (on_open_path);
             notebook.set_current_page (notebook.append_page (tab, tab.tablabel));
         } catch (Error e) {
             stderr.printf ("%s\n", e.message);
@@ -138,7 +141,12 @@ public class App : GLib.Object {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_new_file")]
     public void new_file (Gtk.Widget w) {
-        new_file_private(w);
+        new_file_private (w);
+    }
+
+    public void on_new_file (Gtk.Widget w) {
+        stdout.printf("app_on_new_file\n");
+        new_file_private (w);
     }
 
     public void new_file_private (Gtk.Widget w, owned string fname = "") {
@@ -193,6 +201,28 @@ public class App : GLib.Object {
             open_file_private (d.get_filename());
         }
         d.destroy();
+    }
+
+    public void on_open_file (Gtk.Widget w) {
+        open_file (w);
+    }
+
+    public void on_open_path (Gtk.Widget w, string path) {
+        var osfile = File.new_for_commandline_arg(path);
+        if (osfile.query_exists()) {
+            if (path.substring(-4).down() == ".mma") {
+                open_file_private (path);
+                return;
+            }
+        } else {
+            var d = new Gtk.MessageDialog(window,
+                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.CLOSE,
+                    _(@"File $path not found!"));
+            d.run();
+            d.destroy();
+        }
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_switch_page")]
