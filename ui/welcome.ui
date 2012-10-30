@@ -102,11 +102,8 @@
               <object class="GtkLabel" id="label_recent">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
-                <property name="xpad">10</property>
-                <property name="label" translatable="yes">Recent files:</property>
-                <attributes>
-                  <attribute name="scale" value="1.400000"/>
-                </attributes>
+                <property name="label" translatable="yes">&lt;b&gt;Recent files:&lt;/b&gt;</property>
+                <property name="use_markup">True</property>
               </object>
               <packing>
                 <property name="position">0</property>
@@ -129,6 +126,20 @@
           </packing>
         </child>
         <child>
+          <object class="GtkLabel" id="label_tip">
+            <property name="visible">True</property>
+            <property name="xalign">0</property>
+            <property name="ypad">5</property>
+            <property name="label" translatable="yes">&lt;b&gt;Tip:&lt;/b&gt;</property>
+            <property name="use_markup">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkVBox" id="tip_box">
             <property name="visible">True</property>
             <property name="orientation">vertical</property>
@@ -137,7 +148,8 @@
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">label</property>
+                <property name="label" translatable="yes">&lt;b&gt;&lt;big&gt;label&lt;/big&gt;&lt;/b&gt;</property>
+                <property name="use_markup">True</property>
                 <attributes>
                   <attribute name="scale" value="1.400000"/>
                 </attributes>
@@ -148,11 +160,13 @@
             </child>
             <child>
               <object class="GtkLabel" id="tip_body">
+                <property name="width_request">400</property>
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">label</property>
                 <property name="justify">fill</property>
+                <property name="wrap">True</property>
               </object>
               <packing>
                 <property name="position">1</property>
@@ -166,8 +180,8 @@
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">&lt;a href="#next_tip"&gt;Next Tip&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
+                <property name="track_visited_links">False</property>
                 <signal name="activate_link" handler="welcome_tab_next_tip"/>
-                <signal name="activate_current_link" handler="welcome_tab_next_tip"/>
               </object>
               <packing>
                 <property name="position">2</property>
@@ -176,9 +190,7 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="padding">10</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>
@@ -260,6 +272,7 @@
                 <property name="label" translatable="yes">There are user and author discussions about mmarchitect. You can find here Release annotations, User tasks, Authors reactions and so on. At this moment, there are only this general discussion yet. Sou if you want nything, write your task here.</property>
                 <property name="justify">fill</property>
                 <property name="wrap">True</property>
+                <property name="wrap_mode">word-char</property>
               </object>
               <packing>
                 <property name="position">1</property>
@@ -303,6 +316,7 @@
 If you find bug which is not recorded here yet, please add it here, sou developers can fix them to next release.</property>
                 <property name="justify">fill</property>
                 <property name="wrap">True</property>
+                <property name="wrap_mode">word-char</property>
               </object>
               <packing>
                 <property name="position">1</property>
@@ -346,6 +360,7 @@ If you find bug which is not recorded here yet, please add it here, sou develope
 Of course, developers, testers, ui experts, copywriters, translators or html coders are welcoming.</property>
                 <property name="justify">fill</property>
                 <property name="wrap">True</property>
+                <property name="wrap_mode">word-char</property>
               </object>
               <packing>
                 <property name="position">1</property>

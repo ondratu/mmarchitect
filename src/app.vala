@@ -121,10 +121,7 @@ public class App : GLib.Object {
         }
     }
 
-    /* If welcome tab is set in pref and no welcome tab is not in notebook,
-       create welcome tab, else create new file tab */
-    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_start_application")]
-    public void start_application (Gtk.Widget w) {
+    private void new_welcome_tab () {
         try {
             var tab = new WelcomeTab (pref);
             tab.closed.connect (on_close_tab);
@@ -133,10 +130,36 @@ public class App : GLib.Object {
             tab.sig_open_path.connect (on_open_path);
             notebook.set_current_page (notebook.append_page (tab, tab.tablabel));
         } catch (Error e) {
-            stderr.printf ("%s\n", e.message);
+            var d = new Gtk.MessageDialog(window,
+                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.CLOSE,
+                    e.message);
+            d.run();
+            d.destroy();
         }
+    }
+
+    /* If welcome tab is set in pref and no welcome tab is not in notebook,
+       create welcome tab, else create new file tab */
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_start_application")]
+    public void start_application (Gtk.Widget w) {
+        // TODO: condition by user preferences
+        new_welcome_tab ();
 
         // new_file_private (w);
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_welcome_tab")]
+    public void welcome_tab (Gtk.Widget w) {
+        for (int i = 0; i < notebook.get_n_pages (); i++) {
+            var tab = notebook.get_nth_page (i) as ITab;
+            if (tab is WelcomeTab) {
+                notebook.set_current_page (i);
+                return;
+            }
+        }
+        new_welcome_tab ();
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_new_file")]
@@ -145,7 +168,6 @@ public class App : GLib.Object {
     }
 
     public void on_new_file (Gtk.Widget w) {
-        stdout.printf("app_on_new_file\n");
         new_file_private (w);
     }
 
@@ -327,8 +349,13 @@ public class App : GLib.Object {
                     return false; // if save as file is cancled, do not close
             }
         } catch (Error e) {
-            // TODO: dialogovy okno o chybe...
-            stderr.printf ("%s\n", e.message);
+            var d = new Gtk.MessageDialog(window,
+                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.CLOSE,
+                    e.message);
+            d.run();
+            d.destroy();
             return false;
         }
         return true;
@@ -599,7 +626,13 @@ public class App : GLib.Object {
             d.run();
             d.destroy();
         }  catch (Error e) {
-            stderr.printf ("%s\n", e.message);
+            var d = new Gtk.MessageDialog(window,
+                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.CLOSE,
+                    e.message);
+            d.run();
+            d.destroy();
         }
     }
 }
