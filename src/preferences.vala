@@ -1,28 +1,28 @@
 enum Start {
     EMPTY,
     LAST,
-    MAP
+    WELCOME
 }
 
 public string StartToString(uint start){
     switch (start) {
         case Start.LAST:
             return "LAST";
-        case Start.MAP:
-            return "MAP";
         case Start.EMPTY:
-        default:
             return "EMPTY";
+        case Start.WELCOME:
+        default:
+            return "WELCOME";
     } 
 }
 
 public uint StartFromString(string start){
     if (start == "LAST")
         return Start.LAST;
-    if (start == "MAP")
-        return Start.MAP;
-    else // EMPTY and default
+    if (start == "EMPTY")
         return Start.EMPTY;
+    else // WELCOME and default
+        return Start.WELCOME;
 }
 
 enum RisingMethod {
@@ -89,13 +89,31 @@ public uint IdeaPointsFromString(string points){
         return IdeaPoints.IGNORE;
 }
 
-public class KeyValue {
-    public string key;
-    public string val;
+public class RecentFile {
+    public string path;
+    public time_t time;
 
-    public KeyValue(string key, string val) {
-        this.key = key;
-        this.val = val;
+    public RecentFile (string path) {
+        this.path = path;
+        time_t(out this.time);     // fill with now time
+    }
+
+    public RecentFile.with_time (string path, time_t time) {
+        this.path = path;
+        this.time = time;
+    }
+
+    public RecentFile copy() {
+        return new RecentFile.with_time (path, time);
+    }
+
+    public static int comp(ref RecentFile a, ref RecentFile b) {
+        if (a.path == b.path)
+            return 0;
+        if (a.time > b.time)
+            return 1;
+        else
+            return -1;
     }
 }
 
@@ -107,7 +125,7 @@ public class PreferenceWidgets : GLib.Object {
     public Gtk.FileChooserButton default_directory;
     public Gtk.RadioButton start_empty;
     public Gtk.RadioButton start_last;
-    public Gtk.RadioButton start_map;
+    public Gtk.RadioButton start_welcome;
 
     // style tab
     public Gtk.CheckButton node_system_font;
@@ -157,7 +175,7 @@ public class PreferenceWidgets : GLib.Object {
                     as Gtk.FileChooserButton;
         start_empty = builder.get_object("start_empty") as Gtk.RadioButton;
         start_last = builder.get_object("start_last") as Gtk.RadioButton;
-        start_map = builder.get_object("start_map") as Gtk.RadioButton;
+        start_welcome = builder.get_object("start_welcome") as Gtk.RadioButton;
 
         // style tab
         node_system_font = builder.get_object("node_system_font")
@@ -276,9 +294,11 @@ public class Preferences : GLib.Object {
     public bool rise_branches;
 
     private Gee.HashMap<string, string> print_settings;
+    private GLib.List<RecentFile> recent_files;
 
     public Preferences () {
         this.print_settings = new Gee.HashMap<string, string> ();
+        this.recent_files = new GLib.List<RecentFile> ();
 
         gtk_sett = Gtk.Settings.get_default ();
 #if ! WINDOWS
@@ -289,6 +309,16 @@ public class Preferences : GLib.Object {
 
         load_default ();
         load_from_config ();
+    }
+
+    public GLib.List<RecentFile> get_recent_files(){
+        // BUG: copy fails ! :(
+        // return recent_files.copy ();
+        
+        var rv = new GLib.List<RecentFile>();
+        foreach (var it in recent_files)
+            rv.append (it.copy());
+        return rv;
     }
 
     public void set_style(Gtk.Style style) {
@@ -306,7 +336,7 @@ public class Preferences : GLib.Object {
     private void load_default() {
         author = GLib.Environment.get_real_name();
         default_directory = GLib.Environment.get_home_dir();
-        start_with = Start.EMPTY;
+        start_with = Start.WELCOME;
 
         node_system_font = true;
         node_font = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
@@ -463,6 +493,9 @@ public class Preferences : GLib.Object {
             if (it->name == "print"){
                 read_print_node(it);
             }
+            if (it->name == "recent"){
+                read_recent_node(it);
+            }
         }
     }
 
@@ -470,12 +503,12 @@ public class Preferences : GLib.Object {
         // general tab
         author = pw.author.get_text ();
         default_directory = pw.default_directory.get_current_folder ();
-        if (pw.start_map.get_active ()){
-            start_with = Start.MAP;
+        if (pw.start_empty.get_active ()){
+            start_with = Start.EMPTY;
         } else if (pw.start_last.get_active ()){
             start_with = Start.LAST;
         } else {
-            start_with = Start.EMPTY;
+            start_with = Start.WELCOME;
         }
 
         // style tab
@@ -540,12 +573,12 @@ public class Preferences : GLib.Object {
         // general tab
         pw.author.set_text (author);
         pw.default_directory.set_current_folder (default_directory);
-        if (start_with == Start.MAP)
-            pw.start_map.set_active (true);
+        if (start_with == Start.EMPTY)
+            pw.start_empty.set_active (true);
         else if (start_with == Start.LAST)
             pw.start_last.set_active (true);
         else
-            pw.start_empty.set_active (true);
+            pw.start_welcome.set_active (true);
 
         // style tab
         pw.node_system_font.set_active (node_system_font);
@@ -674,6 +707,7 @@ public class Preferences : GLib.Object {
         write_style_node (w);
         write_colors_node (w);
         write_map_node (w);
+        write_recent_node (w);
         write_print_node (w);
 
         w.end_element();
@@ -750,6 +784,69 @@ public class Preferences : GLib.Object {
     public void save_print_settings(Gtk.PrintSettings settings)  throws Error {
         settings.foreach (read_from_print_settings);
         save_to_config ();
+    }
+
+    public void append_recent (string path) {
+        uint len = recent_files.length ();
+        for (uint i = 0; i < len; i++) {
+            var it = recent_files.nth_data (i);
+            if (it.path == path) {
+                // BUG: removes do not remove whene G is struct
+                recent_files.remove (it);
+                break;
+            }
+        }
+        var file = new RecentFile (path);
+        recent_files.insert (file, 0);
+        
+        try {
+            save_to_config ();
+        } catch (Error e) {
+            stderr.printf("%s\n", e.message);            
+        }
+    }
+
+    private void write_recent_node (Xml.TextWriter w) {
+        w.start_element ("recent");
+
+        uint i = 0;
+        foreach (var it in recent_files){
+            uint64 utime = it.time;    // time_t have not to_string method
+            w.start_element ("file");
+            w.write_attribute ("path", it.path);
+            w.write_attribute ("time", utime.to_string());
+            w.end_element ();
+            ++i;
+            if (i == 5)  break;         // only 5 recent files
+        }
+
+        w.end_element ();
+    }
+
+    private void read_recent_node (Xml.Node* node) {
+        for (Xml.Node* it = node->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+           
+            if (it->name != "file")     // don't know item
+                continue;
+
+            string ? path = null;
+            time_t ? time = null;
+            
+            for (Xml.Attr* at = it->properties; at != null; at = at->next){
+                if (at->name == "path")
+                    path = at->children->content;
+                else if (at->name == "time")
+                    time = (time_t) uint64.parse(at->children->content);
+            }
+            
+            if (path != null && time != null)
+                recent_files.append (new RecentFile.with_time(path, time));
+            else
+                stderr.printf ("Missing file attribute %s\n", path);
+        }
     }
 
 }

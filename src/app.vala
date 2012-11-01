@@ -202,6 +202,7 @@ public class App : GLib.Object {
         }
         notebook.set_current_page (notebook.append_page (file, file.tablabel));
         file.mindmap.grab_focus();
+        pref.append_recent (fname);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_open_file")]
@@ -430,6 +431,7 @@ public class App : GLib.Object {
             window.title = GLib.Path.get_basename(fname).split(".")[0];
 
             d.destroy();
+            pref.append_recent (fname);
             return true;
         }
 

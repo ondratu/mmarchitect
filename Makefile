@@ -42,7 +42,7 @@ ifndef DEBUG
     LOCALE_DIR = ../share/locale
   endif
 else # debug is set
-    VALAFLAGS += -D DEBUG
+    VALAFLAGS += -g -D DEBUG
     PREFIX =
     DATA = ./
     LOCALE_DIR = ./$(LANG_DIR)
