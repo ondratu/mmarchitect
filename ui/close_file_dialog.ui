@@ -4,7 +4,7 @@
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="dialog">
     <property name="border_width">5</property>
-    <property name="title" translatable="yes">Ulo&#x17E;it zm&#x11B;ny v dokumentu ?</property>
+    <property name="title" translatable="yes">Save changes to document ?</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -37,7 +37,7 @@
                 <child>
                   <object class="GtkLabel" id="warning_label">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">Ulo&#x17E;it zm&#x11B;ny do dokumentu %s p&#x159;ed ukon&#x10D;en&#xED;m?</property>
+                    <property name="label" translatable="yes">Save changes to document %s before exit?</property>
                     <property name="wrap">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
@@ -52,7 +52,7 @@
                   <object class="GtkLabel" id="info_label">
                     <property name="visible">True</property>
                     <property name="yalign">0.43000000715255737</property>
-                    <property name="label" translatable="yes">Pokud je neulo&#x17E;&#xED;te, budou va&#x161;e zm&#x11B;ny ztraceny.</property>
+                    <property name="label" translatable="yes">Your changes will be lost, if you don't save the file.</property>
                   </object>
                   <packing>
                     <property name="position">1</property>
@@ -75,7 +75,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button1">
-                <property name="label" translatable="yes">Zav&#x159;&#xED;t _bez ulo&#x17E;en&#xED;</property>
+                <property name="label" translatable="yes">Close _without save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

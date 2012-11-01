@@ -20,7 +20,7 @@
             <child>
               <object class="GtkMenuItem" id="menuitem_file">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Soubor</property>
+                <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_file">
@@ -150,7 +150,7 @@
             <child>
               <object class="GtkMenuItem" id="menuitem_edit">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Upravit</property>
+                <property name="label" translatable="yes">_Edit</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu2">
@@ -255,7 +255,7 @@
             <child>
               <object class="GtkMenuItem" id="menuitem_view">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Zobrazit</property>
+                <property name="label" translatable="yes">_View</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu1">
@@ -300,7 +300,7 @@
             <child>
               <object class="GtkMenuItem" id="menuitem4">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_N&#xE1;pov&#x11B;da</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu3">
@@ -311,6 +311,7 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
                         <signal name="activate" handler="app_about"/>
                       </object>
                     </child>
@@ -382,6 +383,18 @@
             <child>
               <object class="GtkSeparatorToolItem" id="separator1">
                 <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_home">
+                <property name="visible">True</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-home</property>
+                <signal name="clicked" handler="app_welcome_tab"/>
               </object>
               <packing>
                 <property name="expand">False</property>

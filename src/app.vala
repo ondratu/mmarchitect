@@ -233,6 +233,7 @@ public class App : GLib.Object {
     public void on_open_path (Gtk.Widget w, string path) {
         var osfile = File.new_for_commandline_arg(path);
         if (osfile.query_exists()) {
+            // todo path.down().has_suffix(".mma") 
             if (path.substring(-4).down() == ".mma") {
                 open_file_private (path);
                 return;

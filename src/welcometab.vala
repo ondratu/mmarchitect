@@ -43,7 +43,7 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
         show_all();
     }
 
-    public void loadui () throws Error {
+    private void loadui () throws Error {
         var builder = new Gtk.Builder();
         builder.add_from_file (DATA + "/ui/welcome.ui");
         builder.connect_signals (this);
@@ -55,31 +55,55 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
         tip_body = builder.get_object ("tip_body") as Gtk.Label;
 
         file_box = builder.get_object ("file_box") as Gtk.VBox;
+
+        // set tooltip
+        unowned Gtk.Button bt;
+        bt = builder.get_object ("open_file_button") as Gtk.Button;
+        bt.set_tooltip_text (_("Open file"));
+        bt = builder.get_object ("new_file_button") as Gtk.Button;
+        bt.set_tooltip_text (_("New file"));
+
+        unowned Gtk.EventBox bx;
+        bx = builder.get_object ("ope_file_eventbox") as Gtk.EventBox;
+        bx.set_tooltip_text (_("Open file"));
+        bx = builder.get_object ("new_file_eventbox") as Gtk.EventBox;
+        bx.set_tooltip_text (_("New file"));
     }
 
     public void set_recent () {
+        uint nth = 0;
         foreach (var it in pref.get_recent_files()){
+            if (nth == RECENT_FILES)    // max RECENT_FILES
+                break;
+
             var gtime = GLib.Time.local (it.time);
             
             string fname = GLib.Path.get_basename(it.path);
+            fname = fname.substring(0, fname.length - 4);   // skip mma
             string path = it.path;
 
-            var attrs = new Pango.AttrList ();
-            attrs.insert(Pango.attr_scale_new (1.4));
+            // title - file name
+            var t_attrs = new Pango.AttrList ();
+            t_attrs.insert(Pango.attr_scale_new (1.4));
 
             var title = new Gtk.Label (null);
-            title.set_attributes (attrs);
-            title.set_markup (@"<a href=\"#open\">$fname</a>");
+            title.set_attributes (t_attrs);
+            title.set_markup (@"<a href=\"#open\" title=\"$path\">$fname</a>");
             title.set_alignment (0, (float) 0.5);
+            title.set_padding (10, 0);
                 
             title.activate_link.connect(
                 (e) => {
                     sig_open_path(title as Gtk.Widget, path);
-                    debug ("click to %s", fname);
                     return true;
                 });
 
+            // time of last opening
+            var d_attrs = new Pango.AttrList ();
+            d_attrs.insert(Pango.attr_scale_new (0.8));
+
             var time = new Gtk.Label (gtime.format ("%a %d. %B %Y, %H:%M"));
+            title.set_attributes (t_attrs);
             time.set_alignment (1, (float) 0.5);
 
             var box = new Gtk.VBox (false, 0);
@@ -87,6 +111,7 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
             box.add (time);
 
             file_box.add (box);
+            nth++;
         }
     }
 

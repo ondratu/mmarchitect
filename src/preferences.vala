@@ -817,7 +817,7 @@ public class Preferences : GLib.Object {
             w.write_attribute ("time", utime.to_string());
             w.end_element ();
             ++i;
-            if (i == 5)  break;         // only 5 recent files
+            if (i == RECENT_FILES)  break;         // only 5 recent files
         }
 
         w.end_element ();
