@@ -45,9 +45,11 @@ public struct ClaverTime {
         string M = iso.substring(14,2);
 
         if (days == 0)
-            return _(@"Today $H:$M");
+            return _("Today");     // bad time without timezone
+            // return _(@"Today $H:$M");
         if (days == 1)
-            return _(@"Yesterday $H:$M");
+            return _("Yesterday"); // bad time without timezone
+            // return _(@"Yesterday $H:$M");
         if (days < 7)
             return @"$d. $m. $H:$M";
 
@@ -141,18 +143,24 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
             title.set_alignment (0, (float) 0.5);
             title.set_padding (10, 0);
 
-            title.activate_link.connect(
-                (e) => {
-                    sig_open_path(title as Gtk.Widget, path);
-                    return true;
-                });
+            var osfile = File.new_for_commandline_arg(path);
+            // todo: check permisions
+            if (osfile.query_exists ()) {
+                title.activate_link.connect(
+                    (e) => {
+                        sig_open_path(title as Gtk.Widget, path);
+                        return true;
+                    });
+            } else {
+                title.set_sensitive (false);
+            }
 
             // time of last opening
             var d_attrs = new Pango.AttrList ();
             d_attrs.insert(Pango.attr_scale_new (0.8));
 
             var time = new Gtk.Label (ctime.to_string());
-            time.set_attributes (t_attrs);
+            time.set_attributes (d_attrs);
             time.set_alignment (1, (float) 0.5);
 
             var box = new Gtk.VBox (false, 0);

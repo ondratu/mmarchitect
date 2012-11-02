@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-01 16:53+0100\n"
-"PO-Revision-Date: 2012-11-01 17:01+0100\n"
+"POT-Creation-Date: 2012-11-02 10:33+0100\n"
+"PO-Revision-Date: 2012-11-02 11:02+0100\n"
 "Last-Translator: Ondřej Tůma <mcbig@zeropage.cz>\n"
 "Language-Team: cs <mcbig@zeropage.cz>\n"
 "Language: \n"
@@ -19,15 +19,15 @@ msgstr ""
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
 #: src/app.vala:77
-#: src/app.vala:211
-#: src/welcometab.vala:62
-#: src/welcometab.vala:68
+#: src/app.vala:219
+#: src/welcometab.vala:113
+#: src/welcometab.vala:119
 msgid "Open file"
 msgstr "Otevřít soubor"
 
 #: src/app.vala:79
-#: src/welcometab.vala:64
-#: src/welcometab.vala:70
+#: src/welcometab.vala:115
+#: src/welcometab.vala:121
 msgid "New file"
 msgstr "Nový soubor"
 
@@ -36,7 +36,7 @@ msgid "Save file"
 msgstr "Uložit soubor"
 
 #: src/app.vala:83
-#: src/app.vala:407
+#: src/app.vala:415
 msgid "Save file as"
 msgstr "Uložit soubor jako"
 
@@ -44,33 +44,33 @@ msgstr "Uložit soubor jako"
 msgid "File $fname can't be imported!"
 msgstr ""
 
-#: src/app.vala:246
+#: src/app.vala:254
 msgid "File $path not found!"
 msgstr ""
 
-#: src/app.vala:293
+#: src/app.vala:301
 msgid "Import file"
-msgstr ""
+msgstr "Importovat soubor"
 
-#: src/app.vala:456
+#: src/app.vala:464
 msgid "Export file as"
-msgstr ""
+msgstr "Exportovat soubor jako"
 
-#: src/app.vala:462
+#: src/app.vala:470
 msgid "Plain Text"
 msgstr ""
 
-#: src/app.vala:464
+#: src/app.vala:472
 msgid "Simple Web Page"
 msgstr ""
 
-#: src/app.vala:466
+#: src/app.vala:474
 msgid "Dynamic Web Page"
 msgstr ""
 
-#: src/app.vala:468
+#: src/app.vala:476
 msgid "PNG Image"
-msgstr ""
+msgstr "PNG Obrázek"
 
 #: src/editform.vala:243
 msgid "Extends edit"
@@ -91,7 +91,7 @@ msgstr "Hlavní myšlenka"
 
 #: src/print.vala:59
 msgid "Printing error:"
-msgstr ""
+msgstr "Chyba tisku:"
 
 #: src/tips.vala:29
 msgid "Moving with Ideas"
@@ -109,13 +109,29 @@ msgstr ""
 msgid "Mind Maps could be use as TODO lists. You have more tree like possibility with mind maps, like categories, importance or difficulty."
 msgstr ""
 
-#: src/welcometab.vala:28
+#: src/welcometab.vala:29
+msgid "Today %H:%M"
+msgstr "Dnes %H:%M"
+
+#: src/welcometab.vala:31
+msgid "Yesterday %H:%M"
+msgstr "Včera %H:%M"
+
+#: src/welcometab.vala:48
+msgid "Today"
+msgstr "Dnes"
+
+#: src/welcometab.vala:51
+msgid "Yesterday"
+msgstr "Včera"
+
+#: src/welcometab.vala:79
 msgid "Start here"
 msgstr "Začni zde"
 
 #: ui/about_dialog.ui:7
 msgid "About Application Mind Map Architect"
-msgstr ""
+msgstr "O aplikaci Mind Map Architect"
 
 #: ui/about_dialog.ui:14
 msgid "Copyright (c) 2011-2012, Ondřej Tůma"
@@ -123,7 +139,7 @@ msgstr ""
 
 #: ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
-msgstr ""
+msgstr "Nástroj na práci s myšlenkovými mapami."
 
 #: ui/about_dialog.ui:17
 msgid ""
@@ -158,31 +174,31 @@ msgstr ""
 
 #: ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
-msgstr ""
+msgstr "Uložit změny do dokumentu ?"
 
 #: ui/close_file_dialog.ui:40
 msgid "Save changes to document %s before exit?"
-msgstr ""
+msgstr "Uložit změny do dokumentu %s před ukončením ?"
 
 #: ui/close_file_dialog.ui:55
 msgid "Your changes will be lost, if you don't save the file."
-msgstr ""
+msgstr "Pokud soubor neuložíte, vaše změny budou ztraceny."
 
 #: ui/close_file_dialog.ui:78
 msgid "Close _without save"
-msgstr ""
+msgstr "Zavřít bez uložení"
 
 #: ui/color_dialog.ui:22
 msgid "Default color"
-msgstr ""
+msgstr "Implicitní barva"
 
 #: ui/color_dialog.ui:36
 msgid "Parent color"
-msgstr ""
+msgstr "Barva rodiče"
 
 #: ui/color_dialog.ui:51
 msgid "Own color"
-msgstr ""
+msgstr "Vlastní barva"
 
 #: ui/main.ui:7
 msgid "Mind Map Architect"
@@ -206,11 +222,11 @@ msgstr "_Editovat"
 
 #: ui/main.ui:161
 msgid "Expand"
-msgstr "Rozbalit"
+msgstr "_Rozložit"
 
 #: ui/main.ui:170
 msgid "Collapse"
-msgstr "_Rozbalit"
+msgstr "_Složit"
 
 #: ui/main.ui:258
 msgid "_View"
@@ -218,11 +234,11 @@ msgstr "_Zobrazit"
 
 #: ui/main.ui:266
 msgid "Expand all nodes"
-msgstr "Rozbalit všechny větve"
+msgstr "_Rozložit všechny větve"
 
 #: ui/main.ui:274
 msgid "Collapse all nodes"
-msgstr ""
+msgstr "Složit všechny větvě"
 
 #: ui/main.ui:303
 msgid "_Help"
@@ -230,15 +246,15 @@ msgstr "_Nápověda"
 
 #: ui/preferences.ui:7
 msgid "Mind Map Architect Preferences"
-msgstr ""
+msgstr "Nastavení Mind Map Architecta"
 
 #: ui/preferences.ui:46
 msgid "<b>Author</b>"
-msgstr ""
+msgstr "<b>Autor</b>"
 
 #: ui/preferences.ui:72
 msgid "Choose directory"
-msgstr ""
+msgstr "Vyber adresář"
 
 #: ui/preferences.ui:80
 msgid "<b>Default dokuments directory</b>"
@@ -267,7 +283,7 @@ msgstr ""
 #: ui/preferences.ui:198
 #: ui/preferences.ui:478
 msgid "Use system font"
-msgstr ""
+msgstr "Použít font systému"
 
 #: ui/preferences.ui:231
 msgid "<b>Idea font</b>"
@@ -287,15 +303,15 @@ msgstr ""
 
 #: ui/preferences.ui:340
 msgid "Text padding"
-msgstr ""
+msgstr "Odsazení textu"
 
 #: ui/preferences.ui:346
 msgid "Height padding"
-msgstr ""
+msgstr "Odsazení do výšky"
 
 #: ui/preferences.ui:356
 msgid "Width padding"
-msgstr ""
+msgstr "Odsazení do šířky"
 
 #: ui/preferences.ui:410
 msgid "<b>Idea's padding</b>"
@@ -303,7 +319,7 @@ msgstr ""
 
 #: ui/preferences.ui:454
 msgid "Height"
-msgstr ""
+msgstr "Výška"
 
 #: ui/preferences.ui:497
 msgid "<b>Note's text</b>"
@@ -409,58 +425,58 @@ msgstr ""
 msgid "Map"
 msgstr "Mapa"
 
-#: ui/welcome.ui:105
+#: ui/welcome.ui:107
 msgid "<b>Recent files:</b>"
 msgstr "<b>Nedávné soubory:</b>"
 
-#: ui/welcome.ui:133
+#: ui/welcome.ui:135
 msgid "<b>Tip:</b>"
 msgstr ""
 
-#: ui/welcome.ui:151
+#: ui/welcome.ui:153
 msgid "<b><big>label</big></b>"
 msgstr ""
 
-#: ui/welcome.ui:167
+#: ui/welcome.ui:169
 msgid "label"
 msgstr ""
 
-#: ui/welcome.ui:181
+#: ui/welcome.ui:183
 msgid "<a href=\"#next_tip\">Next Tip</a>"
 msgstr ""
 
-#: ui/welcome.ui:215
+#: ui/welcome.ui:217
 msgid "<a href=\"http://sf.net/p/mmarchitect\">SourceForge.net</a>"
 msgstr ""
 
-#: ui/welcome.ui:231
+#: ui/welcome.ui:233
 msgid "Sourceforge project page of Mind Map Architect prgram. You can check new version of mmarchitect here, or look to wiki, bugs, task or discussion here."
 msgstr ""
 
-#: ui/welcome.ui:256
+#: ui/welcome.ui:258
 msgid "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General Discussion</a>"
 msgstr ""
 
-#: ui/welcome.ui:272
+#: ui/welcome.ui:274
 msgid "There are user and author discussions about mmarchitect. You can find here Release annotations, User tasks, Authors reactions and so on. At this moment, there are only this general discussion yet. Sou if you want nything, write your task here."
 msgstr ""
 
-#: ui/welcome.ui:298
+#: ui/welcome.ui:300
 msgid "<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tasks and Bugs</a>"
 msgstr ""
 
-#: ui/welcome.ui:314
+#: ui/welcome.ui:316
 msgid ""
 "In this tickets system on SourceForge.Net, you can find, create and vote mmarchitech tasks and bugs.\n"
 "\n"
 "If you find bug which is not recorded here yet, please add it here, sou developers can fix them to next release."
 msgstr ""
 
-#: ui/welcome.ui:342
+#: ui/welcome.ui:344
 msgid "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/thread/5843e87b/\">Helpers Wanted</a>"
 msgstr ""
 
-#: ui/welcome.ui:358
+#: ui/welcome.ui:360
 msgid ""
 "There are many professions which this project need, especially good users. But if you want make user guide or graphics for this project please, send me message.\n"
 "\n"

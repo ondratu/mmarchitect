@@ -32,12 +32,13 @@
             </child>
             <child>
               <object class="GtkButton" id="new_file_button">
-                <property name="label">gtk-new</property>
+                <property name="label">_New</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="relief">none</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
+                <property name="focus_on_click">False</property>
                 <property name="xalign">0</property>
                 <signal name="button_press_event" handler="welcome_tab_new_file"/>
               </object>
@@ -64,12 +65,13 @@
             </child>
             <child>
               <object class="GtkButton" id="open_file_button">
-                <property name="label">gtk-open</property>
+                <property name="label">_Open</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="relief">none</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
+                <property name="focus_on_click">False</property>
                 <property name="xalign">0</property>
                 <signal name="button_press_event" handler="welcome_tab_open_file"/>
               </object>

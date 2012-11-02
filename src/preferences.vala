@@ -13,7 +13,7 @@ public string StartToString(uint start){
         case Start.WELCOME:
         default:
             return "WELCOME";
-    } 
+    }
 }
 
 public uint StartFromString(string start){
@@ -46,7 +46,7 @@ public string RisingMethodToString(uint rising){
         case RisingMethod.BRANCHES:
         default:
             return "BRANCHES";
-    } 
+    }
 }
 
 public uint RisingMethodFromString(string rising){
@@ -161,7 +161,7 @@ public class PreferenceWidgets : GLib.Object {
     public Gtk.CheckButton rise_branches;
 
     public PreferenceWidgets () {}
-    
+
     public void loadui () throws Error {
         var builder = new Gtk.Builder ();
         builder.add_from_file (DATA + "/ui/preferences.ui");
@@ -265,7 +265,7 @@ public class Preferences : GLib.Object {
 
     public string author;
     public string default_directory;
-    public uint start_with;
+    public uint start_with { get; private set; }
 
     public bool node_system_font;
     public Pango.FontDescription node_font;
@@ -283,9 +283,9 @@ public class Preferences : GLib.Object {
     public bool system_colors;
     public Gdk.Color default_color;
     public Gdk.Color canvas_color;
-    public Gdk.Color text_normal; 
+    public Gdk.Color text_normal;
     public Gdk.Color text_selected;
-    public Gdk.Color back_normal; 
+    public Gdk.Color back_normal;
     public Gdk.Color back_selected;
 
     public uint rise_method;
@@ -295,10 +295,12 @@ public class Preferences : GLib.Object {
 
     private Gee.HashMap<string, string> print_settings;
     private GLib.List<RecentFile> recent_files;
+    private GLib.List<string> last_files;
 
     public Preferences () {
         this.print_settings = new Gee.HashMap<string, string> ();
         this.recent_files = new GLib.List<RecentFile> ();
+        this.last_files = new GLib.List<string> ();
 
         gtk_sett = Gtk.Settings.get_default ();
 #if ! WINDOWS
@@ -321,6 +323,13 @@ public class Preferences : GLib.Object {
         return rv;
     }
 
+    public GLib.List<string> get_last_files() {
+        var rv = new GLib.List<string> ();
+        foreach (var it in last_files)
+            rv.append(it);
+        return rv;
+    }
+
     public void set_style(Gtk.Style style) {
         if (! system_colors)
             return;
@@ -330,7 +339,7 @@ public class Preferences : GLib.Object {
         text_normal     = style.text[Gtk.StateType.NORMAL];
         text_selected   = style.text[Gtk.StateType.SELECTED];
         back_normal     = style.bg[Gtk.StateType.NORMAL];
-        back_selected   = style.bg[Gtk.StateType.SELECTED];        
+        back_selected   = style.bg[Gtk.StateType.SELECTED];
     }
 
     private void load_default() {
@@ -495,6 +504,9 @@ public class Preferences : GLib.Object {
             }
             if (it->name == "recent"){
                 read_recent_node(it);
+            }
+            if (it->name == "last"){
+                read_last_node(it);
             }
         }
     }
@@ -708,6 +720,7 @@ public class Preferences : GLib.Object {
         write_colors_node (w);
         write_map_node (w);
         write_recent_node (w);
+        write_last_node (w);
         write_print_node (w);
 
         w.end_element();
@@ -731,7 +744,7 @@ public class Preferences : GLib.Object {
             stderr.printf ("Could not load app UI: %s\n", e.message);
             return false;
         }
-        
+
         save_to_ui();
 
         var retval = (pw.dialog.run() == 1);
@@ -752,7 +765,7 @@ public class Preferences : GLib.Object {
     }
 
     private void read_from_print_settings (string key, string val) {
-        print_settings.set(key, val); 
+        print_settings.set(key, val);
     }
 
     public void load_print_settings (Gtk.PrintSettings settings) {
@@ -777,7 +790,7 @@ public class Preferences : GLib.Object {
                 continue;
             }
 
-            print_settings.set(it->name, it->get_content()); 
+            print_settings.set(it->name, it->get_content());
         }
     }
 
@@ -849,4 +862,44 @@ public class Preferences : GLib.Object {
         }
     }
 
+    public void append_last (string path) {
+        last_files.remove (path); // each file could be only one time in list
+        last_files.append (path);
+
+        try {
+            save_to_config ();
+        } catch (Error e) {
+            stderr.printf("%s\n", e.message);
+        }
+    }
+
+    public void remove_last (string path) {
+        last_files.remove (path);
+
+        try {
+            save_to_config ();
+        } catch (Error e) {
+            stderr.printf("%s\n", e.message);
+        }
+    }
+
+    private void write_last_node (Xml.TextWriter w) {
+        w.start_element ("last");
+
+        foreach (var it in last_files){
+            w.write_element ("file", it);
+        }
+
+        w.end_element ();
+    }
+
+    private void read_last_node (Xml.Node* node) {
+        for (Xml.Node* it = node->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+            if (it->name == "file")
+                last_files.append (it->get_content());
+        }
+    }
 }
