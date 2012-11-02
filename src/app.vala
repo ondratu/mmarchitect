@@ -10,7 +10,7 @@
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
     private Gtk.Window window;
-    
+
     private Gtk.ImageMenuItem menu_item_cut;
     private Gtk.ImageMenuItem menu_item_copy;
     private Gtk.ImageMenuItem menu_item_paste;
@@ -61,7 +61,7 @@ public class App : GLib.Object {
     public void disable_menu_edit () {
         set_sensitive_menu_edit(false);
     }
-    
+
     public void enable_menu_edit () {
         set_sensitive_menu_edit(true);
     }
@@ -94,7 +94,7 @@ public class App : GLib.Object {
 
     private void new_file_from_args (Gtk.Window w, owned string fname) {
         if (fname.length == 0) {             // filename is not specified
-            start_application (w);
+            start_application_private ();
             return;
         }
 
@@ -112,7 +112,7 @@ public class App : GLib.Object {
                         _(@"File $fname can't be imported!"));
                 d.run();
                 d.destroy();
-                start_application (w);
+                start_application_private ();
             }
         } else {
             if (fname.substring(-4).down() == ".mma")
@@ -144,10 +144,14 @@ public class App : GLib.Object {
        create welcome tab, else create new file tab */
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_start_application")]
     public void start_application (Gtk.Widget w) {
-        // TODO: condition by user preferences
-        new_welcome_tab ();
+    	start_application_private ();
+    }
 
-        // new_file_private (w);
+    private void start_application_private () {
+    	// TODO: condition by user preferences
+    	new_welcome_tab ();
+
+	// new_file_private ();
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_welcome_tab")]
@@ -207,6 +211,10 @@ public class App : GLib.Object {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_open_file")]
     public void open_file (Gtk.Widget w){
+        open_file_dialog ();
+    }
+
+    private void open_file_dialog () {
         var d = new Gtk.FileChooserDialog(
                 _("Open file"),
                 window,
@@ -227,7 +235,7 @@ public class App : GLib.Object {
     }
 
     public void on_open_file (Gtk.Widget w) {
-        open_file (w);
+        open_file_dialog ();
     }
 
     public void on_open_path (Gtk.Widget w, string path) {

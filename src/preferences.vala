@@ -314,7 +314,7 @@ public class Preferences : GLib.Object {
     public GLib.List<RecentFile> get_recent_files(){
         // BUG: copy fails ! :(
         // return recent_files.copy ();
-        
+
         var rv = new GLib.List<RecentFile>();
         foreach (var it in recent_files)
             rv.append (it.copy());
@@ -798,11 +798,11 @@ public class Preferences : GLib.Object {
         }
         var file = new RecentFile (path);
         recent_files.insert (file, 0);
-        
+
         try {
             save_to_config ();
         } catch (Error e) {
-            stderr.printf("%s\n", e.message);            
+            stderr.printf("%s\n", e.message);
         }
     }
 
@@ -828,20 +828,20 @@ public class Preferences : GLib.Object {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-           
+
             if (it->name != "file")     // don't know item
                 continue;
 
             string ? path = null;
             time_t ? time = null;
-            
+
             for (Xml.Attr* at = it->properties; at != null; at = at->next){
                 if (at->name == "path")
                     path = at->children->content;
                 else if (at->name == "time")
                     time = (time_t) uint64.parse(at->children->content);
             }
-            
+
             if (path != null && time != null)
                 recent_files.append (new RecentFile.with_time(path, time));
             else
