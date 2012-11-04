@@ -99,14 +99,14 @@ po/$(PROGRAM).pot: $(SRC_VALA) $(FILES_UI)
 
 $(LANG_STAMP): $(FILES_PO)
 	@$(UX)echo "  GETTEXT $(FILES_PO)"
-	$(silent)$(foreach lang,$(LANGUGAGES),`mkdir -p $(LANG_DIR)/$(lang)/LC_MESSAGES ; \
-            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po`)
-	@$(UX)echo "" > $@
+	$(silent)$(foreach lang, $(LANGUGAGES), $(UX)mkdir -p $(LANG_DIR)/$(lang)/LC_MESSAGES && \
+            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po)
+	@$(UX)touch $@
 
-updatelangs:
+updatelangs: po/$(PROGRAM).pot
 	@$(UX)echo "merging $(FILES_PO)"
-	$(silent)$(foreach lang,$(LANGUGAGES),`mv po/$(lang).po po/$(lang).bak ; \
-            msgmerge po/$(lang).bak po/$(PROGRAM).pot > po/$(lang).po`)
+	$(silent)$(foreach lang, $(LANGUGAGES), $(UX)mv po/$(lang).po po/$(lang).bak && \
+            msgmerge po/$(lang).bak po/$(PROGRAM).pot > po/$(lang).po)
 
 configure:
 	@$(MAKE) clean
@@ -161,7 +161,7 @@ $(VALA_STAMP): $(SRC_VALA) Makefile configure.mk
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
 		$(VALAFLAGS) \
 		$(SRC_VALA)
-	@$(UX)echo "" > $@
+	@$(UX)touch $@
 
 $(SRC_C): $(VALA_STAMP)
 	@
