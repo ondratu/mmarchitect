@@ -166,7 +166,6 @@
                     <child>
                       <object class="GtkMenuItem" id="menuitem_collapse">
                         <property name="visible">True</property>
-                        <property name="right_justified">True</property>
                         <property name="label" translatable="yes">Collapse</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="app_node_collapse"/>
@@ -232,6 +231,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
+                        <property name="always_show_image">True</property>
                       </object>
                     </child>
                     <child>
@@ -245,6 +245,7 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
                         <signal name="activate" handler="app_preferences"/>
                       </object>
                     </child>
@@ -263,7 +264,7 @@
                     <child>
                       <object class="GtkMenuItem" id="menuitem_expand_all">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Expand all nodes</property>
+                        <property name="label" translatable="yes">_Expand all nodes</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="app_expand_all"/>
                       </object>
@@ -271,7 +272,7 @@
                     <child>
                       <object class="GtkMenuItem" id="menuitem_rollup_all">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Collapse all nodes</property>
+                        <property name="label" translatable="yes">_Collapse all nodes</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="app_collapse_all"/>
                       </object>

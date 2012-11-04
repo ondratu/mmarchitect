@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-02 10:33+0100\n"
+"POT-Creation-Date: 2012-11-04 01:55+0100\n"
 "PO-Revision-Date: 2012-11-02 11:02+0100\n"
 "Last-Translator: Ondřej Tůma <mcbig@zeropage.cz>\n"
 "Language-Team: cs <mcbig@zeropage.cz>\n"
@@ -18,16 +18,12 @@ msgstr ""
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
-#: src/app.vala:77
-#: src/app.vala:219
-#: src/welcometab.vala:113
+#: src/app.vala:77 src/app.vala:228 src/welcometab.vala:113
 #: src/welcometab.vala:119
 msgid "Open file"
 msgstr "Otevřít soubor"
 
-#: src/app.vala:79
-#: src/welcometab.vala:115
-#: src/welcometab.vala:121
+#: src/app.vala:79 src/welcometab.vala:115 src/welcometab.vala:121
 msgid "New file"
 msgstr "Nový soubor"
 
@@ -35,8 +31,7 @@ msgstr "Nový soubor"
 msgid "Save file"
 msgstr "Uložit soubor"
 
-#: src/app.vala:83
-#: src/app.vala:415
+#: src/app.vala:83 src/app.vala:425
 msgid "Save file as"
 msgstr "Uložit soubor jako"
 
@@ -44,31 +39,31 @@ msgstr "Uložit soubor jako"
 msgid "File $fname can't be imported!"
 msgstr ""
 
-#: src/app.vala:254
+#: src/app.vala:263
 msgid "File $path not found!"
 msgstr ""
 
-#: src/app.vala:301
+#: src/app.vala:310
 msgid "Import file"
 msgstr "Importovat soubor"
 
-#: src/app.vala:464
+#: src/app.vala:481
 msgid "Export file as"
 msgstr "Exportovat soubor jako"
 
-#: src/app.vala:470
+#: src/app.vala:487
 msgid "Plain Text"
 msgstr ""
 
-#: src/app.vala:472
+#: src/app.vala:489
 msgid "Simple Web Page"
 msgstr ""
 
-#: src/app.vala:474
+#: src/app.vala:491
 msgid "Dynamic Web Page"
 msgstr ""
 
-#: src/app.vala:476
+#: src/app.vala:493
 msgid "PNG Image"
 msgstr "PNG Obrázek"
 
@@ -98,7 +93,9 @@ msgid "Moving with Ideas"
 msgstr ""
 
 #: src/tips.vala:30
-msgid "You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, Left or Right to move with selected Ideas."
+msgid ""
+"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
+"Left or Right to move with selected Ideas."
 msgstr ""
 
 #: src/tips.vala:32
@@ -106,7 +103,9 @@ msgid "Using Mind Maps as TODO list"
 msgstr ""
 
 #: src/tips.vala:33
-msgid "Mind Maps could be use as TODO lists. You have more tree like possibility with mind maps, like categories, importance or difficulty."
+msgid ""
+"Mind Maps could be use as TODO lists. You have more tree like possibility "
+"with mind maps, like categories, importance or difficulty."
 msgstr ""
 
 #: src/welcometab.vala:29
@@ -165,10 +164,12 @@ msgid ""
 "WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
 "DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
 "DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
-"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n"
+"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
+"SERVICES;\n"
 "LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
 "ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
-"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
+"THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
 
@@ -224,23 +225,25 @@ msgstr "_Editovat"
 msgid "Expand"
 msgstr "_Rozložit"
 
-#: ui/main.ui:170
+#: ui/main.ui:169
 msgid "Collapse"
 msgstr "_Složit"
 
-#: ui/main.ui:258
+#: ui/main.ui:259
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ui/main.ui:266
-msgid "Expand all nodes"
+#: ui/main.ui:267
+#, fuzzy
+msgid "_Expand all nodes"
 msgstr "_Rozložit všechny větve"
 
-#: ui/main.ui:274
-msgid "Collapse all nodes"
+#: ui/main.ui:275
+#, fuzzy
+msgid "_Collapse all nodes"
 msgstr "Složit všechny větvě"
 
-#: ui/main.ui:303
+#: ui/main.ui:304
 msgid "_Help"
 msgstr "_Nápověda"
 
@@ -280,8 +283,7 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: ui/preferences.ui:198
-#: ui/preferences.ui:478
+#: ui/preferences.ui:198 ui/preferences.ui:478
 msgid "Use system font"
 msgstr "Použít font systému"
 
@@ -450,36 +452,51 @@ msgid "<a href=\"http://sf.net/p/mmarchitect\">SourceForge.net</a>"
 msgstr ""
 
 #: ui/welcome.ui:233
-msgid "Sourceforge project page of Mind Map Architect prgram. You can check new version of mmarchitect here, or look to wiki, bugs, task or discussion here."
+msgid ""
+"Sourceforge project page of Mind Map Architect prgram. You can check new "
+"version of mmarchitect here, or look to wiki, bugs, task or discussion here."
 msgstr ""
 
 #: ui/welcome.ui:258
-msgid "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General Discussion</a>"
+msgid ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General "
+"Discussion</a>"
 msgstr ""
 
 #: ui/welcome.ui:274
-msgid "There are user and author discussions about mmarchitect. You can find here Release annotations, User tasks, Authors reactions and so on. At this moment, there are only this general discussion yet. Sou if you want nything, write your task here."
+msgid ""
+"There are user and author discussions about mmarchitect. You can find here "
+"Release annotations, User tasks, Authors reactions and so on. At this "
+"moment, there are only this general discussion yet. Sou if you want nything, "
+"write your task here."
 msgstr ""
 
 #: ui/welcome.ui:300
-msgid "<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tasks and Bugs</a>"
+msgid ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tasks and Bugs</a>"
 msgstr ""
 
 #: ui/welcome.ui:316
 msgid ""
-"In this tickets system on SourceForge.Net, you can find, create and vote mmarchitech tasks and bugs.\n"
+"In this tickets system on SourceForge.Net, you can find, create and vote "
+"mmarchitech tasks and bugs.\n"
 "\n"
-"If you find bug which is not recorded here yet, please add it here, sou developers can fix them to next release."
+"If you find bug which is not recorded here yet, please add it here, sou "
+"developers can fix them to next release."
 msgstr ""
 
 #: ui/welcome.ui:344
-msgid "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/thread/5843e87b/\">Helpers Wanted</a>"
+msgid ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
+"thread/5843e87b/\">Helpers Wanted</a>"
 msgstr ""
 
 #: ui/welcome.ui:360
 msgid ""
-"There are many professions which this project need, especially good users. But if you want make user guide or graphics for this project please, send me message.\n"
+"There are many professions which this project need, especially good users. "
+"But if you want make user guide or graphics for this project please, send me "
+"message.\n"
 "\n"
-"Of course, developers, testers, ui experts, copywriters, translators or html coders are welcoming."
+"Of course, developers, testers, ui experts, copywriters, translators or html "
+"coders are welcoming."
 msgstr ""
-
