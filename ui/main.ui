@@ -264,7 +264,7 @@
                     <child>
                       <object class="GtkMenuItem" id="menuitem_expand_all">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Expand all nodes</property>
+                        <property name="label" translatable="yes">_Expand all branches</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="app_expand_all"/>
                       </object>
@@ -272,7 +272,7 @@
                     <child>
                       <object class="GtkMenuItem" id="menuitem_rollup_all">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Collapse all nodes</property>
+                        <property name="label" translatable="yes">_Collapse all branches</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="app_collapse_all"/>
                       </object>
