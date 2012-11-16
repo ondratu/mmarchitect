@@ -1,2 +1,4 @@
 ?package(mmarchitect):needs="X11" section="Applications/Office"\
-  title="Mind Map Achitect" command="/usr/bin/mmarchitect"
+  icon="/usr/share/pixmaps/mmarchitect.xpm"\
+  title="Mind Map Achitect" command="/usr/bin/mmarchitect"\
+  hints="GTK+2.0-based Mind Map Editor"
