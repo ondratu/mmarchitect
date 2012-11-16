@@ -1,12 +1,11 @@
 [Desktop Entry]
-Version=0.3
 Name=Mind Map Architect
-GenericName=
-Comment=Working with mind maps
-Exec=mmarchitect %U
+Comment=Mind maps editor
+Comment[cs]=Editor myšlenkových map
+Exec=mmarchitect %f
 Icon=mmarchitect
 Terminal=false
 Type=Application
 MimeType=application/x-mmarchitect;application/x-freemind;
 Categories=Office;GNOME;GTK;
-X-GIO-NoFuse=true
+StartupNotify=true

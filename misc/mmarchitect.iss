@@ -2,7 +2,7 @@
 AppName=Mind Map Architect
 AppPublisher=Ondrej Tuma
 AppPublisherURL=http://zeropage.cz
-AppVerName=Mind Map Architect 0.3.4
+AppVerName=Mind Map Architect 0.4.0
 DefaultDirName={pf}\Mind Map Architect
 DefaultGroupName=Mind Map Architect
 LicenseFile=COPYING

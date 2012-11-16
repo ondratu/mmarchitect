@@ -11,6 +11,7 @@ directory. You will need this tools:
     rm.exe
     sed.exe
     touch.exe
+    mv.exe
 
 And if you can crate source tarball, you will need this tools:
     find.exe

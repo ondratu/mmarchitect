@@ -29,6 +29,10 @@ ifeq ($(OS), Windows_NT)
     VALAFLAGS += -D WINDOWS
     WINDOWS = 1
     UX ?= C:\vala-0.12.0\bin\\
+    GLOCALE = c:\\vala-0.12.0\\share\\locale
+    GLOCALES = $(shell ls $(GLOCALE))
+else
+    #CFLAGS += -Dlocaltime_r=localtime
 endif
 
 ifndef DEBUG
@@ -180,6 +184,10 @@ $(OUTPUT): $(OBJS)
 else
 $(OUTPUT): $(OBJS) misc/$(PROGRAM).res
 	$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS) misc/$(PROGRAM).res
+
+misc/locales.iss:
+	@rm -f $@
+	$(silent)$(foreach lc, $(GLOCALES), $(UX)echo "Source \"$(GLOCALE)\\$(lc)\\LC_MESSAGES\\*\"; DestDir: \"${app}\\share\\locale\\$(lc)\\LC_MESSAGES\"" >> $@;)
 endif
 
 # object depences creates by $(CC) -MMD
@@ -232,7 +240,7 @@ uninstall:
 	#@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
 	@echo "Do not forget to run update-mime-database after real uninstallation!"
 
-$(PROGRAM)-setup-$(VERSION).exe: $(PROGRAM) misc/$(PROGRAM).iss $(LANG_STAMP)
+$(PROGRAM)-setup-$(VERSION).exe: $(PROGRAM) misc/$(PROGRAM).iss misc/locales.iss $(LANG_STAMP)
 	iscc misc\$(PROGRAM).iss
 	$(UX)mv setup.exe $(PROGRAM)-setup-$(VERSION).exe
 
