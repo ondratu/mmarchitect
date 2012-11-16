@@ -50,8 +50,8 @@ public struct ClaverTime {
         if (days == 1)
             return _("Yesterday"); // bad time without timezone
             // return _(@"Yesterday $H:$M");
-        if (days < 7)
-            return @"$d. $m. $H:$M";
+        //if (days < 7)
+        //    return @"$d. $m. $H:$M";
 
         return @"$d. $m. $Y";
 #endif

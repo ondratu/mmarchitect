@@ -214,7 +214,7 @@
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">&lt;a href="http://sf.net/p/mmarchitect"&gt;SourceForge.net&lt;/a&gt;</property>
+                <property name="label" translatable="yes">&lt;a href="http://mmarchitect.zeropage.cz"&gt;Project web pages&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <attributes>
                   <attribute name="scale" value="1.400000"/>
@@ -230,7 +230,7 @@
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">Sourceforge project page of Mind Map Architect prgram. You can check new version of mmarchitect here, or look to wiki, bugs, task or discussion here.</property>
+                <property name="label" translatable="yes">If you are looking for more informations about project, want to download new version, or you want to start with helping us, see Home page of Mind Map Architect.</property>
                 <property name="justify">fill</property>
                 <property name="wrap">True</property>
               </object>
@@ -271,7 +271,7 @@
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">There are user and author discussions about mmarchitect. You can find here Release annotations, User tasks, Authors reactions and so on. At this moment, there are only this general discussion yet. Sou if you want nything, write your task here.</property>
+                <property name="label" translatable="yes">Have you any question about this application? Or have you some tip for us, or other users ? Can you help to other users. Or you anly wnat to see whats new in project ? Watch General Discussion on SourceForge.net.</property>
                 <property name="justify">fill</property>
                 <property name="wrap">True</property>
                 <property name="wrap_mode">word-char</property>
@@ -313,9 +313,7 @@
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">In this tickets system on SourceForge.Net, you can find, create and vote mmarchitech tasks and bugs.
-
-If you find bug which is not recorded here yet, please add it here, sou developers can fix them to next release.</property>
+                <property name="label" translatable="yes">Is there bug in this program ? Is missing some future for you in mmarchitect ? Please tell us more information about that. Thank you for your response.</property>
                 <property name="justify">fill</property>
                 <property name="wrap">True</property>
                 <property name="wrap_mode">word-char</property>
@@ -341,7 +339,7 @@ If you find bug which is not recorded here yet, please add it here, sou develope
                 <property name="can_focus">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">&lt;a href="http://sourceforge.net/p/mmarchitect/discussion/general/thread/5843e87b/"&gt;Helpers Wanted&lt;/a&gt;</property>
+                <property name="label" translatable="yes">&lt;a href="http://mmarchitect.zeropage.cz"&gt;Development of project&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <attributes>
                   <attribute name="scale" value="1.400000"/>
@@ -357,9 +355,7 @@ If you find bug which is not recorded here yet, please add it here, sou develope
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">There are many professions which this project need, especially good users. But if you want make user guide or graphics for this project please, send me message.
-
-Of course, developers, testers, ui experts, copywriters, translators or html coders are welcoming.</property>
+                <property name="label" translatable="yes">If you want to help us with this project, translate messages to your languege, develop, create package for your distribution, or anything what you can do for help us, see development page.</property>
                 <property name="justify">fill</property>
                 <property name="wrap">True</property>
                 <property name="wrap_mode">word-char</property>

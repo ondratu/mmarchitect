@@ -100,13 +100,13 @@ po/$(PROGRAM).pot: $(SRC_VALA) $(FILES_UI)
 $(LANG_STAMP): $(FILES_PO)
 	@$(UX)echo "  GETTEXT $(FILES_PO)"
 	$(silent)$(foreach lang, $(LANGUGAGES), $(UX)mkdir -p $(LANG_DIR)/$(lang)/LC_MESSAGES && \
-            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po)
+            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po;)
 	@$(UX)touch $@
 
 updatelangs: po/$(PROGRAM).pot
 	@$(UX)echo "merging $(FILES_PO)"
 	$(silent)$(foreach lang, $(LANGUGAGES), $(UX)mv po/$(lang).po po/$(lang).bak && \
-            msgmerge po/$(lang).bak po/$(PROGRAM).pot > po/$(lang).po)
+            msgmerge po/$(lang).bak po/$(PROGRAM).pot > po/$(lang).po;)
 
 configure:
 	@$(MAKE) clean
@@ -195,12 +195,17 @@ install: $(OUTPUT) $(LANG_STAMP)
 	$(INSTALL_DATA) ui/* $(DESTDIR)$(DATA)/ui
 	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
 	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/64x64/apps
+	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps
+	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/32x32/apps
 	mkdir -p $(DESTDIR)$(PREFIX)/share/pixmaps
 	$(INSTALL_DATA) icons/$(PROGRAM).svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
 	$(INSTALL_DATA) icons/$(PROGRAM).png $(DESTDIR)$(PREFIX)/share/icons/hicolor/64x64/apps
+	$(INSTALL_DATA) icons/$(PROGRAM)_48.png $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/$(PROGRAM).png
+	$(INSTALL_DATA) icons/$(PROGRAM)_32.png $(DESTDIR)$(PREFIX)/share/icons/hicolor/32x32/apps/$(PROGRAM).png
 	$(INSTALL_DATA) icons/$(PROGRAM).png $(DESTDIR)$(PREFIX)/share/pixmaps
+	$(INSTALL_DATA) icons/$(PROGRAM).xpm $(DESTDIR)$(PREFIX)/share/pixmaps
 	$(foreach lang,$(LANGUGAGES),`mkdir -p $(DESTDIR)$(LOCALE_DIR)/$(lang)/LC_MESSAGES ; \
-            $(INSTALL_DATA) $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo $(DESTDIR)$(LOCALE_DIR)/$(lang)/LC_MESSAGES`)
+            $(INSTALL_DATA) $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo $(DESTDIR)$(LOCALE_DIR)/$(lang)/LC_MESSAGES`;)
 	#mkdir -p $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
 	#$(INSTALL_DATA) glib-2.0/schemas/apps.$(PROGRAM).gschema.xml $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
@@ -216,8 +221,11 @@ uninstall:
 	$(RM) -r $(DESTDIR)$(DATA)
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/$(PROGRAM).svg
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/64x64/apps/$(PROGRAM).png
+	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/$(PROGRAM).png
+	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/32x32/apps/$(PROGRAM).png
 	$(RM) $(DESTDIR)$(PREFIX)/share/pixmaps/$(PROGRAM).png
-	$(foreach lang,$(LANGUGAGES),`$(RM) $(DESTDIR)$(LOCALE_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo`)
+	$(RM) $(DESTDIR)$(PREFIX)/share/pixmaps/$(PROGRAM).xpm
+	$(foreach lang,$(LANGUGAGES),`$(RM) $(DESTDIR)$(LOCALE_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo`;)
 	#$(RM) $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas/apps.$(PROGRAM).gschema.xml
 	$(RM) $(DESTDIR)$(PREFIX)/share/applications/$(PROGRAM).desktop
 	$(RM) $(DESTDIR)$(PREFIX)/share/mime/packages/$(PROGRAM).xml

@@ -1,3 +1,115 @@
+2012-11-04 00:58  ondratu
+
+	* Makefile: Makefile check for compiling languages on windows
+
+2012-11-02 22:09  ondratu
+
+	* po/cs.po, src/app.vala, src/preferences.vala,
+	  src/welcometab.vala, ui/welcome.ui: Start application preference
+	  acceptable (last files and welcome tab), and some futures with
+	  starting application.
+	  Czech translate update
+
+2012-11-02 08:51  ondratu
+
+	* src/app.vala, src/preferences.vala, src/welcometab.vala: Clever
+	  time formating and windows support with it
+
+2012-11-01 16:03  ondratu
+
+	* po/cs.po, src/app.vala, src/consts.vala, src/preferences.vala,
+	  src/welcometab.vala, ui/close_file_dialog.ui, ui/main.ui: User
+	  interface changes and location bug fixes
+
+2012-11-01 09:28  ondratu
+
+	* Makefile, src/app.vala, src/main.vala, src/preferences.vala,
+	  src/welcometab.vala, ui/preferences.ui: Recent files
+
+2012-10-30 09:01  ondratu
+
+	* src/app.vala, src/node.vala, src/tips.vala, src/welcometab.vala,
+	  ui/main.ui, ui/welcome.ui: First tips and tips support
+
+2012-10-29 21:13  ondratu
+
+	* src/app.vala, src/filetab.vala, src/welcometab.vala: Signal
+	  support for new and open file buttons
+
+2012-10-28 12:53  ondratu
+
+	* src/app.vala, src/filetab.vala, src/welcometab.vala, ui/main.ui,
+	  ui/welcome.ui: Welcome user interface support - near to final
+	  look
+
+2012-10-26 16:38  ondratu
+
+	* src/app.vala, src/editform.vala, src/filetab.vala,
+	  src/mindmap.vala, src/print.vala, src/tab.vala,
+	  src/welcometab.vala: Base welcome panel support
+
+2012-10-25 19:07  ondratu
+
+	* Makefile, src/app.vala, src/print.vala: Scale map to page
+
+2012-10-25 16:05  ondratu
+
+	* src/print.vala: PageSetup prepare and default page orientation
+
+2012-10-25 07:59  ondratu
+
+	* debian/control, src/preferences.vala: debian build dependencies
+	  fix and clean some empty chars
+
+2012-10-25 07:26  ondratu
+
+	* Makefile, src/app.vala, src/preferences.vala, src/print.vala:
+	  Store print setting to user config file
+
+2012-10-24 21:22  ondratu
+
+	* ., Makefile, misc/mmarchitect.iss, po, src/app.vala,
+	  src/main.vala: Install, Makefile and SVN fixes
+
+2012-10-24 20:47  ondratu
+
+	* src/app.vala, src/export.vala, src/mindmap.vala, src/print.vala,
+	  ui/main.ui: Basic print support, bug fix with ctrl-? keys
+	  (support ctrl-? keys for ideas)
+
+2012-10-24 20:45  ondratu
+
+	* Makefile, po, po/cs.po, src/main.vala: Basic languages support
+
+2012-10-16 13:58  ondratu
+
+	* ., src, ui/about_dialog.ui: Import svn ignore files and fix
+	  copyright year
+
+2012-10-16 13:52  ondratu
+
+	* src/app.vala, src/export.vala: #5 Exporting map to png file
+
+2012-10-13 22:51  ondratu
+
+	* Makefile, misc/mmarchitect.iss, misc/mmarchitect.rc: Windows icon
+	  and installer support
+
+2012-10-11 10:14  ondratu
+
+	* README.c, debian/watch: Update some info about debian c-source
+	  compiling on debian
+
+2012-10-11 09:31  ondratu
+
+	* debian/watch: Fix debian watch script
+
+2012-10-11 08:45  ondratu
+
+	* AUTHORS, COPYING, ChangeLog, INSTALL, Makefile, README,
+	  README.Win32, README.c, debian/README.Win32, debian/changelog,
+	  debian/copyright: Up version and append standard doc files.
+
 2012-10-11 06:55  ondratu
 
 	* Makefile, debian/changelog, debian/mmarchitect.mime,
