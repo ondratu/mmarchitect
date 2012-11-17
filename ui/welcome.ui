@@ -238,6 +238,21 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkLabel" id="url1">
+                <property name="visible">True</property>
+                <property name="xalign">1</property>
+                <property name="xpad">10</property>
+                <property name="label" translatable="yes">&lt;a href="http://mmarchitect.zeropage.cz/?gtk=1"&gt;http://mmarchitect.zeropage.cz&lt;/a&gt;</property>
+                <property name="use_markup">True</property>
+		<attributes>
+                  <attribute name="scale" value="0.800000"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -278,6 +293,22 @@
               </object>
               <packing>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="url2">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="xalign">1</property>
+                <property name="xpad">10</property>
+                <property name="label" translatable="yes">&lt;a href="http://sourceforge.net/p/mmarchitect/discussion/general/"&gt;http://sourceforge.net/p/mmarchitect/discussion/general/&lt;/a&gt;</property>
+                <property name="use_markup">True</property>
+		<attributes>
+                  <attribute name="scale" value="0.800000"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -322,6 +353,22 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkLabel" id="url3">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="xalign">1</property>
+                <property name="xpad">10</property>
+                <property name="label" translatable="yes">&lt;a href="http://sourceforge.net/p/mmarchitect/tickets/"&gt;http://sourceforge.net/p/mmarchitect/tickets/&lt;/a&gt;</property>
+                <property name="use_markup">True</property>
+		<attributes>
+                  <attribute name="scale" value="0.800000"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -339,7 +386,7 @@
                 <property name="can_focus">True</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">&lt;a href="http://mmarchitect.zeropage.cz"&gt;Development of project&lt;/a&gt;</property>
+                <property name="label" translatable="yes">&lt;a href="http://mmarchitect.zeropage.cz/development.html?gtk=1"&gt;Development of project&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <attributes>
                   <attribute name="scale" value="1.400000"/>
@@ -362,6 +409,22 @@
               </object>
               <packing>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="url4">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="xalign">1</property>
+                <property name="xpad">10</property>
+                <property name="label" translatable="yes">&lt;a href="http://mmarchitect.zeropage.cz/development.html?gtk=1"&gt;http://mmarchitect.zeropage.cz/development.html&lt;/a&gt;</property>
+                <property name="use_markup">True</property>
+		<attributes>
+                  <attribute name="scale" value="0.800000"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
