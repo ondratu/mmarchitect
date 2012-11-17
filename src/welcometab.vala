@@ -202,11 +202,12 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT welcome_tab_open_uri")]
     public void open_uri (Gtk.Widget w, string uri) {
-#if ! WINDOWS
-        Gtk.show_uri(null, uri, Gdk.CURRENT_TIME);
-#else
         try {
+#if ! WINDOWS
+            Gtk.show_uri(null, uri, Gdk.CURRENT_TIME);
+#else
             GLib.Process.spawn_command_line_async(@"cmd /c start $uri");
+#endif
         } catch (Error e) {
             var d = new Gtk.MessageDialog(null,
                     Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -216,8 +217,6 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
             d.run();
             d.destroy();
         }
-#endif
-
     }
 
 }
