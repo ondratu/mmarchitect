@@ -1,3 +1,47 @@
+2012-11-17 19:36  ondratu
+
+	* ui/about_dialog.ui: About website link without index.html
+
+2012-11-17 19:33  ondratu
+
+	* Makefile, misc/mmarchitect.iss, src/welcometab.vala,
+	  ui/about_dialog.ui, ui/welcome.ui: Windows open url fix
+
+2012-11-17 08:11  ondratu
+
+	* ui/welcome.ui: Visible links in welcome tab
+
+2012-11-17 05:54  ondratu
+
+	* Makefile: Windows building fix
+
+2012-11-16 10:36  ondratu
+
+	* Makefile, README.Win32, misc/mmarchitect.desktop,
+	  misc/mmarchitect.iss: Windows locales from gtk and desktop file
+	  fix
+
+2012-11-16 07:29  ondratu
+
+	* debian/menu: Debian menu icon fix
+
+2012-11-16 07:10  ondratu
+
+	* ChangeLog, Makefile, debian/changelog, icons/mmarchitect.xpm,
+	  icons/mmarchitect_32.png, icons/mmarchitect_48.png,
+	  icons/x-mmarchitect.png, misc/mmarchitect.xml,
+	  src/welcometab.vala, ui/about_dialog.ui, ui/welcome.ui: New
+	  icons, Makefile fix, new homepage and welcome texts and changelog
+	  update
+
+2012-11-04 08:45  ondratu
+
+	* ui/main.ui: Nodes are ideas and branches
+
+2012-11-04 07:51  ondratu
+
+	* po/cs.po, ui/main.ui: Czech language update and ui cleaning
+
 2012-11-04 00:58  ondratu
 
 	* Makefile: Makefile check for compiling languages on windows

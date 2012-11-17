@@ -5,6 +5,7 @@ mmarchitect (0.4.0) unstable; urgency=low
   * Map printing and png export
   * Welcome tab with tips, links to project and recent files
   * Start application preference works now
+  * Desktop and debian menu file fix
 
  -- Ondrej Tuma <mcbig@zeropage.cz>  Sun, 04 Nov 2012 08:53:36 +0100
 
