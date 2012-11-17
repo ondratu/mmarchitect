@@ -21,6 +21,7 @@ Source: "c:\vala-0.12.0\bin\libatk-1.0-0.dll"; DestDir: "{app}\bin"
 Source: "c:\vala-0.12.0\bin\libcairo-2.dll"; DestDir: "{app}\bin"
 Source: "c:\vala-0.12.0\bin\libexpat-1.dll"; DestDir: "{app}\bin"
 Source: "c:\vala-0.12.0\bin\libfontconfig-1.dll"; DestDir: "{app}\bin"
+Source: "c:\vala-0.12.0\bin\libgee-2.dll"; DestDir: "{app}\bin"
 Source: "c:\vala-0.12.0\bin\libgdk_pixbuf-2.0-0.dll"; DestDir: "{app}\bin"
 Source: "c:\vala-0.12.0\bin\libgdk-win32-2.0-0.dll"; DestDir: "{app}\bin"
 Source: "c:\vala-0.12.0\bin\libgio-2.0-0.dll"; DestDir: "{app}\bin"
@@ -37,9 +38,12 @@ Source: "c:\vala-0.12.0\bin\libpng14-14.dll"; DestDir: "{app}\bin"
 Source: "c:\vala-0.12.0\bin\libxml2.dll"; DestDir: "{app}\bin"
 Source: "c:\vala-0.12.0\bin\zlib1.dll"; DestDir: "{app}\bin"
 
+#include "locales.iss"
+
+Source: ".langs\cs\LC_MESSAGES\*"; DestDir: "{app}\share\locale\cs\LC_MESSAGES"
+
 Source: "icons\*"; DestDir: "{app}\share\mmarchitect\icons"
 Source: "ui\*"; DestDir: "{app}\share\mmarchitect\ui"
-Source: ".langs\*"; DestDir: "{app}\share\locale"
 Source: "mmarchitect.exe"; DestDir: "{app}\bin\"
 
 [Run]
@@ -49,9 +53,4 @@ Filename: "cmd"; Parameters: "/c mkdir etc\gtk-2.0 & bin\gdk-pixbuf-query-loader
 Type: files; Name: "{app}\etc\gtk-2.0\gdk-pixbuf.loaders"
 Type: dirifempty; Name: "{app}\etc\gtk-2.0"
 Type: dirifempty; Name: "{app}\etc"
-
-
-
-
-
 

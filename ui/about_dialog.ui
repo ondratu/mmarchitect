@@ -13,7 +13,7 @@
     <property name="version">0.3.4</property>
     <property name="copyright" translatable="yes">Copyright (c) 2011-2012, Ond&#x159;ej T&#x16F;ma</property>
     <property name="comments" translatable="yes">Tool for working with mind maps. </property>
-    <property name="website">http://mmarchitect.zeropage.cz/</property>
+    <property name="website">http://mmarchitect.zeropage.cz/index.html</property>
     <property name="license" translatable="yes">Copyright (c) 2011-2012, Ond&#x159;ej T&#x16F;ma
 All rights reserved.
 

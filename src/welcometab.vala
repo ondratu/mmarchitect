@@ -41,8 +41,8 @@ public struct ClaverTime {
         string Y = iso.substring(0,4);
         string m = iso.substring(5,2);
         string d = iso.substring(8,2);
-        string H = iso.substring(11,2);
-        string M = iso.substring(14,2);
+        //string H = iso.substring(11,2);
+        //string M = iso.substring(14,2);
 
         if (days == 0)
             return _("Today");     // bad time without timezone
@@ -199,4 +199,25 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
         tip_title.set_label (tips[tip_index].title);
         tip_body.set_label (tips[tip_index].body);
     }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT welcome_tab_open_uri")]
+    public void open_uri (Gtk.Widget w, string uri) {
+#if ! WINDOWS
+        Gtk.show_uri(null, uri, Gdk.CURRENT_TIME);
+#else
+        try {
+            GLib.Process.spawn_command_line_async(@"cmd /c start $uri");
+        } catch (Error e) {
+            var d = new Gtk.MessageDialog(null,
+                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.CLOSE,
+                    e.message);
+            d.run();
+            d.destroy();
+        }
+#endif
+
+    }
+
 }
