@@ -104,7 +104,7 @@ po/$(PROGRAM).pot: $(SRC_VALA) $(FILES_UI)
 $(LANG_STAMP): $(FILES_PO)
 	@$(UX)echo "  GETTEXT $(FILES_PO)"
 	$(silent)$(foreach lang, $(LANGUGAGES), $(UX)mkdir -p $(LANG_DIR)/$(lang)/LC_MESSAGES && \
-            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po;)
+            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po &&) $(UX)echo "\tDone"
 	@$(UX)touch $@
 
 updatelangs: po/$(PROGRAM).pot
@@ -185,9 +185,14 @@ else
 $(OUTPUT): $(OBJS) misc/$(PROGRAM).res
 	$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS) misc/$(PROGRAM).res
 
+cmds=$(foreach lc, jo ne ale asi snad, $(UX)echo "Locale $(lc)" &&)
+
 misc/locales.iss:
 	@rm -f $@
-	$(silent)$(foreach lc, $(GLOCALES), $(UX)echo "Source \"$(GLOCALE)\\$(lc)\\LC_MESSAGES\\*\"; DestDir: \"${app}\\share\\locale\\$(lc)\\LC_MESSAGES\"" >> $@;)
+# 	&& chars and echo on end of line is cause windows cmd don't know ; as end of command
+	$(silent)$(foreach lc, $(GLOCALES),\
+		$(UX)echo "Source: \"$(GLOCALE)\\$(lc)\\LC_MESSAGES\\*\"; DestDir: \"${app}\\share\\locale\\$(lc)\\LC_MESSAGES\"" >> $@ &&) \
+		$(UX)echo "$@ was created ..."
 endif
 
 # object depences creates by $(CC) -MMD
@@ -264,7 +269,7 @@ clean:
 	@$(RM) -r $(BUILD_DIR) $(LANG_DIR)        
 	@$(RM) configure.mk src/config.vala
 	@$(RM) *~ src/*~
-	@$(RM) mmarchitect.sh
+	@$(RM) misc/locales.iss
 	@$(RM) $(PROGRAM)-setup-$(VERSION).exe
 	@dh_clean || $(UX)echo 'Never mind, it is ok ;)'
 
