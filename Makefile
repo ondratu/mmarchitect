@@ -286,6 +286,7 @@ clean:
 	@$(UX)cp -a Makefile ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a README* ../$(PROGRAM)-$(VERSION)/
 	@$(UX)find ../$(PROGRAM)-$(VERSION) -type d -name .svn | $(UX)xargs $(RM) -rf
+	@(cd ../$(PROGRAM)-$(VERSION) && $(MAKE) po/$(PROGRAM).pot)
 	@(cd ../ && tar cjf $(PROGRAM)-$(VERSION).tar.bz2 $(PROGRAM)-$(VERSION))
 	@$(RM) -rf ../$(PROGRAM)-$(VERSION)
 
@@ -303,6 +304,7 @@ clean:
 	@$(UX)cp -a README* ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)find ../$(PROGRAM)-c-$(VERSION) -type d -name .svn | $(UX)xargs $(RM) -rf
 	@(cd ../$(PROGRAM)-c-$(VERSION) && $(MAKE) configure)
+	@(cd ../$(PROGRAM)-c-$(VERSION) && $(MAKE) po/$(PROGRAM).pot)
 	@(cd ../$(PROGRAM)-c-$(VERSION) && $(MAKE) $(SRC_C))
 	@(cd ../ && tar cjf $(PROGRAM)-c-$(VERSION).tar.bz2 $(PROGRAM)-c-$(VERSION))
 	@$(RM) -rf ../$(PROGRAM)-c-$(VERSION)
