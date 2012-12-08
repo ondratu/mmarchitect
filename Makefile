@@ -288,7 +288,7 @@ clean:
 	@$(UX)find ../$(PROGRAM)-$(VERSION) -type d -name .svn | $(UX)xargs $(RM) -rf
 	@(cd ../$(PROGRAM)-$(VERSION) && $(MAKE) po/$(PROGRAM).pot)
 	@(cd ../ && tar cjf $(PROGRAM)-$(VERSION).tar.bz2 $(PROGRAM)-$(VERSION))
-	@(cd ../ && sha1sum $(PROGRAM)-$(VERSION).tar.bz2 > $(PROGRAM)-$(VERSION).tar.bz2.sha)
+	@(cd ../ && sha1sum $(PROGRAM)-$(VERSION).tar.bz2 > $(PROGRAM)-$(VERSION).tar.bz2.sha1)
 	@$(RM) -rf ../$(PROGRAM)-$(VERSION)
 
 ../$(PROGRAM)-c-$(VERSION).tar.bz2: clean
@@ -308,7 +308,7 @@ clean:
 	@(cd ../$(PROGRAM)-c-$(VERSION) && $(MAKE) po/$(PROGRAM).pot)
 	@(cd ../$(PROGRAM)-c-$(VERSION) && $(MAKE) $(SRC_C))
 	@(cd ../ && tar cjf $(PROGRAM)-c-$(VERSION).tar.bz2 $(PROGRAM)-c-$(VERSION))
-	@(cd ../ && sha1sum $(PROGRAM)-c-$(VERSION).tar.bz2 > $(PROGRAM)-c-$(VERSION).tar.bz2.sha)
+	@(cd ../ && sha1sum $(PROGRAM)-c-$(VERSION).tar.bz2 > $(PROGRAM)-c-$(VERSION).tar.bz2.sha1)
 	@$(RM) -rf ../$(PROGRAM)-c-$(VERSION)
 
 
