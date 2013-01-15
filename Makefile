@@ -79,7 +79,7 @@ FILES_UI = $(wildcard ui/*.ui)
 FILES_PO = $(wildcard po/*.po)
 
 LANG_STAMP := $(LANG_DIR)/.stamp
-LANGUGAGES = cs
+LANGUGAGES = cs it
 
 PKG_CFLAGS = $(shell pkg-config --cflags $(EXT_PKGS))
 PKG_LDFLAGS = $(shell pkg-config --libs $(EXT_PKGS)) 
