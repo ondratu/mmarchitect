@@ -1,0 +1,556 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2013 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#  Luis García Sevillano <floss.dev@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Mind Map Architect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-17 22:04+0100\n"
+"PO-Revision-Date: 2013-03-24 21:10+0100\n"
+"Last-Translator: Luis García Sevillano <floss.dev@gmail.com>\n"
+"Language-Team:  <floss.dev@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"Language: Spanish\n"
+
+#: src/app.vala:77 src/app.vala:228 src/welcometab.vala:113
+#: src/welcometab.vala:119
+msgid "Open file"
+msgstr "Abrir archivo"
+
+#: src/app.vala:79 src/welcometab.vala:115 src/welcometab.vala:121
+msgid "New file"
+msgstr "Nuevo archivo"
+
+#: src/app.vala:81
+msgid "Save file"
+msgstr "Guardar archivo"
+
+#: src/app.vala:83 src/app.vala:425
+msgid "Save file as"
+msgstr "Guardar archivo como"
+
+#: src/app.vala:112
+msgid "File $fname can't be imported!"
+msgstr "¡El archivo $fname no puede ser importado!"
+
+#: src/app.vala:263
+msgid "File $path not found!"
+msgstr "¡No se encuentra el archivo $path!"
+
+#: src/app.vala:310
+msgid "Import file"
+msgstr "Importar archivo"
+
+#: src/app.vala:481
+msgid "Export file as"
+msgstr "Exportar archivo como"
+
+#: src/app.vala:487
+msgid "Plain Text"
+msgstr "Texto plano"
+
+#: src/app.vala:489
+msgid "Simple Web Page"
+msgstr "Página web sencilla"
+
+#: src/app.vala:491
+msgid "Dynamic Web Page"
+msgstr "Página web dinámica"
+
+#: src/app.vala:493
+msgid "PNG Image"
+msgstr "Imagen PNG"
+
+#: src/editform.vala:243
+msgid "Extends edit"
+msgstr "Ampliar edición"
+
+#: src/editform.vala:287
+msgid "Point"
+msgstr "Punto"
+
+#: src/main.vala:29
+#, c-format
+msgid "Could not load app UI: %s\n"
+msgstr "No puede cargarse IU de la aplicación: %s\n"
+
+#: src/mindmap.vala:71
+msgid "Main Idea"
+msgstr "Idea principal"
+
+#: src/print.vala:59
+msgid "Printing error:"
+msgstr "Error de impresión:"
+
+#: src/tips.vala:29
+msgid "Moving with Ideas"
+msgstr "En movimiento con las Ideas"
+
+#: src/tips.vala:30
+msgid ""
+"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
+"Left or Right to move with selected Ideas."
+msgstr ""
+"Puede mover las ideas con atajos de teclado. Use CTRL - Flecha Arriba, "
+"Abajo, Izquierda o Derecha para mover la idea seleccionada"
+
+#: src/tips.vala:32
+msgid "Using Mind Maps as TODO list"
+msgstr "Use Mind Maps como lista de tareas por hacer (TODO)"
+
+#: src/tips.vala:33
+msgid ""
+"Mind Maps could be use as TODO lists. You have more tree like possibility "
+"with mind maps, like categories, importance or difficulty."
+msgstr ""
+"Mind Maps puede ser usado como lista de tareas por hacer. Tiene tres "
+"posibilidades más con mind maps, como categorías, importancia o dificultad"
+
+#: src/welcometab.vala:29
+msgid "Today %H:%M"
+msgstr "Hoy %H:%M"
+
+#: src/welcometab.vala:31
+msgid "Yesterday %H:%M"
+msgstr "Ayer %H:%M"
+
+#: src/welcometab.vala:48
+msgid "Today"
+msgstr "Hoy"
+
+#: src/welcometab.vala:51
+msgid "Yesterday"
+msgstr "Ayer"
+
+#: src/welcometab.vala:79
+msgid "Start here"
+msgstr "Empezar aquí"
+
+#: ui/about_dialog.ui:7
+msgid "About Application Mind Map Architect"
+msgstr "Acerca de la aplicación Mind Map Architet"
+
+#: ui/about_dialog.ui:14
+msgid "Copyright (c) 2011-2012, Ondřej Tůma"
+msgstr "Copyright © 2011-2012, Ondřej Tůma"
+
+# Mind maps --> "Mapas mentales"
+# (sounds strange in spanish)
+#: ui/about_dialog.ui:15
+msgid "Tool for working with mind maps. "
+msgstr "Herramienta para trabajar con mind maps."
+
+#: ui/about_dialog.ui:17
+msgid ""
+"Copyright (c) 2011-2012, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions are met:\n"
+"1. Redistributions of source code must retain the above copyright\n"
+"   notice, this list of conditions and the following disclaimer.\n"
+"2. Redistributions in binary form must reproduce the above copyright\n"
+"   notice, this list of conditions and the following disclaimer in the\n"
+"   documentation and/or other materials provided with the distribution.\n"
+"3. All advertising materials mentioning features or use of this software\n"
+"   must display the following acknowledgement:\n"
+"   This product includes software developed by Ondřej Tůma.\n"
+"4. Neither the name of authors nor the\n"
+"   names of its contributors may be used to endorse or promote products\n"
+"   derived from this software without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY ONDŘEJ TǓMA ''AS IS'' AND ANY\n"
+"EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
+"WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
+"DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
+"DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
+"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
+"SERVICES;\n"
+"LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
+"ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
+"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
+"THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+"Copyright © 2011-2012, Ondřej Tůma\n"
+"Todos los derechos reservados.\n"
+"\n"
+"La redistribución y uso del código fuente y formato binario, con o sin\n"
+"modificación, está permitido siempre y cuando se cumplan las siguientes "
+"condiciones:\n"
+"1. La redistribución de código fuente debe mantener el texto de copyright "
+"superior,\n"
+"    esta lista de condiciones y los siguientes avisos legales.\n"
+"2. La redistribución en forma binaria debe mantener el texto de copyright "
+"superior,\n"
+"    esta lista de condiciones y los siguientes avisos legales en la "
+"documentación,\n"
+"     y/o en otros materiales proporcionados con la distribución.\n"
+"3. Todo material publicitario que mencione funcionalidades o use este "
+"software\n"
+"    debe mostrar el siguiente reconocimiento:\n"
+"    Este producto incluye software desarrollado por Ondřej Tůma.\n"
+"4. Ni el nombre de los autores ni el nombre de los\n"
+"    colaboradores debe ser usado para avalar o promover productos\n"
+"    derivados de este software sin permiso específico proporcionado "
+"previamente por escrito.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY ONDŘEJ TǓMA ''AS IS'' AND ANY\n"
+"EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
+"WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
+"DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
+"DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
+"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
+"SERVICES;\n"
+"LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
+"ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
+"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
+"THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+
+#: ui/close_file_dialog.ui:7
+msgid "Save changes to document ?"
+msgstr "¿Guardar los cambios del documento?"
+
+#: ui/close_file_dialog.ui:40
+msgid "Save changes to document %s before exit?"
+msgstr "¿Guardar los cambios del documento %s antes de salir?"
+
+#: ui/close_file_dialog.ui:55
+msgid "Your changes will be lost, if you don't save the file."
+msgstr "Sus cambios se perderán si no guarda el archivo."
+
+#: ui/close_file_dialog.ui:78
+msgid "Close _without save"
+msgstr "Cerrar _sin gruardar"
+
+#: ui/color_dialog.ui:22
+msgid "Default color"
+msgstr "Color por defecto"
+
+#: ui/color_dialog.ui:36
+msgid "Parent color"
+msgstr "Color padre"
+
+#: ui/color_dialog.ui:51
+msgid "Own color"
+msgstr "Color propio"
+
+#: ui/main.ui:7
+msgid "Mind Map Architect"
+msgstr "Mind Map Architet"
+
+#: ui/main.ui:23
+msgid "_File"
+msgstr "_Archivo"
+
+#: ui/main.ui:118
+msgid "Export"
+msgstr "Exportar"
+
+#: ui/main.ui:126
+msgid "Import"
+msgstr "Importar"
+
+#: ui/main.ui:153
+msgid "_Edit"
+msgstr "_Editar"
+
+# Ampliar (other possibility to "Expand" word)
+#: ui/main.ui:161
+msgid "Expand"
+msgstr "Expandir"
+
+#: ui/main.ui:169
+msgid "Collapse"
+msgstr "Contraer"
+
+#: ui/main.ui:259
+msgid "_View"
+msgstr "_Ver"
+
+#: ui/main.ui:267
+msgid "_Expand all branches"
+msgstr "_Expandir todas las ramas"
+
+#: ui/main.ui:275
+msgid "_Collapse all branches"
+msgstr "_Contraer todas las ramas"
+
+#: ui/main.ui:304
+msgid "_Help"
+msgstr "A_yuda"
+
+#: ui/preferences.ui:7
+msgid "Mind Map Architect Preferences"
+msgstr "Preferencias de Mind Map Architect "
+
+#: ui/preferences.ui:46
+msgid "<b>Author</b>"
+msgstr "<b>Autor</b>"
+
+#: ui/preferences.ui:72
+msgid "Choose directory"
+msgstr "Seleccione directorio"
+
+#: ui/preferences.ui:80
+msgid "<b>Default dokuments directory</b>"
+msgstr "<b>Directorio de documentos por defecto</b>"
+
+#: ui/preferences.ui:107
+msgid "_Welcome tab"
+msgstr "Pestaña de _Bienvenida"
+
+#: ui/preferences.ui:121
+msgid "_Empty document"
+msgstr "_Documento vacío"
+
+#: ui/preferences.ui:136
+msgid "_Last opened documents"
+msgstr "_Últimos documentos abiertos"
+
+#: ui/preferences.ui:156
+msgid "<b>Start program with</b>"
+msgstr "<b>Iniciar programa con</b>"
+
+#: ui/preferences.ui:172
+msgid "General"
+msgstr "General"
+
+#: ui/preferences.ui:198 ui/preferences.ui:478
+msgid "Use system font"
+msgstr "Usar fuente del sistema"
+
+#: ui/preferences.ui:231
+msgid "<b>Idea font</b>"
+msgstr "<b>Fuente de la Idea</b>"
+
+#: ui/preferences.ui:260
+msgid "Font"
+msgstr "Fuente"
+
+#: ui/preferences.ui:266
+msgid "Line"
+msgstr "Línea"
+
+#: ui/preferences.ui:311
+msgid "<b>Rising</b>"
+msgstr "<b>Aumentando</b>"
+
+# padding --> espaciado
+# (another possibility. Perhaps, sounds better if related to 'empty spaces')
+#: ui/preferences.ui:340
+msgid "Text padding"
+msgstr "Texto de relleno"
+
+#: ui/preferences.ui:346
+msgid "Height padding"
+msgstr "Altura de relleno"
+
+#: ui/preferences.ui:356
+msgid "Width padding"
+msgstr "Ancho de relleno"
+
+#: ui/preferences.ui:410
+msgid "<b>Idea's padding</b>"
+msgstr "<b>Relleno de Idea</b>"
+
+#: ui/preferences.ui:454
+msgid "Height"
+msgstr "Alto"
+
+#: ui/preferences.ui:497
+msgid "<b>Note's text</b>"
+msgstr "<b>Texto de la nota</b>"
+
+#: ui/preferences.ui:517
+msgid "Style"
+msgstr "Estilo"
+
+#: ui/preferences.ui:539
+msgid "Use system colors"
+msgstr "Usar colores del sistema"
+
+#: ui/preferences.ui:552
+msgid "<b>System colors</b>"
+msgstr "<b>Colores del sistema</b>"
+
+#: ui/preferences.ui:622
+msgid "Default line color"
+msgstr "Color por defecto de línea"
+
+#: ui/preferences.ui:631
+msgid "Canvas color"
+msgstr "Color del lienzo"
+
+#: ui/preferences.ui:642
+msgid "Text normal color"
+msgstr "Color texto normal"
+
+#: ui/preferences.ui:698
+msgid "Text selected color"
+msgstr "Color texto seleccionado"
+
+#: ui/preferences.ui:709
+msgid "Background normal color"
+msgstr "Color de fondo normal"
+
+#: ui/preferences.ui:720
+msgid "Background selected color"
+msgstr "Color de fondo seleccionado"
+
+#: ui/preferences.ui:735
+msgid "<b>Colors definitions</b>"
+msgstr "<b>Definición de colores</b>"
+
+#: ui/preferences.ui:752
+msgid "Colors"
+msgstr "Colores"
+
+#: ui/preferences.ui:780
+msgid "_disable"
+msgstr "_desactivar"
+
+#: ui/preferences.ui:794
+msgid "count _branches"
+msgstr "contar _ramas"
+
+#: ui/preferences.ui:809
+msgid "_min (points)"
+msgstr "_min (puntos)"
+
+#: ui/preferences.ui:824
+msgid "ma_x (points)"
+msgstr "ma_x (puntos)"
+
+#: ui/preferences.ui:839
+msgid "_avg (points)"
+msgstr "_media (puntos)"
+
+#: ui/preferences.ui:859
+msgid "<b>Rising method</b>"
+msgstr "<b>Método de aumento</b>"
+
+#: ui/preferences.ui:887
+msgid "_ignore parent's points"
+msgstr "_ignorar puntos del padre"
+
+#: ui/preferences.ui:901
+msgid "_sum with branches points"
+msgstr "_sumar con puntos de las ramas"
+
+#: ui/preferences.ui:916
+msgid "_replace branches points"
+msgstr "_reemplazar puntos de ramas"
+
+#: ui/preferences.ui:936
+msgid "<b>Branches and Idea poinst</b>"
+msgstr "<b>Ramas y puntos de Idea</b>"
+
+#: ui/preferences.ui:962
+msgid "Ideas"
+msgstr "Ideas"
+
+#: ui/preferences.ui:974
+msgid "Branches"
+msgstr "Ramas"
+
+#: ui/preferences.ui:991
+msgid "<b>Rise elemens</b>"
+msgstr "<b>Subir elemento</b>"
+
+#: ui/preferences.ui:1009
+msgid "Map"
+msgstr "Mapa"
+
+#: ui/welcome.ui:107
+msgid "<b>Recent files:</b>"
+msgstr "<b>Arhivos recientes-</b>"
+
+#: ui/welcome.ui:135
+msgid "<b>Tip:</b>"
+msgstr "<b>Sugerencia:</b>"
+
+#: ui/welcome.ui:153
+msgid "<b><big>label</big></b>"
+msgstr "<b><big>etiqueta</big></b>"
+
+#: ui/welcome.ui:169
+msgid "label"
+msgstr "etiqueta"
+
+#: ui/welcome.ui:183
+msgid "<a href=\"#next_tip\">Next Tip</a>"
+msgstr "<a href=\"#next_tip\">Siguiente sugerencia</a>"
+
+#: ui/welcome.ui:217
+msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Página web del proyecto</a>"
+
+#: ui/welcome.ui:234
+msgid ""
+"If you are looking for more informations about project, want to download new "
+"version, or you want to start with helping us, see Home page of Mind Map "
+"Architect."
+msgstr ""
+"Si busca más información sobre el proyecto, desea descargar una nueva "
+"versión, o ayudarnos, visite la página web de Mind Map Architect."
+
+#: ui/welcome.ui:259
+msgid ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General "
+"Discussion</a>"
+msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
+"\">Discusión General</a>"
+
+#: ui/welcome.ui:276
+msgid ""
+"Have you any question about this application? Or have you some tip for us, "
+"or other users ? Can you help to other users. Or you anly wnat to see whats "
+"new in project ? Watch General Discussion on SourceForge.net."
+msgstr ""
+"¿Tiene alguna pregunta sobre la aplicación? o ¿tiene alguna sugerencia para "
+"nosotros, u otros usuarios? Puede ayudar a otros usuarios. ¿O tan solo desea "
+"ver qué novedades se dan en el proyecto? Visite el foro de discusión General "
+"en sourceforge.net"
+
+#: ui/welcome.ui:302
+msgid ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tasks and Bugs</a>"
+msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tareas y errores</"
+"a>"
+
+#: ui/welcome.ui:319
+msgid ""
+"Is there bug in this program ? Is missing some future for you in "
+"mmarchitect ? Please tell us more information about that. Thank you for your "
+"response."
+msgstr ""
+"¿Hay un error en el programa? ¿Echa en falta al en mmarchitect? Por favor, "
+"haganoslo saber. Gracias por su respueta"
+
+#: ui/welcome.ui:345
+msgid ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
+"gtk=1\">Development of project</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Desarrollo "
+"del proyecto</a>"
+
+#: ui/welcome.ui:361
+msgid ""
+"If you want to help us with this project, translate messages to your "
+"languege, develop, create package for your distribution, or anything what "
+"you can do for help us, see development page."
+msgstr ""
+"Si desea ayudarnos con este proyecto, traducir mensajes a su idioma, "
+"desarrollar, crear un empaquetado para su distribución, o cualquier cosa que "
+"pueda hacer para ayudarnos, vea la página de desarrollo."

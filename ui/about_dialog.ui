@@ -42,7 +42,8 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</property>
     <property name="authors">Ond&#x159;ej T&#x16F;ma &lt;mcbig@zeropage.cz&gt;
-evanmac &lt;nicola.lomartire@gmail.com&gt;</property>
+evanmac &lt;nicola.lomartire@gmail.com&gt;
+Luis Garcia Sevillano &lt;floss.dev@gmail.com&gt;</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox">
         <property name="visible">True</property>
