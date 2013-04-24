@@ -37,5 +37,4 @@ public interface ITab : GLib.Object {
     public abstract TabLabel tablabel { get; protected set; }
     public abstract string title { get; set; }
     public signal void closed (ITab tab);
-    
 }

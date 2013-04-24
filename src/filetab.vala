@@ -8,7 +8,7 @@
  */
 
 public class FileTab : Gtk.ScrolledWindow, ITab {
-    public TabLabel tablabel { get; private set; }
+    public TabLabel tablabel { get; protected set; }
     public string title { get; set; }
 
     public MindMap mindmap;
