@@ -131,18 +131,18 @@ public class MindMap : Gtk.Fixed {
         root.set_size_request(true);
         refresh_tree();
     }
-    
+
     public override bool expose_event (Gdk.EventExpose event) {
         var cr = Gdk.cairo_create (this.window as Gdk.Drawable);
         cr.rectangle (event.area.x, event.area.y,
                       event.area.width, event.area.height);
         cr.clip ();
-        
+
         double x, y;
         get_translation (out x, out y);
 
         cr.translate (x, y);
-        
+
         // draw
         root.draw_tree(cr);
 
@@ -192,7 +192,6 @@ public class MindMap : Gtk.Fixed {
         return base.focus_out_event (event);
     }
 
-    
 
     /* For key press event (move over nodes or insert, edit and delete nodes) */
     public bool on_key_press_event (Gdk.EventKey event) {
@@ -208,6 +207,8 @@ public class MindMap : Gtk.Fixed {
                 Right       - 65363,
                 Insert      - 65379,
                 Tab         - 65289,
+                KP_Add (+)      - 43, 65451,
+                KP_Subtract (-) - 45, 65453,
         */
 
         // unset modificators
@@ -242,6 +243,12 @@ public class MindMap : Gtk.Fixed {
                 return true;
             } else if (event.keyval == 65471) {                 // F2
                 node_edit();
+                return true;
+            } else if (event.keyval == 65451 || event.keyval == 43) {   // KP_Add (+)
+                node_expand();
+                return true;
+            } else if (event.keyval == 65453 || event.keyval == 45) {   // KP_Subtract (-)
+                node_collapse();
                 return true;
             } else if (mod_ctrl && event.keyval == 65362) {     // Ctrl + Up
                 node_move_up();
