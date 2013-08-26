@@ -303,8 +303,10 @@ public class MindMap : Gtk.Fixed {
                     return true;
                 }
             } else if (event.keyval == 65361) {                 // Left
-                if (focused.direction == Direction.LEFT && focused.children.length() > 0){
-                    set_focus(focused.children.nth_data(0));
+                if (focused.direction == Direction.LEFT) {
+                    if (focused.children.length() > 0 && focused.is_expand){
+                        set_focus(focused.children.nth_data(0));
+                    }
                 } else if (focused.direction == Direction.RIGHT ){
                     set_focus(focused.parent);
                 } else if (focused == root) {
@@ -317,8 +319,10 @@ public class MindMap : Gtk.Fixed {
                 }
                 return true;
             } else if (event.keyval == 65363) {                 // Right
-                if (focused.direction == Direction.RIGHT && focused.children.length() > 0){
-                    set_focus(focused.children.nth_data(0));
+                if (focused.direction == Direction.RIGHT) {
+                    if (focused.children.length() > 0 && focused.is_expand){
+                        set_focus(focused.children.nth_data(0));
+                    }
                 } else if (focused.direction == Direction.LEFT ){
                     set_focus(focused.parent);
                 } else if (focused == root) {
@@ -332,7 +336,7 @@ public class MindMap : Gtk.Fixed {
                 return true;
             }
         } else if (event.keyval == 65362 || event.keyval == 65364 ||
-                   event.keyval == 65361 || event.keyval == 65363 ) 
+                   event.keyval == 65361 || event.keyval == 65363 )
         {
             set_focus (root);
             return true;
