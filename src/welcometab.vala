@@ -59,7 +59,7 @@ public struct ClaverTime {
 }
 
 public class WelcomeTab : Gtk.ScrolledWindow, ITab {
-    public TabLabel tablabel { get; private set; }
+    public TabLabel tablabel { get; protected set; }
     public string title { get; set; }
 
     public signal void sig_new_file (Gtk.Widget w);
