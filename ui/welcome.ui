@@ -47,7 +47,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEventBox" id="ope_file_eventbox">
+              <object class="GtkEventBox" id="open_file_eventbox">
                 <property name="visible">True</property>
                 <signal name="button_press_event" handler="welcome_tab_open_file"/>
                 <child>

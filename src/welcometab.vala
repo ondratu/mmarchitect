@@ -115,7 +115,7 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
         bt.set_tooltip_text (_("New file"));
 
         unowned Gtk.EventBox bx;
-        bx = builder.get_object ("ope_file_eventbox") as Gtk.EventBox;
+        bx = builder.get_object ("open_file_eventbox") as Gtk.EventBox;
         bx.set_tooltip_text (_("Open file"));
         bx = builder.get_object ("new_file_eventbox") as Gtk.EventBox;
         bx.set_tooltip_text (_("New file"));
@@ -139,19 +139,21 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
 
             var title = new Gtk.Label (null);
             title.set_attributes (t_attrs);
-            title.set_markup (@"<a href=\"#open\" title=\"$path\">$fname</a>");
             title.set_alignment (0, (float) 0.5);
             title.set_padding (10, 0);
 
             var osfile = File.new_for_commandline_arg(path);
             // todo: check permisions
             if (osfile.query_exists ()) {
+                title.set_markup (@"<a href=\"#open\" title=\"$path\">$fname</a>");
                 title.activate_link.connect(
                     (e) => {
                         sig_open_path(title as Gtk.Widget, path);
                         return true;
                     });
             } else {
+                title.set_markup (@"<u>$fname</u>");
+                title.set_tooltip_text(path);
                 title.set_sensitive (false);
             }
 
