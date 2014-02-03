@@ -1,3 +1,5 @@
+// modules: Gtk
+
 enum Start {
     EMPTY,
     LAST,
@@ -77,7 +79,7 @@ public string IdeaPointsToString(uint points){
         case IdeaPoints.IGNORE:
         default:
             return "IGNORE";
-    } 
+    }
 }
 
 public uint IdeaPointsFromString(string points){
@@ -171,7 +173,7 @@ public class PreferenceWidgets : GLib.Object {
 
         // general tab
         author = builder.get_object ("author") as Gtk.Entry;
-        default_directory = builder.get_object("default_directory") 
+        default_directory = builder.get_object("default_directory")
                     as Gtk.FileChooserButton;
         start_empty = builder.get_object("start_empty") as Gtk.RadioButton;
         start_last = builder.get_object("start_last") as Gtk.RadioButton;
@@ -863,8 +865,9 @@ public class Preferences : GLib.Object {
     }
 
     public void append_last (string path) {
-        last_files.remove (path); // each file could be only one time in list
-        last_files.append (path);
+        unowned GLib.List<string> item = last_files.find_custom (path, strcmp);
+        if (item == null)
+            last_files.append (path);
 
         try {
             save_to_config ();
@@ -874,7 +877,9 @@ public class Preferences : GLib.Object {
     }
 
     public void remove_last (string path) {
-        last_files.remove (path);
+        unowned GLib.List<string> item = last_files.find_custom (path, strcmp);
+        assert (item != null);
+        last_files.remove_link (item);
 
         try {
             save_to_config ();
@@ -894,12 +899,16 @@ public class Preferences : GLib.Object {
     }
 
     private void read_last_node (Xml.Node* node) {
+        unowned GLib.List<string> item;
         for (Xml.Node* it = node->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
-            if (it->name == "file")
-                last_files.append (it->get_content());
+            if (it->name == "file") {
+                item = last_files.find_custom (it->get_content(), strcmp);
+                if (item == null)
+                    last_files.append (it->get_content());
+            }
         }
     }
 }
