@@ -7,6 +7,8 @@
  * Code is present with BSD licence.
  */
 
+// modules: Gtk
+
 enum Direction {
     LEFT,
     RIGHT,
@@ -39,9 +41,12 @@ public class Node : GLib.Object {
     public string text;
     public uint direction;
     public uint weight;
+    public double points;
+    public string str_points {get; private set;}
     public Gdk.Color color;
 
     public Gdk.Rectangle area;
+    private int points_width;
     public Gdk.Rectangle full_left;
     public Gdk.Rectangle full_right;
     public Preferences pref;
@@ -60,7 +65,7 @@ public class Node : GLib.Object {
         this.weight = 1;
 
         var it = parent;
-        while (it != null) {                        // count parent's weight 
+        while (it != null) {                        // count parent's weight
             it.weight += 1;
             if (it.window != null)
                 it.set_size_request();
@@ -100,6 +105,7 @@ public class Node : GLib.Object {
     public Node copy () {
         var node = new Node (title, parent, direction);
         node.text = text;
+        node.points = points;
         foreach (var it in children) {
             var chld = it.copy();
             chld.parent = node;
@@ -164,7 +170,7 @@ public class Node : GLib.Object {
             var a = children.nth_data(i);
             // direction is right cik cak
             if (a.direction == (uint) direction){
-                direction = !direction; 
+                direction = !direction;
                 i++;
                 continue;
             }
@@ -195,7 +201,7 @@ public class Node : GLib.Object {
         int pos = get_position();
         if (pos == 0)
             return;
-        
+
         if (parent.parent != null) { // not child of root
             parent.children.remove(this);
             parent.children.insert(this, pos - 1);
@@ -261,7 +267,7 @@ public class Node : GLib.Object {
                 new_parent.children.insert(this, parent.get_position() +1);
                 this.parent = new_parent;
                 this.parent.zip();
-            } 
+            }
         } else {
             int pos = get_position();
             if (pos > 0){
@@ -374,7 +380,8 @@ public class Node : GLib.Object {
 
         font_desc = pref.node_font.copy();
 
-        var font_size = font_desc.get_size() * (1 + (weight / pref.font_rise)) * (pref.dpi / 100.0);
+        var font_size = font_desc.get_size()
+                        * (1 + (weight / pref.font_rise)) * (pref.dpi / 100.0);
         font_desc.set_size((int) font_size);
 
         la.set_font_description(font_desc);
@@ -384,10 +391,32 @@ public class Node : GLib.Object {
         la.get_size (out t_width, out t_height);
         width = (int) GLib.Math.lrint ( (title.length > 0) ?
                 (t_width / Pango.SCALE) + pref.font_padding * 8 :
-                NONE_TITLE.length * (int) (font_size / Pango.SCALE) + pref.font_padding * 2 + ICO_SIZE);
+                NONE_TITLE.length * (int) (font_size / Pango.SCALE)
+                                            + pref.font_padding * 2 + ICO_SIZE);
         height = (int) GLib.Math.lrint ((t_height / Pango.SCALE) + pref.font_padding * 2);
-        if (text.length > 0)
+
+        if (text.length > 0)            // if there is text, icon is visible
             width += ICO_SIZE + 1;
+
+        // points area
+        if (points != 0) {              // if there are points, thay are visible
+            str_points = "%.2G".printf(points);
+            var tmp_font = pref.node_font.copy();
+            font_size = font_desc.get_size()
+                        * (1 + (weight / pref.font_rise)) * (pref.dpi / 100.0);
+            tmp_font.set_size((int) font_size - 2);
+
+            la.set_font_description(tmp_font);
+            la.set_text(str_points, -1);
+            la.get_size (out t_width, out t_height);
+
+            points_width = (int) GLib.Math.lrint (
+                                (t_width / Pango.SCALE) + pref.font_padding * 6);
+
+            width += points_width;
+        } else {
+            points_width = 0;
+        }
     }
 
     public void set_size_request (bool recursive = false) {
@@ -471,12 +500,12 @@ public class Node : GLib.Object {
                     full_left.height += node.full_left.height;
                 }
             }
-            
+
             if (full_right.height > area.height)
                 full_right.height -= area.height + pref.height_padding;
             if (full_left.height > area.height)
                 full_left.height -= area.height + pref.height_padding;
-            
+
             if (parent == null){
                 full_left.width -= area.width;
                 full_left.height -= pref.height_padding;
@@ -493,7 +522,7 @@ public class Node : GLib.Object {
                 foreach (var node in children)
                     if (node.direction == dir) node.corect_y (dist);
             }
-            
+
             int jmp = (rightjmp > leftjmp) ? rightjmp : leftjmp;
             area.y = area.y + jmp / 2 - (area.height + pref.height_padding)/ 2;
             return jmp;
@@ -534,7 +563,24 @@ public class Node : GLib.Object {
         cr.set_line_width (0.7);
 
         // roundable rectangle
-        draw_rectangle (cr, area, (area.height / 2) + 2);
+        if (points != 0) {
+            var t_area = Gdk.Rectangle() {
+                width = area.width - points_width,
+                height = area.height,
+                x = area.x,
+                y = area.y
+            };
+            draw_rectangle (cr, t_area, (area.height / 2) + 2);
+
+            t_area = Gdk.Rectangle() {
+                width = points_width,
+                height = area.height,
+                x = area.x + area.width - points_width,
+                y = area.y
+            };
+            draw_rectangle (cr, t_area, (area.height / 2) + 2);
+        } else
+            draw_rectangle (cr, area, (area.height / 2) + 2);
 
         if (is_focus){
             Gdk.cairo_set_source_color (cr, pref.back_selected);
@@ -542,7 +588,7 @@ public class Node : GLib.Object {
             Gdk.cairo_set_source_color (cr, pref.back_normal);
 
         cr.fill_preserve();
-       
+
         if (default_color)
             Gdk.cairo_set_source_color (cr, pref.default_color);
         else
@@ -563,10 +609,22 @@ public class Node : GLib.Object {
             la.set_text(title, -1);
             Pango.cairo_show_layout (cr, la);
         }
-        
+
+        if (points != 0) {
+            cr.move_to (area.x + area.width - points_width + 2, area.y + pref.font_padding);
+
+            var la = Pango.cairo_create_layout (cr);
+            var tmp_font = font_desc.copy();
+            tmp_font.set_size((int) GLib.Math.lrint (font_desc.get_size() * 0.7));
+
+            la.set_font_description(tmp_font);
+            la.set_text(str_points, -1);
+            Pango.cairo_show_layout (cr, la);
+        }
+
         if (text.length > 0) {
             var ico = new Cairo.ImageSurface.from_png (DATA + "/icons/sticky_notes_pin.png");
-            cr.set_source_surface (ico, area.x + area.width - ICO_SIZE - 2,
+            cr.set_source_surface (ico, area.x + area.width - ICO_SIZE - 2 - points_width,
                                         area.y + (area.height - ICO_SIZE) /2 );
             cr.paint ();
         }
@@ -629,7 +687,7 @@ public class Node : GLib.Object {
         } else if (direction == Direction.LEFT) {
             earea.x = area.x - 3;
         }
-            
+
         draw_rectangle (cr, earea, 2);
         cr.set_source_rgb (1, 1, 1);
         cr.fill_preserve();
@@ -639,7 +697,7 @@ public class Node : GLib.Object {
 
     public void draw_tree (Cairo.Context cr) {
         draw (cr);
-        
+
         if (children.length() > 0) {
             if (is_expand) {
                 foreach (var node in children)
@@ -657,6 +715,11 @@ public class Node : GLib.Object {
 
     public void set_text (string text) {
         this.text = text.strip();
+        get_size_request (out area.width, out area.height);
+    }
+
+    public void set_points (double points) {
+        this.points = points;
         get_size_request (out area.width, out area.height);
     }
 

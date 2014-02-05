@@ -11,5 +11,6 @@ const double LINE_RISE = 20.0;
 
 const string NONE_TITLE = "Some Title To Edit";
 const int ICO_SIZE = 16;
+const int POINTS_LENGTH = 5;
 
 const uint RECENT_FILES = 5;

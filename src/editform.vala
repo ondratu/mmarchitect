@@ -7,6 +7,8 @@
  * Code is present with BSD licence.
  */
 
+// modules: Gtk
+
 public class BgLabel : Gtk.Widget {
     private static string label;
     private Pango.Layout layout;
@@ -209,7 +211,7 @@ public class EditForm : Gtk.VBox {
     public Gtk.ScrolledWindow text_scroll;
     public Gtk.TextView text_view;
     public BgLabel label;
-    public Gtk.Entry point;
+    public Gtk.Entry points;
     //public Gtk.ColorButton btn_color;
     public ColorButton btn_color;
     public Gtk.Button btn_save;
@@ -256,6 +258,13 @@ public class EditForm : Gtk.VBox {
         entry.set_size_request (width + pref.font_padding * 2 + ico_size, -1);
         focusable_widgets.append (entry);
 
+        points = new Gtk.Entry ();
+        points.set_text(node.str_points);
+        points.modify_font(font_desc);
+        points.key_press_event.connect (on_key_press_event);
+        points.set_size_request(POINTS_LENGTH * pref.node_font_size
+                                + pref.font_padding * 2, -1);
+
         btn_color = new ColorButton (node);
         btn_color.set_can_focus (true);
         last = last.append (btn_color);
@@ -284,29 +293,21 @@ public class EditForm : Gtk.VBox {
         text_scroll.add_with_viewport (text_view);
         text_scroll.set_size_request (-1, pref.text_height);
 
-        label = new BgLabel (_("Point") + ":");
-        point = new Gtk.Entry ();
-
         var box = new Gtk.HBox(false, 0);
         box.pack_start(entry);
+        box.pack_start(points);
         box.pack_start (btn_color);
         box.pack_start(btn_save);
         box.pack_start(btn_close);
 
-        /*
-        var box2 = new Gtk.HBox(false, 0);
-        box2.pack_start (label);
-        box2.pack_start (point);
-        */
-
         pack_start(box);
-        //pack_start(box2);
         pack_start(text_scroll);
 
         collapse ();
         box.show ();
-        //box2.show ();
         entry.show_all ();
+        if (node.points != 0)
+            points.show_all ();
         show ();
     }
 
@@ -321,6 +322,7 @@ public class EditForm : Gtk.VBox {
         Gdk.Color color;
         btn_color.get_color (out color);
         node.set_color (color);
+        node.set_points (double.parse (points.get_text ()));
     }
 
     public bool on_key_press_event (Gdk.EventKey e){
@@ -388,8 +390,8 @@ public class EditForm : Gtk.VBox {
 
     public void collapse () {
         is_expand = false;
-        //label.hide ();
-        //point.hide ();
+        if (node.points == 0)
+            points.hide ();
         text_scroll.hide ();
         btn_color.hide ();
         btn_save.hide ();

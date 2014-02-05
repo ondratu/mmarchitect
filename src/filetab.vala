@@ -7,6 +7,8 @@
  * Code is present with BSD licence.
  */
 
+// modules: Gtk
+
 public class FileTab : Gtk.ScrolledWindow, ITab {
     public TabLabel tablabel { get; protected set; }
     public string title { get; set; }
@@ -118,13 +120,20 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     private void write_node(Node node, Xml.TextWriter w){
         w.start_element ("node");
         w.write_attribute ("title", node.title);
-        w.write_attribute ("direction", node.direction.to_string());
+
+        if (node.parent != null && node.direction != Direction.AUTO &&
+                node.direction != node.parent.direction)
+            w.write_attribute ("direction", node.direction.to_string());
+
         w.write_attribute ("expand", node.is_expand.to_string());
 
         if (node.parent == null && !node.default_color)
             w.write_attribute ("color", node.color.to_string());
         else if (node.parent != null && !node.color.equal(node.parent.color))
             w.write_attribute ("color", node.color.to_string());
+
+        if (node.points != 0)
+            w.write_attribute ("points", node.points.to_string());
 
         if (node.text != "")
             w.write_element ("text", node.text);
@@ -174,6 +183,8 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
             } else if (it->name == "color"){
                 Gdk.Color.parse (it->children->content, out c.color);
                 c.default_color = false;
+            } else if (it->name == "points"){
+                c.points = double.parse(it->children->content);
             }
         }
     }
@@ -193,6 +204,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
                     child.color = c.color;
                     child.default_color = false;
                 }
+                child.points = c.points;
 
                 read_node(it, child);
 
