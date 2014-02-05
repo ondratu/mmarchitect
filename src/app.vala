@@ -7,6 +7,8 @@
  * Code is present with BSD licence.
  */
 
+// modules: Gtk
+
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
     private Gtk.Window window;
@@ -154,6 +156,7 @@ public class App : GLib.Object {
                 var osfile = File.new_for_commandline_arg(it);
                 if (osfile.query_exists ())
                     open_file_private(it);
+                else pref.remove_last(it);  // remove last file if not extist
             }
             // when len of last files is zero and no file is open
             if (notebook.get_n_pages() == 0)
