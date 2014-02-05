@@ -351,7 +351,8 @@ public class Preferences : GLib.Object {
 
         node_system_font = true;
         node_font = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
-        node_font_size = (node_font.get_size() / Pango.SCALE) * (dpi / 100);
+        node_font_size = (int) GLib.Math.lrint (
+                            (node_font.get_size() / Pango.SCALE) * (dpi / 100.0));
         font_rise = FONT_RISE;
         line_rise = LINE_RISE;
         font_padding = FONT_PADDING;
@@ -359,7 +360,8 @@ public class Preferences : GLib.Object {
         width_padding = NODE_PADDING_WEIGHT;
         text_system_font = true;
         text_font = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
-        text_font_size = (text_font.get_size() / Pango.SCALE) * (dpi / 100);
+        text_font_size = (int) GLib.Math.lrint (
+                            (text_font.get_size() / Pango.SCALE) * (dpi / 100.0));
         text_height = TEXT_HEIGHT;
 
         system_colors = true;
@@ -531,7 +533,8 @@ public class Preferences : GLib.Object {
             node_font = Pango.FontDescription.from_string (pw.node_font.font_name);
         else
             node_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
-        node_font_size = (node_font.get_size() / Pango.SCALE) * (dpi / 100);
+        node_font_size = (int) GLib.Math.lrint (
+                        (node_font.get_size() / Pango.SCALE) * (dpi / 100.0));
         font_rise = pw.font_rise.get_value ();
         line_rise = pw.line_rise.get_value ();
         font_padding = (int) pw.font_padding.get_value ();
@@ -542,7 +545,8 @@ public class Preferences : GLib.Object {
             text_font = Pango.FontDescription.from_string (pw.text_font.font_name);
         else
             text_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
-        text_font_size = (text_font.get_size() / Pango.SCALE) * (dpi / 100);
+        text_font_size = (int) GLib.Math.lrint (
+                        (text_font.get_size() / Pango.SCALE) * (dpi / 100.0));
         text_height = (int) pw.text_height.get_value ();
 
         // colors map
@@ -806,11 +810,11 @@ public class Preferences : GLib.Object {
         for (uint i = 0; i < len; i++) {
             var it = recent_files.nth_data (i);
             if (it.path == path) {
-                // BUG: removes do not remove whene G is struct
                 recent_files.remove (it);
                 break;
             }
         }
+
         var file = new RecentFile (path);
         recent_files.insert (file, 0);
 
