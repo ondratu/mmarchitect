@@ -7,6 +7,8 @@
  * Code is present with BSD licence.
  */
 
+// modules: Gtk
+
 public class MindMap : Gtk.Fixed {
     public Preferences pref;
     public EditForm? editform;
@@ -164,10 +166,10 @@ public class MindMap : Gtk.Fixed {
             get_translation (out x, out y);
             var node = root.event_on(event.x - x, event.y - y);
             if (node != null && node == focused) {
-                node.change_expand();
-                change();
-                refresh_tree();
-                grab_focus();
+                if (node.change_expand()) {
+                    change();
+                    refresh_tree();
+                }
             } else
                 set_focus(node);
         }
@@ -484,7 +486,7 @@ public class MindMap : Gtk.Fixed {
         if (editform.is_expand && (new_y + aloc.height) > allocation.height) {
             new_y = allocation.height - pref.font_padding - aloc.height;
         }
-        
+
         move (editform, new_x, new_y);
         focus_changed (new_x, new_y, aloc.width,  aloc.height);
     }

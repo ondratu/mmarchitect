@@ -47,6 +47,7 @@ public class Node : GLib.Object {
 
     public Gdk.Rectangle area;
     private int points_width;
+    private int points_height;
     public Gdk.Rectangle full_left;
     public Gdk.Rectangle full_right;
     public Preferences pref;
@@ -351,9 +352,14 @@ public class Node : GLib.Object {
         this.is_focus = is_focus;
     }
 
-    public void change_expand () {
-        if (parent != null)                 // parent can't be close
-            is_expand = ! is_expand;
+    public bool change_expand () {
+        if (parent == null)                 // parent can't be close
+            return false;
+        if (children.length() == 0)         // no children means expand = True
+            return false;
+
+        is_expand = ! is_expand;
+        return true;
     }
     public void expand () {
         is_expand = true;
@@ -400,7 +406,7 @@ public class Node : GLib.Object {
 
         // points area
         if (points != 0) {              // if there are points, thay are visible
-            str_points = "%.2G".printf(points);
+            str_points = "%1g".printf(points);
             var tmp_font = pref.node_font.copy();
             font_size = font_desc.get_size()
                         * (1 + (weight / pref.font_rise)) * (pref.dpi / 100.0);
@@ -411,11 +417,13 @@ public class Node : GLib.Object {
             la.get_size (out t_width, out t_height);
 
             points_width = (int) GLib.Math.lrint (
-                                (t_width / Pango.SCALE) + pref.font_padding * 6);
+                                ((t_width / Pango.SCALE) + pref.font_padding * 6) * 0.8);
+            points_height = (int) GLib.Math.lrint (height * 0.8);
 
             width += points_width;
         } else {
             points_width = 0;
+            points_height = 0;
         }
     }
 
@@ -574,11 +582,11 @@ public class Node : GLib.Object {
 
             t_area = Gdk.Rectangle() {
                 width = points_width,
-                height = area.height,
+                height = points_height,
                 x = area.x + area.width - points_width,
-                y = area.y
+                y = area.y + (int) GLib.Math.lrint ( (area.height - points_height) / 2)
             };
-            draw_rectangle (cr, t_area, (area.height / 2) + 2);
+            draw_rectangle (cr, t_area, (t_area.height / 2) + 2);
         } else
             draw_rectangle (cr, area, (area.height / 2) + 2);
 
@@ -611,7 +619,9 @@ public class Node : GLib.Object {
         }
 
         if (points != 0) {
-            cr.move_to (area.x + area.width - points_width + 2, area.y + pref.font_padding);
+            cr.move_to (area.x + area.width - points_width + 2,
+                        area.y + pref.font_padding + (int) GLib.Math.lrint (
+                                            (area.height - points_height) / 2) );
 
             var la = Pango.cairo_create_layout (cr);
             var tmp_font = font_desc.copy();

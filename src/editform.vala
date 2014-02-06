@@ -61,6 +61,56 @@ public class BgLabel : Gtk.Widget {
     }
 }
 
+public class NumberEntry : Gtk.Entry {
+    public double value;
+    public uint digits;
+
+    public NumberEntry () {
+        value = 0;
+        digits = 1;
+        changed.connect(on_changed);
+        insert_text.connect(on_insert_text);
+    }
+
+
+    public void set_digits(uint digits) {
+        this.digits = digits;
+        var format = "%%%ug".printf(digits);
+        set_text(format.printf(value));
+    }
+
+    public uint get_digits() {
+        return this.digits;
+    }
+
+    public void set_value(double value) {
+        this.value = value;
+        var format = "%%%ug".printf(digits);
+        stdout.printf("format: %s <- %f\n", format, value);
+        set_text(format.printf(value));
+    }
+
+    public double get_value() {
+        return value;
+    }
+
+    public void on_changed () {
+        if (Regex.match_simple ("^[0-9]*\\.?,?[0-9]*$", get_text())) {
+            modify_text(Gtk.StateType.NORMAL, null);
+            this.value = double.parse(get_text().replace(",", "."));
+        } else {
+            // set error if it is not correct number (more then one separator)
+            modify_text(Gtk.StateType.NORMAL, Gdk.Color(){red = uint16.MAX});
+        }
+    }
+
+    public void on_insert_text (string text, int length, ref int position) {
+        // stop insert text which is not number
+        if (! Regex.match_simple ("^[0-9]*\\.?,?[0-9]*$", text))
+            GLib.Signal.stop_emission_by_name (this, "insert-text");
+    }
+}
+
 public class ColorButton : Gtk.Button {
     private Node node;
     private Gtk.DrawingArea color_widget;
@@ -210,8 +260,7 @@ public class EditForm : Gtk.VBox {
     public Gtk.Entry entry;
     public Gtk.ScrolledWindow text_scroll;
     public Gtk.TextView text_view;
-    public BgLabel label;
-    public Gtk.Entry points;
+    public NumberEntry points;
     //public Gtk.ColorButton btn_color;
     public ColorButton btn_color;
     public Gtk.Button btn_save;
@@ -258,8 +307,9 @@ public class EditForm : Gtk.VBox {
         entry.set_size_request (width + pref.font_padding * 2 + ico_size, -1);
         focusable_widgets.append (entry);
 
-        points = new Gtk.Entry ();
-        points.set_text(node.str_points);
+        points = new NumberEntry ();
+        points.set_digits(1);
+        points.set_value(node.points);
         points.modify_font(font_desc);
         points.key_press_event.connect (on_key_press_event);
         points.set_size_request(POINTS_LENGTH * pref.node_font_size
@@ -322,7 +372,9 @@ public class EditForm : Gtk.VBox {
         Gdk.Color color;
         btn_color.get_color (out color);
         node.set_color (color);
-        node.set_points (double.parse (points.get_text ()));
+        node.set_points (points.get_value ());
+
+        stdout.printf ("Value: %f\n", points.get_value());
     }
 
     public bool on_key_press_event (Gdk.EventKey e){
