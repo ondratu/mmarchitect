@@ -130,8 +130,10 @@ public class MindMap : Gtk.Fixed {
     }
 
     public void apply_style() {
-        root.set_size_request(true);
-        refresh_tree();
+        if (this.window != null) { // only if map was be drow yet
+            root.set_size_request(true);
+            refresh_tree();
+        }
     }
 
     public override bool expose_event (Gdk.EventExpose event) {
