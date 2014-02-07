@@ -3,92 +3,114 @@
 enum Start {
     EMPTY,
     LAST,
-    WELCOME
-}
+    WELCOME;
 
-public string StartToString(uint start){
-    switch (start) {
-        case Start.LAST:
-            return "LAST";
-        case Start.EMPTY:
-            return "EMPTY";
-        case Start.WELCOME:
-        default:
-            return "WELCOME";
+    public static string to_string(uint i){
+        switch (i) {
+            case Start.LAST:
+                return "LAST";
+            case Start.EMPTY:
+                return "EMPTY";
+            case Start.WELCOME:
+            default:
+                return "WELCOME";
+        }
     }
-}
 
-public uint StartFromString(string start){
-    if (start == "LAST")
-        return Start.LAST;
-    if (start == "EMPTY")
-        return Start.EMPTY;
-    else // WELCOME and default
-        return Start.WELCOME;
+    public static uint parse(string s){
+        if (s == "LAST")
+            return Start.LAST;
+        if (s == "EMPTY")
+            return Start.EMPTY;
+        else // WELCOME and default
+            return Start.WELCOME;
+    }
 }
 
 enum RisingMethod {
-    DISABLE,
-    BRANCHES,
-    MIN,
-    MAX,
-    AVG
-}
+    DISABLE,                // not rising
+    BRANCHES,               // rising by branches
+    POINTS;                 // rising by points
 
-public string RisingMethodToString(uint rising){
-    switch (rising) {
-        case RisingMethod.DISABLE:
-            return "DISABLE";
-        case RisingMethod.MIN:
-            return "MIN";
-        case RisingMethod.MAX:
-            return "MAX";
-        case RisingMethod.AVG:
-            return "AVG";
-        case RisingMethod.BRANCHES:
-        default:
-            return "BRANCHES";
+    public static string to_string(uint i){
+        switch (i) {
+            case RisingMethod.DISABLE:
+                return "DISABLE";
+            case RisingMethod.POINTS:
+                return "POINTS";
+            case RisingMethod.BRANCHES:
+            default:
+                return "BRANCHES";
+        }
     }
-}
 
-public uint RisingMethodFromString(string rising){
-    if (rising == "DISABLE")
-        return RisingMethod.DISABLE;
-    if (rising == "MIN")
-        return RisingMethod.MIN;
-    if (rising == "MAX")
-        return RisingMethod.MAX;
-    if (rising == "AVG")
-        return RisingMethod.AVG;
-    else // BRANCHES and default
-        return RisingMethod.BRANCHES;
+    public static uint parse(string s){
+        if (s == "DISABLE")
+            return RisingMethod.DISABLE;
+        if (s == "POINTS")
+            return RisingMethod.POINTS;
+        else // BRANCHES and default
+            return RisingMethod.BRANCHES;
+    }
 }
 
 enum IdeaPoints {
     IGNORE,             // node points are ignore when chlidren have points
-    SUM,                // node points are sumary with all children points
-    REPLACE             // node points are replace when children have poins
-}
+    MIX,                // node points are sumary with all children points
+    REPLACE;            // node points are replace when children have poins
 
-public string IdeaPointsToString(uint points){
-    switch (points) {
-        case IdeaPoints.SUM:
-            return "SUM";
-        case IdeaPoints.REPLACE:
-            return "REPLACE";
-        case IdeaPoints.IGNORE:
-        default:
-            return "IGNORE";
+    public static string to_string(uint i){
+        switch (i) {
+            case IdeaPoints.MIX:
+                return "MIX";
+            case IdeaPoints.REPLACE:
+                return "REPLACE";
+            case IdeaPoints.IGNORE:
+            default:
+                return "IGNORE";
+        }
+    }
+
+    public static uint parse(string s){
+        if (s == "MIX")
+            return IdeaPoints.MIX;
+        if (s == "REPLACE")
+            return IdeaPoints.REPLACE;
+        else // IGNORE and default
+            return IdeaPoints.IGNORE;
     }
 }
 
-public uint IdeaPointsFromString(string points){
-    if (points == "SUM")
-        return IdeaPoints.SUM;
-    if (points == "REPLACE")
-        return IdeaPoints.REPLACE;
-    else // IGNORE and default
-        return IdeaPoints.IGNORE;
+public enum PointsFunction {
+    SUM,
+    AVG,
+    MAX,
+    MIN;
+
+    public static string to_string(uint i) {
+        switch (i) {
+            case PointsFunction.MIN:
+                return "MIN";
+            case PointsFunction.MAX:
+                return "MAX";
+            case PointsFunction.AVG:
+                return "AVG";
+            case PointsFunction.SUM:
+            default:
+                return "SUM";
+        }
+    }
+
+    public static uint parse(string s) {
+        if (s == "MIN")
+            return PointsFunction.MIN;
+        if (s == "MAX")
+            return PointsFunction.MAX;
+        if (s == "AVG")
+            return PointsFunction.AVG;
+        else    // SUM is default
+            return PointsFunction.SUM;
+    }
 }
 
 public class RecentFile {
@@ -153,12 +175,14 @@ public class PreferenceWidgets : GLib.Object {
     // map tab
     public Gtk.RadioButton rise_method_disable;
     public Gtk.RadioButton rise_method_branches;
-    public Gtk.RadioButton rise_method_min;
-    public Gtk.RadioButton rise_method_max;
-    public Gtk.RadioButton rise_method_avg;
+    public Gtk.RadioButton rise_method_points;
     public Gtk.RadioButton points_ignore;
-    public Gtk.RadioButton points_sum;
+    public Gtk.RadioButton points_mix;
     public Gtk.RadioButton points_replace;
+    public Gtk.RadioButton function_sum;
+    public Gtk.RadioButton function_avg;
+    public Gtk.RadioButton function_max;
+    public Gtk.RadioButton function_min;
     public Gtk.CheckButton rise_ideas;
     public Gtk.CheckButton rise_branches;
 
@@ -224,17 +248,18 @@ public class PreferenceWidgets : GLib.Object {
                     as Gtk.RadioButton;
         rise_method_branches = builder.get_object("rise_method_branches")
                     as Gtk.RadioButton;
-        rise_method_min = builder.get_object("rise_method_min")
-                    as Gtk.RadioButton;
-        rise_method_max = builder.get_object("rise_method_max")
-                    as Gtk.RadioButton;
-        rise_method_avg = builder.get_object("rise_method_avg")
+        rise_method_points = builder.get_object("rise_method_points")
                     as Gtk.RadioButton;
         points_ignore = builder.get_object("points_ignore") as Gtk.RadioButton;
-        points_sum = builder.get_object("points_sum") as Gtk.RadioButton;
+        points_mix = builder.get_object("points_mix") as Gtk.RadioButton;
         points_replace = builder.get_object("points_replace") as Gtk.RadioButton;
+        function_sum = builder.get_object("function_sum") as Gtk.RadioButton;
+        function_avg = builder.get_object("function_avg") as Gtk.RadioButton;
+        function_min = builder.get_object("function_max") as Gtk.RadioButton;
+        function_max = builder.get_object("function_min") as Gtk.RadioButton;
         rise_ideas = builder.get_object("rise_ideas") as Gtk.CheckButton;
         rise_branches = builder.get_object("rise_branches") as Gtk.CheckButton;
+
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_node_font")]
@@ -292,6 +317,7 @@ public class Preferences : GLib.Object {
 
     public uint rise_method;
     public uint points;
+    public uint function;
     public bool rise_ideas;
     public bool rise_branches;
 
@@ -374,6 +400,7 @@ public class Preferences : GLib.Object {
 
         rise_method = RisingMethod.BRANCHES;
         points = IdeaPoints.IGNORE;
+        function = PointsFunction.SUM;
         rise_ideas = true;
         rise_branches = true;
     }
@@ -389,7 +416,7 @@ public class Preferences : GLib.Object {
             } else if (it->name == "default_directory"){
                 default_directory = it->get_content().strip();
             } else if (it->name == "start_with"){
-                start_with = StartFromString (it->get_content().strip());
+                start_with = Start.parse (it->get_content().strip());
             }
         }
     }
@@ -462,9 +489,11 @@ public class Preferences : GLib.Object {
             }
 
             if (it->name == "rise_method"){
-                rise_method = RisingMethodFromString(it->get_content().strip());
+                rise_method = RisingMethod.parse(it->get_content().strip());
             } else if (it->name == "points"){
-                points = IdeaPointsFromString(it->get_content().strip());
+                points = IdeaPoints.parse(it->get_content().strip());
+            } else if (it->name == "function"){
+                function = PointsFunction.parse(it->get_content().strip());
             } else if (it->name == "rise_ideas"){
                 rise_ideas = bool.parse(it->get_content().strip());
             } else if (it->name == "rise_branches"){
@@ -565,22 +594,28 @@ public class Preferences : GLib.Object {
         // map tab
         if (pw.rise_method_branches.get_active ()){
             rise_method = RisingMethod.BRANCHES;
-        } else if (pw.rise_method_min.get_active ()){
-            rise_method = RisingMethod.MIN;
-        } else if (pw.rise_method_max.get_active ()){
-            rise_method = RisingMethod.MAX;
-        } else if (pw.rise_method_avg.get_active ()){
-            rise_method = RisingMethod.AVG;
+        } else if (pw.rise_method_points.get_active ()){
+            rise_method = RisingMethod.POINTS;
         } else {
             rise_method = RisingMethod.DISABLE;
         }
 
-        if (pw.points_sum.get_active ()){
-            points = IdeaPoints.SUM;
+        if (pw.points_mix.get_active ()){
+            points = IdeaPoints.MIX;
         } else if (pw.points_replace.get_active ()){
             points = IdeaPoints.REPLACE;
         } else {
             points = IdeaPoints.IGNORE;
+        }
+
+        if (pw.function_sum.get_active ()){
+            function = PointsFunction.SUM;
+        } else if (pw.function_avg.get_active ()){
+            function = PointsFunction.AVG;
+        } else if (pw.function_max.get_active ()){
+            function = PointsFunction.MAX;
+        } else {
+            function = PointsFunction.MIN;
         }
 
         rise_ideas = pw.rise_ideas.get_active ();
@@ -620,30 +655,28 @@ public class Preferences : GLib.Object {
         pw.back_selected.set_color (back_selected);
 
         // map tab
-        switch (rise_method) {
-            case RisingMethod.BRANCHES:
-                pw.rise_method_branches.set_active (true);
-                break;
-            case RisingMethod.MIN:
-                pw.rise_method_min.set_active (true);
-                break;
-            case RisingMethod.MAX:
-                pw.rise_method_max.set_active (true);
-                break;
-            case RisingMethod.AVG:
-                pw.rise_method_avg.set_active (true);
-                break;
-            case RisingMethod.DISABLE:
-            default:
-                pw.rise_method_disable.set_active (true);
-                break;
-        }
-        if (points == IdeaPoints.SUM)
-            pw.points_sum.set_active (true);
+        if (rise_method == RisingMethod.BRANCHES)
+            pw.rise_method_branches.set_active (true);
+        else if (rise_method == RisingMethod.POINTS)
+            pw.rise_method_points.set_active (true);
+        else        // RisingMethod.DISABLE
+            pw.rise_method_disable.set_active (true);
+
+        if (points == IdeaPoints.MIX)
+            pw.points_mix.set_active (true);
         else if (points == IdeaPoints.REPLACE)
             pw.points_replace.set_active (true);
-        else
+        else        // IdeaPoints.IGNORE
             pw.points_ignore.set_active (true);
+
+        if (function == PointsFunction.SUM)
+            pw.function_sum.set_active (true);
+        else if (function == PointsFunction.AVG)
+            pw.function_avg.set_active (true);
+        else if (function == PointsFunction.MAX)
+            pw.function_max.set_active (true);
+        else        // PointsFunction.MIN
+            pw.function_min.set_active (true);
 
         pw.rise_ideas.set_active (rise_ideas);
         pw.rise_branches.set_active (rise_branches);
@@ -655,7 +688,7 @@ public class Preferences : GLib.Object {
 
         w.write_element ("author", author);
         w.write_element ("default_directory", default_directory);
-        w.write_element ("start_with", StartToString (start_with));
+        w.write_element ("start_with", Start.to_string (start_with));
 
         w.end_element ();
     }
@@ -698,8 +731,9 @@ public class Preferences : GLib.Object {
     private void write_map_node (Xml.TextWriter w) {
         w.start_element ("map");
 
-        w.write_element ("rise_method", RisingMethodToString (rise_method));
-        w.write_element ("points", IdeaPointsToString (points));
+        w.write_element ("rise_method", RisingMethod.to_string (rise_method));
+        w.write_element ("points", IdeaPoints.to_string (points));
+        w.write_element ("function", PointsFunction.to_string (function));
         w.write_element ("rise_ideas", rise_ideas.to_string ());
         w.write_element ("rise_branches", rise_branches.to_string ());
 

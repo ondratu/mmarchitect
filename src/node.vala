@@ -417,8 +417,8 @@ public class Node : GLib.Object {
             la.get_size (out t_width, out t_height);
 
             points_width = (int) GLib.Math.lrint (
-                                ((t_width / Pango.SCALE) + pref.font_padding * 6) * 0.8);
-            points_height = (int) GLib.Math.lrint (height * 0.8);
+                                ((t_width / Pango.SCALE) + pref.font_padding * 6) * 0.7);
+            points_height = (int) GLib.Math.lrint (height * 0.7);
 
             width += points_width;
         } else {
