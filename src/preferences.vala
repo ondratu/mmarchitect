@@ -141,7 +141,7 @@ public class RecentFile {
     }
 }
 
-public class PreferenceWidgets : GLib.Object {
+public class PreferenceWidgets : PreferenceMap {
     public Gtk.Dialog dialog;
 
     // general tab
@@ -172,23 +172,11 @@ public class PreferenceWidgets : GLib.Object {
     public Gtk.ColorButton back_normal;
     public Gtk.ColorButton back_selected;
 
-    // map tab
-    public Gtk.RadioButton rise_method_disable;
-    public Gtk.RadioButton rise_method_branches;
-    public Gtk.RadioButton rise_method_points;
-    public Gtk.RadioButton points_ignore;
-    public Gtk.RadioButton points_mix;
-    public Gtk.RadioButton points_replace;
-    public Gtk.RadioButton function_sum;
-    public Gtk.RadioButton function_avg;
-    public Gtk.RadioButton function_max;
-    public Gtk.RadioButton function_min;
-    public Gtk.CheckButton rise_ideas;
-    public Gtk.CheckButton rise_branches;
-
     public PreferenceWidgets () {}
 
-    public void loadui () throws Error {
+    public override void loadui () throws Error {
+        base.loadui();
+
         var builder = new Gtk.Builder ();
         builder.add_from_file (DATA + "/ui/preferences.ui");
         builder.connect_signals (this);
@@ -244,22 +232,10 @@ public class PreferenceWidgets : GLib.Object {
         back_selected = builder.get_object("back_selected") as Gtk.ColorButton;
 
         // map tab
-        rise_method_disable = builder.get_object("rise_method_disable")
-                    as Gtk.RadioButton;
-        rise_method_branches = builder.get_object("rise_method_branches")
-                    as Gtk.RadioButton;
-        rise_method_points = builder.get_object("rise_method_points")
-                    as Gtk.RadioButton;
-        points_ignore = builder.get_object("points_ignore") as Gtk.RadioButton;
-        points_mix = builder.get_object("points_mix") as Gtk.RadioButton;
-        points_replace = builder.get_object("points_replace") as Gtk.RadioButton;
-        function_sum = builder.get_object("function_sum") as Gtk.RadioButton;
-        function_avg = builder.get_object("function_avg") as Gtk.RadioButton;
-        function_min = builder.get_object("function_max") as Gtk.RadioButton;
-        function_max = builder.get_object("function_min") as Gtk.RadioButton;
-        rise_ideas = builder.get_object("rise_ideas") as Gtk.CheckButton;
-        rise_branches = builder.get_object("rise_branches") as Gtk.CheckButton;
-
+        // add map vbox to application preference dialog
+        var notebook = builder.get_object("notebook") as Gtk.Notebook;
+        var label_map = builder.get_object("label_map") as Gtk.Label;
+        notebook.append_page (box, label_map);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_node_font")]
@@ -592,34 +568,11 @@ public class Preferences : GLib.Object {
         }
 
         // map tab
-        if (pw.rise_method_branches.get_active ()){
-            rise_method = RisingMethod.BRANCHES;
-        } else if (pw.rise_method_points.get_active ()){
-            rise_method = RisingMethod.POINTS;
-        } else {
-            rise_method = RisingMethod.DISABLE;
-        }
-
-        if (pw.points_mix.get_active ()){
-            points = IdeaPoints.MIX;
-        } else if (pw.points_replace.get_active ()){
-            points = IdeaPoints.REPLACE;
-        } else {
-            points = IdeaPoints.IGNORE;
-        }
-
-        if (pw.function_sum.get_active ()){
-            function = PointsFunction.SUM;
-        } else if (pw.function_avg.get_active ()){
-            function = PointsFunction.AVG;
-        } else if (pw.function_max.get_active ()){
-            function = PointsFunction.MAX;
-        } else {
-            function = PointsFunction.MIN;
-        }
-
-        rise_ideas = pw.rise_ideas.get_active ();
-        rise_branches = pw.rise_branches.get_active ();
+        rise_method = pw.get_rise_method ();
+        points = pw.get_idea_points ();
+        function = pw.get_points_function ();
+        rise_ideas = pw.get_rise_ideas ();
+        rise_branches = pw.get_rise_branches ();
     }
 
     private void save_to_ui() {
@@ -655,31 +608,11 @@ public class Preferences : GLib.Object {
         pw.back_selected.set_color (back_selected);
 
         // map tab
-        if (rise_method == RisingMethod.BRANCHES)
-            pw.rise_method_branches.set_active (true);
-        else if (rise_method == RisingMethod.POINTS)
-            pw.rise_method_points.set_active (true);
-        else        // RisingMethod.DISABLE
-            pw.rise_method_disable.set_active (true);
-
-        if (points == IdeaPoints.MIX)
-            pw.points_mix.set_active (true);
-        else if (points == IdeaPoints.REPLACE)
-            pw.points_replace.set_active (true);
-        else        // IdeaPoints.IGNORE
-            pw.points_ignore.set_active (true);
-
-        if (function == PointsFunction.SUM)
-            pw.function_sum.set_active (true);
-        else if (function == PointsFunction.AVG)
-            pw.function_avg.set_active (true);
-        else if (function == PointsFunction.MAX)
-            pw.function_max.set_active (true);
-        else        // PointsFunction.MIN
-            pw.function_min.set_active (true);
-
-        pw.rise_ideas.set_active (rise_ideas);
-        pw.rise_branches.set_active (rise_branches);
+        pw.set_rise_method (rise_method);
+        pw.set_idea_points (points);
+        pw.set_points_function (function);
+        pw.set_rise_ideas (rise_ideas);
+        pw.set_rise_branches (rise_branches);
     }
 
 
