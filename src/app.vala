@@ -390,7 +390,8 @@ public class App : GLib.Object {
                 if (!ask_for_save (file))
                     return;
             }
-            pref.remove_last (file.filepath);
+            if (file.filepath != "")
+                pref.remove_last (file.filepath);
         }
 
         var pn = notebook.page_num (tab as Gtk.Widget);
