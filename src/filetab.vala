@@ -18,6 +18,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     public string filepath;
 
     private bool saved;
+    private FilePreferences file_pref;
 
     private FileTab(string t, Preferences pref){
         title = t;
@@ -34,6 +35,8 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         mindmap.focus_changed.connect (on_focus_changed);
         set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         add_with_viewport(mindmap);
+
+        file_pref = new FilePreferences (pref);
     }
 
     public FileTab.empty(string title, Preferences pref){
@@ -117,6 +120,29 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         event_after.disconnect(center_root_node);
     }
 
+    private void write_file_info (Xml.TextWriter w) {
+        w.start_element ("info");
+
+        w.write_element ("author", file_pref.author);
+
+        w.end_element ();
+    }
+
+    private void write_file_settings (Xml.TextWriter w) {
+        w.start_element ("settings");
+
+        w.write_element ("rise_method", RisingMethod.to_string (
+                                                file_pref.rise_method));
+        w.write_element ("points", IdeaPoints.to_string (
+                                                file_pref.points));
+        w.write_element ("function", PointsFunction.to_string (
+                                                file_pref.function));
+        w.write_element ("rise_ideas", file_pref.rise_ideas.to_string ());
+        w.write_element ("rise_branches", file_pref.rise_branches.to_string ());
+
+        w.end_element ();
+    }
+
     private void write_node(Node node, Xml.TextWriter w){
         w.start_element ("node");
         w.write_attribute ("title", node.title);
@@ -153,8 +179,8 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         w.start_element ("map");
 
         // w.write_comment ("Some info about software");
-        // write_file_info (w);
-        // write_file_settings (w);
+        write_file_info (w);
+        write_file_settings (w);
         write_node (mindmap.root, w);
 
         w.end_element();
@@ -214,6 +240,38 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         }
     }
 
+    private void read_file_info (Xml.Node* x) {
+        for (Xml.Node* it = x->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+
+            if (it->name == "author"){
+                file_pref.author = it->get_content().strip();
+            }
+        }
+    }
+
+    private void read_file_settings (Xml.Node* x) {
+        for (Xml.Node* it = x->children; it != null; it = it->next) {
+            if (it->type != Xml.ElementType.ELEMENT_NODE) {
+                continue;
+            }
+
+            if (it->name == "rise_method"){
+                file_pref.rise_method = RisingMethod.parse(it->get_content().strip());
+            } else if (it->name == "points"){
+                file_pref.points = IdeaPoints.parse(it->get_content().strip());
+            } else if (it->name == "function"){
+                file_pref.function = PointsFunction.parse(it->get_content().strip());
+            } else if (it->name == "rise_ideas"){
+                file_pref.rise_ideas = bool.parse(it->get_content().strip());
+            } else if (it->name == "rise_branches"){
+                file_pref.rise_branches = bool.parse(it->get_content().strip());
+            }
+        }
+    }
+
     public bool do_load (string path) {
         var r = new Xml.TextReader.filename (path);
         r.read();
@@ -233,13 +291,11 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
             }
 
             if (it->name == "info"){
-                // read_file_info(it);
-                continue;
+                read_file_info(it);
             }
 
             if (it->name == "settings"){
-                //read_file_settings(it);
-                continue;
+                read_file_settings(it);
             }
 
             if (it->name == "node"){
