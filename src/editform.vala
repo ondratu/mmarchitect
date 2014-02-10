@@ -86,7 +86,6 @@ public class NumberEntry : Gtk.Entry {
     public void set_value(double value) {
         this.value = value;
         var format = "%%%ug".printf(digits);
-        stdout.printf("format: %s <- %f\n", format, value);
         set_text(format.printf(value));
     }
 
@@ -373,8 +372,6 @@ public class EditForm : Gtk.VBox {
         btn_color.get_color (out color);
         node.set_color (color);
         node.set_points (points.get_value ());
-
-        stdout.printf ("Value: %f\n", points.get_value());
     }
 
     public bool on_key_press_event (Gdk.EventKey e){
