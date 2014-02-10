@@ -10,7 +10,7 @@
 // modules: Gtk
 
 public class BgLabel : Gtk.Widget {
-    private static string label;
+    private string label;
     private Pango.Layout layout;
 
     public BgLabel (string label) {
@@ -18,7 +18,7 @@ public class BgLabel : Gtk.Widget {
         this.layout = create_pango_layout (label);
     }
 
-    public override void size_request (ref Gtk.Requisition requisition) {
+    public override void size_request (out Gtk.Requisition requisition) {
         int width, height;
 
         this.layout.get_size (out width, out height);
