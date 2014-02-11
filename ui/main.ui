@@ -134,6 +134,20 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkImageMenuItem" id="menuitem_properties">
+                        <property name="label">gtk-properties</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="app_properties_current_file"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator_file5">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkImageMenuItem" id="menuitem_quit">
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>

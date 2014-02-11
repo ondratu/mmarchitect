@@ -27,92 +27,6 @@ enum Start {
     }
 }
 
-enum RisingMethod {
-    DISABLE,                // not rising
-    BRANCHES,               // rising by branches
-    POINTS;                 // rising by points
-
-    public static string to_string(uint i){
-        switch (i) {
-            case RisingMethod.DISABLE:
-                return "DISABLE";
-            case RisingMethod.POINTS:
-                return "POINTS";
-            case RisingMethod.BRANCHES:
-            default:
-                return "BRANCHES";
-        }
-    }
-
-    public static uint parse(string s){
-        if (s == "DISABLE")
-            return RisingMethod.DISABLE;
-        if (s == "POINTS")
-            return RisingMethod.POINTS;
-        else // BRANCHES and default
-            return RisingMethod.BRANCHES;
-    }
-}
-
-enum IdeaPoints {
-    IGNORE,             // node points are ignore when chlidren have points
-    MIX,                // node points are sumary with all children points
-    REPLACE;            // node points are replace when children have poins
-
-    public static string to_string(uint i){
-        switch (i) {
-            case IdeaPoints.MIX:
-                return "MIX";
-            case IdeaPoints.REPLACE:
-                return "REPLACE";
-            case IdeaPoints.IGNORE:
-            default:
-                return "IGNORE";
-        }
-    }
-
-    public static uint parse(string s){
-        if (s == "MIX")
-            return IdeaPoints.MIX;
-        if (s == "REPLACE")
-            return IdeaPoints.REPLACE;
-        else // IGNORE and default
-            return IdeaPoints.IGNORE;
-    }
-}
-
-public enum PointsFunction {
-    SUM,
-    AVG,
-    MAX,
-    MIN;
-
-    public static string to_string(uint i) {
-        switch (i) {
-            case PointsFunction.MIN:
-                return "MIN";
-            case PointsFunction.MAX:
-                return "MAX";
-            case PointsFunction.AVG:
-                return "AVG";
-            case PointsFunction.SUM:
-            default:
-                return "SUM";
-        }
-    }
-
-    public static uint parse(string s) {
-        if (s == "MIN")
-            return PointsFunction.MIN;
-        if (s == "MAX")
-            return PointsFunction.MAX;
-        if (s == "AVG")
-            return PointsFunction.AVG;
-        else    // SUM is default
-            return PointsFunction.SUM;
-    }
-}
-
 public class RecentFile {
     public string path;
     public time_t time;
@@ -141,7 +55,7 @@ public class RecentFile {
     }
 }
 
-public class PreferenceWidgets : PreferenceMap {
+public class PreferenceWidgets : MapWidgets {
     public Gtk.Dialog dialog;
 
     // general tab
@@ -172,7 +86,7 @@ public class PreferenceWidgets : PreferenceMap {
     public Gtk.ColorButton back_normal;
     public Gtk.ColorButton back_selected;
 
-    public PreferenceWidgets () {}
+    //public MapWidgets () {}
 
     public override void loadui () throws Error {
         base.loadui();
@@ -848,6 +762,7 @@ public class Preferences : GLib.Object {
     }
 
     public void remove_last (string path) {
+        stdout.printf("path: %s\n", path);
         unowned GLib.List<string> item = last_files.find_custom (path, strcmp);
         assert (item != null);
         last_files.remove_link (item);

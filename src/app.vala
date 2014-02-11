@@ -558,6 +558,18 @@ public class App : GLib.Object {
         print.run(window);
     }
 
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_properties_current_file")]
+    public void properties_current_file (Gtk.Widget w) {
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+
+        var file = tab as FileTab;
+        if (file.properties ()) {
+            file.on_mindmap_change ();
+        }
+    }
+
     // nodes
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_node_delete")]
     public void node_delete (Gtk.Widget w) {
@@ -566,7 +578,7 @@ public class App : GLib.Object {
             return;
 
         var file = tab as FileTab;
-        file.mindmap.node_delete(); 
+        file.mindmap.node_delete();
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_node_edit")]

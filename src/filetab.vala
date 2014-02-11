@@ -318,6 +318,10 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         return true;
     }
 
+    public bool properties () {
+        return file_pref.dialog();
+    }
+
     ~FileTab(){
         //stdout.printf ("file destructor ...\n");
     }
