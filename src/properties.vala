@@ -5,7 +5,8 @@ public class PropertiesWidgets : MapWidgets {
 
     // file side
     public Gtk.Entry author;
-
+    public Gtk.Label created;
+    public Gtk.Label modified;
 
     public PropertiesWidgets () {}
 
@@ -19,6 +20,8 @@ public class PropertiesWidgets : MapWidgets {
         dialog = builder.get_object ("dialog") as Gtk.Dialog;
 
         author = builder.get_object ("author") as Gtk.Entry;
+        created = builder.get_object ("label_created") as Gtk.Label;
+        modified = builder.get_object ("label_modified") as Gtk.Label;
 
         var alignment_map = builder.get_object ("alignment_map") as Gtk.Alignment;
         alignment_map.add (box);
@@ -30,6 +33,8 @@ public class Properties : GLib.Object {
     public unowned PropertiesWidgets pw;
 
     public string author;
+    public time_t created;
+    public time_t modified;
 
     public uint rise_method;
     public uint points;
@@ -37,8 +42,10 @@ public class Properties : GLib.Object {
     public bool rise_ideas;
     public bool rise_branches;
 
-    public FilePreferences (Preferences pref) {
+    public Properties (Preferences pref) {
         load_from_preferences (pref);
+        time_t (out this.created);
+        time_t (out this.modified);
     }
 
     public void load_from_preferences (Preferences pref) {
@@ -63,6 +70,12 @@ public class Properties : GLib.Object {
 
     private void save_to_ui () {
         pw.author.set_text (author);
+
+        var c_created = ClaverTime (created);
+        pw.created.set_text (c_created.to_string());
+
+        var c_modified = ClaverTime (modified);
+        pw.modified.set_text (c_modified.to_string());
 
         pw.set_rise_method (rise_method);
         pw.set_idea_points (points);

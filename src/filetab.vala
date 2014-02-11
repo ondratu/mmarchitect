@@ -18,7 +18,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     public string filepath;
 
     private bool saved;
-    private FilePreferences file_pref;
+    private Properties prop;
 
     private FileTab(string t, Preferences pref){
         title = t;
@@ -36,7 +36,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         add_with_viewport(mindmap);
 
-        file_pref = new FilePreferences (pref);
+        prop = new Properties (pref);
     }
 
     public FileTab.empty(string title, Preferences pref){
@@ -123,7 +123,14 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     private void write_file_info (Xml.TextWriter w) {
         w.start_element ("info");
 
-        w.write_element ("author", file_pref.author);
+        w.write_element ("author", prop.author);
+
+        uint64 utime;
+        utime = prop.created;
+        w.write_element ("created", utime.to_string());
+        time_t (out prop.modified);
+        utime = prop.modified;
+        w.write_element ("modified", utime.to_string());
 
         w.end_element ();
     }
@@ -132,13 +139,13 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         w.start_element ("settings");
 
         w.write_element ("rise_method", RisingMethod.to_string (
-                                                file_pref.rise_method));
+                                                prop.rise_method));
         w.write_element ("points", IdeaPoints.to_string (
-                                                file_pref.points));
+                                                prop.points));
         w.write_element ("function", PointsFunction.to_string (
-                                                file_pref.function));
-        w.write_element ("rise_ideas", file_pref.rise_ideas.to_string ());
-        w.write_element ("rise_branches", file_pref.rise_branches.to_string ());
+                                                prop.function));
+        w.write_element ("rise_ideas", prop.rise_ideas.to_string ());
+        w.write_element ("rise_branches", prop.rise_branches.to_string ());
 
         w.end_element ();
     }
@@ -247,7 +254,11 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
             }
 
             if (it->name == "author"){
-                file_pref.author = it->get_content().strip();
+                prop.author = it->get_content().strip();
+            } else if (it->name == "created") {
+                prop.created = (time_t) uint64.parse(it->get_content().strip());
+            } else if (it->name == "modified") {
+                prop.modified = (time_t) uint64.parse(it->get_content().strip());
             }
         }
     }
@@ -259,15 +270,15 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
             }
 
             if (it->name == "rise_method"){
-                file_pref.rise_method = RisingMethod.parse(it->get_content().strip());
+                prop.rise_method = RisingMethod.parse(it->get_content().strip());
             } else if (it->name == "points"){
-                file_pref.points = IdeaPoints.parse(it->get_content().strip());
+                prop.points = IdeaPoints.parse(it->get_content().strip());
             } else if (it->name == "function"){
-                file_pref.function = PointsFunction.parse(it->get_content().strip());
+                prop.function = PointsFunction.parse(it->get_content().strip());
             } else if (it->name == "rise_ideas"){
-                file_pref.rise_ideas = bool.parse(it->get_content().strip());
+                prop.rise_ideas = bool.parse(it->get_content().strip());
             } else if (it->name == "rise_branches"){
-                file_pref.rise_branches = bool.parse(it->get_content().strip());
+                prop.rise_branches = bool.parse(it->get_content().strip());
             }
         }
     }
@@ -319,7 +330,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     }
 
     public bool properties () {
-        return file_pref.dialog();
+        return prop.dialog();
     }
 
     ~FileTab(){
