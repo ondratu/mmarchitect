@@ -30,13 +30,13 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
                     return true;
                 });
 
-        mindmap = new MindMap (pref);
+        prop = new Properties (pref);
+
+        mindmap = new MindMap (pref, prop);
         mindmap.change.connect (on_mindmap_change);
         mindmap.focus_changed.connect (on_focus_changed);
         set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         add_with_viewport(mindmap);
-
-        prop = new Properties (pref);
     }
 
     public FileTab.empty(string title, Preferences pref){
@@ -237,7 +237,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
                     child.color = c.color;
                     child.default_color = false;
                 }
-                child.points = c.points;
+                child.set_points(c.points);
 
                 read_node(it, child);
 
@@ -330,7 +330,12 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     }
 
     public bool properties () {
-        return prop.dialog();
+        bool rv = prop.dialog ();
+        if (rv) {
+            mindmap.root.count_weight (true);
+            mindmap.refresh_tree ();
+        }
+        return rv;
     }
 
     ~FileTab(){

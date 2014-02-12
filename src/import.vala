@@ -8,6 +8,8 @@
  * Code is present with BSD licence.
  */
 
+// modules: Gtk
+
 namespace  Importer {
 
     void read_mm_node_attr (Xml.Node* x, ref CoreNode c) {
@@ -59,7 +61,7 @@ namespace  Importer {
             if (it->name == "node"){
                 var c = CoreNode();
                 read_mm_node_attr(it, ref c);
-                root = new Node(c.title);
+                root = new Node.root(c.title, root.map);
                 read_mm_node(it, root);
             }
         }

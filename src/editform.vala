@@ -183,7 +183,7 @@ public class ColorButton : Gtk.Button {
             //stdout.printf("dialog response %s\n", dialog.run().to_string());
             if (dialog.run() == Gtk.ResponseType.OK) {
                 if (radio_default.get_active()) {
-                    color = node.pref.default_color;
+                    color = node.map.pref.default_color;
                     default_color = true;
                 } else if (radio_own.get_active()) {
                     color = color_selection.current_color;
@@ -193,7 +193,7 @@ public class ColorButton : Gtk.Button {
                     if (node.parent != null)
                         color = node.parent.color;
                     else
-                        color = node.pref.default_color;
+                        color = node.map.pref.default_color;
                 }
                 color_widget.modify_bg(Gtk.StateType.NORMAL, color);
                 color_widget.modify_bg(Gtk.StateType.PRELIGHT, color);
@@ -220,7 +220,7 @@ public class ColorButton : Gtk.Button {
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_default_toggled")]
     public void dialog_default_toggled (Gtk.Widget sender) {
         stdout.printf("dialog_default_toggled ...\n");
-        drawing_color.modify_bg(Gtk.StateType.NORMAL, node.pref.default_color);
+        drawing_color.modify_bg(Gtk.StateType.NORMAL, node.map.pref.default_color);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_parent_toggled")]
@@ -229,7 +229,7 @@ public class ColorButton : Gtk.Button {
         if (node.parent != null)
             drawing_color.modify_bg(Gtk.StateType.NORMAL, node.parent.color);
         else
-            drawing_color.modify_bg(Gtk.StateType.NORMAL, node.pref.default_color);
+            drawing_color.modify_bg(Gtk.StateType.NORMAL, node.map.pref.default_color);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_own_toggled")]
@@ -241,7 +241,6 @@ public class ColorButton : Gtk.Button {
 public class WidgetRound {
     public WidgetRound ? next;
     public Gtk.Widget widget;
-
     public WidgetRound (Gtk.Widget w) {
         widget = w;
         next = null;

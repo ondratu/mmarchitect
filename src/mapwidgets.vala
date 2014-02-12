@@ -118,8 +118,8 @@ public class MapWidgets: GLib.Object {
         points_replace = builder.get_object("points_replace") as Gtk.RadioButton;
         function_sum = builder.get_object("function_sum") as Gtk.RadioButton;
         function_avg = builder.get_object("function_avg") as Gtk.RadioButton;
-        function_min = builder.get_object("function_max") as Gtk.RadioButton;
-        function_max = builder.get_object("function_min") as Gtk.RadioButton;
+        function_min = builder.get_object("function_min") as Gtk.RadioButton;
+        function_max = builder.get_object("function_max") as Gtk.RadioButton;
         rise_ideas = builder.get_object("rise_ideas") as Gtk.CheckButton;
         rise_branches = builder.get_object("rise_branches") as Gtk.CheckButton;
 

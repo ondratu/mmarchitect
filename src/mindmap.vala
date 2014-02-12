@@ -11,6 +11,7 @@
 
 public class MindMap : Gtk.Fixed {
     public Preferences pref;
+    public Properties prop;
     public EditForm? editform;
     public Node root;
     public unowned Node? focused;
@@ -25,8 +26,9 @@ public class MindMap : Gtk.Fixed {
     private bool mod_alt;
     private bool mod_shift;
 
-    public MindMap(Preferences pref) {
+    public MindMap(Preferences pref, Properties prop) {
         this.pref = pref;
+        this.prop = prop;
 
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK
                   | Gdk.EventMask.BUTTON_RELEASE_MASK
@@ -51,7 +53,7 @@ public class MindMap : Gtk.Fixed {
 
         if (root == null)
             create_new_root();
-        root.realize(this.window, pref);
+        root.realize(this.window);
         refresh_tree();
     }
 
@@ -71,7 +73,7 @@ public class MindMap : Gtk.Fixed {
     }
 
     public Node create_new_root (CoreNode core = CoreNode(){title = _("Main Idea")}) {
-        root = new Node(core.title);
+        root = new Node.root(core.title, this);
         assert(root != null);
         focused = root;
         focused.set_focus(true);
