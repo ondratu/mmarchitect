@@ -161,7 +161,9 @@ public class App : GLib.Object {
         else if (pref.start_with == Start.LAST) {
             foreach (var it in pref.get_last_files()) {
                 var osfile = File.new_for_commandline_arg(it);
-                if (osfile.query_exists ())
+                if (it == WELCOME_FILE)
+                    new_welcome_tab ();
+                else if (osfile.query_exists ())
                     open_file_private(it);
                 else pref.remove_last(it);  // remove last file if not extist
             }
@@ -182,6 +184,7 @@ public class App : GLib.Object {
             }
         }
         new_welcome_tab ();
+        pref.append_last (WELCOME_FILE);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_new_file")]
@@ -402,6 +405,8 @@ public class App : GLib.Object {
             }
             if (file.filepath != "")
                 pref.remove_last (file.filepath);
+        } else { // there is only FileTab and WelcomeTab
+            pref.remove_last (WELCOME_FILE);
         }
 
         var pn = notebook.page_num (tab as Gtk.Widget);
@@ -413,22 +418,13 @@ public class App : GLib.Object {
 
     public void on_page_reordered (Gtk.Widget w, uint n) {
         var tab = w as ITab;
-        stdout.printf ("Page %s is moved to position %ud\n",
-                    tab.title, n);
         if (tab is FileTab) {
             var file = tab as FileTab;
             if (file.filepath != "") {
-                // correct n if that is welcome tab before it
-                for (int i = 0; i < n; i++) {
-                    var it = notebook.get_nth_page (i) as ITab;
-                    if (it is WelcomeTab) {
-                        n--;
-                        break;
-                    }
-                }
                 pref.reorder_last (file.filepath, n);
             }
-        }
+        } else // there is only FileTab and WelcomeTab
+            pref.reorder_last (WELCOME_FILE, n);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_save_current_file")]

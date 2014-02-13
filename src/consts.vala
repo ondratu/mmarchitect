@@ -14,3 +14,4 @@ const int ICO_SIZE = 16;
 const int POINTS_LENGTH = 6;
 
 const uint RECENT_FILES = 5;
+const string WELCOME_FILE = "about:welcome";
