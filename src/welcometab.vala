@@ -10,6 +10,7 @@
 
 public class WelcomeTab : Gtk.ScrolledWindow, ITab {
     public TabLabel tablabel { get; protected set; }
+    public Gtk.Label menulabel { get; protected set; }
     public string title { get; set; }
 
     public signal void sig_new_file (Gtk.Widget w);
@@ -34,6 +35,7 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
                     closed(this);
                     return true;
                 });
+        menulabel = new Gtk.Label (title);
 
         set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
 

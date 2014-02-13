@@ -11,6 +11,7 @@
 
 public class FileTab : Gtk.ScrolledWindow, ITab {
     public TabLabel tablabel { get; protected set; }
+    public Gtk.Label menulabel { get; protected set; }
     public string title { get; set; }
 
     public MindMap mindmap;
@@ -29,6 +30,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
                     closed(this);
                     return true;
                 });
+        menulabel = new Gtk.Label (title);
 
         prop = new Properties (pref);
 
@@ -43,6 +45,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         this(title, pref);
         saved = true;
         tablabel.set_title (title+"*");
+        menulabel.label = title+"*";
         filepath = "";
         show_all();
     }
@@ -66,10 +69,13 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         if (newtitle != "")
             title = newtitle;
 
-        if (saved)
+        if (saved) {
             tablabel.set_title (title);
-        else
+            menulabel.label = title;
+        } else {
             tablabel.set_title (title+"*");
+            menulabel.label = title+"*";
+        }
     }
 
     public bool is_saved (){

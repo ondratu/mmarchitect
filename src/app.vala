@@ -38,6 +38,12 @@ public class App : GLib.Object {
         window.realize.connect (on_realize);
         title = window.title;
         notebook = builder.get_object("notebook") as Gtk.Notebook;
+        notebook.page_added.connect (
+                (w, n) => { // all tabs could be reoederable with drag n drop
+                    notebook.set_tab_reorderable (w, true);
+                });
+        notebook.page_reordered.connect (on_page_reordered);
+
         set_tooltips (builder);
 
         menu_item_cut = builder.get_object("menuitem_cut") as Gtk.ImageMenuItem;
@@ -129,7 +135,8 @@ public class App : GLib.Object {
             tab.sig_new_file.connect (on_new_file);
             tab.sig_open_file.connect (on_open_file);
             tab.sig_open_path.connect (on_open_path);
-            notebook.set_current_page (notebook.append_page (tab, tab.tablabel));
+            notebook.set_current_page (notebook.append_page_menu (
+                                            tab, tab.tablabel, tab.menulabel));
         } catch (Error e) {
             var d = new Gtk.MessageDialog(window,
                     Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -186,7 +193,7 @@ public class App : GLib.Object {
         new_file_private ();
     }
 
-    public void new_file_private (owned string fname = "") {
+    private void new_file_private (owned string fname = "") {
         if (fname.length == 0) {
             string index = (++tabs_counter).to_string();
             fname = "map"+index;
@@ -195,7 +202,8 @@ public class App : GLib.Object {
         file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
-        notebook.set_current_page (notebook.append_page (file, file.tablabel));
+        notebook.set_current_page (notebook.append_page_menu (
+                                        file, file.tablabel, file.menulabel));
         file.mindmap.grab_focus();
     }
 
@@ -215,7 +223,8 @@ public class App : GLib.Object {
         if (cur != null && cur.is_saved() && cur.filepath == ""){
             notebook.remove_page (pn);
         }
-        notebook.set_current_page (notebook.append_page (file, file.tablabel));
+        notebook.set_current_page (notebook.append_page_menu (
+                                        file, file.tablabel, file.menulabel));
         file.mindmap.grab_focus();
         pref.append_recent (fname);
         pref.append_last (fname);
@@ -302,7 +311,8 @@ public class App : GLib.Object {
         if (cur != null && cur.is_saved() && cur.filepath == ""){
             notebook.remove_page (pn);
         }
-        notebook.set_current_page (notebook.append_page (file, file.tablabel));
+        notebook.set_current_page (notebook.append_page_menu (
+                                        file, file.tablabel, file.menulabel));
         file.mindmap.grab_focus();
         return true;
     }
@@ -399,6 +409,26 @@ public class App : GLib.Object {
 
         if (notebook.get_n_pages () == 0)
             window.title = title;
+    }
+
+    public void on_page_reordered (Gtk.Widget w, uint n) {
+        var tab = w as ITab;
+        stdout.printf ("Page %s is moved to position %ud\n",
+                    tab.title, n);
+        if (tab is FileTab) {
+            var file = tab as FileTab;
+            if (file.filepath != "") {
+                // correct n if that is welcome tab before it
+                for (int i = 0; i < n; i++) {
+                    var it = notebook.get_nth_page (i) as ITab;
+                    if (it is WelcomeTab) {
+                        n--;
+                        break;
+                    }
+                }
+                pref.reorder_last (file.filepath, n);
+            }
+        }
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_save_current_file")]

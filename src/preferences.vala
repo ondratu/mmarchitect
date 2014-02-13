@@ -762,10 +762,22 @@ public class Preferences : GLib.Object {
     }
 
     public void remove_last (string path) {
-        stdout.printf("path: %s\n", path);
         unowned GLib.List<string> item = last_files.find_custom (path, strcmp);
         assert (item != null);
         last_files.remove_link (item);
+
+        try {
+            save_to_config ();
+        } catch (Error e) {
+            stderr.printf("%s\n", e.message);
+        }
+    }
+
+    public void reorder_last (string path, uint pos) {
+        unowned GLib.List<string> item = last_files.find_custom (path, strcmp);
+        assert (item != null);
+        last_files.remove_link (item);
+        last_files.insert (path, (int) pos);
 
         try {
             save_to_config ();

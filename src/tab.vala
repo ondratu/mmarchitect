@@ -6,6 +6,7 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
+// modules: Gtk
 
 public class CloseIco : Gtk.EventBox {
     public CloseIco () {
@@ -35,6 +36,7 @@ public class TabLabel : Gtk.HBox {
 
 public interface ITab : GLib.Object {
     public abstract TabLabel tablabel { get; protected set; }
+    public abstract Gtk.Label menulabel { get; protected set; }
     public abstract string title { get; set; }
     public signal void closed (ITab tab);
 }
