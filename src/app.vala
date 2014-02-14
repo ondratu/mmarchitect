@@ -519,7 +519,8 @@ public class App : GLib.Object {
                     retval = Exporter.export_to_txt(fname, filetab.mindmap.root);
                     break;
                 case ExportFilterID.HTML:
-                    retval = Exporter.export_to_html(fname, filetab.mindmap.root);
+                    retval = Exporter.export_to_html(fname,
+                                        filetab.mindmap.root, filetab.prop);
                     break;
                 case ExportFilterID.DHTML:
                     retval = Exporter.export_to_dhtml(fname, filetab.mindmap.root);

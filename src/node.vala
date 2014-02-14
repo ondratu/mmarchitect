@@ -45,7 +45,6 @@ public class Node : GLib.Object {
     public double points;
     public string str_points {get; private set;}
     public Gdk.Color color;
-
     public Gdk.Rectangle area;
     private int points_width;
     private int points_height;
@@ -561,6 +560,13 @@ public class Node : GLib.Object {
         }
         this.color = color;
         this.default_color = false;
+    }
+
+    public string get_color () {
+        return "#" +
+                (color.red / 256).to_string("%02x") +
+                (color.green / 256).to_string("%02x") +
+                (color.blue / 256).to_string("%02x");
     }
 
     public int set_position (int left, int top) {

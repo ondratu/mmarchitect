@@ -46,14 +46,75 @@ namespace Exporter {
         }
     }
 
-    bool export_to_html (string path, Node root) {
-        try {
-            throw new ExportError.NOT_SUPPORT_YET ("HTML is not support yet!");
-            //return true;
-        } catch (Error e) {
-            stderr.printf ("%s\n", e.message);
-            return false;
+    void write_html_node (Xml.TextWriter w, Node node){
+        w.start_element("li");            // <li>
+
+        if (node.parent == null && !node.default_color)
+            //w.write_attribute ("style", "color:" + node.color.to_string()+";");
+            w.write_attribute ("style", "color:" + node.get_color ()+";");
+        else if (node.parent != null && !node.color.equal(node.parent.color))
+            //w.write_attribute ("style", "color:" + node.color.to_string()+";");
+            w.write_attribute ("style", "color:" + node.get_color ()+";");
+
+        w.write_string(node.title);
+
+        if (node.points != 0)
+            w.write_attribute ("points", node.points.to_string());
+
+        if (node.text != "") {
+            w.write_string("\n");
+            w.write_element ("p", node.text);
         }
+
+        if (node.children.length () > 0) {     // <ul>
+            w.write_string("\n");
+            w.start_element ("ul");
+        }
+        foreach (var n in node.children)
+            write_html_node(w, n);
+        if (node.children.length () > 0)       // </ul>
+            w.end_element ();
+        w.end_element();                    // </li>
+    }
+
+    void write_html_meta (Xml.TextWriter w, ...){
+        w.start_element ("meta");
+        var args = va_list();
+        while (true) {
+            string? key = args.arg();
+            if (key == null) break;  // end of the list
+            string? val = args.arg();
+            if (val == null) break;  // end of the list
+
+            w.write_attribute (key, val);
+        }
+        w.end_element ();
+    }
+
+    bool export_to_html (string path, Node root, Properties prop) {
+        var w = new Xml.TextWriter.filename (path);
+        w.set_indent (true);
+        w.set_indent_string (" ");
+
+        //w.start_document ();
+        w.start_element ("html");
+        w.start_element ("head");
+        write_html_meta (w, "charset", "utf-8");
+        write_html_meta (w, "name", "generator", "content", PROGRAM);
+        write_html_meta (w, "name", "author", "content", prop.author);
+        w.write_element ("title", root.title); //encoding
+        w.end_element ();   // </head>
+
+        w.start_element ("body");
+
+        write_html_node (w, root);
+
+        w.end_element();    // </body>
+        w.end_element();    // </html>
+        //w.end_document();
+
+        w.flush();
+        return true;
     }
 
     bool export_to_dhtml (string path, Node root) {

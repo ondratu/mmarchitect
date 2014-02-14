@@ -19,7 +19,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     public string filepath;
 
     private bool saved;
-    private Properties prop;
+    public Properties prop { get; private set; }
 
     private FileTab(string t, Preferences pref){
         title = t;
