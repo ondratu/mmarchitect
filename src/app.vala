@@ -506,62 +506,30 @@ public class App : GLib.Object {
         on_export_file(file);
     }
 
-    public bool on_export_file (FileTab file){
-        var d = new Gtk.FileChooserDialog(
-                    _("Export file as"),
-                    window,
-                    Gtk.FileChooserAction.SAVE,
-                    Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                    Gtk.Stock.SAVE, Gtk.ResponseType.ACCEPT);
-
-        var txt = create_filter (_("Plain Text"), {"*.txt"});
-        d.add_filter (txt);
-        var html = create_filter (_("Simple Web Page"), {"*.html", "*.htm"});
-        d.add_filter (html);
-        var dhtml = create_filter (_("Dynamic Web Page"), {"*.dhtml", "*.dhtm"});
-        d.add_filter (dhtml);
-        var png = create_filter (_("PNG Image"), {"*.png", "*.png"});
-        d.add_filter (png);
-        var mm = create_filter ("Free Mind", {"*.mm"});
-        d.add_filter (mm);
-
-        d.set_do_overwrite_confirmation (true);
-
-        if (file.filepath == "") {
-            d.set_current_folder(pref.default_directory);
-            d.set_current_name(file.title);
-        } else {
-            d.set_current_folder(GLib.Path.get_dirname(file.filepath));
-            string fname = GLib.Path.get_basename(file.filepath);
-            d.set_current_name(fname.substring(0, fname.length-4)); // .txt
-        }
+    public bool on_export_file (FileTab filetab){
+        var d = new ExportDialog(filetab, pref.default_directory, window);
 
         bool retval = false;
 
         if (d.run() == Gtk.ResponseType.ACCEPT){
-            var fname = d.get_filename();
-            var filter = d.get_filter();
+            var fname = d.get_suffixed_filename();
 
-            if (filter == txt) {
-                if (!fname.down().has_suffix(".txt"))
-                    fname += ".txt";
-                retval = Exporter.export_to_txt(fname, file.mindmap.root);
-            } else if (filter == html) {
-                if (!fname.down().has_suffix(".htm") && !fname.down().has_suffix(".html"))
-                    fname += ".html";
-                retval = Exporter.export_to_html(fname, file.mindmap.root);
-            } else if (filter == dhtml) {
-                if (!fname.down().has_suffix(".dhtm") && !fname.down().has_suffix(".dhtml"))
-                    fname += ".dhtml";
-                retval = Exporter.export_to_dhtml(fname, file.mindmap.root);
-            } else if (filter == png) {
-                if (!fname.down().has_suffix(".png"))
-                    fname += ".png";
-                retval = Exporter.export_to_png(fname, file.mindmap.root);
-            } else if (filter == mm) {
-                if (!fname.down().has_suffix(".mm"))
-                    fname += ".mm";
-                retval = Exporter.export_to_mm(fname, file.mindmap.root);
+            switch (d.get_filter_id()) {
+                case ExportFilterID.TXT:
+                    retval = Exporter.export_to_txt(fname, filetab.mindmap.root);
+                    break;
+                case ExportFilterID.HTML:
+                    retval = Exporter.export_to_html(fname, filetab.mindmap.root);
+                    break;
+                case ExportFilterID.DHTML:
+                    retval = Exporter.export_to_dhtml(fname, filetab.mindmap.root);
+                    break;
+                case ExportFilterID.PNG:
+                    retval = Exporter.export_to_png(fname, filetab.mindmap.root);
+                    break;
+                case ExportFilterID.MM:
+                    retval = Exporter.export_to_mm(fname, filetab.mindmap.root);
+                    break;
             }
         }
 

@@ -1,16 +1,29 @@
+/*
+ * DESCRIPTION      Welcome panel with tips and last open files.
+ * PROJECT          Mind Map Architect
+ * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>
+ *
+ * Copyright (C) Ondrej Tuma 2011
+ * Code is present with BSD licence.
+ */
+// modules: Glib
+
 namespace Exporter {
-    
+
     public errordomain ExportError {
         NOT_SUPPORT_YET
     }
 
-
-    // TODO: text of node
     void write_txt (DataOutputStream dos, Node node, int lvl = 0) throws IOError {
         dos.put_string (string.nfill (lvl * 2, ' '));
         if (lvl > 0)
-            dos.put_string (" - ");
-        dos.put_string (node.title + "\n");
+            dos.put_string (" * ");
+        string points = (node.points > 0) ? " [" + node.str_points + "]" : "";
+        dos.put_string (node.title + points + "\n");
+        if (node.text.length > 0) {
+            dos.put_string (string.nfill ((lvl * 2) + 3, ' '));
+            dos.put_string (node.text + "\n");
+        }
         foreach (var it in node.children) {
             write_txt (dos, it, lvl + 1);
         }
@@ -19,7 +32,7 @@ namespace Exporter {
     bool export_to_txt (string path, Node root) {
         try {
             var file = File.new_for_path (path);
-            
+
             // TODO: making backup (second param) could be configurable
             var dos = new DataOutputStream (
                     file.replace (null, false, FileCreateFlags.REPLACE_DESTINATION));
@@ -73,7 +86,7 @@ namespace Exporter {
             x = GLib.Math.lrint (width / 2 + dist ) + 0.5;
         }
 
-        y = GLib.Math.lrint (height / 2 - node.get_higher_full() / 2) + 0.5; 
+        y = GLib.Math.lrint (height / 2 - node.get_higher_full() / 2) + 0.5;
     }
 
     bool export_to_png (string path, Node node) {
