@@ -295,9 +295,10 @@ public class App : GLib.Object {
         fname = fname.substring(0, fname.length-3); // .mm
 
         var file = new FileTab.empty (fname, pref);
-        if (ext == ".mm")
-            Importer.import_from_mm (fpath, out file.mindmap.root);
-        else {
+        if (ext == ".mm") {
+            Importer.import_from_mm (fpath, file.mindmap);
+            file.queue_center ();
+        } else {
             file.destroy();
             return false;
         }

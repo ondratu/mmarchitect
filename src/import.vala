@@ -42,7 +42,7 @@ namespace  Importer {
         }
     }
 
-    bool import_from_mm (string path, out Node root) {
+    bool import_from_mm (string path, MindMap mindmap) {
         var r = new Xml.TextReader.filename (path);
         r.read();
 
@@ -52,6 +52,7 @@ namespace  Importer {
             return false;
         }
 
+        Node ? root = null;
         // read the file
         for (Xml.Node* it = x->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
@@ -61,11 +62,11 @@ namespace  Importer {
             if (it->name == "node"){
                 var c = CoreNode();
                 read_mm_node_attr(it, ref c);
-                root = new Node.root(c.title, root.map);
+                root = mindmap.create_new_root(c);
                 read_mm_node(it, root);
             }
         }
 
-        return true;
+        return (root != null);
     }
 }

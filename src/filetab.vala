@@ -54,6 +54,10 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         this(GLib.Path.get_basename(path), pref);
         do_load(path);
         show_all();
+        queue_center ();
+    }
+
+    public void queue_center () {
         event_after.connect(center_root_node);
     }
 
