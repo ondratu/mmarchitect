@@ -19,6 +19,7 @@ public class BgLabel : Gtk.Widget {
     }
 
     public override void size_request (out Gtk.Requisition requisition) {
+        requisition = Gtk.Requisition ();
         int width, height;
 
         this.layout.get_size (out width, out height);
