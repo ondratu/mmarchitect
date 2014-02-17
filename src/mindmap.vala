@@ -75,6 +75,11 @@ public class MindMap : Gtk.Fixed {
     public Node create_new_root (CoreNode core = CoreNode(){title = _("Main Idea")}) {
         root = new Node.root(core.title, this);
         assert(root != null);
+        if (!core.default_color) {
+            root.color = core.color;
+            root.default_color = false;
+        }
+        root.set_points (core.points);
         focused = root;
         focused.set_focus(true);
         return root;
