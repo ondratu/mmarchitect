@@ -254,6 +254,13 @@ public class WidgetRound {
 
 }
 
+public class Toggle : Gtk.EventBox {
+    public Toggle (string stock_id) {
+        add (new Gtk.Image.from_stock (stock_id,
+                                    Gtk.IconSize.SMALL_TOOLBAR));
+    }
+}
+
 public class EditForm : Gtk.VBox {
     public Node node;
     public Gtk.Entry entry;
@@ -264,6 +271,7 @@ public class EditForm : Gtk.VBox {
     public ColorButton btn_color;
     public Gtk.Button btn_save;
     public Gtk.Button btn_close;
+    public Gtk.HBox icons_box;
     public signal void close();
     public signal void expand_change(bool is_expand, int width, int height);
     public bool newone;
@@ -329,6 +337,17 @@ public class EditForm : Gtk.VBox {
         last = last.append (btn_close);
         focusable_widgets.append (btn_close);
 
+        icons_box = new Gtk.HBox(false, 0);
+        /* TODO: prepare to item icons - flags
+        icons_box.add(new Toggle(Gtk.Stock.ABOUT));
+        icons_box.add(new Toggle(Gtk.Stock.APPLY));
+        icons_box.add(new Toggle(Gtk.Stock.CANCEL));
+        icons_box.add(new Toggle(Gtk.Stock.INFO));
+        icons_box.add(new Toggle(Gtk.Stock.REFRESH));
+        */
+        last = last.append (icons_box);
+        focusable_widgets.append (icons_box);
+
         text_view = new Gtk.TextView ();
         text_view.modify_font (pref.text_font);
         text_view.get_buffer().set_text(node.text);
@@ -350,6 +369,7 @@ public class EditForm : Gtk.VBox {
         box.pack_start(btn_close);
 
         pack_start(box);
+        pack_start(icons_box);
         pack_start(text_scroll);
 
         collapse ();
@@ -445,6 +465,7 @@ public class EditForm : Gtk.VBox {
         btn_color.hide ();
         btn_save.hide ();
         btn_close.hide ();
+        icons_box.hide ();
     }
 
     public void expand () {
