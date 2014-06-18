@@ -451,10 +451,11 @@ public class EditForm : Gtk.VBox {
     }
 
     public override void set_focus_child (Gtk.Widget ? widget) {
-        if (widget != null)
+        base.set_focus_child(widget);
+        /*if (widget != null)
             stdout.printf ("focused child %s\n" ,widget.name);
         else
-            stdout.printf ("no child focused\n");
+            stdout.printf ("no child focused\n");*/
     }
 
     public void collapse () {

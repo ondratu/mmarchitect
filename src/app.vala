@@ -18,6 +18,9 @@ public class App : GLib.Object {
     private Gtk.ImageMenuItem menu_item_paste;
     private Gtk.ImageMenuItem menu_item_delete;
 
+    private Gtk.Menu nodemenu;
+    private Gtk.Menu mapmenu;
+
     private int tabs_counter;
     private Node ? node_clipboard;
     private Preferences pref;
@@ -53,6 +56,12 @@ public class App : GLib.Object {
 
         window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
         new_file_from_args(window, filename);
+
+        nodemenu = builder.get_object("nodemenu") as Gtk.Menu;
+        nodemenu.show_all ();
+
+        mapmenu = builder.get_object("mapmenu") as Gtk.Menu;
+        mapmenu.show_all ();
 
         window.destroy.connect (Gtk.main_quit);
         window.delete_event.connect (delete_event);
@@ -205,6 +214,13 @@ public class App : GLib.Object {
         file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
+        file.mindmap.node_context_menu.connect ((button, time) => {
+                nodemenu.popup(null, null, null, button, time);
+            });
+        file.mindmap.map_context_menu.connect ((button, time) => {
+                mapmenu.popup(null, null, null, button, time);
+            });
+
         notebook.set_current_page (notebook.append_page_menu (
                                         file, file.tablabel, file.menulabel));
         file.mindmap.grab_focus();
@@ -215,6 +231,12 @@ public class App : GLib.Object {
         file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
+        file.mindmap.node_context_menu.connect ((button, time) => {
+                nodemenu.popup(null, null, null, button, time);
+            });
+        file.mindmap.map_context_menu.connect ((button, time) => {
+                mapmenu.popup(null, null, null, button, time);
+            });
 
         FileTab ? cur = null;
         var pn = notebook.get_current_page ();
@@ -307,6 +329,12 @@ public class App : GLib.Object {
         file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
+        file.mindmap.node_context_menu.connect ((button, time) => {
+                nodemenu.popup(null, null, null, button, time);
+            });
+        file.mindmap.map_context_menu.connect ((button, time) => {
+                mapmenu.popup(null, null, null, button, time);
+            });
 
         FileTab ? cur = null;
         var pn = notebook.get_current_page ();
@@ -580,6 +608,7 @@ public class App : GLib.Object {
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_node_edit")]
     public void node_edit (Gtk.Widget w) {
         var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        stdout.printf("Edit tab on: %s\n", tab.title);
         if (tab is WelcomeTab)
             return;
 
@@ -655,6 +684,46 @@ public class App : GLib.Object {
 
         var file = tab as FileTab;
         file.mindmap.node_collapse_all ();
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_node_move_up")]
+    public void node_move_up (Gtk.Widget w) {
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+
+        var file = tab as FileTab;
+        file.mindmap.node_move_up ();
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_node_move_down")]
+    public void node_move_down (Gtk.Widget w) {
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+
+        var file = tab as FileTab;
+        file.mindmap.node_move_down ();
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_node_move_left")]
+    public void node_move_left (Gtk.Widget w) {
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+
+        var file = tab as FileTab;
+        file.mindmap.node_move_left ();
+    }
+
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_node_move_right")]
+    public void node_move_right (Gtk.Widget w) {
+        var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
+        if (tab is WelcomeTab)
+            return;
+
+        var file = tab as FileTab;
+        file.mindmap.node_move_right ();
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_check_quit")]
