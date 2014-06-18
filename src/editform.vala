@@ -172,14 +172,14 @@ public class ColorButton : Gtk.Button {
                         as Gtk.RadioButton;
             radio_own = builder.get_object ("radio_own")
                         as Gtk.RadioButton;
-            if (default_color)
+
+            color_selection.set_current_color(color);
+            if (default_color || color.equal(node.map.pref.default_color))
                 radio_default.set_active(true);
-            else if (node.parent == null)
+            else if (node.parent == null || !color.equal(node.parent.color))
                 radio_own.set_active(true);
             else
                 radio_parent.set_active(true);
-
-            color_selection.set_current_color(color);
 
             //stdout.printf("dialog response %s\n", dialog.run().to_string());
             if (dialog.run() == Gtk.ResponseType.OK) {
@@ -214,19 +214,18 @@ public class ColorButton : Gtk.Button {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_color_changed")]
     public void dialog_color_changed (Gtk.Widget sender) {
-        if (radio_own.get_active())
-            drawing_color.modify_bg(Gtk.StateType.NORMAL, color_selection.current_color);
+        //if (radio_own.get_active())
+        //    drawing_color.modify_bg(Gtk.StateType.NORMAL, color_selection.current_color);
+        radio_own.set_active(true);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_default_toggled")]
     public void dialog_default_toggled (Gtk.Widget sender) {
-        stdout.printf("dialog_default_toggled ...\n");
         drawing_color.modify_bg(Gtk.StateType.NORMAL, node.map.pref.default_color);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_parent_toggled")]
     public void dialog_parent_toggled (Gtk.Widget sender) {
-        stdout.printf("dialog_parent_toggled ...\n");
         if (node.parent != null)
             drawing_color.modify_bg(Gtk.StateType.NORMAL, node.parent.color);
         else
