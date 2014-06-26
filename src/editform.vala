@@ -253,10 +253,25 @@ public class WidgetRound {
 
 }
 
-public class Toggle : Gtk.EventBox {
-    public Toggle (string stock_id) {
-        add (new Gtk.Image.from_stock (stock_id,
+public class ToggleFlagButton : Gtk.ToggleToolButton {
+    public ToggleFlagButton (string flag) {
+        name = flag;
+        set_label(_(flag));
+        set_tooltip_text(_(flag));
+        var icon_path = DATA + "/icons/" + flag + ".svg";
+
+        try {
+            var pb = new Gdk.Pixbuf.from_file (icon_path);
+            int width, height;
+            Gtk.icon_size_lookup (Gtk.IconSize.SMALL_TOOLBAR, out width, out height);
+            set_icon_widget(new Gtk.Image.from_pixbuf(
+                        pb.scale_simple(width, height, Gdk.InterpType.BILINEAR)));
+        } catch (Error e) {
+            stderr.printf("Icon file %s not found!\n", icon_path);
+            set_icon_widget(new Gtk.Image.from_stock ( Gtk.Stock.MISSING_IMAGE,
                                     Gtk.IconSize.SMALL_TOOLBAR));
+        }
+
     }
 }
 
@@ -270,7 +285,8 @@ public class EditForm : Gtk.VBox {
     public ColorButton btn_color;
     public Gtk.Button btn_save;
     public Gtk.Button btn_close;
-    public Gtk.HBox icons_box;
+    public Gtk.Toolbar icons_box;
+
     public signal void close();
     public signal void expand_change(bool is_expand, int width, int height);
     public bool newone;
@@ -336,14 +352,16 @@ public class EditForm : Gtk.VBox {
         last = last.append (btn_close);
         focusable_widgets.append (btn_close);
 
-        icons_box = new Gtk.HBox(false, 0);
-        /* TODO: prepare to item icons - flags
-        icons_box.add(new Toggle(Gtk.Stock.ABOUT));
-        icons_box.add(new Toggle(Gtk.Stock.APPLY));
-        icons_box.add(new Toggle(Gtk.Stock.CANCEL));
-        icons_box.add(new Toggle(Gtk.Stock.INFO));
-        icons_box.add(new Toggle(Gtk.Stock.REFRESH));
-        */
+        icons_box = new Gtk.Toolbar();
+        var flags = node_flags();
+        for (uint i = 0; i < flags.length; i++) {
+            var tfb = new ToggleFlagButton(flags[i]);
+            if (flags[i] in this.node.flags)
+                tfb.set_active(true);
+            tfb.toggled.connect (() => { flag_toogled(tfb); });
+            icons_box.add (tfb);
+        }
+        icons_box.show_all();
         last = last.append (icons_box);
         focusable_widgets.append (icons_box);
 
@@ -471,5 +489,13 @@ public class EditForm : Gtk.VBox {
     public void expand () {
         is_expand = true;
         show_all();
+    }
+
+    // change flag setting of node when toogle tool button is toggled
+    public void flag_toogled (Gtk.ToggleToolButton ttb) {
+        if (ttb.get_active())
+            this.node.flags.add(ttb.name);
+        else if (ttb.name in this.node.flags)
+            this.node.flags.remove(ttb.name);
     }
 }

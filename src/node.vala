@@ -15,6 +15,11 @@ enum Direction {
     AUTO
 }
 
+public static string [] node_flags () {
+    return { "done", "leave", "idea", "tip", "bomb", "question", "warning",
+             "phone", "mail", "bug", "plan", "web", "yes", "no", "maybe" };
+}
+
 public struct CoreNode {
     public string title;
     public uint direction;
@@ -55,6 +60,7 @@ public class Node : GLib.Object {
     public bool is_focus {get; private set;}
     public bool visible;
     public bool default_color;
+    public Gee.HashSet<string> flags;
 
     private Node (string title, Node? parent = null,
             uint direction = Direction.AUTO)
@@ -84,6 +90,7 @@ public class Node : GLib.Object {
         }
 
         this.children = new List<Node> ();
+        this.flags = new Gee.HashSet<string> ();
 
         this.area = Gdk.Rectangle();
         this.full_right = Gdk.Rectangle();
@@ -109,6 +116,10 @@ public class Node : GLib.Object {
             var chld = it.copy();
             chld.parent = node;
             node.children.append (chld);
+        }
+
+        foreach (var flag in flags) {
+            node.flags.add (flag);
         }
 
         node.area = area;
@@ -504,6 +515,8 @@ public class Node : GLib.Object {
         if (text.length > 0)            // if there is text, icon is visible
             width += ICO_SIZE + 1;
 
+        width += (ICO_SIZE + 1) * flags.size;
+
         // points area
         if (points != 0) {              // if there are points, thay are visible
             str_points = "%1g".printf(points);
@@ -709,13 +722,16 @@ public class Node : GLib.Object {
 
         cr.stroke ();
 
+        var flags_padding = (ICO_SIZE + 1) * flags.size;
+
         // text
         if (title.length > 0){
             if (is_focus)
                 Gdk.cairo_set_source_color (cr, map.pref.text_selected);
             else
                 Gdk.cairo_set_source_color (cr, map.pref.text_normal);
-            cr.move_to (area.x + map.pref.font_padding * 4, area.y + map.pref.font_padding);
+            cr.move_to (area.x + flags_padding + map.pref.font_padding * 4,
+                        area.y + map.pref.font_padding);
 
             var la = Pango.cairo_create_layout (cr);
             la.set_font_description(font_desc);
@@ -742,6 +758,18 @@ public class Node : GLib.Object {
             cr.set_source_surface (ico, area.x + area.width - ICO_SIZE - 2 - points_width,
                                         area.y + (area.height - ICO_SIZE) /2 );
             cr.paint ();
+        }
+
+        // flag icons
+        int f = 0;
+        foreach (var flag in flags) {
+            int ico_padding = (ICO_SIZE + 1) * f;
+            set_source_svg (cr, DATA + "/icons/" + flag + ".svg",
+                    area.x + ico_padding,
+                    area.y + (area.height - ICO_SIZE) /2,
+                    ICO_SIZE, ICO_SIZE);
+            cr.paint ();
+            f++;
         }
 
         // draw line to parent

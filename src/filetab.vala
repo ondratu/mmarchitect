@@ -181,6 +181,10 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         if (node.text != "")
             w.write_element ("text", node.text);
 
+        foreach (var f in node.flags) {
+            w.write_element ("flag", f);
+        }
+
         foreach (var n in node.children) {
             write_node(n, w);
         }
@@ -253,6 +257,8 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
 
             } else if (it->name == "text"){
                 n.text = it->get_content().strip();
+            } else if (it->name == "flag"){
+                n.flags.add(it->get_content().strip());
             }
         }
     }
