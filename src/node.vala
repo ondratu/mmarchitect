@@ -193,7 +193,7 @@ public class Node : GLib.Object {
         if (this.window != null)
             child.realize(this.window);
         children.append (child);
-        count_weight ();
+        child.count_weight ();
         fce_on_points (false);
         return child;
     }
@@ -208,6 +208,7 @@ public class Node : GLib.Object {
 
         node.realize(this.window);
         children.append (node);
+        node.count_weight (true);   // node could be from anoter map
         count_weight ();
         fce_on_points (true);
     }
@@ -218,7 +219,7 @@ public class Node : GLib.Object {
         if (this.window != null)
             child.realize(this.window);
         children.insert(child, pos);
-        count_weight ();
+        child.count_weight ();
         fce_on_points (true);
         return child;
     }
@@ -274,8 +275,8 @@ public class Node : GLib.Object {
     }
 
     private void count_weight_by_branches (bool down) {
+        weight = 1;
         if (!down) {        // to parent way
-            weight = 1;
             foreach (var it in children) {
                 weight += it.weight;
             }
@@ -283,7 +284,6 @@ public class Node : GLib.Object {
             if (parent != null)
                 parent.count_weight_by_branches (down);
         } else {            // to children
-            weight = 1;
             foreach (var it in children) {
                 it.count_weight_by_branches (down);
                 weight += it.weight;
