@@ -206,8 +206,6 @@ public class Preferences : GLib.Object {
     public Gdk.Color back_selected;
 
     public uint rise_method;
-    public uint points;
-    public uint function;
     public bool rise_ideas;
     public bool rise_branches;
 
@@ -289,8 +287,6 @@ public class Preferences : GLib.Object {
         back_selected = default_color;
 
         rise_method = RisingMethod.BRANCHES;
-        points = IdeaPoints.IGNORE;
-        function = PointsFunction.SUM;
         rise_ideas = true;
         rise_branches = true;
     }
@@ -380,10 +376,6 @@ public class Preferences : GLib.Object {
 
             if (it->name == "rise_method"){
                 rise_method = RisingMethod.parse(it->get_content().strip());
-            } else if (it->name == "points"){
-                points = IdeaPoints.parse(it->get_content().strip());
-            } else if (it->name == "function"){
-                function = PointsFunction.parse(it->get_content().strip());
             } else if (it->name == "rise_ideas"){
                 rise_ideas = bool.parse(it->get_content().strip());
             } else if (it->name == "rise_branches"){
@@ -483,8 +475,6 @@ public class Preferences : GLib.Object {
 
         // map tab
         rise_method = pw.get_rise_method ();
-        points = pw.get_idea_points ();
-        function = pw.get_points_function ();
         rise_ideas = pw.get_rise_ideas ();
         rise_branches = pw.get_rise_branches ();
     }
@@ -523,8 +513,6 @@ public class Preferences : GLib.Object {
 
         // map tab
         pw.set_rise_method (rise_method);
-        pw.set_idea_points (points);
-        pw.set_points_function (function);
         pw.set_rise_ideas (rise_ideas);
         pw.set_rise_branches (rise_branches);
     }
@@ -579,8 +567,6 @@ public class Preferences : GLib.Object {
         w.start_element ("map");
 
         w.write_element ("rise_method", RisingMethod.to_string (rise_method));
-        w.write_element ("points", IdeaPoints.to_string (points));
-        w.write_element ("function", PointsFunction.to_string (function));
         w.write_element ("rise_ideas", rise_ideas.to_string ());
         w.write_element ("rise_branches", rise_branches.to_string ());
 

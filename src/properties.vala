@@ -37,8 +37,6 @@ public class Properties : GLib.Object {
     public time_t modified;
 
     public uint rise_method;
-    public uint points;
-    public uint function;
     public bool rise_ideas;
     public bool rise_branches;
 
@@ -52,8 +50,6 @@ public class Properties : GLib.Object {
         author = pref.author;
 
         rise_method = pref.rise_method;
-        points = pref.points;
-        function = pref.function;
         rise_ideas = pref.rise_ideas;
         rise_branches = pref.rise_branches;
     }
@@ -62,8 +58,6 @@ public class Properties : GLib.Object {
         author = pw.author.get_text ();
 
         rise_method = pw.get_rise_method ();
-        points = pw.get_idea_points ();
-        function = pw.get_points_function ();
         rise_ideas = pw.get_rise_ideas ();
         rise_branches = pw.get_rise_branches ();
     }
@@ -78,8 +72,6 @@ public class Properties : GLib.Object {
         pw.modified.set_text (c_modified.to_string());
 
         pw.set_rise_method (rise_method);
-        pw.set_idea_points (points);
-        pw.set_points_function (function);
         pw.set_rise_ideas (rise_ideas);
         pw.set_rise_branches (rise_branches);
     }
