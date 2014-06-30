@@ -7,6 +7,7 @@ public class PropertiesWidgets : MapWidgets {
     public Gtk.Entry author;
     public Gtk.Label created;
     public Gtk.Label modified;
+    public Gtk.Label filepath;
 
     public PropertiesWidgets () {}
 
@@ -22,6 +23,7 @@ public class PropertiesWidgets : MapWidgets {
         author = builder.get_object ("author") as Gtk.Entry;
         created = builder.get_object ("label_created") as Gtk.Label;
         modified = builder.get_object ("label_modified") as Gtk.Label;
+        filepath = builder.get_object ("label_path") as Gtk.Label;
 
         var alignment_map = builder.get_object ("alignment_map") as Gtk.Alignment;
         alignment_map.add (box);
@@ -35,6 +37,7 @@ public class Properties : GLib.Object {
     public string author;
     public time_t created;
     public time_t modified;
+    public string filepath;
 
     public uint rise_method;
     public bool rise_ideas;
@@ -70,6 +73,8 @@ public class Properties : GLib.Object {
 
         var c_modified = ClaverTime (modified);
         pw.modified.set_text (c_modified.to_string());
+
+        pw.filepath.set_text (filepath);
 
         pw.set_rise_method (rise_method);
         pw.set_rise_ideas (rise_ideas);
