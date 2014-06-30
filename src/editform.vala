@@ -62,52 +62,111 @@ public class BgLabel : Gtk.Widget {
     }
 }
 
-public class NumberEntry : Gtk.Entry {
-    public double value;
+public class PointsEntry : Gtk.ComboBoxEntry {
+    public double points;
+    public int  function;
     public uint digits;
 
-    public NumberEntry () {
-        value = 0;
+    public PointsEntry () {
+        points = 0;
+        function = PointsFce.OWN;
         digits = 1;
+
         changed.connect(on_changed);
-        insert_text.connect(on_insert_text);
+        var entry = get_child() as Gtk.Entry;
+        entry.insert_text.connect(on_insert_text);
+
+        fill_model ();
+        set_wrap_width (5);
     }
 
+    private void fill_model () {
+        var model = new Gtk.ListStore(2, typeof(int), typeof(string));
+        set_model(model);
+        set_text_column (1);
+
+        Gtk.TreeIter it;
+        int   [] values = PointsFce.values();
+        string [] labels = PointsFce.labels();
+        for (uint i = 0; i < values.length; i++) {
+            model.append(out it);
+            model.set_value(it, 0, values[i]);
+            model.set_value(it, 1, labels[i]);
+        }
+    }
+
+    private void update_points() {
+        var format = "%%%ug".printf(digits);
+        var model = this.model as Gtk.ListStore;
+        Gtk.TreeIter iter;
+        model.get_iter_first (out iter);    // own points are first
+        model.set_value(iter, 1, format.printf(points));
+    }
 
     public void set_digits(uint digits) {
         this.digits = digits;
-        var format = "%%%ug".printf(digits);
-        set_text(format.printf(value));
+        update_points ();
     }
 
     public uint get_digits() {
-        return this.digits;
+        return digits;
     }
 
-    public void set_value(double value) {
-        this.value = value;
-        var format = "%%%ug".printf(digits);
-        set_text(format.printf(value));
+    public void set_points(double points) {
+        this.points = points;
+        update_points();
     }
 
-    public double get_value() {
-        return value;
+    public double get_points() {
+        return points;
+    }
+
+    public void set_function(int function) {
+        int [] values = PointsFce.values();
+        assert (function in values);
+
+        this.function = function;
+        int pos = 0;
+        for (int i = 0; i < values.length; i++ ) {
+            if (function == values[i]) {
+                pos = i;
+                break;
+            }
+        }
+        set_active (pos);
+    }
+
+    public int get_function () {
+        return function;
     }
 
     public void on_changed () {
-        if (Regex.match_simple ("^[0-9]*\\.?,?[0-9]*$", get_text())) {
-            modify_text(Gtk.StateType.NORMAL, null);
-            this.value = double.parse(get_text().replace(",", "."));
-        } else {
-            // set error if it is not correct number (more then one separator)
-            modify_text(Gtk.StateType.NORMAL, Gdk.Color(){red = uint16.MAX});
+        var model = this.model as Gtk.ListStore;
+        Gtk.TreeIter iter;
+        if (get_active_iter (out iter)){
+            Value function_value;
+            model.get_value(iter, 0, out function_value);
+            function = function_value.get_int();
+        } else {    // no iter -> just new string -> points
+            if (Regex.match_simple ("^[0-9]*(\\.|,)?[0-9]*$", get_active_text())) {
+                modify_text(Gtk.StateType.NORMAL, null);
+                set_points(double.parse(get_active_text().replace(",", ".")));
+                function = PointsFce.OWN;
+                set_active(0);
+            } else {
+                // set error if it is not correct number (more then one separator)
+                modify_text(Gtk.StateType.NORMAL, Gdk.Color(){red = uint16.MAX});
+            }
         }
     }
 
     public void on_insert_text (string text, int length, ref int position) {
+        var labels = PointsFce.labels();
+        if (text in labels)     // text is one of label, so it is ok
+            return;
         // stop insert text which is not number
-        if (! Regex.match_simple ("^[0-9]*\\.?,?[0-9]*$", text))
-            GLib.Signal.stop_emission_by_name (this, "insert-text");
+        if (! Regex.match_simple ("^[0-9]*(\\.|,)?[0-9]*$", text))
+            GLib.Signal.stop_emission_by_name (get_child(), "insert-text");
     }
 }
 
@@ -181,7 +240,6 @@ public class ColorButton : Gtk.Button {
             else
                 radio_parent.set_active(true);
 
-            //stdout.printf("dialog response %s\n", dialog.run().to_string());
             if (dialog.run() == Gtk.ResponseType.OK) {
                 if (radio_default.get_active()) {
                     color = node.map.pref.default_color;
@@ -280,7 +338,7 @@ public class EditForm : Gtk.VBox {
     public Gtk.Entry entry;
     public Gtk.ScrolledWindow text_scroll;
     public Gtk.TextView text_view;
-    public NumberEntry points;
+    public PointsEntry points;
     //public Gtk.ColorButton btn_color;
     public ColorButton btn_color;
     public Gtk.Button btn_save;
@@ -329,12 +387,13 @@ public class EditForm : Gtk.VBox {
         entry.set_size_request (width + pref.font_padding * 2 + ico_size, -1);
         focusable_widgets.append (entry);
 
-        points = new NumberEntry ();
+        points = new PointsEntry ();
         points.set_digits(1);
-        points.set_value(node.points);
+        points.set_points(node.points);
+        points.set_function(node.function);
         points.modify_font(font_desc);
         points.key_press_event.connect (on_key_press_event);
-        points.set_size_request(POINTS_LENGTH * pref.node_font_size
+        points.get_child().set_size_request(POINTS_LENGTH * pref.node_font_size
                                 + pref.font_padding * 2, -1);
 
         btn_color = new ColorButton (node);
@@ -408,7 +467,11 @@ public class EditForm : Gtk.VBox {
         Gdk.Color color;
         btn_color.get_color (out color);
         node.set_color (color);
-        node.set_points (points.get_value ());
+
+        if (points.get_function() == PointsFce.OWN)
+            node.set_points (points.get_points (), PointsFce.OWN);
+        else
+            node.set_points (node.points, points.get_function());
     }
 
     public bool on_key_press_event (Gdk.EventKey e){

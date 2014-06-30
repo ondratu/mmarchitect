@@ -82,7 +82,7 @@ public class MindMap : Gtk.Fixed {
             root.color = core.color;
             root.default_color = false;
         }
-        root.set_points (core.points);
+        root.set_points (core.points, core.function);
         focused = root;
         focused.set_focus(true);
         return root;

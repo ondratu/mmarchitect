@@ -20,17 +20,64 @@ public static string [] node_flags () {
              "phone", "mail", "bug", "plan", "web", "yes", "no", "maybe" };
 }
 
+public enum PointsFce {
+    OWN,
+    SUM,
+    AVG,
+    MAX,
+    MIN;
+
+    public static string to_string(int i) {
+        switch (i) {
+            case PointsFce.MIN:
+                return "MIN";
+            case PointsFce.MAX:
+                return "MAX";
+            case PointsFce.AVG:
+                return "AVG";
+            case PointsFce.SUM:
+                return "SUM";
+            case PointsFce.OWN:
+            default:
+                return "OWN";
+        }
+    }
+
+    public static int parse(string s) {
+        if (s == "MIN")
+            return PointsFce.MIN;
+        if (s == "MAX")
+            return PointsFce.MAX;
+        if (s == "AVG")
+            return PointsFce.AVG;
+        if (s == "SUM")
+            return PointsFce.SUM;
+        else    // OWN is default
+            return PointsFce.OWN;
+    }
+
+    public static string [] labels () {
+        return { "OWN", "SUM", "AVG", "MIN", "MAX"};
+    }
+    public static int [] values () {
+        return { PointsFce.OWN, PointsFce.SUM, PointsFce.AVG, PointsFce.MIN,
+                 PointsFce.MAX };
+    }
+}
+
 public struct CoreNode {
     public string title;
     public uint direction;
     public bool is_expand;
     public double points;
+    public int function;
     public bool default_color;
     public Gdk.Color color;
 
     public CoreNode () {
         is_expand = true;
         points = 0;
+        function = PointsFce.OWN;
         default_color = true;
         color = Gdk.Color();
     }
@@ -48,6 +95,8 @@ public class Node : GLib.Object {
     public uint direction;
     public double weight;
     public double points;
+    public int function;
+    public double fpoints {get; private set;}
     public string str_points {get; private set;}
     public Gdk.Color color;
     public Gdk.Rectangle area;
@@ -83,7 +132,7 @@ public class Node : GLib.Object {
                 this.direction =  parent.children.length() % 2;
                 parent.zip();
             }
-        } else {                                    // I'm root
+        } else {                                     // I'm root
             this.direction = Direction.AUTO;
             this.default_color = true;
             this.color = Gdk.Color();
@@ -91,6 +140,7 @@ public class Node : GLib.Object {
 
         this.children = new List<Node> ();
         this.flags = new Gee.HashSet<string> ();
+        this.function = PointsFce.OWN;
 
         this.area = Gdk.Rectangle();
         this.full_right = Gdk.Rectangle();
@@ -105,6 +155,7 @@ public class Node : GLib.Object {
         this(title);
         this.map = map;
         count_weight ();
+        fce_on_points (false);
     }
 
     public Node copy () {
@@ -112,6 +163,7 @@ public class Node : GLib.Object {
         node.map = this.map;    // if it is copy of parrent
         node.text = text;
         node.points = points;
+        node.function = function;
         foreach (var it in children) {
             var chld = it.copy();
             chld.parent = node;
@@ -142,6 +194,7 @@ public class Node : GLib.Object {
             child.realize(this.window);
         children.append (child);
         count_weight ();
+        fce_on_points (false);
         return child;
     }
 
@@ -156,6 +209,7 @@ public class Node : GLib.Object {
         node.realize(this.window);
         children.append (node);
         count_weight ();
+        fce_on_points (true);
     }
 
     public Node insert(int pos){
@@ -165,6 +219,7 @@ public class Node : GLib.Object {
             child.realize(this.window);
         children.insert(child, pos);
         count_weight ();
+        fce_on_points (true);
         return child;
     }
 
@@ -174,6 +229,48 @@ public class Node : GLib.Object {
         var parent = node.parent;
         parent.children.remove(node);
         parent.count_weight ();
+        parent.fce_on_points (false);
+    }
+
+    private void fce_on_points (bool down) {
+        if (down) {             // to children
+            foreach (var it in children)
+                it.fce_on_points (down);
+        }
+
+        if (function == PointsFce.OWN) {
+            fpoints = points;
+        } else {
+            // start on second children, for right MIN fce
+            uint len = children.length();
+            fpoints = (len > 0) ? children.nth_data(0).fpoints : 0;
+            for (int i = 1; i < len; i++) {
+                var chfp = children.nth_data(i).fpoints;
+                switch (function) {
+                    case PointsFce.SUM:
+                    case PointsFce.AVG:
+                        fpoints += chfp;
+                        break;
+                    case PointsFce.MAX:
+                        fpoints = (chfp > fpoints) ? chfp : fpoints;
+                        break;
+                    case PointsFce.MIN:
+                        fpoints = (chfp < fpoints) ? chfp : fpoints;
+                        break;
+                }
+            }
+
+            if (function == PointsFce.AVG) {
+                fpoints = fpoints / len;
+            }
+        }
+
+        // call count_children_points on parent
+        if (parent != null && !down)    // to parent
+            parent.fce_on_points (down);
+
+        if (window != null)
+            set_size_request();
     }
 
     private void count_weight_by_branches (bool down) {
@@ -203,37 +300,28 @@ public class Node : GLib.Object {
                 it.count_weight_by_points (down);
         }
 
-        if (map.prop.points == IdeaPoints.REPLACE && this.points != 0) {
+        if (this.function == PointsFce.OWN) {
             weight = this.points;
         } else if (this.children.length() == 0) {
-            weight = this.points;
+            weight = 0;
         } else {
-            if (this.map.prop.points == IdeaPoints.MIX)
-                weight = this.points;
-            else
-                weight = 0;
-
-            assert (map.prop.function <= PointsFunction.MIN);
             foreach (var it in children) {
-                switch (map.prop.function) {
-                    case PointsFunction.SUM:
-                    case PointsFunction.AVG:
+                switch (this.function) {
+                    case PointsFce.SUM:
+                    case PointsFce.AVG:
                         weight += it.weight;
                         break;
-                    case PointsFunction.MAX:
+                    case PointsFce.MAX:
                         weight = (it.weight > weight) ? it.weight : weight;
                         break;
-                    case PointsFunction.MIN:
+                    case PointsFce.MIN:
                         weight = (it.weight < weight) ? it.weight : weight;
                         break;
                 }
             }
 
-            if (this.map.prop.function == PointsFunction.AVG) {
-                if (this.map.prop.points == IdeaPoints.MIX)
-                    this.weight = this.weight / (children.length ()+1);
-                else
-                    this.weight = this.weight / children.length ();
+            if (this.function == PointsFce.AVG) {
+                this.weight = this.weight / children.length ();
             }
         }
 
@@ -517,9 +605,9 @@ public class Node : GLib.Object {
 
         width += (ICO_SIZE + 1) * flags.size;
 
-        // points area
-        if (points != 0) {              // if there are points, thay are visible
-            str_points = "%1g".printf(points);
+        // if there are points or function, thay are visible
+        if (fpoints != 0 || function != PointsFce.OWN) {
+            str_points = "%1g".printf(fpoints);
             var tmp_font = map.pref.node_font.copy();
             font_size = font_desc.get_size()
                         * (1 + (weight / map.pref.font_rise)) * (map.pref.dpi / 100.0);
@@ -689,7 +777,7 @@ public class Node : GLib.Object {
         cr.set_line_width (0.7);
 
         // roundable rectangle
-        if (points != 0) {
+        if (fpoints != 0 || function != PointsFce.OWN) {
             var t_area = Gdk.Rectangle() {
                 width = area.width - points_width,
                 height = area.height,
@@ -739,7 +827,7 @@ public class Node : GLib.Object {
             Pango.cairo_show_layout (cr, la);
         }
 
-        if (points != 0) {
+        if (fpoints != 0 || function != PointsFce.OWN) {
             cr.move_to (area.x + area.width - points_width + 2,
                         area.y + map.pref.font_padding + (int) GLib.Math.lrint (
                                             (area.height - points_height) / 2) );
@@ -861,8 +949,10 @@ public class Node : GLib.Object {
         get_size_request (out area.width, out area.height);
     }
 
-    public void set_points (double points) {
+    public void set_points (double points, int function) {
         this.points = points;
+        this.function = function;
+        fce_on_points (false);
         if (map.prop.rise_method == RisingMethod.POINTS)
             count_weight_by_points (false);
         if (this.window != null)

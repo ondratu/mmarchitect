@@ -150,10 +150,6 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
 
         w.write_element ("rise_method", RisingMethod.to_string (
                                                 prop.rise_method));
-        w.write_element ("points", IdeaPoints.to_string (
-                                                prop.points));
-        w.write_element ("function", PointsFunction.to_string (
-                                                prop.function));
         w.write_element ("rise_ideas", prop.rise_ideas.to_string ());
         w.write_element ("rise_branches", prop.rise_branches.to_string ());
 
@@ -177,6 +173,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
 
         if (node.points != 0)
             w.write_attribute ("points", node.points.to_string());
+        w.write_attribute("function", PointsFce.to_string(node.function));
 
         if (node.text != "")
             w.write_element ("text", node.text);
@@ -232,6 +229,8 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
                 c.default_color = false;
             } else if (it->name == "points"){
                 c.points = double.parse(it->children->content);
+            } else if (it->name == "function"){
+                c.function = PointsFce.parse(it->children->content);
             }
         }
     }
@@ -251,7 +250,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
                     child.color = c.color;
                     child.default_color = false;
                 }
-                child.set_points(c.points);
+                child.set_points(c.points, c.function);
 
                 read_node(it, child);
 
@@ -287,10 +286,6 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
 
             if (it->name == "rise_method"){
                 prop.rise_method = RisingMethod.parse(it->get_content().strip());
-            } else if (it->name == "points"){
-                prop.points = IdeaPoints.parse(it->get_content().strip());
-            } else if (it->name == "function"){
-                prop.function = PointsFunction.parse(it->get_content().strip());
             } else if (it->name == "rise_ideas"){
                 prop.rise_ideas = bool.parse(it->get_content().strip());
             } else if (it->name == "rise_branches"){

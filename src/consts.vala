@@ -11,7 +11,7 @@ const double LINE_RISE = 20.0;
 
 const string NONE_TITLE = "Some Title To Edit";
 const int ICO_SIZE = 16;
-const int POINTS_LENGTH = 6;
+const int POINTS_LENGTH = 4;
 
 const uint RECENT_FILES = 5;
 const string WELCOME_FILE = "about:welcome";
