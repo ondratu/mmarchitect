@@ -74,8 +74,10 @@ public class PointsEntry : Gtk.ComboBoxEntry {
 
         changed.connect(on_changed);
         var entry = get_child() as Gtk.Entry;
+#if ! WINDOWS
+	// this not work on windows (vala-0.12.0)
         entry.insert_text.connect(on_insert_text);
-
+#endif
         fill_model ();
         set_wrap_width (5);
     }
@@ -322,8 +324,10 @@ public class ToggleFlagButton : Gtk.ToggleToolButton {
             var pb = new Gdk.Pixbuf.from_file (icon_path);
             int width, height;
             Gtk.icon_size_lookup (Gtk.IconSize.SMALL_TOOLBAR, out width, out height);
-            set_icon_widget(new Gtk.Image.from_pixbuf(
+            set_icon_widget (new Gtk.Image.from_pixbuf(
                         pb.scale_simple(width, height, Gdk.InterpType.BILINEAR)));
+        } catch (Gdk.PixbufError.UNKNOWN_TYPE e) {
+             set_icon_widget (new SVGImage(icon_path, Gtk.IconSize.SMALL_TOOLBAR));
         } catch (Error e) {
             stderr.printf("Icon file %s not found!\n", icon_path);
             set_icon_widget(new Gtk.Image.from_stock ( Gtk.Stock.MISSING_IMAGE,
@@ -412,6 +416,7 @@ public class EditForm : Gtk.VBox {
         focusable_widgets.append (btn_close);
 
         icons_box = new Gtk.Toolbar();
+        icons_box.set_style (Gtk.ToolbarStyle.ICONS);
         var flags = node_flags();
         for (uint i = 0; i < flags.length; i++) {
             var tfb = new ToggleFlagButton(flags[i]);

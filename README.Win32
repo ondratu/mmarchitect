@@ -28,8 +28,10 @@ must be use from unxutils) and do make:
 
 If your unix utils are not not in c:\vala-0.12.0\bin then set UX to right path:
 
-    mingw32-make configure UX=c:\unixtools\bin
-    mingw32-make UX=c:\unixtools\bin
+    mingw32-make configure UX=c:\\unixtools\\bin
+    mingw32-make UX=c:\\unixtools\\bin
 
 Installation is only copy mmarchitect.exe, ui icons and dll from vala to
 your destination directory.
+
+There are some libraries, which is need for compilation, or run. You found them on http://www.gtk.org/download/win32.php or on MinGW.
