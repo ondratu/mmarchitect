@@ -182,7 +182,7 @@ misc/locales.iss:
 	@rm -f $@
 # 	&& chars and echo on end of line is cause windows cmd don't know ; as end of command
 	$(silent)$(foreach lc, $(GLOCALES),\
-		printf "Source: \"$(GLOCALE)\\$(lc)\\LC_MESSAGES\\*\"; DestDir: \"${app}\\share\\locale\\$(lc)\\LC_MESSAGES\"\n" >> $@ &&) \
+		printf "Source: \"$(GLOCALE)\\$(lc)\\LC_MESSAGES\\*\"; DestDir: \"{app}\\share\\locale\\$(lc)\\LC_MESSAGES\"\n" >> $@ &&) \
 		printf "$@ was created ...\n"
 endif
 
@@ -264,6 +264,7 @@ clean:
 	@$(RM) configure.mk src/config.vala
 	@$(RM) *~ src/*~
 	@$(RM) misc/locales.iss
+	@$(RM) misc/$(PROGRAM).res
 	@$(RM) $(PROGRAM)-setup-$(VERSION).exe
 	@dh_clean || printf 'Never mind, it is ok ;)\n'
 
