@@ -12,7 +12,7 @@ BUILD_DIR ?= .build
 LANG_DIR ?= .langs
 
 HAVE_CONFIG = $(wildcard configure.mk)
-CONF = $(shell (if [ -f configure.mk ]; then echo 1; else echo 0; fi;))
+CONF = $(shell (if [ -f configure.mk ]; then printf 1; else printf 0; fi;))
 
 CFLAGS ?= -g -O2
 VALAFLAGS ?= --save-temps
@@ -28,7 +28,7 @@ ifeq ($(OS), Windows_NT)
     LDFLAGS += -Wl,-subsystem,windows
     VALAFLAGS += -D WINDOWS
     WINDOWS = 1
-    UX ?= C:\vala-0.12.0\bin\\
+    UX ?= C:\\vala-0.12.0\\bin\\
     GLOCALE = c:\\vala-0.12.0\\share\\locale
     GLOCALES = $(shell ls $(GLOCALE))
 else
@@ -52,15 +52,8 @@ else # debug is set
     LOCALE_DIR = ./$(LANG_DIR)
 endif
 
-ifeq ($(OS), Windows_NT)
-    CFLAGS += -DGETTEXT_PACKAGE=\"\\"\"$(PROGRAM)\\"\"\"
-else
-    CFLAGS += -DGETTEXT_PACKAGE=\'\"$(PROGRAM)\"\'
-endif
-
-ifdef CFLAGS
-    VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
-endif
+CFLAGS += -DGETTEXT_PACKAGE='\"$(PROGRAM)\"'
+VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
 
 EXT_PKGS = \
 	gmodule-2.0 \
@@ -90,26 +83,26 @@ OUTPUT=$(PROGRAM)
 all: $(OUTPUT) $(LANG_STAMP)
 
 pkgcheck:
-	@$(UX)echo "Checking packages $(EXT_PKGS)"
+	@printf "Checking packages $(EXT_PKGS)\n"
 	@pkg-config --print-errors --exists $(EXT_PKGS)
 
 valacheck:
-	@$(UX)echo -n "Min Vala support version is $(VALAC_MIN_VERSION)"
-	@$(UX)echo ", you are using $(shell $(VALAC) --version)"
+	@printf "Min Vala support version is $(VALAC_MIN_VERSION)\n"
+	@printf ", you are using $(shell $(VALAC) --version)\n"
 
 po/$(PROGRAM).pot: $(SRC_VALA) $(FILES_UI)
-	@$(UX)echo "updating po/$(PROGRAM).pot"
+	@printf "updating po/$(PROGRAM).pot\n"
 	$(silent)xgettext -o $@ --language=C --keyword=_ --from-code utf-8 --escape src/*.vala
 	$(silent)xgettext -o $@ -j --language=Glade --keyword=translatable --from-code utf-8 ui/*.ui
 
 $(LANG_STAMP): $(FILES_PO)
-	@$(UX)echo "  GETTEXT $(FILES_PO)"
+	@printf "  GETTEXT $(FILES_PO)\n"
 	$(silent)$(foreach lang, $(LANGUGAGES), $(UX)mkdir -p $(LANG_DIR)/$(lang)/LC_MESSAGES && \
-            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po &&) $(UX)echo "\tDone"
+            msgfmt -o $(LANG_DIR)/$(lang)/LC_MESSAGES/$(PROGRAM).mo po/$(lang).po &&) printf "\tDone\n"
 	@$(UX)touch $@
 
 updatelangs: po/$(PROGRAM).pot
-	@$(UX)echo "merging $(FILES_PO)"
+	@printf "merging $(FILES_PO)\n"
 	$(silent)$(foreach lang, $(LANGUGAGES), $(UX)mv po/$(lang).po po/$(lang).bak && \
             msgmerge po/$(lang).bak po/$(PROGRAM).pot > po/$(lang).po;)
 
@@ -118,49 +111,48 @@ configure:
 	@$(MAKE) do-configure
 
 do-configure: valacheck pkgcheck
-	@$(UX)echo "Generating src/config.vala ..."
-	@$(UX)echo "const string DATA = \"$(DATA)\";" > src/config.vala
-	@$(UX)echo "const string PROGRAM = \"$(PROGRAM)\";" >> src/config.vala
-	@$(UX)echo "const string VERSION = \"$(VERSION)\";" >> src/config.vala
-	@$(UX)echo "const string LOCALE_DIR = \"$(LOCALE_DIR)\";" >> src/config.vala
-	@$(UX)echo "Generating configure.mk ..."
-	@$(UX)echo PREFIX = $(PREFIX) > configure.mk
-	@$(UX)echo DATA = $(DATA) >> configure.mk
-	@$(UX)echo CFLAGS = $(CFLAGS) >> configure.mk
-	@$(UX)echo VALAFLAGS = $(VALAFLAGS) >> configure.mk
+	@printf "Generating src/config.vala ...\n"
+	@printf "const string DATA = \"$(DATA)\";\n" > src/config.vala
+	@printf "const string PROGRAM = \"$(PROGRAM)\";\n" >> src/config.vala
+	@printf "const string VERSION = \"$(VERSION)\";\n" >> src/config.vala
+	@printf "const string LOCALE_DIR = \"$(LOCALE_DIR)\";\n" >> src/config.vala
+	@printf "Generating configure.mk ...\n"
+	@printf "PREFIX = $(PREFIX)\n" > configure.mk
+	@printf "DATA = $(DATA)\n" >> configure.mk
+	@printf "CFLAGS = $(CFLAGS)\n" >> configure.mk
+	@printf "VALAFLAGS = $(VALAFLAGS)\n" >> configure.mk
 
 help:
-	@$(UX)echo \
-            "make [RULE] [OPTIONS] \n" \
-            "   RULES are: \n" \
-            "       all         - (default rule) build binaries\n" \
-            "       clean       - clean all files from configure and all rule \n" \
-            "       pkgcheck    - check libraries for c compiling\n" \
-            "       valacheck   - information about vala support version\n" \
-            "       updatelangs - call msgmerge to all po files from LANGUGAGES list:\n" \
-            "                     $(LANGUGAGES)\n" \
-            "       configure   - configure build enviroment\n" \
-            "       install     - install binaries to system\n" \
-            "       uninstall   - uninstall binaries from system\n" \
-            "       source      - create source tarball ../$(PROGRAM)-$(VERSION).tar.bz2\n" \
-            "       c-source    - create c source ready tarball ../$(PROGRAM)-c-$(VERSION).tar.bz2\n" \
-            "\n" \
-            "   OPTIONS are :\n" \
-            "       PREFIX      - for installation \n" \
-            "       LOCALE_DIR  - for locales installation \n" \
-            "       DEBUG       - for debug build (installation is not possible) \n" \
-            "       V           - if V = 1 (default is 0) then verbose mod is enabled\n" \
-            "       CFLAGS      - additional CFLAGS \n" \
-            "       VALAC       - vala compiler \n" \
-            "       INSTALL     - install tool\n" \
-            ""
+	@printf \
+            "make [RULE] [OPTIONS] \n \
+               RULES are: \n \
+                   all         - (default rule) build binaries\n \
+                   clean       - clean all files from configure and all rule \n \
+                   pkgcheck    - check libraries for c compiling\n \
+                   valacheck   - information about vala support version\n \
+                   updatelangs - call msgmerge to all po files from LANGUGAGES list:\n \
+                                 $(LANGUGAGES)\n \
+                   configure   - configure build enviroment\n \
+                   install     - install binaries to system\n \
+                   uninstall   - uninstall binaries from system\n \
+                   source      - create source tarball ../$(PROGRAM)-$(VERSION).tar.bz2\n \
+                   c-source    - create c source ready tarball ../$(PROGRAM)-c-$(VERSION).tar.bz2\n \
+            \n \
+               OPTIONS are :\n \
+                   PREFIX      - for installation \n \
+                   LOCALE_DIR  - for locales installation \n \
+                   DEBUG       - for debug build (installation is not possible) \n \
+                   V           - if V = 1 (default is 0) then verbose mod is enabled\n \
+                   CFLAGS      - additional CFLAGS \n \
+                   VALAC       - vala compiler \n \
+                   INSTALL     - install tool\n"
 
 
 ifneq ($(strip $(HAVE_CONFIG)),)
     include configure.mk
 
 $(VALA_STAMP): $(SRC_VALA) Makefile configure.mk
-	@$(UX)echo "  VALAC $(SRC_VALA)"
+	@printf "  VALAC $(SRC_VALA)\n"
 	@$(UX)mkdir -p $(BUILD_DIR)
 	$(silent)$(VALAC) --ccode --directory=$(BUILD_DIR) --basedir=src \
 		$(foreach pkg,$(EXT_PKGS),--pkg=$(pkg)) \
@@ -172,7 +164,7 @@ $(SRC_C): $(VALA_STAMP)
 	@
 
 $(BUILD_DIR)/%.o: $(BUILD_DIR)/%.c
-	@$(UX)echo "  CC $@"
+	@printf "  CC $@\n"
 	$(silent)$(CC) -MMD $(CFLAGS) $(PKG_CFLAGS) -c $< -o $@
 
 misc/$(PROGRAM).res: misc/$(PROGRAM).rc
@@ -180,27 +172,25 @@ misc/$(PROGRAM).res: misc/$(PROGRAM).rc
 
 ifndef WINDOWS
 $(OUTPUT): $(OBJS)
-	@$(UX)echo "  LD $@"
+	@printf "  LD $@\n"
 	$(silent)$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS)
 else
 $(OUTPUT): $(OBJS) misc/$(PROGRAM).res
 	$(CC) -o $(OUTPUT) $(OBJS) $(LDFLAGS) $(PKG_LDFLAGS) misc/$(PROGRAM).res
 
-cmds=$(foreach lc, jo ne ale asi snad, $(UX)echo "Locale $(lc)" &&)
-
 misc/locales.iss:
 	@rm -f $@
 # 	&& chars and echo on end of line is cause windows cmd don't know ; as end of command
 	$(silent)$(foreach lc, $(GLOCALES),\
-		$(UX)echo "Source: \"$(GLOCALE)\\$(lc)\\LC_MESSAGES\\*\"; DestDir: \"${app}\\share\\locale\\$(lc)\\LC_MESSAGES\"" >> $@ &&) \
-		$(UX)echo "$@ was created ..."
+		printf "Source: \"$(GLOCALE)\\$(lc)\\LC_MESSAGES\\*\"; DestDir: \"${app}\\share\\locale\\$(lc)\\LC_MESSAGES\"\n" >> $@ &&) \
+		printf "$@ was created ...\n"
 endif
 
 # object depences creates by $(CC) -MMD
 -include $(OBJS:.o=.d)
 
 install: $(OUTPUT) $(LANG_STAMP)
-	@echo "Installing $(PROGRAM) to $(DESTDIR)$(PREFIX) ..."
+	@printf "Installing $(PROGRAM) to $(DESTDIR)$(PREFIX) ...\n"
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(PREFIX)/bin
 	mkdir -p $(DESTDIR)$(DATA)/icons
@@ -229,10 +219,10 @@ install: $(OUTPUT) $(LANG_STAMP)
 	mkdir -p $(DESTDIR)$(PREFIX)/share/mime/packages
 	$(INSTALL_DATA) misc/$(PROGRAM).xml $(DESTDIR)$(PREFIX)/share/mime/packages
 	#@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real installation!"
-	@echo "Do not forget to run update-mime-database after real installation!"
+	@printf "Do not forget to run update-mime-database after real installation!\n"
 
 uninstall:
-	@echo "Uninstalling $(PROGRAM) from $(DESTDIR)$(PREFIX) ..."
+	@printf "Uninstalling $(PROGRAM) from $(DESTDIR)$(PREFIX) ...\n"
 	$(RM) $(DESTDIR)$(PREFIX)/bin/$(PROGRAM)
 	$(RM) -r $(DESTDIR)$(DATA)
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/$(PROGRAM).svg
@@ -246,8 +236,8 @@ uninstall:
 	#$(RM) $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas/apps.$(PROGRAM).gschema.xml
 	$(RM) $(DESTDIR)$(PREFIX)/share/applications/$(PROGRAM).desktop
 	$(RM) $(DESTDIR)$(PREFIX)/share/mime/packages/$(PROGRAM).xml
-	#@echo "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
-	@echo "Do not forget to run update-mime-database after real uninstallation!"
+	#printf "Do not forget to run glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas after real uninstallation!"
+	@printf "Do not forget to run update-mime-database after real uninstallation!\n"
 
 $(PROGRAM)-setup-$(VERSION).exe: $(PROGRAM) misc/$(PROGRAM).iss misc/locales.iss $(LANG_STAMP)
 	iscc misc\$(PROGRAM).iss
@@ -263,11 +253,11 @@ installer: $(PROGRAM)-setup-$(VERSION).exe
 
 else
 $(OUTPUT):
-	@if [ ! -f configure.mk ]; then echo "You must run make configure first"; exit 1; fi;
+	@if [ ! -f configure.mk ]; then printf "You must run make configure first\n"; exit 1; fi;
 endif # end is configure.mk
 
 clean:
-	@$(UX)echo "Cleaning ..."
+	@printf "Cleaning ...\n"
 	@$(RM) $(OUTPUT)
 	@$(RM) $(OUTPUT).exe
 	@$(RM) -r $(BUILD_DIR) $(LANG_DIR)        
@@ -275,10 +265,10 @@ clean:
 	@$(RM) *~ src/*~
 	@$(RM) misc/locales.iss
 	@$(RM) $(PROGRAM)-setup-$(VERSION).exe
-	@dh_clean || $(UX)echo 'Never mind, it is ok ;)'
+	@dh_clean || printf 'Never mind, it is ok ;)\n'
 
 ../$(PROGRAM)-$(VERSION).tar.bz2: clean
-	@$(UX)echo "Creating source package ../$(PROGRAM)-$(VERSION).tar.bz2 ..."
+	@printf "Creating source package ../$(PROGRAM)-$(VERSION).tar.bz2 ...\n"
 	@$(RM) -rf ../$(PROGRAM)-$(VERSION)
 	@$(UX)mkdir -p ../$(PROGRAM)-$(VERSION)
 	@$(UX)cp -a src ../$(PROGRAM)-$(VERSION)/
@@ -296,7 +286,7 @@ clean:
 	@$(RM) -rf ../$(PROGRAM)-$(VERSION)
 
 ../$(PROGRAM)-c-$(VERSION).tar.bz2: clean
-	@$(UX)echo "Creating source package ../$(PROGRAM)-c-$(VERSION).tar.bz2 ..."
+	@printf "Creating source package ../$(PROGRAM)-c-$(VERSION).tar.bz2 ...\n"
 	@$(RM) -rf ../$(PROGRAM)-$(VERSION)
 	@$(UX)mkdir -p ../$(PROGRAM)-c-$(VERSION)
 	@$(UX)cp -a src ../$(PROGRAM)-c-$(VERSION)/
