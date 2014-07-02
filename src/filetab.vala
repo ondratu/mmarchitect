@@ -173,7 +173,8 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
 
         if (node.points != 0)
             w.write_attribute ("points", node.points.to_string());
-        w.write_attribute("function", PointsFce.to_string(node.function));
+        if (node.function != PointsFce.OWN)
+            w.write_attribute("function", PointsFce.to_string(node.function));
 
         if (node.text != "")
             w.write_element ("text", node.text);

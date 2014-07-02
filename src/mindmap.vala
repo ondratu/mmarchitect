@@ -142,6 +142,7 @@ public class MindMap : Gtk.Fixed {
     public void apply_style() {
         if (this.window != null) { // only if map was be drow yet
             root.set_size_request(true);
+            modify_bg(Gtk.StateType.NORMAL, pref.canvas_color);
             refresh_tree();
         }
     }
