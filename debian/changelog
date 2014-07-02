@@ -1,6 +1,5 @@
 mmarchitect (0.5.0) unstable; urgency=low
 
-  [ Ondrej Tuma ]
   * Italian translation from evanmac <nicola.lomartire@gmail.com>
   * Spanish translation from Luis Garcia Sevillano <floss.dev@gmail.com>
   * Store translators in right section in about dialog
