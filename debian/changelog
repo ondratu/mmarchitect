@@ -1,3 +1,49 @@
+mmarchitect (0.5.0) unstable; urgency=low
+
+  [ Ondrej Tuma ]
+  * Italian translation from evanmac <nicola.lomartire@gmail.com>
+  * Spanish translation from Luis Garcia Sevillano <floss.dev@gmail.com>
+  * Store translators in right section in about dialog
+  * Bug fix with gtk property in Tab interface
+  * Plus and Minus keys for expand and collapse ideas
+  * Bug fix about cursor moving to collapsed ideas
+  * Recent files in welcome tab is disabled if is not available
+  * #4 Last open files works well
+  * Remove unopend last files from config
+  * Points support
+  * bug fix with editform size manipulation
+  * Parent and node without children are still expand
+  * Sigsegv bugfix while apply style on nondraw maps
+  * #4 More usable points function setting
+  * Map settings is move to extra own object
+  * Do not remove new files from last open list
+  * Map settings are save to map file
+  * Cleaning and fixing code
+  * File properties have own dialog
+  * Debian menu hint fix
+  * 128x128 icon
+  * Create and modify time are stored to file and show on preferences dialog
+  * #15 idea point are working
+  * Tabs have popup menu and could be reordered
+  * Welcome tab could be restore with other files
+  * Full txt export
+  * Export to simple html
+  * Root node can have color and points too
+  * Import map is centered too
+  * possibly unassigned parameter bug fix
+  * node context menu
+  * better manipulation with colors in color dialog
+  * Base (black and white) icon flags/states
+  * function is node property 
+  * clean for global functions on points
+  * rising weight count bug fix
+  * file path is on properties dialog
+  * use printf instead of echo in Makefile
+  * fallback update (not svg support in pixbuf)
+  * windows dll update
+
+ -- Ondřej Tůma <mcbig@zeropage.cz>  Wed, 02 Jul 2014 06:41:00 +0200
+
 mmarchitect (0.4.0) unstable; urgency=low
 
   * Exporting map to png file
