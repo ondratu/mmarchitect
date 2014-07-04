@@ -16,8 +16,14 @@ public class BgLabel : Gtk.Widget {
     public BgLabel (string label) {
         this.label = label;
         this.layout = create_pango_layout (label);
+        draw.connect (do_draw);
+
+        int width, height;
+        this.layout.get_size (out width, out height);
+        set_size_request (width / Pango.SCALE, height / Pango.SCALE);
     }
 
+    /*
     public override void size_request (out Gtk.Requisition requisition) {
         requisition = Gtk.Requisition ();
         int width, height;
@@ -25,55 +31,62 @@ public class BgLabel : Gtk.Widget {
         this.layout.get_size (out width, out height);
         requisition.width = width / Pango.SCALE;
         requisition.height = height / Pango.SCALE;
-    }
+    }*/
 
     public override void realize () {
         var attrs = Gdk.WindowAttr () {
             window_type = Gdk.WindowType.CHILD,
-            wclass = Gdk.WindowClass.INPUT_OUTPUT,
+            wclass = Gdk.WindowWindowClass.INPUT_OUTPUT,
             event_mask = get_events () | Gdk.EventMask.EXPOSURE_MASK
         };
-        this.window = new Gdk.Window (get_parent_window (), attrs, 0);
-        this.window.move_resize (this.allocation.x, this.allocation.y,
-                                 this.allocation.width, this.allocation.height);
+        var window = new Gdk.Window (get_parent_window (), attrs, 0);
+        set_window (window);
 
-        this.window.set_user_data (this);
+        var allocation = Gtk.Allocation();
+        get_allocation (out allocation);
+        window.move_resize (allocation.x, allocation.y,
+                            allocation.width, allocation.height);
 
-        this.style = this.style.attach (this.window);
-        this.style.set_background (this.window, Gtk.StateType.NORMAL);
+        window.set_user_data (this);
 
-        set_flags (Gtk.WidgetFlags.REALIZED);
+        this.style = this.style.attach (window);
+        this.style.set_background (window, Gtk.StateType.NORMAL);
+
+        set_realized (true);
     }
 
-    public override bool expose_event (Gdk.EventExpose event) {
-        var cr = Gdk.cairo_create (this.window);
-
-        Gdk.cairo_set_source_color (cr, this.style.fg[this.state]);
+    public bool do_draw (Cairo.Context cr) {
+        //Gdk.cairo_set_source_color (cr, this.style.fg[this.state]);
 
         // And draw the text in the middle of the allocated space
         int fontw, fonth;
         this.layout.get_pixel_size (out fontw, out fonth);
-        cr.move_to ((this.allocation.width - fontw) / 2,
-                    (this.allocation.height - fonth) / 2);
+        var allocation = Gtk.Allocation();
+        get_allocation (out allocation);
+
+        cr.move_to ((allocation.width - fontw) / 2,
+                    (allocation.height - fonth) / 2);
         Pango.cairo_update_layout (cr, this.layout);
         Pango.cairo_show_layout (cr, this.layout);
 
-        return true;
+        return false;
     }
 }
 
-public class PointsEntry : Gtk.ComboBoxEntry {
+public class PointsEntry : Gtk.ComboBoxText {
     public double points;
     public int  function;
     public uint digits;
 
     public PointsEntry () {
+        Object(has_entry: true);
         points = 0;
         function = PointsFce.OWN;
         digits = 1;
 
         changed.connect(on_changed);
         var entry = get_child() as Gtk.Entry;
+        entry.set_width_chars (4);
 #if ! WINDOWS
 	// this not work on windows (vala-0.12.0)
         entry.insert_text.connect(on_insert_text);
@@ -85,7 +98,7 @@ public class PointsEntry : Gtk.ComboBoxEntry {
     private void fill_model () {
         var model = new Gtk.ListStore(2, typeof(int), typeof(string));
         set_model(model);
-        set_text_column (1);
+        set_entry_text_column (1);
 
         Gtk.TreeIter it;
         int   [] values = PointsFce.values();
@@ -214,7 +227,8 @@ public class ColorButton : Gtk.Button {
 
             var button_internal = builder.get_object ("colorsel-ok_button1")
                         as Gtk.Widget;
-            button_internal.hide_all();
+            //button_internal.hide_all();
+            button_internal.hide();
 
             var button_ok = new Gtk.Button.from_stock(Gtk.Stock.OK);
             button_ok.show_all();
@@ -442,19 +456,22 @@ public class EditForm : Gtk.VBox {
         text_scroll.add_with_viewport (text_view);
         text_scroll.set_size_request (-1, pref.text_height);
 
-        var box = new Gtk.HBox(false, 0);
-        box.pack_start(entry);
-        box.pack_start(points);
-        box.pack_start (btn_color);
-        box.pack_start(btn_save);
-        box.pack_start(btn_close);
+        var topbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+        topbox.pack_start(entry);
+        topbox.pack_start(points, false, false);
+        topbox.pack_start (btn_color);
+        topbox.pack_start(btn_save);
+        topbox.pack_start(btn_close);
 
-        pack_start(box);
-        pack_start(icons_box);
+        var ebox = new Gtk.EventBox ();
+        ebox.add (icons_box);   // becouse direct pack_start crash map background
+
+        pack_start(topbox);
+        pack_start (ebox);
         pack_start(text_scroll);
 
         collapse ();
-        box.show ();
+        topbox.show ();
         entry.show_all ();
         if (node.points != 0)
             points.show_all ();
@@ -528,7 +545,7 @@ public class EditForm : Gtk.VBox {
         if (is_expand)
             collapse ();
         else
-            expand ();
+            do_expand ();
 
         //int width, height;
         //get_size_request (out width, out height);
@@ -554,7 +571,7 @@ public class EditForm : Gtk.VBox {
         icons_box.hide ();
     }
 
-    public void expand () {
+    public void do_expand () {
         is_expand = true;
         show_all();
     }

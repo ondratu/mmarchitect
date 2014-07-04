@@ -85,7 +85,7 @@ public struct CoreNode {
 
 public class Node : GLib.Object {
 
-    public Gdk.Drawable window;
+    public Gdk.Window window;
     public Node? parent;
     public MindMap ? map;
     public List<Node> children;
@@ -530,7 +530,7 @@ public class Node : GLib.Object {
         return null;
     }
 
-    public void realize (Gdk.Drawable window) {
+    public void realize (Gdk.Window window) {
         assert (window != null);
 
         this.window = window;
@@ -608,17 +608,16 @@ public class Node : GLib.Object {
         // if there are points or function, thay are visible
         if (fpoints != 0 || function != PointsFce.OWN) {
             str_points = "%1g".printf(fpoints);
-            var tmp_font = map.pref.node_font.copy();
-            font_size = font_desc.get_size()
-                        * (1 + (weight / map.pref.font_rise)) * (map.pref.dpi / 100.0);
-            tmp_font.set_size((int) font_size - 2);
+
+            var tmp_font = font_desc.copy();
+            tmp_font.set_size((int) GLib.Math.lrint (font_desc.get_size() * 0.7));
 
             la.set_font_description(tmp_font);
             la.set_text(str_points, -1);
             la.get_size (out t_width, out t_height);
 
             points_width = (int) GLib.Math.lrint (
-                                ((t_width / Pango.SCALE) + map.pref.font_padding * 6) * 0.7);
+                                (t_width / Pango.SCALE) + map.pref.font_padding * 6);
             points_height = (int) GLib.Math.lrint (height * 0.7);
 
             width += points_width;

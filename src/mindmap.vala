@@ -43,8 +43,9 @@ public class MindMap : Gtk.Fixed {
         set_can_focus (true);
 
         set_has_tooltip (true);
-        key_press_event.connect(on_key_press_event);
-        key_release_event.connect(on_key_release_event);
+        draw.connect (do_draw);
+        key_press_event.connect (on_key_press_event);
+        key_release_event.connect (on_key_release_event);
         show_all();
     }
 
@@ -56,7 +57,7 @@ public class MindMap : Gtk.Fixed {
 
         if (root == null)
             create_new_root();
-        root.realize(this.window);
+        root.realize(get_window());
         refresh_tree();
     }
 
@@ -121,6 +122,8 @@ public class MindMap : Gtk.Fixed {
     }
 
     public void get_translation (out double x, out double y) {
+        var allocation = Gtk.Allocation();
+        get_allocation (out allocation);
         int dist = (root.full_right.width - root.full_left.width).abs()  / 2;
 
         if (root.full_right.width > root.full_left.width){
@@ -140,18 +143,15 @@ public class MindMap : Gtk.Fixed {
     }
 
     public void apply_style() {
-        if (this.window != null) { // only if map was be drow yet
+        if (get_window() != null) { // only if map was be drow yet
             root.set_size_request(true);
             modify_bg(Gtk.StateType.NORMAL, pref.canvas_color);
             refresh_tree();
         }
     }
 
-    public override bool expose_event (Gdk.EventExpose event) {
-        var cr = Gdk.cairo_create (this.window as Gdk.Drawable);
-        cr.rectangle (event.area.x, event.area.y,
-                      event.area.width, event.area.height);
-        cr.clip ();
+    public bool do_draw (Cairo.Context cr) {
+        //cr.clip ();
 
         double x, y;
         get_translation (out x, out y);
@@ -164,7 +164,7 @@ public class MindMap : Gtk.Fixed {
         //stdout.printf ("expose_event (%d,%d) -> (%d,%d)\n",
         //                    event.area.x, event.area.y,
         //                    event.area.width, event.area.height);
-        return base.expose_event (event);
+        return false;
     }
 
     /* For mouse button press event (select or open or close node) */
@@ -490,7 +490,10 @@ public class MindMap : Gtk.Fixed {
         }
     }
 
-    private void on_change_editform (Gdk.Rectangle aloc) {
+    private void on_change_editform (Gtk.Allocation aloc) {
+        var allocation = Gtk.Allocation();
+        get_allocation (out allocation);
+
         double x, y;
         get_translation (out x, out y);
 

@@ -57,8 +57,8 @@ VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
 
 EXT_PKGS = \
 	gmodule-2.0 \
-	gdk-2.0 \
-	gtk+-2.0 \
+	gdk-3.0 \
+	gtk+-3.0 \
 	cairo \
 	libxml-2.0 \
 	gee-1.0 \

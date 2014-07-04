@@ -67,15 +67,15 @@ public class Print : GLib.Object {
     }
 
     protected void draw_page (Gtk.PrintContext context, int page_nr) {
-        int width, height;
+        int width = node.window.get_width ();
+        int height = node.window.get_height ();
         double x, y, page_height, page_width, scale_width, scale_height;
 
         var cr = context.get_cairo_context ();
 
-        node.window.get_size(out width, out height);
         page_width = context.get_width ();
         page_height = context.get_height ();
-        
+
         scale_width = page_width / width;
         scale_height = page_height / height;
 
@@ -85,7 +85,7 @@ public class Print : GLib.Object {
             cr.scale (scale_width, scale_width);
         else if (scale_height < 1 && scale_height < scale_width )
             cr.scale (scale_height, scale_height);
-            
+
         cr.translate (x, y);
         node.draw_tree(cr);
     }

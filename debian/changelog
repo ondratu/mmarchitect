@@ -1,3 +1,9 @@
+mmarchitect (0.6.0) UNRELEASED; urgency=low
+
+  * gtk3 migration
+
+ -- Ondřej Tůma <mcbig@zeropage.cz>  Fri, 04 Jul 2014 08:41:27 +0200
+
 mmarchitect (0.5.0) unstable; urgency=low
 
   * Italian translation from evanmac <nicola.lomartire@gmail.com>

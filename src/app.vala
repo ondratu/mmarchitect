@@ -102,7 +102,7 @@ public class App : GLib.Object {
 
     public Gtk.FileFilter create_filter (string name, string [] patterns) {
         var filter = new Gtk.FileFilter();
-        filter.set_name (name);
+        filter.set_filter_name (name);
         foreach (var it in patterns){
             filter.add_pattern (it);
         }
@@ -304,7 +304,7 @@ public class App : GLib.Object {
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_switch_page")]
-    public void switch_page (Gtk.Widget w, Gtk.NotebookPage pg, int pn){
+    public void switch_page (Gtk.Widget w, Gtk.Widget pg, int pn){
             var cur = notebook.get_nth_page (pn) as ITab;
             window.title = cur.title.split(".")[0];
     }
@@ -376,7 +376,7 @@ public class App : GLib.Object {
         on_close_tab(tab);
     }
 
-    public bool delete_event (Gdk.Event event) {
+    public bool delete_event (Gdk.EventAny event) {
         for (int i = 0; i < notebook.get_n_pages (); i++) {
             var tab = notebook.get_nth_page (i) as ITab;
             if (tab is WelcomeTab)
@@ -487,7 +487,7 @@ public class App : GLib.Object {
                     Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                     Gtk.Stock.SAVE, Gtk.ResponseType.ACCEPT);
         var filter = new Gtk.FileFilter();
-        filter.set_name ("Mind Map Architect");
+        filter.set_filter_name ("Mind Map Architect");
         filter.add_pattern ("*.mma");
         d.add_filter (filter);
         d.set_do_overwrite_confirmation (true);

@@ -151,8 +151,8 @@ namespace Exporter {
     }
 
     bool export_to_png (string path, Node node) {
-        int width, height;
-        node.window.get_size(out width, out height);
+        int width = node.window.get_width ();
+        int height = node.window.get_height ();
 
         var surface = new Cairo.ImageSurface(Cairo.Format.RGB24, width, height);
         var cr = new Cairo.Context(surface);

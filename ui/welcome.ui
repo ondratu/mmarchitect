@@ -1,25 +1,28 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.16"/>
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkHBox" id="mainbox">
     <property name="visible">True</property>
+    <property name="can_focus">False</property>
     <property name="homogeneous">True</property>
     <child>
       <object class="GtkVBox" id="ivbox">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
+        <property name="can_focus">False</property>
         <child>
           <object class="GtkHBox" id="fast_buttons">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="homogeneous">True</property>
             <child>
               <object class="GtkEventBox" id="new_file_eventbox">
                 <property name="visible">True</property>
-                <signal name="button_press_event" handler="welcome_tab_new_file"/>
+                <property name="can_focus">False</property>
+                <signal name="button-press-event" handler="welcome_tab_new_file" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="new_file_image">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="xalign">1</property>
                     <property name="stock">gtk-new</property>
                     <property name="icon-size">6</property>
@@ -27,32 +30,40 @@
                 </child>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
             <child>
               <object class="GtkButton" id="new_file_button">
                 <property name="label">_New</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
                 <property name="relief">none</property>
                 <property name="use_underline">True</property>
                 <property name="focus_on_click">False</property>
                 <property name="xalign">0</property>
-                <signal name="button_press_event" handler="welcome_tab_new_file"/>
+                <signal name="button-press-event" handler="welcome_tab_new_file" swapped="no"/>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkEventBox" id="open_file_eventbox">
                 <property name="visible">True</property>
-                <signal name="button_press_event" handler="welcome_tab_open_file"/>
+                <property name="can_focus">False</property>
+                <signal name="button-press-event" handler="welcome_tab_open_file" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="open_file_image">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="xalign">1</property>
                     <property name="stock">gtk-open</property>
                     <property name="icon-size">6</property>
@@ -60,22 +71,28 @@
                 </child>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">2</property>
               </packing>
             </child>
             <child>
               <object class="GtkButton" id="open_file_button">
                 <property name="label">_Open</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
                 <property name="relief">none</property>
                 <property name="use_underline">True</property>
                 <property name="focus_on_click">False</property>
                 <property name="xalign">0</property>
-                <signal name="button_press_event" handler="welcome_tab_open_file"/>
+                <signal name="button-press-event" handler="welcome_tab_open_file" swapped="no"/>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">3</property>
               </packing>
             </child>
@@ -90,30 +107,36 @@
         <child>
           <object class="GtkHSeparator" id="hseparator2">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
         </child>
         <child>
           <object class="GtkVBox" id="file_box">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkLabel" id="label_recent">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">&lt;b&gt;Recent files:&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="padding">10</property>
             <property name="position">2</property>
           </packing>
@@ -121,15 +144,18 @@
         <child>
           <object class="GtkHSeparator" id="hseparator1">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="position">3</property>
           </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label_tip">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="xalign">0</property>
             <property name="ypad">5</property>
             <property name="label" translatable="yes">&lt;b&gt;Tip:&lt;/b&gt;</property>
@@ -144,19 +170,22 @@
         <child>
           <object class="GtkVBox" id="tip_box">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkLabel" id="tip_title">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">&lt;b&gt;&lt;big&gt;label&lt;/big&gt;&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
                 <attributes>
-                  <attribute name="scale" value="1.400000"/>
+                  <attribute name="scale" value="1.3999999999999999"/>
                 </attributes>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -164,6 +193,7 @@
               <object class="GtkLabel" id="tip_body">
                 <property name="width_request">400</property>
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">label</property>
@@ -171,6 +201,8 @@
                 <property name="wrap">True</property>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -183,20 +215,25 @@
                 <property name="label" translatable="yes">&lt;a href="#next_tip"&gt;Next Tip&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="track_visited_links">False</property>
-                <signal name="activate_link" handler="welcome_tab_next_tip"/>
+                <signal name="activate-link" handler="welcome_tab_next_tip" swapped="no"/>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">2</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="position">5</property>
           </packing>
         </child>
       </object>
       <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
         <property name="padding">10</property>
         <property name="position">0</property>
       </packing>
@@ -204,24 +241,27 @@
     <child>
       <object class="GtkVBox" id="evbox">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
+        <property name="can_focus">False</property>
         <child>
           <object class="GtkVBox" id="etip1">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkLabel" id="etitle1">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">&lt;a href="http://mmarchitect.zeropage.cz/?gtk=1"&gt;Project web pages&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <attributes>
-                  <attribute name="scale" value="1.400000"/>
+                  <attribute name="scale" value="1.3999999999999999"/>
                 </attributes>
-                <signal name="activate_link" handler="welcome_tab_open_uri"/>
+                <signal name="activate-link" handler="welcome_tab_open_uri" swapped="no"/>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -229,6 +269,7 @@
               <object class="GtkLabel" id="ebody1">
                 <property name="width_request">400</property>
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">If you are looking for more informations about project, want to download new version, or you want to start with helping us, see Home page of Mind Map Architect.</property>
@@ -236,12 +277,15 @@
                 <property name="wrap">True</property>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="padding">10</property>
             <property name="position">0</property>
           </packing>
@@ -249,7 +293,7 @@
         <child>
           <object class="GtkVBox" id="etip2">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkLabel" id="etitle2">
                 <property name="visible">True</property>
@@ -259,11 +303,13 @@
                 <property name="label" translatable="yes">&lt;a href="http://sourceforge.net/p/mmarchitect/discussion/general/"&gt;General Discussion&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <attributes>
-                  <attribute name="scale" value="1.400000"/>
+                  <attribute name="scale" value="1.3999999999999999"/>
                 </attributes>
-                <signal name="activate_link" handler="welcome_tab_open_uri"/>
+                <signal name="activate-link" handler="welcome_tab_open_uri" swapped="no"/>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -271,6 +317,7 @@
               <object class="GtkLabel" id="ebody2">
                 <property name="width_request">400</property>
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">Have you any question about this application? Or have you some tip for us, or other users ? Can you help to other users. Or you anly wnat to see whats new in project ? Watch General Discussion on SourceForge.net.</property>
@@ -279,12 +326,15 @@
                 <property name="wrap_mode">word-char</property>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="padding">10</property>
             <property name="position">1</property>
           </packing>
@@ -292,7 +342,7 @@
         <child>
           <object class="GtkVBox" id="etip3">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkLabel" id="etitle3">
                 <property name="visible">True</property>
@@ -302,11 +352,13 @@
                 <property name="label" translatable="yes">&lt;a href="http://sourceforge.net/p/mmarchitect/tickets/"&gt;Tasks and Bugs&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <attributes>
-                  <attribute name="scale" value="1.400000"/>
+                  <attribute name="scale" value="1.3999999999999999"/>
                 </attributes>
-                <signal name="activate_link" handler="welcome_tab_open_uri"/>
+                <signal name="activate-link" handler="welcome_tab_open_uri" swapped="no"/>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -314,6 +366,7 @@
               <object class="GtkLabel" id="ebody3">
                 <property name="width_request">400</property>
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">Is there bug in this program ? Is missing some future for you in mmarchitect ? Please tell us more information about that. Thank you for your response.</property>
@@ -322,12 +375,15 @@
                 <property name="wrap_mode">word-char</property>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="padding">10</property>
             <property name="position">2</property>
           </packing>
@@ -335,7 +391,7 @@
         <child>
           <object class="GtkVBox" id="etip4">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkLabel" id="etitle4">
                 <property name="visible">True</property>
@@ -345,10 +401,12 @@
                 <property name="label" translatable="yes">&lt;a href="http://mmarchitect.zeropage.cz/development.html?gtk=1"&gt;Development of project&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <attributes>
-                  <attribute name="scale" value="1.400000"/>
+                  <attribute name="scale" value="1.3999999999999999"/>
                 </attributes>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -356,6 +414,7 @@
               <object class="GtkLabel" id="ebody4">
                 <property name="width_request">400</property>
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="xpad">10</property>
                 <property name="label" translatable="yes">If you want to help us with this project, translate messages to your languege, develop, create package for your distribution, or anything what you can do for help us, see development page.</property>
@@ -364,18 +423,23 @@
                 <property name="wrap_mode">word-char</property>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="padding">10</property>
             <property name="position">3</property>
           </packing>
         </child>
       </object>
       <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
         <property name="padding">10</property>
         <property name="position">1</property>
       </packing>

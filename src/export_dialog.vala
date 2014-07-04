@@ -97,7 +97,7 @@ public class ExportDialog : Gtk.FileChooserDialog {
 
     public static Gtk.FileFilter create_filter (string name, string [] patterns) {
         var filter = new Gtk.FileFilter ();
-        filter.set_name (name);
+        filter.set_filter_name (name);
         foreach (var it in patterns)
             filter.add_pattern (it);
 
