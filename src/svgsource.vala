@@ -63,10 +63,10 @@ public class SVGImage : Gtk.Widget {
 
         window.set_user_data (this);
 
-        this.style = this.style.attach (window);
-        this.style.set_background (window, Gtk.StateType.NORMAL);
-
-        //set_flags (Gtk.WidgetFlags.REALIZED);
+        //this.style = this.style.attach (window);
+        //this.style.set_background (window, Gtk.StateType.NORMAL);
+        var scx = get_style_context();
+        scx.set_background (window);
         set_realized (true);
     }
 

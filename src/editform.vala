@@ -9,70 +9,6 @@
 
 // modules: Gtk
 
-public class BgLabel : Gtk.Widget {
-    private string label;
-    private Pango.Layout layout;
-
-    public BgLabel (string label) {
-        this.label = label;
-        this.layout = create_pango_layout (label);
-        draw.connect (do_draw);
-
-        int width, height;
-        this.layout.get_size (out width, out height);
-        set_size_request (width / Pango.SCALE, height / Pango.SCALE);
-    }
-
-    /*
-    public override void size_request (out Gtk.Requisition requisition) {
-        requisition = Gtk.Requisition ();
-        int width, height;
-
-        this.layout.get_size (out width, out height);
-        requisition.width = width / Pango.SCALE;
-        requisition.height = height / Pango.SCALE;
-    }*/
-
-    public override void realize () {
-        var attrs = Gdk.WindowAttr () {
-            window_type = Gdk.WindowType.CHILD,
-            wclass = Gdk.WindowWindowClass.INPUT_OUTPUT,
-            event_mask = get_events () | Gdk.EventMask.EXPOSURE_MASK
-        };
-        var window = new Gdk.Window (get_parent_window (), attrs, 0);
-        set_window (window);
-
-        var allocation = Gtk.Allocation();
-        get_allocation (out allocation);
-        window.move_resize (allocation.x, allocation.y,
-                            allocation.width, allocation.height);
-
-        window.set_user_data (this);
-
-        this.style = this.style.attach (window);
-        this.style.set_background (window, Gtk.StateType.NORMAL);
-
-        set_realized (true);
-    }
-
-    public bool do_draw (Cairo.Context cr) {
-        //Gdk.cairo_set_source_color (cr, this.style.fg[this.state]);
-
-        // And draw the text in the middle of the allocated space
-        int fontw, fonth;
-        this.layout.get_pixel_size (out fontw, out fonth);
-        var allocation = Gtk.Allocation();
-        get_allocation (out allocation);
-
-        cr.move_to ((allocation.width - fontw) / 2,
-                    (allocation.height - fonth) / 2);
-        Pango.cairo_update_layout (cr, this.layout);
-        Pango.cairo_show_layout (cr, this.layout);
-
-        return false;
-    }
-}
-
 public class PointsEntry : Gtk.ComboBoxText {
     public double points;
     public int  function;
@@ -436,7 +372,7 @@ public class EditForm : Gtk.VBox {
             var tfb = new ToggleFlagButton(flags[i]);
             if (flags[i] in this.node.flags)
                 tfb.set_active(true);
-            tfb.toggled.connect (() => { flag_toogled(tfb); });
+            //tfb.toggled.connect (() => { flag_toogled(tfb); });
             icons_box.add (tfb);
         }
         icons_box.show_all();
@@ -480,7 +416,6 @@ public class EditForm : Gtk.VBox {
 
     public virtual signal void save (){
         newone = false;
-        node.set_title (entry.get_text ());
         var buffer = text_view.get_buffer ();
         Gtk.TextIter start, end;
         buffer.get_start_iter (out start);
@@ -494,6 +429,20 @@ public class EditForm : Gtk.VBox {
             node.set_points (points.get_points (), PointsFce.OWN);
         else
             node.set_points (node.points, points.get_function());
+
+        // save icons
+        icons_box.forall((w) => {
+            if (!(w is ToggleFlagButton)) return;
+
+            var ttb = w as ToggleFlagButton;
+            if (ttb.get_active())
+                this.node.flags.add(ttb.name);
+            else if (ttb.name in this.node.flags)
+                this.node.flags.remove(ttb.name);
+        });
+
+        // set title at the end, couse set_title call get_size_request on node
+        node.set_title (entry.get_text ());
     }
 
     public bool on_key_press_event (Gdk.EventKey e){
