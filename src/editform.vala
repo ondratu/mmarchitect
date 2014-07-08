@@ -13,6 +13,7 @@ public class PointsEntry : Gtk.ComboBoxText {
     public double points;
     public int  function;
     public uint digits;
+    public Gtk.Entry ? entry { get; private set; }
 
     public PointsEntry () {
         Object(has_entry: true);
@@ -21,7 +22,7 @@ public class PointsEntry : Gtk.ComboBoxText {
         digits = 1;
 
         changed.connect(on_changed);
-        var entry = get_child() as Gtk.Entry;
+        entry = get_child() as Gtk.Entry;
         entry.set_width_chars (4);
 #if ! WINDOWS
 	// this not work on windows (vala-0.12.0)
@@ -117,7 +118,7 @@ public class PointsEntry : Gtk.ComboBoxText {
             return;
         // stop insert text which is not number
         if (! Regex.match_simple ("^[0-9]*(\\.|,)?[0-9]*$", text))
-            GLib.Signal.stop_emission_by_name (get_child(), "insert-text");
+            GLib.Signal.stop_emission_by_name (entry, "insert-text");
     }
 }
 
@@ -346,8 +347,8 @@ public class EditForm : Gtk.VBox {
         points.set_points(node.points);
         points.set_function(node.function);
         points.modify_font(font_desc);
-        points.key_press_event.connect (on_key_press_event);
-        points.get_child().set_size_request(POINTS_LENGTH * pref.node_font_size
+        points.entry.key_press_event.connect (on_key_press_event);
+        points.entry.set_size_request(POINTS_LENGTH * pref.node_font_size
                                 + pref.font_padding * 2, -1);
 
         btn_color = new ColorButton (node);
@@ -446,17 +447,17 @@ public class EditForm : Gtk.VBox {
     }
 
     public bool on_key_press_event (Gdk.EventKey e){
-        if (e.keyval == 65307){
+        if (e.keyval == 65307){                                 // Escape
             close();
             return true;
-        } else if (e.keyval == 65421 || e.keyval == 65293) {
+        } else if (e.keyval == 65421 || e.keyval == 65293) {    // KP_Enter || Return
             save();
             close();
             return true;
-        } else if (e.keyval == 65471) {
+        } else if (e.keyval == 65471) {                         // F2
             do_change_expand ();
             return true;
-        } else if (e.keyval == 65289 && is_expand) {
+        } else if (e.keyval == 65289 && is_expand) {            // Tab
             return false;
             /*var it = actives;
             while (it != null) {
