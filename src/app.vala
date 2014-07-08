@@ -608,7 +608,6 @@ public class App : GLib.Object {
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_node_edit")]
     public void node_edit (Gtk.Widget w) {
         var tab = notebook.get_nth_page (notebook.get_current_page ()) as ITab;
-        stdout.printf("Edit tab on: %s\n", tab.title);
         if (tab is WelcomeTab)
             return;
 

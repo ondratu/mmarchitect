@@ -115,9 +115,11 @@ public class MindMap : Gtk.Fixed {
         queue_draw_area(focused.area.x + xx - 1, focused.area.y + yy - 1,
                             focused.area.width + 2, focused.area.height + 2 );
 
-        // musim poslat takovey rozmer, aby bylo vse videt
-        focus_changed (focused.area.x + xx, focused.area.y + yy,
-                       focused.area.width,  focused.area.height);
+        if (last != focused) {
+            // move to focused node (area), only if is not only regrap focus
+            focus_changed (focused.area.x + xx, focused.area.y + yy,
+                           focused.area.width,  focused.area.height);
+        }
         grab_focus();
     }
 

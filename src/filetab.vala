@@ -58,7 +58,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     }
 
     public void queue_center () {
-        event_after.connect(center_root_node);
+        draw.connect(center_root_node);
     }
 
     private void set_saved (bool state){
@@ -91,7 +91,6 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     }
 
     public void on_focus_changed (double x, double y, double width, double height) {
-
         var ha = get_hadjustment();
         var va = get_vadjustment();
 
@@ -114,7 +113,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
             va.set_value (val);
     }
 
-    public void center_root_node () {
+    public bool center_root_node () {
         double x, y;
         mindmap.refresh_tree();
         mindmap.get_translation (out x, out y);
@@ -127,7 +126,8 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         ha.set_value (mindmap.root.area.x + xx - ha.get_page_size() / 2);
         va.set_value (mindmap.root.area.y + yy - va.get_page_size() / 2);
 
-        event_after.disconnect(center_root_node);
+        draw.disconnect(center_root_node);
+        return false;
     }
 
     private void write_file_info (Xml.TextWriter w) {
