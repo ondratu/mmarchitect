@@ -1,6 +1,9 @@
 mmarchitect (0.6.0) UNRELEASED; urgency=low
 
   * gtk3 migration
+  * store icons to node right
+  * fix center map when it is possible
+  * Enter || Return key save values on points widget
 
  -- Ondřej Tůma <mcbig@zeropage.cz>  Fri, 04 Jul 2014 08:41:27 +0200
 
