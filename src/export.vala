@@ -50,11 +50,10 @@ namespace Exporter {
         w.start_element("li");            // <li>
 
         if (node.parent == null && !node.default_color)
+            w.write_attribute ("style", "color:" + rgb_to_hex(node.rgb) + ";");
+        else if (node.parent != null && !node.rgb.equal(node.parent.rgb))
             //w.write_attribute ("style", "color:" + node.color.to_string()+";");
-            w.write_attribute ("style", "color:" + node.get_color ()+";");
-        else if (node.parent != null && !node.color.equal(node.parent.color))
-            //w.write_attribute ("style", "color:" + node.color.to_string()+";");
-            w.write_attribute ("style", "color:" + node.get_color ()+";");
+            w.write_attribute ("style", "color:" + rgb_to_hex(node.rgb) + ";");
 
         w.write_string(node.title);
 

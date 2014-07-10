@@ -86,8 +86,6 @@ public class PreferenceWidgets : MapWidgets {
     public Gtk.ColorButton back_normal;
     public Gtk.ColorButton back_selected;
 
-    //public MapWidgets () {}
-
     public override void loadui () throws Error {
         base.loadui();
 
@@ -198,12 +196,12 @@ public class Preferences : GLib.Object {
     public int text_height;
 
     public bool system_colors;
-    public Gdk.Color default_color;
-    public Gdk.Color canvas_color;
-    public Gdk.Color text_normal;
-    public Gdk.Color text_selected;
-    public Gdk.Color back_normal;
-    public Gdk.Color back_selected;
+    public Gdk.RGBA default_color;
+    public Gdk.RGBA canvas_color;
+    public Gdk.RGBA text_normal;
+    public Gdk.RGBA text_selected;
+    public Gdk.RGBA back_normal;
+    public Gdk.RGBA back_selected;
 
     public uint rise_method;
     public bool rise_ideas;
@@ -246,16 +244,16 @@ public class Preferences : GLib.Object {
         return rv;
     }
 
-    public void set_style(Gtk.Style style) {
+    public void set_style(Gtk.StyleContext stylecx) {
         if (! system_colors)
             return;
 
-        default_color   = style.fg[Gtk.StateType.NORMAL];
-        canvas_color    = style.bg[Gtk.StateType.NORMAL];
-        text_normal     = style.text[Gtk.StateType.NORMAL];
-        text_selected   = style.text[Gtk.StateType.SELECTED];
-        back_normal     = style.bg[Gtk.StateType.NORMAL];
-        back_selected   = style.bg[Gtk.StateType.SELECTED];
+        default_color   = stylecx.get_border_color(Gtk.StateFlags.NORMAL);
+        canvas_color    = stylecx.get_background_color(Gtk.StateFlags.NORMAL);
+        text_normal     = stylecx.get_color(Gtk.StateFlags.NORMAL);
+        text_selected   = stylecx.get_color(Gtk.StateFlags.SELECTED);
+        back_normal     = stylecx.get_background_color(Gtk.StateFlags.NORMAL);
+        back_selected   = stylecx.get_background_color(Gtk.StateFlags.SELECTED);
     }
 
     private void load_default() {
@@ -352,17 +350,17 @@ public class Preferences : GLib.Object {
                 system_colors = bool.parse(it->get_content().strip());
             } else if (!system_colors) {
                 if (it->name == "default_color"){
-                    Gdk.Color.parse(it->get_content(), out default_color);
+                    default_color.parse(it->get_content());
                 } else if (it->name == "canvas_color"){
-                    Gdk.Color.parse(it->get_content(), out canvas_color);
+                    canvas_color.parse(it->get_content());
                 } else if (it->name == "text_normal"){
-                    Gdk.Color.parse(it->get_content(), out text_normal);
+                    text_normal.parse(it->get_content());
                 } else if (it->name == "text_selected"){
-                    Gdk.Color.parse(it->get_content(), out text_selected);
+                    text_selected.parse(it->get_content());
                 } else if (it->name == "back_normal"){
-                    Gdk.Color.parse(it->get_content(), out back_normal);
+                    back_normal.parse(it->get_content());
                 } else if (it->name == "back_selected"){
-                    Gdk.Color.parse(it->get_content(), out back_selected);
+                    back_selected.parse(it->get_content());
                 }
             }
         }
@@ -426,7 +424,7 @@ public class Preferences : GLib.Object {
         }
     }
 
-    private void load_from_ui(Gtk.Style style) {
+    private void load_from_ui(Gtk.StyleContext stylecx) {
         // general tab
         author = pw.author.get_text ();
         default_directory = pw.default_directory.get_current_folder ();
@@ -463,14 +461,14 @@ public class Preferences : GLib.Object {
         // colors map
         system_colors = pw.system_colors.get_active();
         if (!system_colors) {
-            pw.default_color.get_color(out default_color);
-            pw.canvas_color.get_color(out canvas_color);
-            pw.text_normal.get_color(out text_normal);
-            pw.text_selected.get_color(out text_selected);
-            pw.back_normal.get_color(out back_normal);
-            pw.back_selected.get_color(out back_selected);
+            default_color = pw.default_color.get_rgba();
+            canvas_color = pw.canvas_color.get_rgba();
+            text_normal = pw.text_normal.get_rgba();
+            text_selected = pw.text_selected.get_rgba();
+            back_normal = pw.back_normal.get_rgba();
+            back_selected = pw.back_selected.get_rgba();
         } else {
-            set_style (style);
+            set_style (stylecx);
         }
 
         // map tab
@@ -504,12 +502,12 @@ public class Preferences : GLib.Object {
 
         // colors map
         pw.system_colors.set_active (system_colors);
-        pw.default_color.set_color (default_color);
-        pw.canvas_color.set_color (canvas_color);
-        pw.text_normal.set_color (text_normal);
-        pw.text_selected.set_color (text_selected);
-        pw.back_normal.set_color (back_normal);
-        pw.back_selected.set_color (back_selected);
+        pw.default_color.set_rgba (default_color);
+        pw.canvas_color.set_rgba (canvas_color);
+        pw.text_normal.set_rgba (text_normal);
+        pw.text_selected.set_rgba (text_selected);
+        pw.back_normal.set_rgba (back_normal);
+        pw.back_selected.set_rgba (back_selected);
 
         // map tab
         pw.set_rise_method (rise_method);
@@ -623,7 +621,7 @@ public class Preferences : GLib.Object {
         var retval = (pw.dialog.run() == 1);
 
         if (retval) {
-            load_from_ui (pw.dialog.style);
+            load_from_ui (pw.dialog.get_style_context());
             try {
                 save_to_config ();
             } catch (Error e) {

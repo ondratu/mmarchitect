@@ -84,7 +84,7 @@ public class App : GLib.Object {
     }
 
     public void on_realize() {
-        pref.set_style(window.style);
+        pref.set_style(window.get_style_context());
     }
 
     public void set_tooltips(Gtk.Builder builder) {

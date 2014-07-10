@@ -65,6 +65,15 @@ public enum PointsFce {
     }
 }
 
+public static string rgb_to_hex(Gdk.RGBA rgb) {
+    uint8 red = (uint8) GLib.Math.rint(rgb.red * uint8.MAX);
+    uint8 green = (uint8) GLib.Math.rint(rgb.green * uint8.MAX);
+    uint8 blue = (uint8) GLib.Math.rint(rgb.blue * uint8.MAX);
+    return "#" + red.to_string("%02x")
+               + green.to_string("%02x")
+               + blue.to_string("%02x");
+}
+
 public struct CoreNode {
     public string title;
     public uint direction;
@@ -72,14 +81,14 @@ public struct CoreNode {
     public double points;
     public int function;
     public bool default_color;
-    public Gdk.Color color;
+    public Gdk.RGBA rgb;
 
     public CoreNode () {
         is_expand = true;
         points = 0;
         function = PointsFce.OWN;
         default_color = true;
-        color = Gdk.Color();
+        rgb = Gdk.RGBA();
     }
 }
 
@@ -98,7 +107,7 @@ public class Node : GLib.Object {
     public int function;
     public double fpoints {get; private set;}
     public string str_points {get; private set;}
-    public Gdk.Color color;
+    public Gdk.RGBA rgb;
     public Gdk.Rectangle area;
     private int points_width;
     private int points_height;
@@ -121,7 +130,7 @@ public class Node : GLib.Object {
         // Direction set ...
         if (parent != null){                        // i have parent
             this.map = parent.map;
-            this.color = parent.color;
+            this.rgb = parent.rgb;
             this.default_color = parent.default_color;
 
             if (parent.direction != Direction.AUTO) // parent is not root
@@ -135,7 +144,7 @@ public class Node : GLib.Object {
         } else {                                     // I'm root
             this.direction = Direction.AUTO;
             this.default_color = true;
-            this.color = Gdk.Color();
+            this.rgb = Gdk.RGBA();
         }
 
         this.children = new List<Node> ();
@@ -535,7 +544,7 @@ public class Node : GLib.Object {
 
         this.window = window;
         if (this.default_color)
-            this.color = map.pref.default_color;
+            this.rgb = map.pref.default_color;
 
         get_size_request (out area.width, out area.height);
         foreach (var child in children) {
@@ -653,20 +662,13 @@ public class Node : GLib.Object {
         }
     }
 
-    public void set_color (Gdk.Color color) {
+    public void set_rgb (Gdk.RGBA rgb) {
         foreach (var node in children){
-            if (node.color.equal(this.color))
-                node.set_color(color);
+            if (node.rgb.equal(this.rgb))
+                node.set_rgb(rgb);
         }
-        this.color = color;
+        this.rgb = rgb;
         this.default_color = false;
-    }
-
-    public string get_color () {
-        return "#" +
-                (color.red / 256).to_string("%02x") +
-                (color.green / 256).to_string("%02x") +
-                (color.blue / 256).to_string("%02x");
     }
 
     public int set_position (int left, int top) {
@@ -796,16 +798,16 @@ public class Node : GLib.Object {
             draw_rectangle (cr, area, (area.height / 2) + 2);
 
         if (is_focus){
-            Gdk.cairo_set_source_color (cr, map.pref.back_selected);
+            Gdk.cairo_set_source_rgba (cr, map.pref.back_selected);
         } else
-            Gdk.cairo_set_source_color (cr, map.pref.back_normal);
+            Gdk.cairo_set_source_rgba (cr, map.pref.back_normal);
 
         cr.fill_preserve();
 
         if (default_color)
-            Gdk.cairo_set_source_color (cr, map.pref.default_color);
+            Gdk.cairo_set_source_rgba (cr, map.pref.default_color);
         else
-            Gdk.cairo_set_source_color (cr, color);
+            Gdk.cairo_set_source_rgba (cr, rgb);
 
         cr.stroke ();
 
@@ -814,9 +816,9 @@ public class Node : GLib.Object {
         // text
         if (title.length > 0){
             if (is_focus)
-                Gdk.cairo_set_source_color (cr, map.pref.text_selected);
+                Gdk.cairo_set_source_rgba (cr, map.pref.text_selected);
             else
-                Gdk.cairo_set_source_color (cr, map.pref.text_normal);
+                Gdk.cairo_set_source_rgba (cr, map.pref.text_normal);
             cr.move_to (area.x + flags_padding + map.pref.font_padding * 4,
                         area.y + map.pref.font_padding);
 
@@ -864,9 +866,9 @@ public class Node : GLib.Object {
             cr.set_line_width (0.7 * (1 + (weight / map.pref.line_rise)));
 
             if (default_color)
-                Gdk.cairo_set_source_color (cr, map.pref.default_color);
+                Gdk.cairo_set_source_rgba (cr, map.pref.default_color);
             else
-                Gdk.cairo_set_source_color (cr, color);
+                Gdk.cairo_set_source_rgba (cr, rgb);
 
             // TODO: draw technique could be set
             if (direction == Direction.RIGHT) {

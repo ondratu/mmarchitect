@@ -167,9 +167,9 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         w.write_attribute ("expand", node.is_expand.to_string());
 
         if (node.parent == null && !node.default_color)
-            w.write_attribute ("color", node.color.to_string());
-        else if (node.parent != null && !node.color.equal(node.parent.color))
-            w.write_attribute ("color", node.color.to_string());
+            w.write_attribute ("color", rgb_to_hex(node.rgb));
+        else if (node.parent != null && !node.rgb.equal(node.parent.rgb))
+            w.write_attribute ("color", rgb_to_hex(node.rgb));
 
         if (node.points != 0)
             w.write_attribute ("points", node.points.to_string());
@@ -226,7 +226,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
             } else if (it->name == "expand"){
                 c.is_expand = bool.parse(it->children->content);
             } else if (it->name == "color"){
-                Gdk.Color.parse (it->children->content, out c.color);
+                c.rgb.parse (it->children->content);
                 c.default_color = false;
             } else if (it->name == "points"){
                 c.points = double.parse(it->children->content);
@@ -248,7 +248,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
                 var child = n.add(c.title, c.direction, c.is_expand);
 
                 if (!c.default_color) {
-                    child.color = c.color;
+                    child.rgb = c.rgb;
                     child.default_color = false;
                 }
                 child.set_points(c.points, c.function);

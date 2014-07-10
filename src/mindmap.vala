@@ -53,7 +53,7 @@ public class MindMap : Gtk.Fixed {
     // realize method is good place to load file if is present....
     public override void realize () {
         base.realize();
-        modify_bg(Gtk.StateType.NORMAL, pref.canvas_color);
+        override_background_color(Gtk.StateFlags.NORMAL, pref.canvas_color);
 
         if (root == null)
             create_new_root();
@@ -80,7 +80,7 @@ public class MindMap : Gtk.Fixed {
         root = new Node.root(core.title, this);
         assert(root != null);
         if (!core.default_color) {
-            root.color = core.color;
+            root.rgb = core.rgb;
             root.default_color = false;
         }
         root.set_points (core.points, core.function);
@@ -147,7 +147,7 @@ public class MindMap : Gtk.Fixed {
     public void apply_style() {
         if (get_window() != null) { // only if map was be drow yet
             root.set_size_request(true);
-            modify_bg(Gtk.StateType.NORMAL, pref.canvas_color);
+            override_background_color(Gtk.StateFlags.NORMAL, pref.canvas_color);
             refresh_tree();
         }
     }

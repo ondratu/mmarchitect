@@ -125,10 +125,10 @@ public class PointsEntry : Gtk.ComboBoxText {
 public class ColorButton : Gtk.Button {
     private Node node;
     private Gtk.DrawingArea color_widget;
-    private Gdk.Color color;
+    private Gdk.RGBA rgba;
     private bool default_color;
 
-    private Gtk.ColorSelection ? color_selection;
+    private unowned Gtk.ColorSelection color_selection;
     private Gtk.DrawingArea ? drawing_color;
     private Gtk.RadioButton ? radio_default;
     private Gtk.RadioButton ? radio_parent;
@@ -136,20 +136,20 @@ public class ColorButton : Gtk.Button {
 
     public ColorButton (Node node) {
         this.node = node;
-        color = node.color;
+        rgba = node.rgb;
         default_color = node.default_color;
 
         color_widget = new Gtk.DrawingArea ();
-        color_widget.modify_bg(Gtk.StateType.NORMAL, color);
-        color_widget.modify_bg(Gtk.StateType.PRELIGHT, color);
+        color_widget.override_background_color(Gtk.StateFlags.NORMAL, rgba);
+        color_widget.override_background_color(Gtk.StateFlags.PRELIGHT, rgba);
         color_widget.set_size_request(20, 20);
         set_image (color_widget);
 
         clicked.connect(() => {dialog();});
     }
 
-    public void get_color (out Gdk.Color color) {
-        color = this.color;
+    public void get_rgba (out Gdk.RGBA rgba) {
+        rgba = this.rgba;
     }
 
     public void dialog () {
@@ -175,7 +175,7 @@ public class ColorButton : Gtk.Button {
 
             drawing_color = builder.get_object ("drawing_color")
                         as Gtk.DrawingArea;
-            drawing_color.modify_bg(Gtk.StateType.NORMAL, color);
+            drawing_color.override_background_color(Gtk.StateFlags.NORMAL, rgba);
 
             // couse this settings call dialog_color_changed event
             radio_default = builder.get_object ("radio_default")
@@ -185,30 +185,30 @@ public class ColorButton : Gtk.Button {
             radio_own = builder.get_object ("radio_own")
                         as Gtk.RadioButton;
 
-            color_selection.set_current_color(color);
-            if (default_color || color.equal(node.map.pref.default_color))
+            color_selection.set_current_rgba(rgba);
+            if (default_color || rgba.equal(node.map.pref.default_color))
                 radio_default.set_active(true);
-            else if (node.parent == null || !color.equal(node.parent.color))
+            else if (node.parent == null || !rgba.equal(node.parent.rgb))
                 radio_own.set_active(true);
             else
                 radio_parent.set_active(true);
 
             if (dialog.run() == Gtk.ResponseType.OK) {
                 if (radio_default.get_active()) {
-                    color = node.map.pref.default_color;
+                    rgba = node.map.pref.default_color;
                     default_color = true;
                 } else if (radio_own.get_active()) {
-                    color = color_selection.current_color;
+                    rgba = color_selection.current_rgba;
                     default_color = false;
                 } else {
                     default_color = true;
                     if (node.parent != null)
-                        color = node.parent.color;
+                        rgba = node.parent.rgb;
                     else
-                        color = node.map.pref.default_color;
+                        rgba = node.map.pref.default_color;
                 }
-                color_widget.modify_bg(Gtk.StateType.NORMAL, color);
-                color_widget.modify_bg(Gtk.StateType.PRELIGHT, color);
+                color_widget.override_background_color(Gtk.StateFlags.NORMAL, rgba);
+                color_widget.override_background_color(Gtk.StateFlags.PRELIGHT, rgba);
             }
 
             dialog.destroy();
@@ -225,27 +225,25 @@ public class ColorButton : Gtk.Button {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_color_changed")]
     public void dialog_color_changed (Gtk.Widget sender) {
-        //if (radio_own.get_active())
-        //    drawing_color.modify_bg(Gtk.StateType.NORMAL, color_selection.current_color);
         radio_own.set_active(true);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_default_toggled")]
     public void dialog_default_toggled (Gtk.Widget sender) {
-        drawing_color.modify_bg(Gtk.StateType.NORMAL, node.map.pref.default_color);
+        drawing_color.override_background_color(Gtk.StateFlags.NORMAL, node.map.pref.default_color);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_parent_toggled")]
     public void dialog_parent_toggled (Gtk.Widget sender) {
         if (node.parent != null)
-            drawing_color.modify_bg(Gtk.StateType.NORMAL, node.parent.color);
+            drawing_color.override_background_color(Gtk.StateFlags.NORMAL, node.parent.rgb);
         else
-            drawing_color.modify_bg(Gtk.StateType.NORMAL, node.map.pref.default_color);
+            drawing_color.override_background_color(Gtk.StateFlags.NORMAL, node.map.pref.default_color);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_own_toggled")]
     public void dialog_radio_toggled (Gtk.Widget sender) {
-        drawing_color.modify_bg(Gtk.StateType.NORMAL, color_selection.current_color);
+        drawing_color.override_background_color(Gtk.StateFlags.NORMAL, color_selection.current_rgba);
     }
 }
 
@@ -294,7 +292,6 @@ public class EditForm : Gtk.VBox {
     public Gtk.ScrolledWindow text_scroll;
     public Gtk.TextView text_view;
     public PointsEntry points;
-    //public Gtk.ColorButton btn_color;
     public ColorButton btn_color;
     public Gtk.Button btn_save;
     public Gtk.Button btn_close;
@@ -422,9 +419,9 @@ public class EditForm : Gtk.VBox {
         buffer.get_start_iter (out start);
         buffer.get_end_iter (out end);
         node.set_text (buffer.get_text (start, end, true));
-        Gdk.Color color;
-        btn_color.get_color (out color);
-        node.set_color (color);
+        Gdk.RGBA rgba;
+        btn_color.get_rgba (out rgba);
+        node.set_rgb (rgba);
 
         if (points.get_function() == PointsFce.OWN)
             node.set_points (points.get_points (), PointsFce.OWN);
