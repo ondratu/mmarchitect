@@ -54,7 +54,7 @@ public class App : GLib.Object {
         menu_item_paste = builder.get_object("menuitem_paste") as Gtk.ImageMenuItem;
         menu_item_delete = builder.get_object("menuitem_delete") as Gtk.ImageMenuItem;
 
-        window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
+        Gtk.Window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
         new_file_from_args(window, filename);
 
         nodemenu = builder.get_object("nodemenu") as Gtk.Menu;

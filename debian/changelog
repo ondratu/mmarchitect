@@ -5,6 +5,8 @@ mmarchitect (0.6.0) UNRELEASED; urgency=low
   * fix center map when it is possible
   * Enter || Return key save values on points widget
   * replace deprecated Gdk.Color to Gdk.RGBA 
+  * fix static method call
+  * replace deprecated modify_ methods to override_
 
  -- Ondřej Tůma <mcbig@zeropage.cz>  Fri, 04 Jul 2014 08:41:27 +0200
 

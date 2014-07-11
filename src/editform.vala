@@ -101,13 +101,13 @@ public class PointsEntry : Gtk.ComboBoxText {
             function = function_value.get_int();
         } else {    // no iter -> just new string -> points
             if (Regex.match_simple ("^[0-9]*(\\.|,)?[0-9]*$", get_active_text())) {
-                modify_text(Gtk.StateType.NORMAL, null);
+                override_color(Gtk.StateFlags.NORMAL, null);
                 set_points(double.parse(get_active_text().replace(",", ".")));
                 function = PointsFce.OWN;
                 set_active(0);
             } else {
                 // set error if it is not correct number (more then one separator)
-                modify_text(Gtk.StateType.NORMAL, Gdk.Color(){red = uint16.MAX});
+                override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(){red = uint16.MAX});
             }
         }
     }
@@ -332,7 +332,7 @@ public class EditForm : Gtk.VBox {
         font_desc.set_size ((int) GLib.Math.lrint (
                 font_desc.get_size() / (pref.dpi / 100.0)));
 
-        entry.modify_font(font_desc);
+        entry.override_font(font_desc);
         int width = (node.area.width > NONE_TITLE.length * pref.node_font_size) ?
                 node.area.width : NONE_TITLE.length * pref.node_font_size;
         int ico_size = (node.text.length > 0 || node.title.length == 0) ? 0 : ICO_SIZE;
@@ -343,7 +343,7 @@ public class EditForm : Gtk.VBox {
         points.set_digits(1);
         points.set_points(node.points);
         points.set_function(node.function);
-        points.modify_font(font_desc);
+        points.override_font(font_desc);
         points.entry.key_press_event.connect (on_key_press_event);
         points.entry.set_size_request(POINTS_LENGTH * pref.node_font_size
                                 + pref.font_padding * 2, -1);
@@ -378,7 +378,7 @@ public class EditForm : Gtk.VBox {
         focusable_widgets.append (icons_box);
 
         text_view = new Gtk.TextView ();
-        text_view.modify_font (pref.text_font);
+        text_view.override_font (pref.text_font);
         text_view.get_buffer().set_text(node.text);
         last = last.append (text_view);
         focusable_widgets.append (text_view);
