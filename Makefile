@@ -32,6 +32,8 @@ ifeq ($(OS), Windows_NT)
     GLOCALE = c:\\vala-0.12.0\\share\\locale
     GLOCALES = $(shell ls $(GLOCALE))
 else
+    # missing dependence to math library
+    LDFLAGS += -lm
     #CFLAGS += -Dlocaltime_r=localtime
 endif
 
@@ -256,17 +258,20 @@ $(OUTPUT):
 	@if [ ! -f configure.mk ]; then printf "You must run make configure first\n"; exit 1; fi;
 endif # end is configure.mk
 
-clean:
+clean: distclean
 	@printf "Cleaning ...\n"
 	@$(RM) $(OUTPUT)
 	@$(RM) $(OUTPUT).exe
-	@$(RM) -r $(BUILD_DIR) $(LANG_DIR)        
-	@$(RM) configure.mk src/config.vala
+	@$(RM) -r $(BUILD_DIR) $(LANG_DIR)
 	@$(RM) *~ src/*~
 	@$(RM) misc/locales.iss
 	@$(RM) misc/$(PROGRAM).res
 	@$(RM) $(PROGRAM)-setup-$(VERSION).exe
 	@dh_clean || printf 'Never mind, it is ok ;)\n'
+
+distclean:
+	@printf "Dist cleaning ...\n"
+	@$(RM) configure.mk src/config.vala
 
 ../$(PROGRAM)-$(VERSION).tar.bz2: clean
 	@printf "Creating source package ../$(PROGRAM)-$(VERSION).tar.bz2 ...\n"

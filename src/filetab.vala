@@ -134,6 +134,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         w.start_element ("info");
 
         w.write_element ("author", prop.author);
+        w.write_element ("version", VERSION);
 
         uint64 utime;
         utime = prop.created;
