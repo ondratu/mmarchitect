@@ -126,14 +126,44 @@ namespace Exporter {
         }
     }
 
-    bool export_to_mm (string path, Node root) {
-        try {
-            throw new ExportError.NOT_SUPPORT_YET ("FreeMind is not support yet!");
-            //return true;
-        } catch (Error e) {
-            stderr.printf ("%s\n", e.message);
-            return false;
+    void write_mm_node (Xml.TextWriter w, Node node){
+        foreach (var n in node.children) {
+            w.start_element("node");
+            w.write_attribute ("TEXT", n.title);
+            write_mm_node(w, n);
+            w.end_element();
         }
+    }
+
+    bool export_to_mm (string path, Node root) {
+        var w = new Xml.TextWriter.filename (path);
+        w.set_indent (true);
+        w.set_indent_string ("\t");
+
+        //w.start_document ();
+        w.start_element ("map");
+        w.write_attribute("version", "0.9.0");
+        w.start_element ("node");
+        w.write_attribute ("TEXT", root.title);
+
+        foreach (var n in root.children) {
+            w.start_element("node");
+            if (n.direction == 0) {
+                w.write_attribute ("POSITION", "left");
+            } else { //1
+                w.write_attribute ("POSITION", "right");
+            }
+            w.write_attribute ("TEXT", n.title);
+            write_mm_node(w, n);
+            w.end_element();
+        }
+
+        w.end_element();    // </node>
+        w.end_element();    // </map>
+        //w.end_document();
+
+        w.flush();
+        return true;
     }
 
 
