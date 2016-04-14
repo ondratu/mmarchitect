@@ -165,20 +165,25 @@ public class App : GLib.Object {
     }
 
     private void start_application_private () {
-        if (pref.start_with == Start.WELCOME)
+        if (pref.start_with == Start.WELCOME){
     	    new_welcome_tab ();
+            pref.append_last (WELCOME_FILE);
+        }
         else if (pref.start_with == Start.LAST) {
             foreach (var it in pref.get_last_files()) {
                 var osfile = File.new_for_commandline_arg(it);
-                if (it == WELCOME_FILE)
+                if (it == WELCOME_FILE){
                     new_welcome_tab ();
-                else if (osfile.query_exists ())
+                    pref.append_last (WELCOME_FILE);
+                } else if (osfile.query_exists ())
                     open_file_private(it);
                 else pref.remove_last(it);  // remove last file if not extist
             }
             // when len of last files is zero and no file is open
-            if (notebook.get_n_pages() == 0)
+            if (notebook.get_n_pages() == 0) {
                 new_welcome_tab ();
+                pref.append_last (WELCOME_FILE);
+            }
         } else
             new_file_private ();
     }
