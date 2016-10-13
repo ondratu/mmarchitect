@@ -1,3 +1,5 @@
+// modules: Gtk
+
 extern const string GETTEXT_PACKAGE;
 
 public static int main (string[] args) {
