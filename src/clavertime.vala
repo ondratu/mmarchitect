@@ -9,8 +9,8 @@
 // modules: Gtk
 
 public struct ClaverTime {
-    private time_t val;
-    private time_t now;
+    public time_t val;
+    public time_t now;
 
     public ClaverTime (time_t tv_sec){
         this.val = tv_sec;

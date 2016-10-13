@@ -15,7 +15,7 @@ HAVE_CONFIG = $(wildcard configure.mk)
 CONF = $(shell (if [ -f configure.mk ]; then printf 1; else printf 0; fi;))
 
 CFLAGS ?= -g -O2
-VALAFLAGS ?= --save-temps
+VALAFLAGS ?=
 
 V ?= 0
 ifeq ($(V), 0)
@@ -55,7 +55,7 @@ else # debug is set
 endif
 
 CFLAGS += -DGETTEXT_PACKAGE='\"$(PROGRAM)\"'
-VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
+# VALAFLAGS += $(foreach flag,$(CFLAGS),-X $(flag))
 
 EXT_PKGS = \
 	gmodule-2.0 \
