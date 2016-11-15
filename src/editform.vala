@@ -17,28 +17,24 @@ public class PointsEntry : Gtk.ComboBoxText {
 
     public PointsEntry () {
         Object(has_entry: true);
-        points = 0;
-        function = PointsFce.OWN;
-        digits = 1;
+        this.points = 0;
+        this.function = PointsFce.OWN;
+        this.digits = 1;
 
-        changed.connect(on_changed);
-        entry = get_child() as Gtk.Entry;
-        entry.set_width_chars (4);
-#if ! WINDOWS
-	// this not work on windows (vala-0.12.0)
-        entry.insert_text.connect(on_insert_text);
-#endif
-        fill_model ();
-        set_wrap_width (5);
+        //changed.connect(on_changed);
+        this.entry = get_child() as Gtk.Entry;
+        this.entry.set_width_chars (4);
+        this.fill_model ();
+        this.set_wrap_width (5);
     }
 
     private void fill_model () {
         var model = new Gtk.ListStore(2, typeof(int), typeof(string));
-        set_model(model);
-        set_entry_text_column (1);
+        this.set_model(model);
+        this.set_entry_text_column (1);
 
         Gtk.TreeIter it;
-        int   [] values = PointsFce.values();
+        int [] values = PointsFce.values();
         string [] labels = PointsFce.labels();
         for (uint i = 0; i < values.length; i++) {
             model.append(out it);
@@ -48,29 +44,29 @@ public class PointsEntry : Gtk.ComboBoxText {
     }
 
     private void update_points() {
-        var format = "%%%ug".printf(digits);
+        var format = "%%%ug".printf(this.digits);
         var model = this.model as Gtk.ListStore;
         Gtk.TreeIter iter;
         model.get_iter_first (out iter);    // own points are first
-        model.set_value(iter, 1, format.printf(points));
+        model.set_value(iter, 1, format.printf(this.points));
     }
 
     public void set_digits(uint digits) {
         this.digits = digits;
-        update_points ();
+        this.update_points ();
     }
 
     public uint get_digits() {
-        return digits;
+        return this.digits;
     }
 
     public void set_points(double points) {
         this.points = points;
-        update_points();
+        this.update_points();
     }
 
     public double get_points() {
-        return points;
+        return this.points;
     }
 
     public void set_function(int function) {
@@ -85,165 +81,155 @@ public class PointsEntry : Gtk.ComboBoxText {
                 break;
             }
         }
-        set_active (pos);
+        this.set_active (pos);
     }
 
     public int get_function () {
-        return function;
+        return this.function;
     }
 
-    public void on_changed () {
-        var model = this.model as Gtk.ListStore;
-        Gtk.TreeIter iter;
-        if (get_active_iter (out iter)){
-            Value function_value;
-            model.get_value(iter, 0, out function_value);
-            function = function_value.get_int();
-        } else {    // no iter -> just new string -> points
-            if (Regex.match_simple ("^[0-9]*(\\.|,)?[0-9]*$", get_active_text())) {
-                override_color(Gtk.StateFlags.NORMAL, null);
-                set_points(double.parse(get_active_text().replace(",", ".")));
-                function = PointsFce.OWN;
-                set_active(0);
+    public override void changed () {
+        if (this.get_active() > 0){
+            this.function = this.get_active();
+        } else {
+            var text = this.get_active_text().replace(",", ".");
+            if (Regex.match_simple ("^[0-9]*(\\.)?[0-9]*$", text)) {
+                this.points = double.parse(text);
+                this.function = PointsFce.OWN;
             } else {
-                // set error if it is not correct number (more then one separator)
-                override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(){red = uint16.MAX});
+                this.set_points(double.parse(text));
+                this.set_active(0);
+                this.function = PointsFce.OWN;
             }
         }
     }
+}
 
-    public void on_insert_text (string text, int length, ref int position) {
-        var labels = PointsFce.labels();
-        if (text in labels)     // text is one of label, so it is ok
-            return;
-        // stop insert text which is not number
-        if (! Regex.match_simple ("^[0-9]*(\\.|,)?[0-9]*$", text))
-            GLib.Signal.stop_emission_by_name (entry, "insert-text");
+private class Swatch: Gtk.DrawingArea {
+    private Gdk.RGBA rgba;
+
+    public void set_rgba(Gdk.RGBA rgba){
+        this.rgba = rgba;
+        this.queue_draw();
+    }
+
+    public Gdk.RGBA get_rgba() {
+        return this.rgba;
+    }
+
+    public override bool draw (Cairo.Context cr) {
+        var allocation = Gtk.Allocation();
+        this.get_allocation (out allocation);
+
+        cr.set_source_rgb (this.rgba.red, this.rgba.green, this.rgba.blue);
+        cr.rectangle(0, 0, allocation.width, allocation.height);
+        cr.fill_preserve();
+
+        return false;
     }
 }
 
 public class ColorButton : Gtk.Button {
     private Node node;
-    private Gtk.DrawingArea color_widget;
-    private Gdk.RGBA rgba;
+    private Swatch color_widget;
     private bool default_color;
+    private bool rgba_lock;
 
-    private unowned Gtk.ColorSelection color_selection;
-    private Gtk.DrawingArea ? drawing_color;
-    private Gtk.RadioButton ? radio_default;
-    private Gtk.RadioButton ? radio_parent;
-    private Gtk.RadioButton ? radio_own;
+    private unowned Gtk.ColorChooserDialog chooser;
 
     public ColorButton (Node node) {
         this.node = node;
-        rgba = node.rgb;
-        default_color = node.default_color;
+        this.default_color = node.default_color;
+        this.color_widget = new Swatch ();
+        this.rgba_lock = true;
 
-        color_widget = new Gtk.DrawingArea ();
-        color_widget.override_background_color(Gtk.StateFlags.NORMAL, rgba);
-        color_widget.override_background_color(Gtk.StateFlags.PRELIGHT, rgba);
-        color_widget.set_size_request(20, 20);
-        set_image (color_widget);
-
-        clicked.connect(() => {dialog();});
+        this.color_widget.set_rgba(node.rgb);
+        this.color_widget.set_size_request(20, 20);
+        this.set_image (this.color_widget);
     }
 
     public void get_rgba (out Gdk.RGBA rgba) {
-        rgba = this.rgba;
+        rgba = this.color_widget.get_rgba();
     }
 
-    public void dialog () {
+    public override void clicked () {
         try {
+            var rgba = this.color_widget.get_rgba();
+
             var builder = new Gtk.Builder ();
             builder.add_from_file (DATA + "/ui/color_dialog.ui");
             builder.connect_signals (this);
 
-            var dialog = builder.get_object ("color_dialog")
-                        as Gtk.ColorSelectionDialog;
-            //dialog.set_modal(true);
-
-            var button_internal = builder.get_object ("colorsel-ok_button1")
-                        as Gtk.Widget;
-            //button_internal.hide_all();
-            button_internal.hide();
-
-            var button_ok = new Gtk.Button.from_stock(Gtk.Stock.OK);
-            button_ok.show_all();
-            dialog.add_action_widget (button_ok, Gtk.ResponseType.OK);
-
-            color_selection = dialog.get_color_selection() as Gtk.ColorSelection;
-
-            drawing_color = builder.get_object ("drawing_color")
-                        as Gtk.DrawingArea;
-            drawing_color.override_background_color(Gtk.StateFlags.NORMAL, rgba);
+            this.chooser = builder.get_object ("color_dialog")
+                    as Gtk.ColorChooserDialog;
+            this.chooser.set_rgba(rgba);
 
             // couse this settings call dialog_color_changed event
-            radio_default = builder.get_object ("radio_default")
-                        as Gtk.RadioButton;
-            radio_parent = builder.get_object ("radio_parent")
-                        as Gtk.RadioButton;
-            radio_own = builder.get_object ("radio_own")
-                        as Gtk.RadioButton;
+            var radio_default = builder.get_object ("radio_default")
+                    as Gtk.RadioButton;
+            var radio_parent = builder.get_object ("radio_parent")
+                    as Gtk.RadioButton;
+            var radio_own = builder.get_object ("radio_own")
+                    as Gtk.RadioButton;
 
-            color_selection.set_current_rgba(rgba);
-            if (default_color || rgba.equal(node.map.pref.default_color))
+            if (this.default_color || rgba.equal(this.node.map.pref.default_color)) {
                 radio_default.set_active(true);
-            else if (node.parent == null || !rgba.equal(node.parent.rgb))
+            } else if (this.node.parent == null || !rgba.equal(this.node.parent.rgb)) {
                 radio_own.set_active(true);
-            else
+            } else {
                 radio_parent.set_active(true);
-
-            if (dialog.run() == Gtk.ResponseType.OK) {
-                if (radio_default.get_active()) {
-                    rgba = node.map.pref.default_color;
-                    default_color = true;
-                } else if (radio_own.get_active()) {
-                    rgba = color_selection.current_rgba;
-                    default_color = false;
-                } else {
-                    default_color = true;
-                    if (node.parent != null)
-                        rgba = node.parent.rgb;
-                    else
-                        rgba = node.map.pref.default_color;
-                }
-                color_widget.override_background_color(Gtk.StateFlags.NORMAL, rgba);
-                color_widget.override_background_color(Gtk.StateFlags.PRELIGHT, rgba);
             }
 
-            dialog.destroy();
+            this.rgba_lock = false;     // unlock rgba notify
+            this.chooser.notify.connect((property) => {
+                if (!this.rgba_lock && property.name == "rgba") {
+                    radio_own.set_active(true);
+                }
+            });
 
-            drawing_color = null;
-            radio_default = null;
-            radio_parent = null;
-            radio_own = null;
-            color_selection = null;
+            if (this.chooser.run() == Gtk.ResponseType.OK) {
+                if (radio_default.get_active()) {
+                    this.color_widget.set_rgba(this.node.map.pref.default_color);
+                    this.default_color = true;
+                } else if (radio_own.get_active()) {
+                    this.color_widget.set_rgba(this.chooser.get_rgba());
+                    this.default_color = false;
+                } else {
+                    this.default_color = true;
+                    if (this.node.parent != null) {
+                        this.color_widget.set_rgba(this.node.parent.rgb);
+                    } else {
+                        this.color_widget.set_rgba(this.node.map.pref.default_color);
+                    }
+                }
+            }
+
+            this.chooser.destroy();
         } catch (Error e) {
             stderr.printf ("Could not load app UI: %s\n", e.message);
         }
     }
 
-    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_color_changed")]
-    public void dialog_color_changed (Gtk.Widget sender) {
-        radio_own.set_active(true);
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_default_toggled")]
+    public void default_toggled (Gtk.Widget sender) {
+        if ((sender as Gtk.ToggleButton).get_active()){
+            this.rgba_lock = true;
+            this.chooser.set_rgba(this.node.map.pref.default_color);
+            this.rgba_lock = false;
+        }
     }
 
-    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_default_toggled")]
-    public void dialog_default_toggled (Gtk.Widget sender) {
-        drawing_color.override_background_color(Gtk.StateFlags.NORMAL, node.map.pref.default_color);
-    }
-
-    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_parent_toggled")]
-    public void dialog_parent_toggled (Gtk.Widget sender) {
-        if (node.parent != null)
-            drawing_color.override_background_color(Gtk.StateFlags.NORMAL, node.parent.rgb);
-        else
-            drawing_color.override_background_color(Gtk.StateFlags.NORMAL, node.map.pref.default_color);
-    }
-
-    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_dialog_own_toggled")]
-    public void dialog_radio_toggled (Gtk.Widget sender) {
-        drawing_color.override_background_color(Gtk.StateFlags.NORMAL, color_selection.current_rgba);
+    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_parent_toggled")]
+    public void parent_toggled (Gtk.Widget sender) {
+        if ((sender as Gtk.ToggleButton).get_active()){
+            this.rgba_lock = true;
+            if (node.parent != null) {
+                this.chooser.set_rgba(this.node.parent.rgb);
+            } else {
+                this.chooser.set_rgba(this.node.map.pref.default_color);
+            }
+            this.rgba_lock = false;
+        }
     }
 }
 
@@ -279,14 +265,15 @@ public class ToggleFlagButton : Gtk.ToggleToolButton {
              set_icon_widget (new SVGImage(icon_path, Gtk.IconSize.SMALL_TOOLBAR));
         } catch (Error e) {
             stderr.printf("Icon file %s not found!\n", icon_path);
-            set_icon_widget(new Gtk.Image.from_stock ( Gtk.Stock.MISSING_IMAGE,
-                                    Gtk.IconSize.SMALL_TOOLBAR));
+            set_icon_widget(new Gtk.Image.from_icon_name (
+                    "image-missing",
+                    Gtk.IconSize.SMALL_TOOLBAR));
         }
 
     }
 }
 
-public class EditForm : Gtk.VBox {
+public class EditForm : Gtk.Box {
     public Node node;
     public Gtk.Entry entry;
     public Gtk.ScrolledWindow text_scroll;
@@ -305,6 +292,8 @@ public class EditForm : Gtk.VBox {
     public List<Gtk.Widget> focusable_widgets;
 
     public EditForm (Node node, bool newone, Preferences pref){
+        Object(orientation: Gtk.Orientation.VERTICAL);
+
         this.node = node;
         this.newone = newone;
 
@@ -319,7 +308,8 @@ public class EditForm : Gtk.VBox {
             entry.set_icon_from_pixbuf (Gtk.EntryIconPosition.SECONDARY, ico);
         } catch (Error e) {
             stderr.printf ("%s\n", e.message);
-            entry.set_icon_from_stock (Gtk.EntryIconPosition.SECONDARY, Gtk.Stock.EDIT);
+             entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY,
+                                           "accessories-text-editor");
         }
 
         entry.set_icon_sensitive (Gtk.EntryIconPosition.SECONDARY, true);
@@ -353,12 +343,12 @@ public class EditForm : Gtk.VBox {
         last = last.append (btn_color);
         focusable_widgets.append (btn_color);
 
-        btn_save = new Gtk.Button.from_stock (Gtk.Stock.SAVE);
+        btn_save = new Gtk.Button.from_icon_name ("document-save");
         btn_save.clicked.connect(() => {save(); close();});
         last = last.append (btn_save);
         focusable_widgets.append (btn_save);
 
-        btn_close = new Gtk.Button.from_stock (Gtk.Stock.CLOSE);
+        btn_close = new Gtk.Button.from_icon_name ("window-close");
         btn_close.clicked.connect(() => {close();});
         last = last.append (btn_close);
         focusable_widgets.append (btn_close);
@@ -370,7 +360,6 @@ public class EditForm : Gtk.VBox {
             var tfb = new ToggleFlagButton(flags[i]);
             if (flags[i] in this.node.flags)
                 tfb.set_active(true);
-            //tfb.toggled.connect (() => { flag_toogled(tfb); });
             icons_box.add (tfb);
         }
         icons_box.show_all();
@@ -456,28 +445,8 @@ public class EditForm : Gtk.VBox {
             return true;
         } else if (e.keyval == 65289 && is_expand) {            // Tab
             return false;
-            /*var it = actives;
-            while (it != null) {
-                if (it.widget.has_focus) {
-                    if (it.next != null)
-                        it.next.widget.grab_focus ();
-                    else
-                        actives.widget.grab_focus ();
-
-                    stdout.printf ("next Widget %s has focus\n" ,it.next.widget.name);
-                    break;
-                }
-                stdout.printf ("Widget %s has not focus\n" ,it.widget.name);
-                it = it.next;
-
-            }
-            actives.widget.grab_focus ();
-            return true;
-            */
         }
 
-        //stdout.printf ("EditForm key press %s (%u)\n",
-        //        Gdk.keyval_name(e.keyval), e.keyval);
         return false;
     }
 
@@ -493,18 +462,10 @@ public class EditForm : Gtk.VBox {
             collapse ();
         else
             do_expand ();
-
-        //int width, height;
-        //get_size_request (out width, out height);
-        //expand_change(is_expand, allocation.width, allocation.height);
     }
 
     public override void set_focus_child (Gtk.Widget ? widget) {
         base.set_focus_child(widget);
-        /*if (widget != null)
-            stdout.printf ("focused child %s\n" ,widget.name);
-        else
-            stdout.printf ("no child focused\n");*/
     }
 
     public void collapse () {
