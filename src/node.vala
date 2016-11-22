@@ -24,15 +24,15 @@ public enum PointsFce {
     OWN,
     SUM,
     AVG,
-    MAX,
-    MIN;
+    MIN,
+    MAX;
 
     public static string to_string(int i) {
         switch (i) {
-            case PointsFce.MIN:
-                return "MIN";
             case PointsFce.MAX:
                 return "MAX";
+            case PointsFce.MIN:
+                return "MIN";
             case PointsFce.AVG:
                 return "AVG";
             case PointsFce.SUM:
@@ -44,10 +44,10 @@ public enum PointsFce {
     }
 
     public static int parse(string s) {
-        if (s == "MIN")
-            return PointsFce.MIN;
         if (s == "MAX")
             return PointsFce.MAX;
+        if (s == "MIN")
+            return PointsFce.MIN;
         if (s == "AVG")
             return PointsFce.AVG;
         if (s == "SUM")

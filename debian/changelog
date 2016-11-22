@@ -8,6 +8,7 @@ mmarchitect (0.6.0) UNRELEASED; urgency=low
   * fix static method call
   * replace deprecated modify_ methods to override_
   * select color by new ColorChooserDialog
+  * fix MIN/MAX bug fix 
 
  -- Ondřej Tůma <mcbig@zeropage.cz>  Fri, 04 Jul 2014 08:41:27 +0200
 
