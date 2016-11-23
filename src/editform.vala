@@ -7,7 +7,7 @@
  * Code is present with BSD licence.
  */
 
-// modules: Gtk
+// modules: gtk+-3.0
 
 public class PointsEntry : Gtk.ComboBoxText {
     public double points;
@@ -148,8 +148,8 @@ public class ColorButton : Gtk.Button {
         this.set_image (this.color_widget);
     }
 
-    public void get_rgba (out Gdk.RGBA rgba) {
-        rgba = this.color_widget.get_rgba();
+    public Gdk.RGBA get_rgba () {
+        return this.color_widget.get_rgba();
     }
 
     public override void clicked () {
@@ -233,21 +233,6 @@ public class ColorButton : Gtk.Button {
     }
 }
 
-public class WidgetRound {
-    public WidgetRound ? next;
-    public Gtk.Widget widget;
-    public WidgetRound (Gtk.Widget w) {
-        widget = w;
-        next = null;
-    }
-
-    public unowned WidgetRound append (Gtk.Widget w) {
-        next = new WidgetRound (w);
-        return next;
-    }
-
-}
-
 public class ToggleFlagButton : Gtk.ToggleToolButton {
     public ToggleFlagButton (string flag) {
         name = flag;
@@ -274,151 +259,147 @@ public class ToggleFlagButton : Gtk.ToggleToolButton {
 }
 
 public class EditForm : Gtk.Box {
-    public Node node;
-    public Gtk.Entry entry;
-    public Gtk.ScrolledWindow text_scroll;
-    public Gtk.TextView text_view;
-    public PointsEntry points;
-    public ColorButton btn_color;
-    public Gtk.Button btn_save;
-    public Gtk.Button btn_close;
-    public Gtk.Toolbar icons_box;
+    private Node node;
+    public Gtk.Entry entry = new Gtk.Entry();
+    private Gtk.ScrolledWindow text_scroll = new Gtk.ScrolledWindow (null, null);
+    private Gtk.TextView text_view = new Gtk.TextView ();
+    private PointsEntry points = new PointsEntry();
+    private Gtk.Button btn_save = new Gtk.Button.from_icon_name ("document-save");
+    private Gtk.Button btn_close = new Gtk.Button.from_icon_name ("window-close");
+    private ColorButton btn_color;
+    private Gtk.Toolbar icons_box = new Gtk.Toolbar();
+    private Gtk.CssProvider provider = new Gtk.CssProvider();
 
     public signal void close();
     public signal void expand_change(bool is_expand, int width, int height);
     public bool newone;
-    public bool is_expand;
-    public WidgetRound ? actives;
-    public List<Gtk.Widget> focusable_widgets;
+    public bool is_expand = false;
 
     public EditForm (Node node, bool newone, Preferences pref){
-        Object(orientation: Gtk.Orientation.VERTICAL);
+        Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+        // TODO: move application style to css file
+        string editform_css = ".editform { border: 1px solid gray; border-radius: 4px; }";
+        // TODO: move style provider to application
+        var form_provider = new StaticProvider (editform_css);
+        try {
+            form_provider.load_from_data(editform_css);
+        } catch (Error e) {
+            stderr.printf ("Problem with style %s\n -> %s\n", editform_css, e.message);
+        }
 
+        this.get_style_context().add_class ("editform");
         this.node = node;
         this.newone = newone;
 
-        entry = new Gtk.Entry();
-        actives = new WidgetRound (entry);
-        var last = actives;
-        focusable_widgets = new List<Gtk.Widget> ();
-        set_focus_chain (focusable_widgets);
-
         try {
             var ico = new Gdk.Pixbuf.from_file (DATA + "/icons/comment_edit.png");
-            entry.set_icon_from_pixbuf (Gtk.EntryIconPosition.SECONDARY, ico);
+            this.entry.set_icon_from_pixbuf (Gtk.EntryIconPosition.SECONDARY, ico);
         } catch (Error e) {
             stderr.printf ("%s\n", e.message);
-             entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY,
+            this.entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY,
                                            "accessories-text-editor");
         }
 
-        entry.set_icon_sensitive (Gtk.EntryIconPosition.SECONDARY, true);
-        entry.set_icon_tooltip_text (Gtk.EntryIconPosition.SECONDARY, _("Extends edit"));
-        entry.set_text (node.title);
-        entry.key_press_event.connect (on_key_press_event);
-        entry.icon_release.connect (on_change_expand);
+        this.entry.set_icon_sensitive (Gtk.EntryIconPosition.SECONDARY, true);
+        this.entry.set_icon_tooltip_text (Gtk.EntryIconPosition.SECONDARY, _("Extends edit"));
+        this.entry.set_text (node.title);
+        this.entry.key_press_event.connect (this.on_key_press_event);
+        this.entry.icon_release.connect (this.on_change_expand);
 
-        var font_desc = node.font_desc.copy();
-        font_desc.set_size ((int) GLib.Math.lrint (
-                font_desc.get_size() / (pref.dpi / 100.0)));
+        this.prepare_style (node.font_desc, pref.text_font);
+        this.entry.get_style_context().add_class ("editform_entry");
 
-        entry.override_font(font_desc);
         int width = (node.area.width > NONE_TITLE.length * pref.node_font_size) ?
                 node.area.width : NONE_TITLE.length * pref.node_font_size;
         int ico_size = (node.text.length > 0 || node.title.length == 0) ? 0 : ICO_SIZE;
-        entry.set_size_request (width + pref.font_padding * 2 + ico_size, -1);
-        focusable_widgets.append (entry);
+        this.entry.set_size_request (width + pref.font_padding * 2 + ico_size, -1);
 
-        points = new PointsEntry ();
-        points.set_digits(1);
-        points.set_points(node.points);
-        points.set_function(node.function);
-        points.override_font(font_desc);
-        points.entry.key_press_event.connect (on_key_press_event);
-        points.entry.set_size_request(POINTS_LENGTH * pref.node_font_size
+        this.points.set_digits(1);
+        this.points.set_points(this.node.points);
+        this.points.set_function(this.node.function);
+        this.points.get_style_context().add_class ("editform_entry");
+        this.points.entry.set_size_request(POINTS_LENGTH * pref.node_font_size
                                 + pref.font_padding * 2, -1);
+        this.points.entry.key_press_event.connect (this.on_key_press_event);
 
-        btn_color = new ColorButton (node);
-        btn_color.set_can_focus (true);
-        last = last.append (btn_color);
-        focusable_widgets.append (btn_color);
+        this.btn_color = new ColorButton (node);
 
-        btn_save = new Gtk.Button.from_icon_name ("document-save");
-        btn_save.clicked.connect(() => {save(); close();});
-        last = last.append (btn_save);
-        focusable_widgets.append (btn_save);
+        this.btn_save.clicked.connect(() => {save(); close();});
+        this.btn_close.clicked.connect(() => {close();});
 
-        btn_close = new Gtk.Button.from_icon_name ("window-close");
-        btn_close.clicked.connect(() => {close();});
-        last = last.append (btn_close);
-        focusable_widgets.append (btn_close);
-
-        icons_box = new Gtk.Toolbar();
-        icons_box.set_style (Gtk.ToolbarStyle.ICONS);
+        this.icons_box.set_style (Gtk.ToolbarStyle.ICONS);
         var flags = node_flags();
         for (uint i = 0; i < flags.length; i++) {
             var tfb = new ToggleFlagButton(flags[i]);
             if (flags[i] in this.node.flags)
                 tfb.set_active(true);
-            icons_box.add (tfb);
+            this.icons_box.add (tfb);
         }
-        icons_box.show_all();
-        last = last.append (icons_box);
-        focusable_widgets.append (icons_box);
 
-        text_view = new Gtk.TextView ();
-        text_view.override_font (pref.text_font);
-        text_view.get_buffer().set_text(node.text);
-        last = last.append (text_view);
-        focusable_widgets.append (text_view);
+        this.text_view.set_wrap_mode (Gtk.WrapMode.WORD);
+        this.text_view.get_style_context().add_class ("editform_view");
+        this.text_view.buffer.text = node.text;
 
-        text_scroll = new Gtk.ScrolledWindow (null, null);
-        text_scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
-        text_scroll.get_hscrollbar ().set_size_request (-1,7);
-        text_scroll.get_vscrollbar ().set_size_request (7,-1);
-        text_scroll.add_with_viewport (text_view);
-        text_scroll.set_size_request (-1, pref.text_height);
+        this.text_scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+        this.text_scroll.get_hscrollbar ().set_size_request (-1,7);
+        this.text_scroll.get_vscrollbar ().set_size_request (7,-1);
+        this.text_scroll.add (text_view);
+        this.text_scroll.set_size_request (-1, pref.text_height);
 
         var topbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-        topbox.pack_start(entry);
-        topbox.pack_start(points, false, false);
-        topbox.pack_start (btn_color);
-        topbox.pack_start(btn_save);
-        topbox.pack_start(btn_close);
+        topbox.pack_start (this.entry);
+        topbox.pack_start (this.points, false, false);
+        topbox.pack_start (this.btn_color);
+        topbox.pack_start (this.btn_save);
+        topbox.pack_start (this.btn_close);
 
         var ebox = new Gtk.EventBox ();
         ebox.add (icons_box);   // becouse direct pack_start crash map background
 
-        pack_start(topbox);
-        pack_start (ebox);
-        pack_start(text_scroll);
+        this.pack_start (topbox);
+        this.pack_start (ebox);
+        this.pack_start (this.text_scroll);
 
-        collapse ();
         topbox.show ();
-        entry.show_all ();
+        this.entry.show_all ();
         if (node.points != 0)
-            points.show_all ();
-        show ();
+            this.points.show_all ();
+        this.show ();
     }
 
+    public void prepare_style (Pango.FontDescription entry_font,
+                               Pango.FontDescription view_font)
+    {
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(),
+            this.provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        try {
+            this.provider.load_from_data(font_to_css(entry_font, "editform_entry")
+                                         + font_to_css(view_font, "editform_view"));
+        } catch (Error e) {
+            stderr.printf ("Problem with style: %s\n", e.message);
+        }
+    }
+
+
     public virtual signal void save (){
-        newone = false;
+        this.newone = false;
         var buffer = text_view.get_buffer ();
         Gtk.TextIter start, end;
         buffer.get_start_iter (out start);
         buffer.get_end_iter (out end);
-        node.set_text (buffer.get_text (start, end, true));
-        Gdk.RGBA rgba;
-        btn_color.get_rgba (out rgba);
-        node.set_rgb (rgba);
+        this.node.set_text (buffer.get_text (start, end, true));
+        this.node.set_rgb (this.btn_color.get_rgba());
 
-        if (points.get_function() == PointsFce.OWN)
-            node.set_points (points.get_points (), PointsFce.OWN);
-        else
-            node.set_points (node.points, points.get_function());
+        if (this.points.get_function () == PointsFce.OWN) {
+            this.node.set_points (this.points.get_points (), PointsFce.OWN);
+        } else {
+            this.node.set_points (this.node.points, this.points.get_function ());
+        }
 
         // save icons
-        icons_box.forall((w) => {
+        this.icons_box.forall((w) => {
             if (!(w is ToggleFlagButton)) return;
 
             var ttb = w as ToggleFlagButton;
@@ -429,59 +410,53 @@ public class EditForm : Gtk.Box {
         });
 
         // set title at the end, couse set_title call get_size_request on node
-        node.set_title (entry.get_text ());
+        this.node.set_title (entry.get_text ());
     }
 
     public bool on_key_press_event (Gdk.EventKey e){
         if (e.keyval == 65307){                                 // Escape
-            close();
+            this.close();
             return true;
         } else if (e.keyval == 65421 || e.keyval == 65293) {    // KP_Enter || Return
-            save();
-            close();
+            this.save();
+            this.close();
             return true;
         } else if (e.keyval == 65471) {                         // F2
-            do_change_expand ();
+            this.do_change_expand ();
             return true;
-        } else if (e.keyval == 65289 && is_expand) {            // Tab
-            return false;
         }
-
-        return false;
+        return false;                                           // no catch
     }
 
     public void on_change_expand (Gtk.EntryIconPosition p0, Gdk.Event p1) {
         if (p0 != Gtk.EntryIconPosition.SECONDARY)
             return;
-
-        do_change_expand ();
+        this.do_change_expand ();
     }
 
     public void do_change_expand (){
-        if (is_expand)
-            collapse ();
-        else
-            do_expand ();
-    }
-
-    public override void set_focus_child (Gtk.Widget ? widget) {
-        base.set_focus_child(widget);
+        if (this.is_expand) {
+            this.collapse ();
+        } else {
+            this.do_expand ();
+        }
     }
 
     public void collapse () {
-        is_expand = false;
-        if (node.points == 0)
-            points.hide ();
-        text_scroll.hide ();
-        btn_color.hide ();
-        btn_save.hide ();
-        btn_close.hide ();
-        icons_box.hide ();
+        this.is_expand = false;
+        if (this.node.points == 0) {
+            this.points.hide ();
+        }
+        this.text_scroll.hide ();
+        this.btn_color.hide ();
+        this.btn_save.hide ();
+        this.btn_close.hide ();
+        this.icons_box.hide ();
     }
 
     public void do_expand () {
-        is_expand = true;
-        show_all();
+        this.is_expand = true;
+        this.show_all();
     }
 
     // change flag setting of node when toogle tool button is toggled

@@ -9,6 +9,7 @@ mmarchitect (0.6.0) UNRELEASED; urgency=low
   * replace deprecated modify_ methods to override_
   * select color by new ColorChooserDialog
   * fix MIN/MAX bug fix 
+  * rewrite editform and fix it's UX fixies
 
  -- Ondřej Tůma <mcbig@zeropage.cz>  Fri, 04 Jul 2014 08:41:27 +0200
 

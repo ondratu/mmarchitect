@@ -7,7 +7,7 @@
  * Code is present with BSD licence.
  */
 
-// modules: Gtk
+// modules: gtk+-3.0
 
 public class MindMap : Gtk.Fixed {
     public Preferences pref;
@@ -32,12 +32,6 @@ public class MindMap : Gtk.Fixed {
     public MindMap(Preferences pref, Properties prop) {
         this.pref = pref;
         this.prop = prop;
-
-        add_events (Gdk.EventMask.BUTTON_PRESS_MASK
-                  | Gdk.EventMask.BUTTON_RELEASE_MASK
-                  | Gdk.EventMask.KEY_PRESS_MASK
-                  | Gdk.EventMask.KEY_RELEASE_MASK
-                  | Gdk.EventMask.FOCUS_CHANGE_MASK);
 
         set_has_window (true);
         set_can_focus (true);
@@ -201,7 +195,10 @@ public class MindMap : Gtk.Fixed {
             }
             return true;
         }
-        grab_focus ();
+
+        if (editform == null) {
+            grab_focus ();
+        }
         return false;
     }
 
@@ -483,6 +480,7 @@ public class MindMap : Gtk.Fixed {
             int yy = (int) GLib.Math.lrint(y);
 
             editform_open();        // emit signal that editform will be open
+            this.set_can_focus (false);
             editform = new EditForm(focused, newone, pref);
             editform.close.connect (on_close_editform);
             editform.save.connect (() => {change();});
@@ -531,6 +529,7 @@ public class MindMap : Gtk.Fixed {
         remove (editform);
         editform = null; // delete editform
         editform_close();       // emit signal that editform is close
+        this.set_can_focus (true);
         grab_focus();
         refresh_tree();
     }
