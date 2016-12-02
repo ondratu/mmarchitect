@@ -29,30 +29,31 @@ public class MindMap : Gtk.Fixed {
     private bool mod_shift;
     private bool event_context;
 
+    public Gdk.RGBA background { private get; construct set; }
+
     public MindMap(Preferences pref, Properties prop) {
+        Object (background: pref.canvas_color);
         this.pref = pref;
         this.prop = prop;
 
-        set_has_window (true);
-        set_can_focus (true);
+        this.set_has_window (true);
+        this.set_can_focus (true);
+        this.set_has_tooltip (true);
 
-        set_has_tooltip (true);
-        draw.connect (do_draw);
-        key_press_event.connect (on_key_press_event);
-        key_release_event.connect (on_key_release_event);
-        show_all();
+        this.draw.connect (this.on_draw);
+        this.key_press_event.connect (this.on_key_press_event);
+        this.key_release_event.connect (this.on_key_release_event);
+        this.show_all();
     }
-
 
     // realize method is good place to load file if is present....
     public override void realize () {
         base.realize();
-        override_background_color(Gtk.StateFlags.NORMAL, pref.canvas_color);
 
-        if (root == null)
-            create_new_root();
-        root.realize(get_window());
-        refresh_tree();
+        if (this.root == null)
+            this.create_new_root();
+        this.root.realize(this.get_window());
+        this.refresh_tree();
     }
 
     // nodes have their own tooltips (text)
@@ -60,8 +61,8 @@ public class MindMap : Gtk.Fixed {
             Gtk.Tooltip tooltip)
     {
         double tx, ty;
-        get_translation (out tx, out ty);
-        var node = root.event_on(x - tx, y - ty);
+        this.get_translation (out tx, out ty);
+        var node = this.root.event_on(x - tx, y - ty);
         if (node != null && node.text.length > 0) {
             tooltip.set_text (node.text);
             return true;
@@ -70,157 +71,173 @@ public class MindMap : Gtk.Fixed {
         return false;
     }
 
-    public Node create_new_root (CoreNode core = CoreNode(){title = _("Main Idea")}) {
-        root = new Node.root(core.title, this);
+    public Node create_new_root (
+            CoreNode core = CoreNode(){title = _("Main Idea")})
+    {
+        this.root = new Node.root(core.title, this);
         assert(root != null);
         if (!core.default_color) {
-            root.rgb = core.rgb;
-            root.default_color = false;
+            this.root.rgb = core.rgb;
+            this.root.default_color = false;
         }
-        root.set_points (core.points, core.function);
-        focused = root;
-        focused.set_focus(true);
-        return root;
+        this.root.set_points (core.points, core.function);
+        this.focused = root;
+        this.focused.set_focus(true);
+        return this.root;
     }
 
     public void set_focus(Node? node){
-        if (editform != null)       // some node in edit mode
+        if (this.editform != null)      // some node in edit mode
             return;
-        if (node == focused)        // node to focused is focused yet
+        if (node == focused)            // node to focused is focused yet
             return;
 
         double x, y;
-        get_translation (out x, out y);
-        int xx = (int) GLib.Math.lrint(x);
-        int yy = (int) GLib.Math.lrint(y);
+        this.get_translation (out x, out y);
+        int xx = (int) GLib.Math.lrint (x);
+        int yy = (int) GLib.Math.lrint (y);
 
-        if (focused != null) {
-            focused.set_focus (false);
-            queue_draw_area(focused.area.x + xx - 1, focused.area.y + yy - 1,
-                            focused.area.width + 2, focused.area.height + 2 );
-            focused = null;
+        if (this.focused != null) {
+            this.focused.set_focus (false);
+            this.queue_draw_area (this.focused.area.x + xx - 1,
+                                  this.focused.area.y + yy - 1,
+                                  this.focused.area.width + 2,
+                                  this.focused.area.height + 2);
+            this.focused = null;
         }
 
         if (node == null)
             return;
 
-        focused = node;
-        focused.set_focus(true);
-        queue_draw_area(focused.area.x + xx - 1, focused.area.y + yy - 1,
-                            focused.area.width + 2, focused.area.height + 2 );
+        this.focused = node;
+        this.focused.set_focus(true);
+        this.queue_draw_area (this.focused.area.x + xx - 1,
+                              this.focused.area.y + yy - 1,
+                              this.focused.area.width + 2,
+                              this.focused.area.height + 2 );
 
-        if (last != focused) {
+        if (this.last != this.focused) {
             // move to focused node (area), only if is not only regrap focus
-            focus_changed (focused.area.x + xx, focused.area.y + yy,
-                           focused.area.width,  focused.area.height);
+            this.focus_changed (this.focused.area.x + xx,
+                                this.focused.area.y + yy,
+                                this.focused.area.width,
+                                this.focused.area.height);
         }
-        grab_focus();
+        this.grab_focus();
     }
 
-    public void get_translation (out double x, out double y) {
-        var allocation = Gtk.Allocation();
-        get_allocation (out allocation);
-        int dist = (root.full_right.width - root.full_left.width).abs()  / 2;
+    public void get_translation (out double x, out double y,
+            Gtk.Allocation ? allocation = null)
+    {
+        if (allocation == null) {
+            allocation = Gtk.Allocation();
+            this.get_allocation (out allocation);
+        }
 
-        if (root.full_right.width > root.full_left.width){
+        int dist = (this.root.full_right.width - this.root.full_left.width).abs() / 2;
+
+        if (this.root.full_right.width > this.root.full_left.width){
             x = GLib.Math.lrint (allocation.width / 2 - dist ) + 0.5;
         } else {
             x = GLib.Math.lrint (allocation.width / 2 + dist ) + 0.5;
         }
 
-        y = GLib.Math.lrint (allocation.height / 2 - root.get_higher_full() / 2) + 0.5;
+        y = GLib.Math.lrint (allocation.height / 2 - this.root.get_higher_full() / 2) + 0.5;
     }
 
     public void refresh_tree() {
-        root.set_position (0, 0);
-        set_size_request (root.full_left.width + root.full_right.width + PAGE_PADDING * 2,
-                              root.get_higher_full() + PAGE_PADDING * 2);
-        queue_draw();
+        this.root.set_position (0, 0);
+        this.set_size_request (
+                this.root.full_left.width + this.root.full_right.width + PAGE_PADDING * 2,
+                this.root.get_higher_full() + PAGE_PADDING * 2);
+        this.queue_draw();
     }
 
     public void apply_style() {
-        if (get_window() != null) { // only if map was be drow yet
-            root.set_size_request(true);
-            override_background_color(Gtk.StateFlags.NORMAL, pref.canvas_color);
-            refresh_tree();
+        if (this.get_window() != null) { // only if map was be drow yet
+            this.root.set_size_request(true);
+            this.background = pref.canvas_color;
+            this.refresh_tree();
         }
     }
 
-    public bool do_draw (Cairo.Context cr) {
-        //cr.clip ();
+    public bool on_draw (Cairo.Context cr) {
+        var allocation = Gtk.Allocation();
+        this.get_allocation (out allocation);
+
+        cr.set_source_rgb (this.background.red,
+                           this.background.green,
+                           this.background.blue);
+        cr.rectangle(0, 0, allocation.width, allocation.height);
+        cr.fill_preserve();
+        cr.clip ();
 
         double x, y;
-        get_translation (out x, out y);
-
+        this.get_translation (out x, out y, allocation);
         cr.translate (x, y);
-
-        // draw
-        root.draw_tree(cr);
-
-        //stdout.printf ("expose_event (%d,%d) -> (%d,%d)\n",
-        //                    event.area.x, event.area.y,
-        //                    event.area.width, event.area.height);
+        this.root.draw_tree(cr);
         return false;
     }
 
     /* For mouse button press event (select or open or close node) */
     public override bool button_press_event (Gdk.EventButton event) {
-        //stdout.printf ("Fixed: button_press_event %s -> (%f x %f > %s)\n",
+        // stdout.printf ("Fixed: button_press_event %s -> (%f x %f > %s)\n",
         //        event.type.to_string(),event.x, event.y, event.button.to_string());
 
         // allocation translation
 
         if (event.button == 1) {
             double x, y;
-            get_translation (out x, out y);
-            var node = root.event_on(event.x - x, event.y - y);
-            if (node != null && node == focused) {
+            this.get_translation (out x, out y);
+            var node = this.root.event_on (event.x - x, event.y - y);
+            if (node != null && node == this.focused) {
                 if (node.change_expand()) {
-                    change();
-                    refresh_tree();
+                    this.change();
+                    this.refresh_tree();
                 }
-            }  else
-                set_focus(node);
+            } else {
+                this.set_focus(node);
+            }
         } else if (event.button == 3) {     // left button
             double x, y;
-            get_translation (out x, out y);
-            var node = root.event_on(event.x - x, event.y - y);
+            this.get_translation (out x, out y);
+            var node = this.root.event_on (event.x - x, event.y - y);
+            this.event_context = true;
             if (node != null) {             // context menu of node
-                set_focus(node);
-                event_context = true;
-                node_context_menu(event.button, event.time);
+                this.set_focus(node);
+                this.node_context_menu (event.button, event.time);
             } else {
-                event_context = true;
-                map_context_menu(event.button, event.time);
+                this.map_context_menu (event.button, event.time);
             }
             return true;
         }
 
-        if (editform == null) {
-            grab_focus ();
+        if (this.editform == null) {
+            this.grab_focus ();
         }
         return false;
     }
 
     public override bool focus_in_event (Gdk.EventFocus event) {
-        if (focused == null) {
-            if (last != null)
-                set_focus (last);
-            else
-                set_focus (root);
+        if (this.focused == null) {
+            if (last != null) {
+                this.set_focus (this.last);
+            } else {
+                this.set_focus (this.root);
+            }
         }
         return base.focus_out_event (event);
     }
 
     public override bool focus_out_event (Gdk.EventFocus event) {
-        if (!event_context) {
-            last = focused;
-            set_focus (null);
-        } else
-            event_context = false;
+        if (!this.event_context) {
+            this.last = this.focused;
+            this.set_focus (null);
+        } else {
+            this.event_context = false;
+        }
         return base.focus_out_event (event);
     }
-
 
     /* For key press event (move over nodes or insert, edit and delete nodes) */
     public bool on_key_press_event (Gdk.EventKey event) {
@@ -248,116 +265,117 @@ public class MindMap : Gtk.Fixed {
         if (event.keyval == 65505 || event.keyval == 65506)
             mod_shift = true;
 
-        if (focused != null && editform == null) {
+        if (this.focused != null && this.editform == null) {
             if (event.keyval == 65421 || event.keyval == 65293){// enter
                 // new node
-                if (focused == root){
-                    set_focus (root.add ());
-                    change ();
-                    refresh_tree ();
-                    node_edit (true);
+                if (this.focused == this.root){
+                    this.set_focus (this.root.add ());
+                    this.change ();
+                    this.refresh_tree ();
+                    this.node_edit (true);
                     return true;
                 } else {
-                    set_focus (focused.parent.insert (focused.get_position ()+1));
-                    change ();
-                    refresh_tree ();
-                    node_edit (true);
+                    this.set_focus (this.focused.parent.insert (this.focused.get_position ()+1));
+                    this.change ();
+                    this.refresh_tree ();
+                    this.node_edit (true);
                     return true;
                 }
             } else if (event.keyval == 65535) {                 // delete
-                node_delete();
+                this.node_delete();
                 return true;
             } else if (event.keyval == 65379) {                 // insert
-                node_insert();
+                this.node_insert();
                 return true;
             } else if (event.keyval == 65471) {                 // F2
-                node_edit();
+                this.node_edit();
                 return true;
             } else if (event.keyval == 65451 || event.keyval == 43) {   // KP_Add (+)
-                node_expand();
+                this.node_expand();
                 return true;
             } else if (event.keyval == 65453 || event.keyval == 45) {   // KP_Subtract (-)
-                node_collapse();
+                this.node_collapse();
                 return true;
             } else if (mod_ctrl && event.keyval == 65362) {     // Ctrl + Up
-                node_move_up();
+                this.node_move_up();
                 return true;
             } else if (mod_ctrl && event.keyval == 65364) {     // Ctrl + Down
-                node_move_down();
+                this.node_move_down();
                 return true;
             } else if (mod_ctrl && event.keyval == 65361) {     // Ctrl + Left
-                node_move_left();
+                this.node_move_left();
                 return true;
             } else if (mod_ctrl && event.keyval == 65363) {     // Ctrl + Right
-                node_move_right();
+                this.node_move_right();
                 return true;
             } else if (event.keyval == 65362) {                 // Up
-                if (focused == root)
+                if (this.focused == this.root)
                     return true;
 
-                if (focused.parent == root) {
-                    for (int i = focused.get_position() -1;
+                if (this.focused.parent == this.root) {
+                    for (int i = this.focused.get_position() -1;
                             i >= 0; i--)
                     {
-                        var node = root.children.nth_data(i);
-                        if (node.direction == focused.direction){
-                            set_focus(node);
+                        var node = this.root.children.nth_data(i);
+                        if (node.direction == this.focused.direction){
+                            this.set_focus(node);
                             break;
                         }
                     }
                     return true;
                 } else {
-                    int pos = focused.get_position();
+                    int pos = this.focused.get_position();
                     if (pos > 0)
-                        set_focus(focused.parent.children.nth_data(pos -1));
+                        this.set_focus(this.focused.parent.children.nth_data(pos -1));
                     return true;
                 }
             } else if (event.keyval == 65364) {                 // Down
-                if (focused == root) return true;
-                if (focused.parent == root) {
-                    for (int i = focused.get_position() +1;
-                            i < root.children.length(); i++)
+                if (this.focused == this.root)
+                    return true;
+                if (this.focused.parent == this.root) {
+                    for (int i = this.focused.get_position() +1;
+                            i < this.root.children.length(); i++)
                     {
-                        var node = root.children.nth_data(i);
-                        if (node.direction == focused.direction){
-                            set_focus(node);
+                        var node = this.root.children.nth_data(i);
+                        if (node.direction == this.focused.direction){
+                            this.set_focus(node);
                             break;
                         }
                     }
                     return true;
                 } else {
-                    int pos = focused.get_position();
-                    if (pos < focused.parent.children.length()-1)
-                        set_focus(focused.parent.children.nth_data(pos +1));
+                    int pos = this.focused.get_position();
+                    if (pos < this.focused.parent.children.length()-1)
+                        this.set_focus(this.focused.parent.children.nth_data(pos +1));
                     return true;
                 }
             } else if (event.keyval == 65361) {                 // Left
-                if (focused.direction == Direction.LEFT) {
-                    if (focused.children.length() > 0 && focused.is_expand){
-                        set_focus(focused.children.nth_data(0));
+                if (this.focused.direction == Direction.LEFT) {
+                    if (this.focused.children.length() > 0 && this.focused.is_expand){
+                        this.set_focus(this.focused.children.nth_data(0));
                     }
-                } else if (focused.direction == Direction.RIGHT ){
-                    set_focus(focused.parent);
-                } else if (focused == root) {
-                    foreach (var node in root.children){
+                } else if (this.focused.direction == Direction.RIGHT ){
+                    this.set_focus(this.focused.parent);
+                } else if (this.focused == this.root) {
+                    foreach (var node in this.root.children){
                         if (node.direction == Direction.LEFT) {
-                            set_focus(node);
+                            this.set_focus(node);
                             return true;
                         }
                     }
                 }
                 return true;
             } else if (event.keyval == 65363) {                 // Right
-                if (focused.direction == Direction.RIGHT) {
-                    if (focused.children.length() > 0 && focused.is_expand){
-                        set_focus(focused.children.nth_data(0));
+                if (this.focused.direction == Direction.RIGHT) {
+                    if (this.focused.children.length() > 0 && this.focused.is_expand){
+                        this.set_focus(this.focused.children.nth_data(0));
                     }
-                } else if (focused.direction == Direction.LEFT ){
-                    set_focus(focused.parent);
-                } else if (focused == root) {
+                } else if (this.focused.direction == Direction.LEFT ){
+                    this.set_focus(this.focused.parent);
+                } else if (this.focused == this.root) {
                     foreach (var node in root.children){
                         if (node.direction == Direction.RIGHT) {
-                            set_focus(node);
+                            this.set_focus(node);
                             return true;
                         }
                     }
@@ -367,7 +385,7 @@ public class MindMap : Gtk.Fixed {
         } else if (event.keyval == 65362 || event.keyval == 65364 ||
                    event.keyval == 65361 || event.keyval == 65363 )
         {
-            set_focus (root);
+            this.set_focus (this.root);
             return true;
         }
 
@@ -405,94 +423,95 @@ public class MindMap : Gtk.Fixed {
     }
 
     public void node_insert () {
-        if (focused != null) {
-            focused.expand ();
+        if (this.focused != null) {
+            this.focused.expand ();
             var node = focused.insert (0);
-            refresh_tree ();
-            set_focus (node);
-            change ();
-            node_edit (true);
+            this.refresh_tree ();
+            this.set_focus (node);
+            this.change ();
+            this.node_edit (true);
         }
     }
 
     public void node_paste(Node ? node) {
-        if (focused != null && node != null) {
-            focused.expand();
-            focused.paste(node.copy());
-            refresh_tree();
-            set_focus(node);
-            change();
+        if (this.focused != null && node != null) {
+            this.focused.expand();
+            this.focused.paste(node.copy());
+            this.refresh_tree();
+            this.set_focus(node);
+            this.change();
         }
     }
 
     public void node_move_up() {
-        if (focused != null) {
-            focused.move_up();
-            refresh_tree();
-            change();
+        if (this.focused != null) {
+            this.focused.move_up();
+            this.refresh_tree();
+            this.change();
         }
     }
 
     public void node_move_down() {
-        if (focused != null) {
-            focused.move_down();
-            refresh_tree();
-            change();
+        if (this.focused != null) {
+            this.focused.move_down();
+            this.refresh_tree();
+            this.change();
         }
     }
 
     public void node_move_left() {
-        if (focused != null) {
-            focused.move_left();
-            refresh_tree();
-            change();
+        if (this.focused != null) {
+            this.focused.move_left();
+            this.refresh_tree();
+            this.change();
         }
     }
 
     public void node_move_right() {
-        if (focused != null) {
-            focused.move_right();
-            refresh_tree();
-            change();
+        if (this.focused != null) {
+            this.focused.move_right();
+            this.refresh_tree();
+            this.change();
         }
     }
 
     public void node_delete(){
-        if (focused != root && focused != null) {
-            Node? node = focused.get_next();
+        if (this.focused != this.root && this.focused != null) {
+            Node? node = this.focused.get_next();
             if (node == null)
-                node = focused.get_prev();
+                node = this.focused.get_prev();
             if (node == null)
-                node = focused.parent;
-            Node.remove(focused);
-            refresh_tree();
-            focused = null;
-            set_focus(node);
-            change();
+                node = this.focused.parent;
+            Node.remove(this.focused);
+            this.refresh_tree();
+            this.focused = null;
+            this.set_focus(node);
+            this.change();
         }
     }
 
     public void node_edit (bool newone = false) {
-        if (focused != null && editform == null) {
+        if (this.focused != null && this.editform == null) {
             double x, y;
-            get_translation (out x, out y);
+            this.get_translation (out x, out y);
             int xx = (int) GLib.Math.lrint(x);
             int yy = (int) GLib.Math.lrint(y);
 
-            editform_open();        // emit signal that editform will be open
+            this.editform_open();        // emit signal that editform will be open
             this.set_can_focus (false);
-            editform = new EditForm(focused, newone, pref);
-            editform.close.connect (on_close_editform);
-            editform.save.connect (() => {change();});
-            editform.size_allocate.connect (on_change_editform);
-            put(editform, focused.area.x + xx, focused.area.y + yy);
-            editform.entry.grab_focus();
+            this.editform = new EditForm(this.focused, newone, this.pref);
+            this.editform.close.connect (this.on_close_editform);
+            this.editform.save.connect (() => {this.change();});
+            this.editform.size_allocate.connect (this.on_change_editform);
+            put(this.editform,
+                this.focused.area.x + xx, this.focused.area.y + yy);
+            this.editform.entry.grab_focus();
         }
     }
 
     private void on_change_editform (Gtk.Allocation aloc) {
         var allocation = Gtk.Allocation();
-        get_allocation (out allocation);
+        this.get_allocation (out allocation);
 
         double x, y;
         get_translation (out x, out y);
@@ -500,96 +519,101 @@ public class MindMap : Gtk.Fixed {
         int new_x = focused.area.x + (int) GLib.Math.lrint(x) - 1;
         int new_y = focused.area.y + (int) GLib.Math.lrint(y) - 1;
 
-        if (focused.direction == Direction.LEFT &&
-            focused.area.width < NONE_TITLE.length * pref.node_font_size)
+        if (this.focused.direction == Direction.LEFT &&
+            this.focused.area.width < NONE_TITLE.length * this.pref.node_font_size)
         {
-            int ico_size = (focused.text.length > 0 || focused.title.length == 0) ? 0 : ICO_SIZE;
-            int tmp_x = new_x + focused.area.width - NONE_TITLE.length * pref.node_font_size - ico_size - pref.font_padding * 2;
+            int ico_size = (this.focused.text.length > 0
+                            || this.focused.title.length == 0) ? 0 : ICO_SIZE;
+            int tmp_x = new_x + this.focused.area.width
+                    - NONE_TITLE.length * this.pref.node_font_size
+                    - ico_size - this.pref.font_padding * 2;
             if (tmp_x > 0)
                 new_x =  tmp_x;
         }
 
         // move editform to left if it is needed allways
         if ((new_x + aloc.width) > allocation.width)
-            new_x = allocation.width - pref.font_padding - aloc.width;
+            new_x = allocation.width - this.pref.font_padding - aloc.width;
 
         // move editform up needed when is expand
-        if (editform.is_expand && (new_y + aloc.height) > allocation.height) {
-            new_y = allocation.height - pref.font_padding - aloc.height;
+        if (this.editform.is_expand && (new_y + aloc.height) > allocation.height) {
+            new_y = allocation.height - this.pref.font_padding - aloc.height;
         }
 
-        move (editform, new_x, new_y);
-        focus_changed (new_x, new_y, aloc.width,  aloc.height);
+        this.move (this.editform, new_x, new_y);
+        this.focus_changed (new_x, new_y, aloc.width,  aloc.height);
     }
 
     private void on_close_editform () {
-        if (editform.newone && focused.title.length == 0)
-            node_delete();
+        if (this.editform.newone && this.focused.title.length == 0)
+            this.node_delete();
 
-        remove (editform);
-        editform = null; // delete editform
-        editform_close();       // emit signal that editform is close
+        this.remove (this.editform);
+        this.editform = null; // delete editform
+        this.editform_close();       // emit signal that editform is close
         this.set_can_focus (true);
-        grab_focus();
-        refresh_tree();
+        this.grab_focus();
+        this.refresh_tree();
     }
 
     public Node? node_copy () {
-        if (focused != null)
-            return focused.copy();
+        if (this.focused != null)
+            return this.focused.copy();
         else
             return null;
     }
 
     public Node? node_cut () {
-        if (focused != root && focused != null) {
-            var node = focused;
-            node_delete();
+        if (this.focused != this.root && this.focused != null) {
+            var node = this.focused;
+            this.node_delete();
             return node;
         } else
             return null;
     }
 
     public void node_expand () {
-        if (focused != root && focused != null) {
-            if (!focused.is_expand) {
-                focused.change_expand();
-                change();
-                refresh_tree();
+        if (this.focused != this.root && this.focused != null) {
+            if (!this.focused.is_expand) {
+                this.focused.change_expand();
+                this.change();
+                this.refresh_tree();
             }
         }
     }
 
     public void node_expand_all () {
-        foreach (var it in root.children)
+        foreach (var it in this.root.children)
             it.expand_all ();
-        change ();
-        refresh_tree ();
+        this.change ();
+        this.refresh_tree ();
 
         // scroll to selected node
         double x, y;
-        get_translation (out x, out y);
+        this.get_translation (out x, out y);
         int xx = (int) GLib.Math.lrint(x);
         int yy = (int) GLib.Math.lrint(y);
-        focus_changed (focused.area.x + xx, focused.area.y + yy,
-                       focused.area.width,  focused.area.height);
+        this.focus_changed (this.focused.area.x + xx,
+                            this.focused.area.y + yy,
+                            this.focused.area.width,
+                            this.focused.area.height);
     }
 
     public void node_collapse () {
-        if (focused != root && focused != null) {
-            if (focused.is_expand) {
-                focused.change_expand();
-                change();
-                refresh_tree();
+        if (this.focused != this.root && this.focused != null) {
+            if (this.focused.is_expand) {
+                this.focused.change_expand();
+                this.change();
+                this.refresh_tree();
             }
         }
     }
 
     public void node_collapse_all () {
-        foreach (var it in root.children)
+        foreach (var it in this.root.children)
             it.collapse_all ();
-        set_focus (root);
-        change ();
-        refresh_tree ();
+        this.set_focus (this.root);
+        this.change ();
+        this.refresh_tree ();
     }
 }
