@@ -7,16 +7,16 @@
  * Code is present with BSD licence.
  */
 
-// modules: Gtk
+// modules: gtk+-3.0
 
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
     private Gtk.Window window;
 
-    private Gtk.ImageMenuItem menu_item_cut;
-    private Gtk.ImageMenuItem menu_item_copy;
-    private Gtk.ImageMenuItem menu_item_paste;
-    private Gtk.ImageMenuItem menu_item_delete;
+    private Gtk.MenuItem menu_item_cut;
+    private Gtk.MenuItem menu_item_copy;
+    private Gtk.MenuItem menu_item_paste;
+    private Gtk.MenuItem menu_item_delete;
 
     private Gtk.Menu nodemenu;
     private Gtk.Menu mapmenu;
@@ -49,10 +49,10 @@ public class App : GLib.Object {
 
         set_tooltips (builder);
 
-        menu_item_cut = builder.get_object("menuitem_cut") as Gtk.ImageMenuItem;
-        menu_item_copy = builder.get_object("menuitem_copy") as Gtk.ImageMenuItem;
-        menu_item_paste = builder.get_object("menuitem_paste") as Gtk.ImageMenuItem;
-        menu_item_delete = builder.get_object("menuitem_delete") as Gtk.ImageMenuItem;
+        menu_item_cut = builder.get_object("menuitem_cut") as Gtk.MenuItem;
+        menu_item_copy = builder.get_object("menuitem_copy") as Gtk.MenuItem;
+        menu_item_paste = builder.get_object("menuitem_paste") as Gtk.MenuItem;
+        menu_item_delete = builder.get_object("menuitem_delete") as Gtk.MenuItem;
 
         Gtk.Window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
         new_file_from_args(window, filename);
@@ -219,11 +219,11 @@ public class App : GLib.Object {
         file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
-        file.mindmap.node_context_menu.connect ((button, time) => {
-                nodemenu.popup(null, null, null, button, time);
+        file.mindmap.node_context_menu.connect ((event) => {
+                nodemenu.popup_at_pointer (event);
             });
-        file.mindmap.map_context_menu.connect ((button, time) => {
-                mapmenu.popup(null, null, null, button, time);
+        file.mindmap.map_context_menu.connect ((event) => {
+                mapmenu.popup_at_pointer (event);
             });
 
         notebook.set_current_page (notebook.append_page_menu (
@@ -236,11 +236,11 @@ public class App : GLib.Object {
         file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
-        file.mindmap.node_context_menu.connect ((button, time) => {
-                nodemenu.popup(null, null, null, button, time);
+        file.mindmap.node_context_menu.connect ((event) => {
+                nodemenu.popup_at_pointer (event);
             });
-        file.mindmap.map_context_menu.connect ((button, time) => {
-                mapmenu.popup(null, null, null, button, time);
+        file.mindmap.map_context_menu.connect ((event) => {
+                mapmenu.popup_at_pointer (event);
             });
 
         FileTab ? cur = null;
@@ -270,8 +270,8 @@ public class App : GLib.Object {
                 _("Open file"),
                 window,
                 Gtk.FileChooserAction.OPEN,
-                Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT
+                _("_Cancel"), Gtk.ResponseType.CANCEL,
+                _("_Open"), Gtk.ResponseType.ACCEPT
                 );
         var filter = new Gtk.FileFilter();
         filter.set_name ("Mind Map Architect");
@@ -334,11 +334,12 @@ public class App : GLib.Object {
         file.closed.connect (on_close_tab);
         file.mindmap.editform_open.connect (disable_menu_edit);
         file.mindmap.editform_close.connect (enable_menu_edit);
-        file.mindmap.node_context_menu.connect ((button, time) => {
-                nodemenu.popup(null, null, null, button, time);
+        file.mindmap.node_context_menu.connect ((event) => {
+                nodemenu.popup_at_pointer (event);
             });
-        file.mindmap.map_context_menu.connect ((button, time) => {
-                mapmenu.popup(null, null, null, button, time);
+
+        file.mindmap.map_context_menu.connect ((event) => {
+                mapmenu.popup_at_pointer (event);
             });
 
         FileTab ? cur = null;
@@ -360,8 +361,8 @@ public class App : GLib.Object {
                 _("Import file"),
                 window,
                 Gtk.FileChooserAction.OPEN,
-                Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT
+                _("_Cancel"), Gtk.ResponseType.CANCEL,
+                _("_Open"), Gtk.ResponseType.ACCEPT
                 );
 
         var mm = create_filter ("Free Mind", {"*.mm"});
@@ -489,8 +490,8 @@ public class App : GLib.Object {
                     _("Save file as"),
                     window,
                     Gtk.FileChooserAction.SAVE,
-                    Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                    Gtk.Stock.SAVE, Gtk.ResponseType.ACCEPT);
+                    _("_Cancel"), Gtk.ResponseType.CANCEL,
+                    _("_Save"), Gtk.ResponseType.ACCEPT);
         var filter = new Gtk.FileFilter();
         filter.set_filter_name ("Mind Map Architect");
         filter.add_pattern ("*.mma");

@@ -21,8 +21,8 @@ public class MindMap : Gtk.Fixed {
                                      double width, double height);
     public signal void editform_open();
     public signal void editform_close();
-    public signal void node_context_menu(uint button, uint32 activate_time);
-    public signal void map_context_menu(uint button, uint32 activate_time);
+    public signal void node_context_menu (Gdk.Event event);
+    public signal void map_context_menu(Gdk.Event event);
 
     private bool mod_ctrl;
     private bool mod_alt;
@@ -205,9 +205,9 @@ public class MindMap : Gtk.Fixed {
             this.event_context = true;
             if (node != null) {             // context menu of node
                 this.set_focus(node);
-                this.node_context_menu (event.button, event.time);
+                this.node_context_menu (event);
             } else {
-                this.map_context_menu (event.button, event.time);
+                this.map_context_menu (event);
             }
             return true;
         }
