@@ -1,11 +1,13 @@
 // modules: gtk+-3.0 
 
-public int get_dpi () {
+public int get_dpi (Gtk.Settings ? gtk_sett=null) {
 #if ! WINDOWS
-	var gtk_sett = Gtk.Settings.get_default ();
+    if (gtk_sett == null) {
+        gtk_sett = Gtk.Settings.get_default ();
+    }
     return gtk_sett.gtk_xft_dpi/1024;
 #else
-        return 96;              // there is no gtk_xft_dpi property on windows
+    return 96;              // there is no gtk_xft_dpi property on windows
 #endif
  
 }

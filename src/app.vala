@@ -34,7 +34,6 @@ public class App : GLib.Object {
         builder.connect_signals (this);
 
         this.window = builder.get_object("window") as Gtk.Window;
-        this.window.realize.connect (this.on_realize);
         this.title = this.window.title;
         this.notebook = builder.get_object("notebook") as Gtk.Notebook;
         this.notebook.page_added.connect (
@@ -77,10 +76,6 @@ public class App : GLib.Object {
 
     public void enable_menu_edit () {
         this.set_sensitive_menu_edit(true);
-    }
-
-    public void on_realize() {
-        this.pref.set_style(this.window.get_style_context());
     }
 
     public void set_tooltips(Gtk.Builder builder) {

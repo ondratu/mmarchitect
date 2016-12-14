@@ -11,6 +11,7 @@ mmarchitect (0.6.0) UNRELEASED; urgency=low
   * fix MIN/MAX bug fix 
   * rewrite editform and fix it's UX fixies
   * fix and clean welcome tab
+  * working gui colors detection
 
  -- Ondřej Tůma <mcbig@zeropage.cz>  Fri, 04 Jul 2014 08:41:27 +0200
 

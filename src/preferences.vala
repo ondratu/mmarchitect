@@ -1,4 +1,4 @@
-// modules: Gtk
+// modules: gtk+-3.0 libxml-2.0 gee-0.8
 
 enum Start {
     EMPTY,
@@ -217,13 +217,10 @@ public class Preferences : GLib.Object {
         this.last_files = new GLib.List<string> ();
 
         gtk_sett = Gtk.Settings.get_default ();
-#if ! WINDOWS
-        dpi = gtk_sett.gtk_xft_dpi/1024;
-#else
-        dpi = 96;               // there is no gtk_xft_dpi property on windows
-#endif
+        dpi = get_dpi (gtk_sett);
 
         load_default ();
+        load_style_from_gtk ();
         load_from_config ();
     }
 
@@ -244,16 +241,23 @@ public class Preferences : GLib.Object {
         return rv;
     }
 
-    public void set_style(Gtk.StyleContext stylecx) {
-        if (! system_colors)
+    private void load_style_from_gtk() {
+        if (! this.system_colors)
             return;
 
-        default_color   = stylecx.get_border_color(Gtk.StateFlags.NORMAL);
-        canvas_color    = stylecx.get_background_color(Gtk.StateFlags.NORMAL);
-        text_normal     = stylecx.get_color(Gtk.StateFlags.NORMAL);
-        text_selected   = stylecx.get_color(Gtk.StateFlags.SELECTED);
-        back_normal     = stylecx.get_background_color(Gtk.StateFlags.NORMAL);
-        back_selected   = stylecx.get_background_color(Gtk.StateFlags.SELECTED);
+        var widget = new Gtk.TextView();
+        var stylecx = widget.get_style_context ();
+
+        default_color = (Gdk.RGBA) stylecx.get_property ("border-color",
+                                                         Gtk.StateFlags.NORMAL);
+        canvas_color = (Gdk.RGBA) stylecx.get_property ("background-color",
+                                                        Gtk.StateFlags.NORMAL);
+        text_normal = stylecx.get_color(Gtk.StateFlags.NORMAL);
+        text_selected = stylecx.get_color(Gtk.StateFlags.SELECTED);
+        back_normal = (Gdk.RGBA) stylecx.get_property ("background-color",
+                                                       Gtk.StateFlags.NORMAL);
+        back_selected = (Gdk.RGBA) stylecx.get_property ("background-color",
+                                                         Gtk.StateFlags.SELECTED);
     }
 
     private void load_default() {
@@ -424,7 +428,7 @@ public class Preferences : GLib.Object {
         }
     }
 
-    private void load_from_ui(Gtk.StyleContext stylecx) {
+    private void load_from_ui() {
         // general tab
         author = pw.author.get_text ();
         default_directory = pw.default_directory.get_current_folder ();
@@ -468,7 +472,7 @@ public class Preferences : GLib.Object {
             back_normal = pw.back_normal.get_rgba();
             back_selected = pw.back_selected.get_rgba();
         } else {
-            set_style (stylecx);
+            load_style_from_gtk ();
         }
 
         // map tab
@@ -621,7 +625,7 @@ public class Preferences : GLib.Object {
         var retval = (pw.dialog.run() == 1);
 
         if (retval) {
-            load_from_ui (pw.dialog.get_style_context());
+            load_from_ui ();
             try {
                 save_to_config ();
             } catch (Error e) {
@@ -636,21 +640,23 @@ public class Preferences : GLib.Object {
     }
 
     private void read_from_print_settings (string key, string val) {
-        print_settings.set(key, val);
+        this.print_settings.set (key, val);
     }
 
     public void load_print_settings (Gtk.PrintSettings settings) {
-        foreach (var it in print_settings.entries){
-            settings.set(it.key, it.value);
-        }
+        this.print_settings.foreach((entry) => {
+            settings.set(entry.key, entry.value);
+            return true;
+        });
     }
 
     private void write_print_node (Xml.TextWriter w) {
         w.start_element ("print");
 
-        foreach (var it in print_settings.entries){
+        this.print_settings.foreach((it) => {
             w.write_element (it.key, it.value);
-        }
+            return true;
+        });
 
         w.end_element ();
     }
@@ -734,7 +740,7 @@ public class Preferences : GLib.Object {
     }
 
     public void append_last (string path) {
-        unowned GLib.List<string> item = last_files.find_custom (path, strcmp);
+        unowned GLib.List<string>? item = last_files.find_custom (path, strcmp);
         if (item == null)
             last_files.append (path);
 
@@ -746,7 +752,7 @@ public class Preferences : GLib.Object {
     }
 
     public void remove_last (string path) {
-        unowned GLib.List<string> item = last_files.find_custom (path, strcmp);
+        unowned GLib.List<string>? item = last_files.find_custom (path, strcmp);
         assert (item != null);
         last_files.remove_link (item);
 
@@ -758,7 +764,7 @@ public class Preferences : GLib.Object {
     }
 
     public void reorder_last (string path, uint pos) {
-        unowned GLib.List<string> item = last_files.find_custom (path, strcmp);
+        unowned GLib.List<string>? item = last_files.find_custom (path, strcmp);
         assert (item != null);
         last_files.remove_link (item);
         last_files.insert (path, (int) pos);
@@ -781,7 +787,7 @@ public class Preferences : GLib.Object {
     }
 
     private void read_last_node (Xml.Node* node) {
-        unowned GLib.List<string> item;
+        unowned GLib.List<string>? item;
         for (Xml.Node* it = node->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
