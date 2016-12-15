@@ -93,81 +93,81 @@ public class PreferenceWidgets : MapWidgets {
         builder.add_from_file (DATA + "/ui/preferences.ui");
         builder.connect_signals (this);
 
-        dialog = builder.get_object ("dialog") as Gtk.Dialog;
+        this.dialog = builder.get_object ("dialog") as Gtk.Dialog;
 
         // general tab
-        author = builder.get_object ("author") as Gtk.Entry;
-        default_directory = builder.get_object("default_directory")
+        this.author = builder.get_object ("author") as Gtk.Entry;
+        this.default_directory = builder.get_object("default_directory")
                     as Gtk.FileChooserButton;
-        start_empty = builder.get_object("start_empty") as Gtk.RadioButton;
-        start_last = builder.get_object("start_last") as Gtk.RadioButton;
-        start_welcome = builder.get_object("start_welcome") as Gtk.RadioButton;
+        this.start_empty = builder.get_object("start_empty") as Gtk.RadioButton;
+        this.start_last = builder.get_object("start_last") as Gtk.RadioButton;
+        this.start_welcome = builder.get_object("start_welcome") as Gtk.RadioButton;
 
         // style tab
-        node_system_font = builder.get_object("node_system_font")
+        this.node_system_font = builder.get_object("node_system_font")
                     as Gtk.CheckButton;
-        node_font = builder.get_object("node_font") as Gtk.FontButton;
-        font_rise = builder.get_object("font_rise") as Gtk.SpinButton;
-        font_rise.set_increments (10, 50);
-        font_rise.set_range (20, 400);
+        this.node_font = builder.get_object("node_font") as Gtk.FontButton;
+        this.font_rise = builder.get_object("font_rise") as Gtk.SpinButton;
+        this.font_rise.set_increments (10, 50);
+        this.font_rise.set_range (20, 400);
 
-        line_rise = builder.get_object("line_rise") as Gtk.SpinButton;
-        line_rise.set_increments (5, 10);
-        line_rise.set_range (1, 100);
+        this.line_rise = builder.get_object("line_rise") as Gtk.SpinButton;
+        this.line_rise.set_increments (5, 10);
+        this.line_rise.set_range (1, 100);
 
-        font_padding = builder.get_object("font_padding") as Gtk.SpinButton;
-        font_padding.set_increments (1, 5);
-        font_padding.set_range (1, 200);
+        this.font_padding = builder.get_object("font_padding") as Gtk.SpinButton;
+        this.font_padding.set_increments (1, 5);
+        this.font_padding.set_range (1, 200);
 
-        height_padding = builder.get_object("height_padding") as Gtk.SpinButton;
-        height_padding.set_increments (1, 5);
-        height_padding.set_range (1, 200);
+        this.height_padding = builder.get_object("height_padding") as Gtk.SpinButton;
+        this.height_padding.set_increments (1, 5);
+        this.height_padding.set_range (1, 200);
 
-        width_padding = builder.get_object("width_padding") as Gtk.SpinButton;
-        width_padding.set_increments (1, 5);
-        width_padding.set_range (1, 200);
+        this.width_padding = builder.get_object("width_padding") as Gtk.SpinButton;
+        this.width_padding.set_increments (1, 5);
+        this.width_padding.set_range (1, 200);
 
-        text_system_font = builder.get_object("text_system_font")
+        this.text_system_font = builder.get_object("text_system_font")
                     as Gtk.CheckButton;
-        text_font = builder.get_object("text_font") as Gtk.FontButton;
-        text_height = builder.get_object("text_height") as Gtk.SpinButton;
-        text_height.set_increments (5, 10);
-        text_height.set_range (100, 1000);
+        this.text_font = builder.get_object("text_font") as Gtk.FontButton;
+        this.text_height = builder.get_object("text_height") as Gtk.SpinButton;
+        this.text_height.set_increments (5, 10);
+        this.text_height.set_range (100, 1000);
 
         // color tab
-        system_colors = builder.get_object("system_colors") as Gtk.CheckButton;
-        default_color = builder.get_object("default_color") as Gtk.ColorButton;
-        canvas_color = builder.get_object("canvas_color") as Gtk.ColorButton;
-        text_normal = builder.get_object("text_normal") as Gtk.ColorButton;
-        text_selected = builder.get_object("text_selected") as Gtk.ColorButton;
-        back_normal = builder.get_object("back_normal") as Gtk.ColorButton;
-        back_selected = builder.get_object("back_selected") as Gtk.ColorButton;
+        this.system_colors = builder.get_object("system_colors") as Gtk.CheckButton;
+        this.default_color = builder.get_object("default_color") as Gtk.ColorButton;
+        this.canvas_color = builder.get_object("canvas_color") as Gtk.ColorButton;
+        this.text_normal = builder.get_object("text_normal") as Gtk.ColorButton;
+        this.text_selected = builder.get_object("text_selected") as Gtk.ColorButton;
+        this.back_normal = builder.get_object("back_normal") as Gtk.ColorButton;
+        this.back_selected = builder.get_object("back_selected") as Gtk.ColorButton;
 
         // map tab
         // add map vbox to application preference dialog
         var notebook = builder.get_object("notebook") as Gtk.Notebook;
         var label_map = builder.get_object("label_map") as Gtk.Label;
-        notebook.append_page (box, label_map);
+        notebook.append_page (this.box, label_map);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_node_font")]
     public void toggled_node_font (Gtk.Widget sender) {
-        node_font.set_sensitive(!node_system_font.get_active());
+        this.node_font.set_sensitive(!node_system_font.get_active());
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_text_font")]
     public void toggled_text_font (Gtk.Widget sender) {
-        text_font.set_sensitive(!text_system_font.get_active());
+        this.text_font.set_sensitive(!text_system_font.get_active());
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_system_colors")]
     public void toggled_system_colors (Gtk.Widget sender) {
-        default_color.set_sensitive(!system_colors.get_active());
-        canvas_color.set_sensitive(!system_colors.get_active());
-        text_normal.set_sensitive(!system_colors.get_active());
-        text_selected.set_sensitive(!system_colors.get_active());
-        back_normal.set_sensitive(!system_colors.get_active());
-        back_selected.set_sensitive(!system_colors.get_active());
+        this.default_color.set_sensitive(!system_colors.get_active());
+        this.canvas_color.set_sensitive(!system_colors.get_active());
+        this.text_normal.set_sensitive(!system_colors.get_active());
+        this.text_selected.set_sensitive(!system_colors.get_active());
+        this.back_normal.set_sensitive(!system_colors.get_active());
+        this.back_selected.set_sensitive(!system_colors.get_active());
     }
 }
 
@@ -216,12 +216,12 @@ public class Preferences : GLib.Object {
         this.recent_files = new GLib.List<RecentFile> ();
         this.last_files = new GLib.List<string> ();
 
-        gtk_sett = Gtk.Settings.get_default ();
-        dpi = get_dpi (gtk_sett);
+        this.gtk_sett = Gtk.Settings.get_default ();
+        this.dpi = get_dpi (gtk_sett);
 
-        load_default ();
-        load_style_from_gtk ();
-        load_from_config ();
+        this.load_default ();
+        this.load_style_from_gtk ();
+        this.load_from_config ();
     }
 
     public GLib.List<RecentFile> get_recent_files(){
@@ -229,14 +229,14 @@ public class Preferences : GLib.Object {
         // return recent_files.copy ();
 
         var rv = new GLib.List<RecentFile>();
-        foreach (var it in recent_files)
+        foreach (var it in this.recent_files)
             rv.append (it.copy());
         return rv;
     }
 
     public GLib.List<string> get_last_files() {
         var rv = new GLib.List<string> ();
-        foreach (var it in last_files)
+        foreach (var it in this.last_files)
             rv.append(it);
         return rv;
     }
@@ -248,16 +248,16 @@ public class Preferences : GLib.Object {
         var widget = new Gtk.TextView();
         var stylecx = widget.get_style_context ();
 
-        default_color = (Gdk.RGBA) stylecx.get_property ("border-color",
-                                                         Gtk.StateFlags.NORMAL);
-        canvas_color = (Gdk.RGBA) stylecx.get_property ("background-color",
-                                                        Gtk.StateFlags.NORMAL);
-        text_normal = stylecx.get_color(Gtk.StateFlags.NORMAL);
-        text_selected = stylecx.get_color(Gtk.StateFlags.SELECTED);
-        back_normal = (Gdk.RGBA) stylecx.get_property ("background-color",
-                                                       Gtk.StateFlags.NORMAL);
-        back_selected = (Gdk.RGBA) stylecx.get_property ("background-color",
-                                                         Gtk.StateFlags.SELECTED);
+        this.default_color = (Gdk.RGBA) stylecx.get_property (
+                "border-color", Gtk.StateFlags.NORMAL);
+        this.canvas_color = (Gdk.RGBA) stylecx.get_property (
+                "background-color", Gtk.StateFlags.NORMAL);
+        this.text_normal = stylecx.get_color(Gtk.StateFlags.NORMAL);
+        this.text_selected = stylecx.get_color(Gtk.StateFlags.SELECTED);
+        this.back_normal = (Gdk.RGBA) stylecx.get_property (
+                "background-color", Gtk.StateFlags.NORMAL);
+        this.back_selected = (Gdk.RGBA) stylecx.get_property (
+                "background-color", Gtk.StateFlags.SELECTED);
     }
 
     private void load_default() {
@@ -281,8 +281,8 @@ public class Preferences : GLib.Object {
         text_height = TEXT_HEIGHT;
 
         system_colors = true;
-        default_color = { uint32.MIN, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };   // gray
-        canvas_color = { uint32.MIN, uint16.MAX, uint16.MAX, uint16.MAX };          // white
+        default_color = { uint32.MAX/2, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };   // gray
+        canvas_color = { uint32.MAX, uint16.MAX, uint16.MAX, uint16.MAX };          // white
         text_normal   = { uint32.MIN, uint16.MIN, uint16.MIN, uint16.MIN };         // black
         text_selected = canvas_color;
         back_normal   = canvas_color;
@@ -603,38 +603,38 @@ public class Preferences : GLib.Object {
         w.flush();
     }
 
-    public bool dialog () {
-        // TODO: set modal !!
-        if (pw != null) {
+    public bool dialog (Gtk.Window window) {
+        if (this.pw != null) {
             stderr.printf("Preferences are open yet.\n");
             return false;
         }
 
         var pref_widgets = new PreferenceWidgets ();
-        pw = pref_widgets;
+        this.pw = pref_widgets;
 
         try {
             pw.loadui ();
+            pw.dialog.set_transient_for (window);
         } catch (Error e) {
             stderr.printf ("Could not load app UI: %s\n", e.message);
             return false;
         }
 
-        save_to_ui();
+        this.save_to_ui();
 
-        var retval = (pw.dialog.run() == 1);
+        var retval = (this.pw.dialog.run() == 1);
 
         if (retval) {
-            load_from_ui ();
+            this.load_from_ui ();
             try {
-                save_to_config ();
+                this.save_to_config ();
             } catch (Error e) {
                 stderr.printf ("%s\n", e.message);
             }
         }
 
-        pw.dialog.destroy();
-        pw = null;
+        this.pw.dialog.destroy();
+        this.pw = null;
 
         return retval;
     }

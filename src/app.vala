@@ -751,7 +751,7 @@ public class App : GLib.Object {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_preferences")]
     public void preferences (Gtk.Widget w) {
-        if (pref.dialog()) {
+        if (pref.dialog(window)) {
             for (int i = 0; i < this.notebook.get_n_pages (); i++) {
                 var tab = this.notebook.get_nth_page (i) as ITab;
                 if (tab is FileTab) {
