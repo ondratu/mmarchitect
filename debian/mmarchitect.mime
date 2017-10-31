@@ -1,1 +1,0 @@
-application/x-mmarchitect; /usr/bin/mmarchitect '%s'; test=test -n "$DISPLAY"; description="Mind Map Architect file"; textualnewlines; nametemplate=%s.mma

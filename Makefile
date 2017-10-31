@@ -1,5 +1,5 @@
 PROGRAM = mmarchitect
-VERSION = $(shell (head -1 debian/changelog | sed -n -e "s/.*(\(.*\).*).*/\1/p"))
+VERSION = 0.6.0
 
 VALAC ?= valac
 VALAC_MIN_VERSION = 0.12.1
@@ -63,7 +63,7 @@ EXT_PKGS = \
 	gtk+-3.0 \
 	cairo \
 	libxml-2.0 \
-	gee-1.0 \
+	gee-0.8 \
         librsvg-2.0
 
 VALA_STAMP := $(BUILD_DIR)/.stamp
@@ -267,7 +267,6 @@ clean: distclean
 	@$(RM) misc/locales.iss
 	@$(RM) misc/$(PROGRAM).res
 	@$(RM) $(PROGRAM)-setup-$(VERSION).exe
-	@dh_clean || printf 'Never mind, it is ok ;)\n'
 
 distclean:
 	@printf "Dist cleaning ...\n"
@@ -282,7 +281,6 @@ distclean:
 	@$(UX)cp -a po ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a misc ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a icons ../$(PROGRAM)-$(VERSION)/
-	@$(UX)cp -a debian ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a Makefile ../$(PROGRAM)-$(VERSION)/
 	@$(UX)cp -a README* ../$(PROGRAM)-$(VERSION)/
 	@$(UX)find ../$(PROGRAM)-$(VERSION) -type d -name .svn | $(UX)xargs $(RM) -rf
@@ -300,7 +298,6 @@ distclean:
 	@$(UX)cp -a po ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)cp -a misc ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)cp -a icons ../$(PROGRAM)-c-$(VERSION)/
-	@$(UX)cp -a debian ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)cp -a Makefile ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)cp -a README* ../$(PROGRAM)-c-$(VERSION)/
 	@$(UX)find ../$(PROGRAM)-c-$(VERSION) -type d -name .svn | $(UX)xargs $(RM) -rf
