@@ -603,7 +603,7 @@ public class Preferences : GLib.Object {
         w.flush();
     }
 
-    public bool dialog (Gtk.Window window) {
+    public bool dialog (Gtk.Window parent) {
         if (this.pw != null) {
             stderr.printf("Preferences are open yet.\n");
             return false;
@@ -614,7 +614,7 @@ public class Preferences : GLib.Object {
 
         try {
             pw.loadui ();
-            pw.dialog.set_transient_for (window);
+            pw.dialog.set_transient_for (parent);
         } catch (Error e) {
             stderr.printf ("Could not load app UI: %s\n", e.message);
             return false;

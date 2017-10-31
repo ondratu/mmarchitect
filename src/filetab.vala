@@ -342,9 +342,9 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         return true;
     }
 
-    public bool properties () {
+    public bool properties (Gtk.Window parent) {
         prop.filepath = filepath;
-        bool rv = prop.dialog ();
+        bool rv = prop.dialog (parent);
         if (rv) {
             mindmap.root.count_weight (true);
             mindmap.refresh_tree ();

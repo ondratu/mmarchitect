@@ -593,7 +593,7 @@ public class App : GLib.Object {
             return;
 
         var file = tab as FileTab;
-        if (file.properties ()) {
+        if (file.properties (this.window)) {
             file.on_mindmap_change ();
         }
     }

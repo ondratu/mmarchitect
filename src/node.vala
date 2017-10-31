@@ -9,7 +9,7 @@
 
 // modules: Gtk
 
-enum Direction {
+public enum Direction {
     LEFT,
     RIGHT,
     AUTO
@@ -97,33 +97,32 @@ public class Node : GLib.Object {
     public Gdk.Window window;
     public Node? parent;
     public MindMap ? map;
-    public List<Node> children;
+    public List<Node> children = new List<Node> ();
     private string _title;
-    public string title {get {return _title;}}
-    public string text;
+    public string title {get {return _title;} }
+    public string text = "";
     public uint direction;
     public double weight;
     public double points;
-    public int function;
+    public int function = PointsFce.OWN;
     public double fpoints {get; private set;}
     public string str_points {get; private set;}
     public Gdk.RGBA rgb;
-    public Gdk.Rectangle area;
+    public Gdk.Rectangle area = Gdk.Rectangle();
     private int points_width;
     private int points_height;
-    public Gdk.Rectangle full_left;
-    public Gdk.Rectangle full_right;
+    public Gdk.Rectangle full_left = Gdk.Rectangle();
+    public Gdk.Rectangle full_right = Gdk.Rectangle();
     public Pango.FontDescription font_desc;
-    public bool is_expand;
-    public bool is_focus {get; private set;}
-    public bool visible;
+    public bool is_expand = true;
+    public bool is_focus {get; private set; default = false; }
+    public bool visible = true;
     public bool default_color;
-    public Gee.HashSet<string> flags;
+    public Gee.HashSet<string> flags = new Gee.HashSet<string> ();
 
     private Node (string title, Node? parent = null,
             uint direction = Direction.AUTO)
     {
-        this.text = "";
         this._title = title;
         this.parent = parent;
 
@@ -133,11 +132,11 @@ public class Node : GLib.Object {
             this.rgb = parent.rgb;
             this.default_color = parent.default_color;
 
-            if (parent.direction != Direction.AUTO) // parent is not root
+            if (parent.direction != Direction.AUTO) {   // parent is not root
                 this.direction = parent.direction;
-            else if (direction != Direction.AUTO)   // parent is root, and direction is set
+            } else if (direction != Direction.AUTO) { // parent is root, and direction is set
                 this.direction = direction;
-            else {                                   // parent is root, and direction is not set
+            } else {                                    // parent is root, and direction is not set
                 this.direction =  parent.children.length() % 2;
                 parent.zip();
             }
@@ -146,49 +145,37 @@ public class Node : GLib.Object {
             this.default_color = true;
             this.rgb = Gdk.RGBA();
         }
-
-        this.children = new List<Node> ();
-        this.flags = new Gee.HashSet<string> ();
-        this.function = PointsFce.OWN;
-
-        this.area = Gdk.Rectangle();
-        this.full_right = Gdk.Rectangle();
-        this.full_left = Gdk.Rectangle();
-
-        this.is_expand = true;
-        this.is_focus = false;
-        this.visible = true;
     }
 
     public Node.root (string title, MindMap map) {
-        this(title);
+        this (title);
         this.map = map;
-        count_weight ();
-        fce_on_points (false);
+        this.count_weight ();
+        this.fce_on_points (false);
     }
 
     public Node copy () {
-        var node = new Node (title, parent, direction);
+        var node = new Node (this.title, this.parent, this.direction);
         node.map = this.map;    // if it is copy of parrent
-        node.text = text;
-        node.points = points;
-        node.function = function;
+        node.text = this.text;
+        node.points = this.points;
+        node.function = this.function;
         foreach (var it in children) {
-            var chld = it.copy();
+            var chld = it.copy ();
             chld.parent = node;
             node.children.append (chld);
         }
 
-        foreach (var flag in flags) {
+        foreach (var flag in this.flags) {
             node.flags.add (flag);
         }
 
-        node.area = area;
-        node.full_right = full_right;
-        node.full_left = full_left;
-        node.is_expand = is_expand;
+        node.area = this.area;
+        node.full_right = this.full_right;
+        node.full_left = this.full_left;
+        node.is_expand = this.is_expand;
         node.is_focus = false;      // is_focus must be fall in copy
-        node.visible = visible;
+        node.visible = this.visible;
 
         return node;
     }
@@ -203,39 +190,41 @@ public class Node : GLib.Object {
             child.realize(this.window);
         children.append (child);
         child.count_weight ();
-        fce_on_points (false);
+        this.fce_on_points (false);
         return child;
     }
 
     public void paste (Node node) {
         node.parent = this;
 
-        if (node.direction == Direction.AUTO && direction == Direction.AUTO)
-            node.corect_direction (children.length() % 2);
-        else if (direction != Direction.AUTO)
-            node.corect_direction (direction);
+        if (node.direction == Direction.AUTO && this.direction == Direction.AUTO)
+            node.corect_direction (this.children.length() % 2);
+        else if (this.direction != Direction.AUTO)
+            node.corect_direction (this.direction);
 
         node.realize(this.window);
-        children.append (node);
+        this.children.append (node);
         node.count_weight (true);   // node could be from anoter map
-        count_weight ();
-        fce_on_points (true);
+        this.count_weight ();
+        this.fce_on_points (true);
     }
 
     public Node insert(int pos){
         var child = new Node ("", this);
         assert (child != null);
-        if (this.window != null)
+        if (this.window != null) {
             child.realize(this.window);
-        children.insert(child, pos);
+        }
+        this.children.insert(child, pos);
         child.count_weight ();
-        fce_on_points (true);
+        this.fce_on_points (true);
         return child;
     }
 
     public static void remove (Node node) {
-        if (node.parent == null)
+        if (node.parent == null) {
             return;
+        }
         var parent = node.parent;
         parent.children.remove(node);
         parent.count_weight ();
@@ -244,34 +233,35 @@ public class Node : GLib.Object {
 
     private void fce_on_points (bool down) {
         if (down) {             // to children
-            foreach (var it in children)
+            foreach (var it in children) {
                 it.fce_on_points (down);
+            }
         }
 
         if (function == PointsFce.OWN) {
-            fpoints = points;
+            this.fpoints = this.points;
         } else {
             // start on second children, for right MIN fce
-            uint len = children.length();
-            fpoints = (len > 0) ? children.nth_data(0).fpoints : 0;
+            uint len = this.children.length();
+            this.fpoints = (len > 0) ? this.children.nth_data(0).fpoints : 0;
             for (int i = 1; i < len; i++) {
-                var chfp = children.nth_data(i).fpoints;
-                switch (function) {
+                var chfp = this.children.nth_data(i).fpoints;
+                switch (this.function) {
                     case PointsFce.SUM:
                     case PointsFce.AVG:
-                        fpoints += chfp;
+                        this.fpoints += chfp;
                         break;
                     case PointsFce.MAX:
-                        fpoints = (chfp > fpoints) ? chfp : fpoints;
+                        this.fpoints = (chfp > this.fpoints) ? chfp : this.fpoints;
                         break;
                     case PointsFce.MIN:
-                        fpoints = (chfp < fpoints) ? chfp : fpoints;
+                        this.fpoints = (chfp < this.fpoints) ? chfp : this.fpoints;
                         break;
                 }
             }
 
             if (function == PointsFce.AVG) {
-                fpoints = fpoints / len;
+                this.fpoints = this.fpoints / len;
             }
         }
 
@@ -284,91 +274,91 @@ public class Node : GLib.Object {
     }
 
     private void count_weight_by_branches (bool down) {
-        weight = 1;
+        this.weight = 1;
         if (!down) {        // to parent way
-            foreach (var it in children) {
-                weight += it.weight;
+            foreach (var it in this.children) {
+                this.weight += it.weight;
             }
 
-            if (parent != null)
-                parent.count_weight_by_branches (down);
+            if (this.parent != null)
+                this.parent.count_weight_by_branches (down);
         } else {            // to children
-            foreach (var it in children) {
+            foreach (var it in this.children) {
                 it.count_weight_by_branches (down);
-                weight += it.weight;
+                this.weight += it.weight;
             }
         }
 
-        if (window != null)
+        if (this.window != null)
             set_size_request();
     }
 
     private void count_weight_by_points (bool down) {
         if (down) {             // to children
-            foreach (var it in children)
+            foreach (var it in this.children)
                 it.count_weight_by_points (down);
         }
 
         if (this.function == PointsFce.OWN) {
-            weight = this.points;
+            this.weight = this.points;
         } else if (this.children.length() == 0) {
-            weight = 0;
+            this.weight = 0;
         } else {
             foreach (var it in children) {
                 switch (this.function) {
                     case PointsFce.SUM:
                     case PointsFce.AVG:
-                        weight += it.weight;
+                        this.weight += it.weight;
                         break;
                     case PointsFce.MAX:
-                        weight = (it.weight > weight) ? it.weight : weight;
+                        this.weight = (it.weight > this.weight) ? it.weight : this.weight;
                         break;
                     case PointsFce.MIN:
-                        weight = (it.weight < weight) ? it.weight : weight;
+                        this.weight = (it.weight < this.weight) ? it.weight : this.weight;
                         break;
                 }
             }
 
             if (this.function == PointsFce.AVG) {
-                this.weight = this.weight / children.length ();
+                this.weight = this.weight / this.children.length ();
             }
         }
 
         // call count_children_points on parent
-        if (parent != null && !down)    // to parent
-            parent.count_weight_by_points (down);
+        if (this.parent != null && !down)    // to parent
+            this.parent.count_weight_by_points (down);
 
-        if (window != null)
+        if (this.window != null)
             set_size_request();
     }
 
     private void count_weight_disabled (bool down) {
-        weight = 0;
+        this.weight = 0;
         if (!down){
-            if (parent != null)
-                parent.count_weight_disabled (down);
+            if (this.parent != null)
+                this.parent.count_weight_disabled (down);
         } else {
-            foreach (var it in children) {
+            foreach (var it in this.children) {
                 it.count_weight_disabled (down);
             }
         }
 
-        if (window != null)
-            set_size_request();
+        if (this.window != null)
+            this.set_size_request();
     }
 
     public void count_weight (bool down = false) {
-        assert (map != null);
-        switch (map.prop.rise_method) {
+        assert (this.map != null);
+        switch (this.map.prop.rise_method) {
             case RisingMethod.BRANCHES:
-                count_weight_by_branches (down);
+                this.count_weight_by_branches (down);
                 break;
             case RisingMethod.POINTS:
-                count_weight_by_points (down);
+                this.count_weight_by_points (down);
                 break;
             case RisingMethod.DISABLE:
             default:
-                count_weight_disabled (down);
+                this.count_weight_disabled (down);
                 break;
         }
     }
@@ -376,9 +366,9 @@ public class Node : GLib.Object {
     // sort child with zip right on direction
     public void zip () {
         bool direction = false;
-        uint len = children.length();
+        uint len = this.children.length();
         for (int i = 0; i < len;){
-            var a = children.nth_data(i);
+            var a = this.children.nth_data(i);
             // direction is right cik cak
             if (a.direction == (uint) direction){
                 direction = !direction;
@@ -389,10 +379,10 @@ public class Node : GLib.Object {
             // find node with right cik cak direction
             int l;
             for (l = i+1; l < len; l++){
-                var b = children.nth_data(l);
+                var b = this.children.nth_data(l);
                 if (b.direction == (uint) direction) {
-                    children.remove(b);
-                    children.insert(b,i);
+                    this.children.remove(b);
+                    this.children.insert(b,i);
                     direction = !direction;
                     i++;
                     break;
@@ -406,23 +396,23 @@ public class Node : GLib.Object {
     }
 
     public void move_up () {
-        if (parent == null)
+        if (this.parent == null)
             return;
 
-        int pos = get_position();
+        int pos = this.get_position();
         if (pos == 0)
             return;
 
-        if (parent.parent != null) { // not child of root
-            parent.children.remove(this);
-            parent.children.insert(this, pos - 1);
+        if (this.parent.parent != null) { // not child of root
+            this.parent.children.remove(this);
+            this.parent.children.insert(this, pos - 1);
         } else {
             for (int i = pos - 1; i >= 0; i--){
-                var node = parent.children.nth_data(i);
+                var node = this.parent.children.nth_data(i);
                 if (node.direction == this.direction) {
-                    parent.children.remove(this);
-                    parent.children.insert(this, i);
-                    parent.zip();
+                    this.parent.children.remove(this);
+                    this.parent.children.insert(this, i);
+                    this.parent.zip();
                     return;
                 }
             }
@@ -430,25 +420,25 @@ public class Node : GLib.Object {
     }
 
     public void move_down () {
-        if (parent == null)
+        if (this.parent == null)
             return;
 
-        int pos = get_position();
-        uint len = parent.children.length();
+        int pos = this.get_position();
+        uint len = this.parent.children.length();
 
         if (pos == len - 1)
             return;
 
-        if (parent.parent != null) { // not child of root
-            parent.children.remove(this);
-            parent.children.insert(this, pos + 1);
+        if (this.parent.parent != null) { // not child of root
+            this.parent.children.remove(this);
+            this.parent.children.insert(this, pos + 1);
         } else {
             for (int i = pos + 1; i < len; i++){
-                var node = parent.children.nth_data(i);
+                var node = this.parent.children.nth_data(i);
                 if (node.direction == this.direction) {
-                    parent.children.remove(this);
-                    parent.children.insert(this, i);
-                    parent.zip();
+                    this.parent.children.remove(this);
+                    this.parent.children.insert(this, i);
+                    this.parent.zip();
                     return;
                 }
             }
@@ -459,34 +449,34 @@ public class Node : GLib.Object {
         if (parent == null) return;
 
         // not right child of root
-        if (!(parent.parent == null && this.direction == Direction.RIGHT)) {
+        if (!(this.parent.parent == null && this.direction == Direction.RIGHT)) {
             Node new_parent;
             if (this.direction == Direction.LEFT){
-                int pos = get_position();
+                int pos = this.get_position();
                 if (pos > 0)
-                    new_parent = get_prev(Direction.LEFT);
-                else if (pos +1 < parent.children.length())
-                    new_parent = get_next(Direction.LEFT);
+                    new_parent = this.get_prev(Direction.LEFT);
+                else if (pos +1 < this.parent.children.length())
+                    new_parent = this.get_next(Direction.LEFT);
                 else
                     return;
 
-                parent.children.remove(this);
+                this.parent.children.remove(this);
                 new_parent.paste(this);
             } else {            // Direction.RIGHT
-                new_parent = parent.parent;
-                parent.children.remove(this);
-                new_parent.children.insert(this, parent.get_position() +1);
+                new_parent = this.parent.parent;
+                this.parent.children.remove(this);
+                new_parent.children.insert(this, this.parent.get_position() +1);
                 this.parent = new_parent;
                 this.parent.zip();
             }
         } else {
-            int pos = get_position();
+            int pos = this.get_position();
             if (pos > 0){
-                parent.children.remove(this);
-                parent.children.insert(this, pos -1);
+                this.parent.children.remove(this);
+                this.parent.children.insert(this, pos -1);
             }
-            corect_direction(Direction.LEFT);
-            parent.zip();
+            this.corect_direction(Direction.LEFT);
+            this.parent.zip();
         }
     }
 
@@ -494,10 +484,10 @@ public class Node : GLib.Object {
         if (parent == null) return;
 
         // not left child of root
-        if (!(parent.parent == null && this.direction == Direction.LEFT)) {
+        if (!(this.parent.parent == null && this.direction == Direction.LEFT)) {
             Node new_parent;
             if (this.direction == Direction.RIGHT){
-                int pos = get_position();
+                int pos = this.get_position();
                 if (pos > 0)
                     new_parent = get_prev(Direction.RIGHT);
                 else if (pos +1 < parent.children.length())
@@ -589,7 +579,7 @@ public class Node : GLib.Object {
     }
 
     public void get_size_request (out int width, out int height) {
-        var cr = Gdk.cairo_create (this.window);
+        var cr = new Cairo.Context (new Cairo.ImageSurface (Cairo.Format.A1, 0, 0));
         var la = Pango.cairo_create_layout (cr);
 
         font_desc = map.pref.node_font.copy();
@@ -612,7 +602,7 @@ public class Node : GLib.Object {
         if (text.length > 0)            // if there is text, icon is visible
             width += ICO_SIZE + 1;
 
-        width += (ICO_SIZE + 1) * flags.size;
+        width += (ICO_SIZE + 1) * this.flags.size;
 
         // if there are points or function, thay are visible
         if (fpoints != 0 || function != PointsFce.OWN) {
@@ -811,7 +801,7 @@ public class Node : GLib.Object {
 
         cr.stroke ();
 
-        var flags_padding = (ICO_SIZE + 1) * flags.size;
+        var flags_padding = (ICO_SIZE + 1) * this.flags.size;
 
         // text
         if (title.length > 0){
@@ -851,7 +841,7 @@ public class Node : GLib.Object {
 
         // flag icons
         int f = 0;
-        foreach (var flag in flags) {
+        foreach (var flag in this.flags) {
             int ico_padding = (ICO_SIZE + 1) * f;
             set_source_svg (cr, DATA + "/icons/" + flag + ".svg",
                     area.x + ico_padding,
@@ -956,8 +946,7 @@ public class Node : GLib.Object {
         fce_on_points (false);
         if (map.prop.rise_method == RisingMethod.POINTS)
             count_weight_by_points (false);
-        if (this.window != null)
-            get_size_request (out area.width, out area.height);
+        get_size_request (out area.width, out area.height);
     }
 
     public unowned Node? event_on (double x, double y) {

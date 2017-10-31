@@ -7,7 +7,7 @@
  * Code is present with BSD licence.
  */
 
-enum TipCategory {
+public enum TipCategory {
     APP,
     MINDMAP
 }

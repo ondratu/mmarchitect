@@ -1,4 +1,4 @@
-// modules: Gtk
+// modules: gtk+-3.0
 
 public class PropertiesWidgets : MapWidgets {
     public Gtk.Dialog dialog;
@@ -18,15 +18,15 @@ public class PropertiesWidgets : MapWidgets {
         builder.add_from_file (DATA + "/ui/properties.ui");
         builder.connect_signals (this);
 
-        dialog = builder.get_object ("dialog") as Gtk.Dialog;
+        this.dialog = builder.get_object ("dialog") as Gtk.Dialog;
 
-        author = builder.get_object ("author") as Gtk.Entry;
-        created = builder.get_object ("label_created") as Gtk.Label;
-        modified = builder.get_object ("label_modified") as Gtk.Label;
-        filepath = builder.get_object ("label_path") as Gtk.Label;
+        this.author = builder.get_object ("author") as Gtk.Entry;
+        this.created = builder.get_object ("label_created") as Gtk.Label;
+        this.modified = builder.get_object ("label_modified") as Gtk.Label;
+        this.filepath = builder.get_object ("label_path") as Gtk.Label;
 
-        var alignment_map = builder.get_object ("alignment_map") as Gtk.Alignment;
-        alignment_map.add (box);
+        var frame_map = builder.get_object ("frame_map") as Gtk.Frame;
+        frame_map.add (this.box);
     }
 }
 
@@ -44,67 +44,68 @@ public class Properties : GLib.Object {
     public bool rise_branches;
 
     public Properties (Preferences pref) {
-        load_from_preferences (pref);
+        this.load_from_preferences (pref);
         time_t (out this.created);
         time_t (out this.modified);
     }
 
     public void load_from_preferences (Preferences pref) {
-        author = pref.author;
+        this.author = pref.author;
 
-        rise_method = pref.rise_method;
-        rise_ideas = pref.rise_ideas;
-        rise_branches = pref.rise_branches;
+        this.rise_method = pref.rise_method;
+        this.rise_ideas = pref.rise_ideas;
+        this.rise_branches = pref.rise_branches;
     }
 
     private void load_from_ui () {
-        author = pw.author.get_text ();
+        this.author = pw.author.get_text ();
 
-        rise_method = pw.get_rise_method ();
-        rise_ideas = pw.get_rise_ideas ();
-        rise_branches = pw.get_rise_branches ();
+        this.rise_method = pw.get_rise_method ();
+        this.rise_ideas = pw.get_rise_ideas ();
+        this.rise_branches = pw.get_rise_branches ();
     }
 
     private void save_to_ui () {
-        pw.author.set_text (author);
+        this.pw.author.set_text (this.author);
 
-        var c_created = ClaverTime (created);
-        pw.created.set_text (c_created.to_string());
+        var c_created = ClaverTime (this.created);
+        this.pw.created.set_text (c_created.to_string());
 
-        var c_modified = ClaverTime (modified);
-        pw.modified.set_text (c_modified.to_string());
+        var c_modified = ClaverTime (this.modified);
+        this.pw.modified.set_text (c_modified.to_string());
 
-        pw.filepath.set_text (filepath);
+        this.pw.filepath.set_text (this.filepath);
 
-        pw.set_rise_method (rise_method);
-        pw.set_rise_ideas (rise_ideas);
-        pw.set_rise_branches (rise_branches);
+        this.pw.set_rise_method (this.rise_method);
+        this.pw.set_rise_ideas (this.rise_ideas);
+        this.pw.set_rise_branches (this.rise_branches);
     }
 
-    public bool dialog () {
-        if (pw != null) {
+    public bool dialog (Gtk.Window parent) {
+        if (this.pw != null) {
             stderr.printf("Preferences are open yet.\n");
             return false;
         }
 
         var pref_widgets = new PropertiesWidgets ();
-        pw = pref_widgets;
+        this.pw = pref_widgets;
 
         try {
-            pw.loadui ();
+            this.pw.loadui ();
+            this.pw.dialog.set_transient_for (parent);
         } catch (Error e) {
             stderr.printf ("Could not load app UI: %s\n", e.message);
             return false;
         }
 
-        save_to_ui();
+        this.save_to_ui();
 
-        var retval = (pw.dialog.run() == 1);
+        var retval = (this.pw.dialog.run() == 1);
         if (retval)
-            load_from_ui ();
+            this.load_from_ui ();
 
-        pw.dialog.destroy();
-        pw = null;
+        this.pw.dialog.destroy();
+        this.pw = null;
 
         return retval;
     }
