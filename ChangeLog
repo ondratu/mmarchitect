@@ -1,346 +1,114 @@
-2012-11-17 19:36  ondratu
+# ChangeLog
+
+## [Unreleased]
+### Added
+
+### Changed
+ * Use Gtk+3 library
+ * store icons to node right
+ * Enter || Return key save values on points widget
+ * select color by new ColorChooserDialog
+ * Changelog for users
+
+### Fixed
+ * center map when it is possible
+ * MIN/MAX bug fix
+ * rewrite editform and fix it's UX bugs
+ * working gui colors detection
+
+### Removed
+
+## [0.5.0] - 2014-06-02
+### Added
+ * Italian translation from evanmac <nicola.lomartire@gmail.com>
+ * Spanish translation from Luis Garcia Sevillano <floss.dev@gmail.com>
+ * Plus and Minus keys for expand and collapse ideas
+ * Points support
+ * #4 More usable points function setting
+ * Map settings are save to map file
+ * File properties have own dialog
+ * 128x128 icon
+ * Create and modify time are stored to file and show on preferences dialog
+ * Tabs have popup menu and could be reordered
+ * Welcome tab could be restore with other files
+ * Full txt export
+ * Export to simple html
+ * Root node can have color and points too
+ * node context menu
+ * better manipulation with colors in color dialog
+ * Base (black and white) icon flags/states
+
+### Changed
+ * Remove unopend last files from config
+ * Parent and node without children are still expand
+ * file path is on properties dialog
+
+### Fixed
+  * Store translators in right section in about dialog
+  * gtk property in Tab interface
+  * Bug fix about cursor moving to collapsed ideas
+  * Recent files in welcome tab is disabled if is not available
+  * #4 Last open files works well
+  * editform size manipulation
+  * Sigsegv bugfix while apply style on nondraw maps
+  * Do not remove new files from last open list
+  * #15 idea point are working
+  * Import map is centered too
+  * rising weight count bug fix
+  * fallback update (not svg support in pixbuf)
+
+## [0.4.0] 2012-11-04
+
+  * Exporting map to png file
+  * Locales support
+  * Map printing and png export
+  * Welcome tab with tips, links to project and recent files
+  * Start application preference works now
+  * Desktop and debian menu file fix
+
+## [0.3.4] 2012-10-11
+
+  * Nodes text is show in tooltip
+  * Window have title with open file name
+  * Move with minds (nodes) across map with ctrl + arrow keys
+  * Bug fix with replacing exported files
+  * Set MIME type and adding mime type for system
+  * Bug fix with importing mm files
+  * Open file from command line argument
+  * Description update and watch setting for debian packaging
+
+## [0.3.3] 2012-10-02
+
+  * color settings from system or user preferences
+  * color dialog with default, parent and own choice
+
+## [0.3.2] 2012-10-02
+
+  * default directory bug fix
+  * better windows compilation support
+  * icon for windows
+
+## [0.3.1] 2012-10-02
+  * version and web fix
+
+## [0.3.0] 2011-11-02
+
+  * Colors support and points prepare
+  * debian right gcc depends, preference dialog, fonts buf fix, focus bug fix,
+    better cairo colors using,  per file building
+  * Preferences
+
+## [0.2.1] 2011-09-30
 
-	* ui/about_dialog.ui: About website link without index.html
+  * new line style
 
-2012-11-17 19:33  ondratu
+## [0.2.0-1] 2011-09-30
 
-	* Makefile, misc/mmarchitect.iss, src/welcometab.vala,
-	  ui/about_dialog.ui, ui/welcome.ui: Windows open url fix
+  * FreeMind file basic import
+  * Editform for node have smart position now
+  * text notes support in gui, collaps label
+  * Testing export to txt
+  * Makefile fixes and debian full build-package support
 
-2012-11-17 08:11  ondratu
-
-	* ui/welcome.ui: Visible links in welcome tab
-
-2012-11-17 05:54  ondratu
-
-	* Makefile: Windows building fix
-
-2012-11-16 10:36  ondratu
-
-	* Makefile, README.Win32, misc/mmarchitect.desktop,
-	  misc/mmarchitect.iss: Windows locales from gtk and desktop file
-	  fix
-
-2012-11-16 07:29  ondratu
-
-	* debian/menu: Debian menu icon fix
-
-2012-11-16 07:10  ondratu
-
-	* ChangeLog, Makefile, debian/changelog, icons/mmarchitect.xpm,
-	  icons/mmarchitect_32.png, icons/mmarchitect_48.png,
-	  icons/x-mmarchitect.png, misc/mmarchitect.xml,
-	  src/welcometab.vala, ui/about_dialog.ui, ui/welcome.ui: New
-	  icons, Makefile fix, new homepage and welcome texts and changelog
-	  update
-
-2012-11-04 08:45  ondratu
-
-	* ui/main.ui: Nodes are ideas and branches
-
-2012-11-04 07:51  ondratu
-
-	* po/cs.po, ui/main.ui: Czech language update and ui cleaning
-
-2012-11-04 00:58  ondratu
-
-	* Makefile: Makefile check for compiling languages on windows
-
-2012-11-02 22:09  ondratu
-
-	* po/cs.po, src/app.vala, src/preferences.vala,
-	  src/welcometab.vala, ui/welcome.ui: Start application preference
-	  acceptable (last files and welcome tab), and some futures with
-	  starting application.
-	  Czech translate update
-
-2012-11-02 08:51  ondratu
-
-	* src/app.vala, src/preferences.vala, src/welcometab.vala: Clever
-	  time formating and windows support with it
-
-2012-11-01 16:03  ondratu
-
-	* po/cs.po, src/app.vala, src/consts.vala, src/preferences.vala,
-	  src/welcometab.vala, ui/close_file_dialog.ui, ui/main.ui: User
-	  interface changes and location bug fixes
-
-2012-11-01 09:28  ondratu
-
-	* Makefile, src/app.vala, src/main.vala, src/preferences.vala,
-	  src/welcometab.vala, ui/preferences.ui: Recent files
-
-2012-10-30 09:01  ondratu
-
-	* src/app.vala, src/node.vala, src/tips.vala, src/welcometab.vala,
-	  ui/main.ui, ui/welcome.ui: First tips and tips support
-
-2012-10-29 21:13  ondratu
-
-	* src/app.vala, src/filetab.vala, src/welcometab.vala: Signal
-	  support for new and open file buttons
-
-2012-10-28 12:53  ondratu
-
-	* src/app.vala, src/filetab.vala, src/welcometab.vala, ui/main.ui,
-	  ui/welcome.ui: Welcome user interface support - near to final
-	  look
-
-2012-10-26 16:38  ondratu
-
-	* src/app.vala, src/editform.vala, src/filetab.vala,
-	  src/mindmap.vala, src/print.vala, src/tab.vala,
-	  src/welcometab.vala: Base welcome panel support
-
-2012-10-25 19:07  ondratu
-
-	* Makefile, src/app.vala, src/print.vala: Scale map to page
-
-2012-10-25 16:05  ondratu
-
-	* src/print.vala: PageSetup prepare and default page orientation
-
-2012-10-25 07:59  ondratu
-
-	* debian/control, src/preferences.vala: debian build dependencies
-	  fix and clean some empty chars
-
-2012-10-25 07:26  ondratu
-
-	* Makefile, src/app.vala, src/preferences.vala, src/print.vala:
-	  Store print setting to user config file
-
-2012-10-24 21:22  ondratu
-
-	* ., Makefile, misc/mmarchitect.iss, po, src/app.vala,
-	  src/main.vala: Install, Makefile and SVN fixes
-
-2012-10-24 20:47  ondratu
-
-	* src/app.vala, src/export.vala, src/mindmap.vala, src/print.vala,
-	  ui/main.ui: Basic print support, bug fix with ctrl-? keys
-	  (support ctrl-? keys for ideas)
-
-2012-10-24 20:45  ondratu
-
-	* Makefile, po, po/cs.po, src/main.vala: Basic languages support
-
-2012-10-16 13:58  ondratu
-
-	* ., src, ui/about_dialog.ui: Import svn ignore files and fix
-	  copyright year
-
-2012-10-16 13:52  ondratu
-
-	* src/app.vala, src/export.vala: #5 Exporting map to png file
-
-2012-10-13 22:51  ondratu
-
-	* Makefile, misc/mmarchitect.iss, misc/mmarchitect.rc: Windows icon
-	  and installer support
-
-2012-10-11 10:14  ondratu
-
-	* README.c, debian/watch: Update some info about debian c-source
-	  compiling on debian
-
-2012-10-11 09:31  ondratu
-
-	* debian/watch: Fix debian watch script
-
-2012-10-11 08:45  ondratu
-
-	* AUTHORS, COPYING, ChangeLog, INSTALL, Makefile, README,
-	  README.Win32, README.c, debian/README.Win32, debian/changelog,
-	  debian/copyright: Up version and append standard doc files.
-
-2012-10-11 06:55  ondratu
-
-	* Makefile, debian/changelog, debian/mmarchitect.mime,
-	  misc/mmarchitect.desktop, misc/mmarchitect.xml: Adding mime type
-	  for system
-
-2012-10-10 07:23  ondratu
-
-	* debian/control, debian/watch, debian/watch.ex, src/app.vala:
-	  Description update and watch setting
-
-2012-10-09 19:20  ondratu
-
-	* src/app.vala, src/main.vala: Open file from command line argument
-
-2012-10-03 11:44  ondratu
-
-	* Makefile, src/app.vala, src/editform.vala, src/filetab.vala,
-	  src/import.vala, src/mindmap.vala, src/node.vala,
-	  src/preferences.vala: Bug fix with importing mm files
-
-2012-10-03 09:39  ondratu
-
-	* debian/changelog: changelog fix
-
-2012-09-02 06:43  ondratu
-
-	* misc/mmarchitect.desktop: Set MIME type
-
-2012-04-04 05:14  ondratu
-
-	* src/export.vala: Bug fix with replacing exported files
-
-2012-04-04 04:56  ondratu
-
-	* src/filetab.vala, src/mindmap.vala, src/node.vala: Move with
-	  minds (nodes) across map with ctrl + arrow keys
-
-2012-04-04 04:54  ondratu
-
-	* src/app.vala: Map focus bug fix
-
-2012-03-28 14:00  ondratu
-
-	* src/app.vala, ui/main.ui: Window have title with open file name
-	  now.
-
-2012-03-28 03:52  ondratu
-
-	* src/mindmap.vala: Nodes text is show in tooltip
-
-2012-01-22 21:01  ondratu
-
-	* debian/changelog, src/editform.vala, src/filetab.vala,
-	  ui/color_dialog.ui, ui/main.ui: Color dialog with default, parent
-	  and own choice
-
-2012-01-05 19:46  ondratu
-
-	* debian/changelog, src/app.vala, src/filetab.vala,
-	  src/layers.vala, src/mindmap.vala, src/node.vala,
-	  src/preferences.vala, ui/main.ui, ui/preferences.ui: Color
-	  preferences
-
-2011-12-15 17:40  ondratu
-
-	* Makefile, debian/README.Win32, debian/changelog,
-	  icons/mmarchitect.ico, src/app.vala: Mostly win support
-
-2011-12-06 20:26  ondratu
-
-	* Makefile, src/app.vala, src/preferences.vala, ui/preferences.ui:
-	  use directory from preference, join author name to one property,
-	  prepare for windows version
-
-2011-12-03 08:09  ondratu
-
-	* src/app.vala, ui/about_dialog.ui: #! version and web fix
-
-2011-12-02 12:56  ondratu
-
-	* debian/changelog: up version to 0.3.0
-
-2011-12-02 11:29  ondratu
-
-	* Makefile, src/app.vala, src/preferences.vala: Preferences are
-	  saved to user config
-
-2011-11-24 20:13  ondratu
-
-	* Makefile, debian/control: Wheezy modification
-
-2011-11-24 19:53  ondratu
-
-	* Makefile, src/consts.vala, src/editform.vala, src/filetab.vala,
-	  src/mindmap.vala, src/node.vala, src/preferences.vala,
-	  ui/preferences.ui: Preferences
-
-2011-10-18 13:22  ondratu
-
-	* Makefile, debian/control, src/app.vala, src/consts.vala,
-	  src/editform.vala, src/export.vala, src/filetab.vala,
-	  src/mindmap.vala, src/node.vala, src/preferences.vala,
-	  src/settings.vala, ui/main.ui, ui/preferences.ui: debian right
-	  gcc depends
-	  preference dialog
-	  fonts buf fix
-	  focus bug fix
-	  better cairo colors using
-	  per file building
-
-2011-10-04 20:54  ondratu
-
-	* src/app.vala, src/editform.vala, src/node.vala,
-	  ui/close_file_dialog.ui: some bug fixes
-
-2011-10-03 21:40  ondratu
-
-	* src/editform.vala, src/filetab.vala, src/node.vala,
-	  src/settings.vala: Colors support and points prepare
-
-2011-09-30 19:22  ondratu
-
-	* debian/changelog, src/consts.vala, src/node.vala: new line style
-
-2011-09-30 13:40  ondratu
-
-	* debian/changelog: up to version
-
-2011-09-30 13:30  ondratu
-
-	* src/app.vala, src/import.vala, ui/main.ui: FreeMind file basic
-	  import
-
-2011-09-30 07:44  ondratu
-
-	* debian/copyright, src/editform.vala, src/mindmap.vala,
-	  src/node.vala, src/settings.vala: Editform for node have smart
-	  position now
-
-2011-09-29 21:32  ondratu
-
-	* icons/comment_edit.png, icons/sticky_notes_pin.png, src/app.vala,
-	  src/consts.vala, src/mindmap.vala, src/node.vala,
-	  src/settings.vala, ui/main.ui: text notes support in gui,
-	  collaps label
-
-2011-09-29 06:45  ondratu
-
-	* Makefile, debian/rules, src/app.vala: better makefile
-
-2011-09-27 19:45  ondratu
-
-	* Makefile, debian/rules, src/app.vala, src/export.vala,
-	  src/import.vala, ui/main.ui: Testing export to txt
-
-2011-09-27 13:43  ondratu
-
-	* Makefile, debian/rules, debian/source/format, src/app.vala: #!
-	  Makefile fixes and debian full build-package support
-
-2011-09-27 07:56  ondratu
-
-	* Makefile, debian/README.Debian, debian/changelog, debian/control,
-	  debian/copyright, debian/menu, debian/menu.ex, debian/rules,
-	  icons/mindmap_architect.png, icons/mindmap_architect.svg,
-	  icons/mmarchitect.png, icons/mmarchitect.svg, misc,
-	  misc/mmarchitect.desktop, src/app.vala: First debian release
-
-2011-09-27 06:29  ondratu
-
-	* Makefile: only Makefile
-
-2011-09-27 06:28  ondratu
-
-	* debian, debian/README.Debian, debian/README.source,
-	  debian/changelog, debian/compat, debian/control,
-	  debian/copyright, debian/docs, debian/menu.ex, debian/postrm.ex,
-	  debian/rules, debian/source, debian/source/format,
-	  debian/watch.ex, icons, icons/mindmap_architect.png,
-	  icons/mindmap_architect.svg, src, src/app.vala, src/consts.vala,
-	  src/filetab.vala, src/layers.vala, src/main.vala,
-	  src/mindmap.vala, src/node.vala, src/settings.vala, ui,
-	  ui/about_dialog.ui, ui/close_file_dialog.ui, ui/main.ui: First
-	  commit
-
-2011-09-27 06:18  ondratu
-
-	* .: Trunk directory
-
+## [0.1.0] - 2011-09-26
+  * Initial release
