@@ -59,14 +59,14 @@ public class ExportDialog : Gtk.FileChooserDialog {
                action: Gtk.FileChooserAction.SAVE
                );
         */
-        this.title = _("Export file as");
+        this.title = _("Export Map as");
         this.action = Gtk.FileChooserAction.SAVE;
 
         this.filetab = filetab;
         this.default_directory = default_directory;
 
-        add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
-        add_button (Gtk.Stock.SAVE, Gtk.ResponseType.ACCEPT);
+        add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
+        add_button (_("_Export As"), Gtk.ResponseType.ACCEPT);
         set_default_response (Gtk.ResponseType.ACCEPT);
 
         txt = ExportDialog.create_filter (_("Plain Text"),
