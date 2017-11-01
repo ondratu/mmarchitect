@@ -38,7 +38,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         mindmap.change.connect (on_mindmap_change);
         mindmap.focus_changed.connect (on_focus_changed);
         set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
-        add_with_viewport(mindmap);
+        add(mindmap);
     }
 
     public FileTab.empty(string title, Preferences pref){

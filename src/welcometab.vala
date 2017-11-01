@@ -154,7 +154,7 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
     public void open_uri (Gtk.Widget w, string uri) {
         try {
 #if ! WINDOWS
-            Gtk.show_uri(null, uri, Gdk.CURRENT_TIME);
+            Gtk.show_uri_on_window(null, uri, Gdk.CURRENT_TIME);
 #else
             GLib.Process.spawn_command_line_async(@"cmd /c start $uri");
 #endif

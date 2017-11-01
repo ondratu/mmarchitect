@@ -62,17 +62,10 @@ public class SVGImage : Gtk.Widget {
                             allocation.width, allocation.height);
 
         window.set_user_data (this);
-
-        //this.style = this.style.attach (window);
-        //this.style.set_background (window, Gtk.StateType.NORMAL);
-        var scx = get_style_context();
-        scx.set_background (window);
         set_realized (true);
     }
 
-    public bool do_draw (Cairo.Context cr) {
-        //cr.rectangle (event.area.x, event.area.y,
-        //              event.area.width, event.area.height);
+    public bool do_draw (Cairo.Context cr) {;
         cr.translate (0.5, 0.5);
         set_source_svg (cr, file_name, 0, 0, width, height);
         cr.paint ();
