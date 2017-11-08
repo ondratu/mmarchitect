@@ -291,14 +291,8 @@ public class EditForm : Gtk.Box {
         this.node = node;
         this.newone = newone;
 
-        try {
-            var ico = new Gdk.Pixbuf.from_file (DATA + "/icons/comment_edit.png");
-            this.entry.set_icon_from_pixbuf (Gtk.EntryIconPosition.SECONDARY, ico);
-        } catch (Error e) {
-            stderr.printf ("%s\n", e.message);
-            this.entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY,
-                                           "accessories-text-editor");
-        }
+        this.entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY,
+                                            "accessories-text-editor");
 
         this.entry.set_icon_sensitive (Gtk.EntryIconPosition.SECONDARY, true);
         this.entry.set_icon_tooltip_text (Gtk.EntryIconPosition.SECONDARY, _("Extends edit"));
