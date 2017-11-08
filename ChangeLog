@@ -17,6 +17,7 @@
  * working gui colors detection
 
 ### Removed
+ * remove extra icons, and use system icons instead
 
 ## [0.5.0] - 2014-06-02
 ### Added

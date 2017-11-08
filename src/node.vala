@@ -833,9 +833,14 @@ public class Node : GLib.Object {
         }
 
         if (text.length > 0) {
-            var ico = new Cairo.ImageSurface.from_png (DATA + "/icons/sticky_notes_pin.png");
-            cr.set_source_surface (ico, area.x + area.width - ICO_SIZE - 2 - points_width,
-                                        area.y + (area.height - ICO_SIZE) /2 );
+            try {
+                Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
+                var ico = icon_theme.load_surface ("text-editor-symbolic",
+                                                   ICO_SIZE, 1, null, 0);
+                cr.set_source_surface (ico,
+                        area.x + area.width - ICO_SIZE - 2 - points_width,
+                        area.y + (area.height - ICO_SIZE) /2 );
+            } catch (Error e){}
             cr.paint ();
         }
 

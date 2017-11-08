@@ -292,7 +292,7 @@ public class EditForm : Gtk.Box {
         this.newone = newone;
 
         this.entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY,
-                                            "accessories-text-editor");
+                                            "text-editor-symbolic");
 
         this.entry.set_icon_sensitive (Gtk.EntryIconPosition.SECONDARY, true);
         this.entry.set_icon_tooltip_text (Gtk.EntryIconPosition.SECONDARY, _("Extends edit"));
