@@ -2,19 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-31 17:29+0100\n"
-"PO-Revision-Date: 2012-11-02 11:02+0100\n"
+"PO-Revision-Date: 2017-11-23 10:56+0000\n"
 "Last-Translator: Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Language-Team: cs <mcbig@zeropage.cz>\n"
-"Language: \n"
+"Language-Team: Czech "
+"<https://hosted.weblate.org/projects/mmarchitect/translations/cs/>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 2.18-dev\n"
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
@@ -37,7 +39,7 @@ msgstr "Uložit soubor jako"
 
 #: src/app.vala:120
 msgid "File $fname can't be imported!"
-msgstr ""
+msgstr "Soubor $fname nemohl být importován!"
 
 #: src/app.vala:267 src/app.vala:358 src/app.vala:490 src/export_dialog.vala:68
 msgid "_Cancel"
@@ -49,7 +51,7 @@ msgstr "_Otevřít"
 
 #: src/app.vala:299
 msgid "File $path not found!"
-msgstr ""
+msgstr "Soubor $path nenalezen!"
 
 #: src/app.vala:355
 msgid "Import file"
@@ -57,7 +59,7 @@ msgstr "Importovat soubor"
 
 #: src/app.vala:491
 msgid "_Save"
-msgstr ""
+msgstr "_Uložit"
 
 #: src/clavertime.vala:30
 msgid "Today %H:%M"
@@ -89,15 +91,15 @@ msgstr "_Exportovat jako"
 
 #: src/export_dialog.vala:72
 msgid "Plain Text"
-msgstr ""
+msgstr "Prostý text"
 
 #: src/export_dialog.vala:76
 msgid "Simple Web Page"
-msgstr ""
+msgstr "Jednoduchá webová stránka"
 
 #: src/export_dialog.vala:80
 msgid "Dynamic Web Page"
-msgstr ""
+msgstr "Dynamická webové stránka"
 
 #: src/export_dialog.vala:84
 msgid "PNG Image"
@@ -106,7 +108,7 @@ msgstr "PNG Obrázek"
 #: src/main.vala:31
 #, c-format
 msgid "Could not load app UI: %s\n"
-msgstr ""
+msgstr "Nelze načíst aplikační rozhraní: %s\n"
 
 #: src/mindmap.vala:75
 msgid "Main Idea"
@@ -232,7 +234,6 @@ msgid "New"
 msgstr ""
 
 #: ui/main.ui:54
-#, fuzzy
 msgid "Open"
 msgstr "Otevřít soubor"
 
