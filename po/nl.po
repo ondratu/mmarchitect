@@ -8,148 +8,155 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 11:07+0100\n"
-"PO-Revision-Date: 2017-11-23 11:07+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2017-11-29 16:45+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Language-Team: Dutch "
+"<https://hosted.weblate.org/projects/mmarchitect/translations/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18-dev\n"
 
 #: src/app.vala:85 src/app.vala:264 src/welcometab.vala:63
 #: src/welcometab.vala:69
 msgid "Open file"
-msgstr ""
+msgstr "Bestand openen"
 
 #: src/app.vala:87 src/welcometab.vala:65 src/welcometab.vala:71
 msgid "New file"
-msgstr ""
+msgstr "Nieuw bestand"
 
 #: src/app.vala:89
 msgid "Save file"
-msgstr ""
+msgstr "Bestand opslaan"
 
 #: src/app.vala:91 src/app.vala:487
 msgid "Save file as"
-msgstr ""
+msgstr "Bestand opslaan als"
 
 #: src/app.vala:120
 msgid "File $fname can't be imported!"
-msgstr ""
+msgstr "Het bestand, $fname, kan niet worden geïmporteerd!"
 
 #: src/app.vala:267 src/app.vala:358 src/app.vala:490 src/export_dialog.vala:68
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annuleren"
 
 #: src/app.vala:268 src/app.vala:359
 msgid "_Open"
-msgstr ""
+msgstr "_Openen"
 
 #: src/app.vala:299
 msgid "File $path not found!"
-msgstr ""
+msgstr "Het bestand, $path, kan niet worden gevonden!"
 
 #: src/app.vala:355
 msgid "Import file"
-msgstr ""
+msgstr "Bestand importeren"
 
 #: src/app.vala:491
 msgid "_Save"
-msgstr ""
+msgstr "Op_slaan"
 
 #: src/clavertime.vala:30
 msgid "Today %H:%M"
-msgstr ""
+msgstr "Vandaag %H:%M"
 
 #: src/clavertime.vala:32
 msgid "Yesterday %H:%M"
-msgstr ""
+msgstr "Gisteren %H:%M"
 
 #: src/clavertime.vala:49
 msgid "Today"
-msgstr ""
+msgstr "Vandaag"
 
 #: src/clavertime.vala:52
 msgid "Yesterday"
-msgstr ""
+msgstr "Gisteren"
 
 #: src/editform.vala:298
 msgid "Extends edit"
-msgstr ""
+msgstr "Extends bewerken"
 
 #: src/export_dialog.vala:62
 msgid "Export Map as"
-msgstr ""
+msgstr "Mindmap exporteren als"
 
 #: src/export_dialog.vala:69
 msgid "_Export As"
-msgstr ""
+msgstr "_Exporteren als"
 
 #: src/export_dialog.vala:72
 msgid "Plain Text"
-msgstr ""
+msgstr "Platte tekst"
 
 #: src/export_dialog.vala:76
 msgid "Simple Web Page"
-msgstr ""
+msgstr "Eenvoudige webpagina"
 
 #: src/export_dialog.vala:80
 msgid "Dynamic Web Page"
-msgstr ""
+msgstr "Dynamische webpagina"
 
 #: src/export_dialog.vala:84
 msgid "PNG Image"
-msgstr ""
+msgstr "PNG-afbeelding"
 
 #: src/main.vala:31
 #, c-format
 msgid "Could not load app UI: %s\n"
-msgstr ""
+msgstr "De app-UI kan niet worden geladen: %s\n"
 
 #: src/mindmap.vala:75
 msgid "Main Idea"
-msgstr ""
+msgstr "Hoofdidee"
 
 #: src/print.vala:59
 msgid "Printing error:"
-msgstr ""
+msgstr "Printfout:"
 
 #: src/tips.vala:29
 msgid "Moving with Ideas"
-msgstr ""
+msgstr "Schuiven met ideeën"
 
 #: src/tips.vala:30
 msgid ""
 "You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
 "Left or Right to move with selected Ideas."
 msgstr ""
+"U kunt schuiven met ideeën d.m.v. sneltoetsen. U kunt CTRL+pijltje omhoog, "
+"omlaag, links of rechts gebruiken om geselecteerde ideeën te verschuiven."
 
 #: src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
-msgstr ""
+msgstr "Mindmaps gebruiken als nog-te-doen-lijst"
 
 #: src/tips.vala:33
 msgid ""
 "Mind Maps could be use as TODO lists. You have more tree like possibility "
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
+"Mindmaps kunnen worden gebruikt als nog-te-doen-lijsten. U heeft meer "
+"boomstructuur-mogelijkheden met mindmaps, zoals categorieën, prioriteit of "
+"moeilijkheid."
 
 #: src/welcometab.vala:14
 msgid "Start here"
-msgstr ""
+msgstr "Begin hier"
 
 #: ui/about_dialog.ui:7
 msgid "About Application Mind Map Architect"
-msgstr ""
+msgstr "Over de applicatie - Mind Map Architect"
 
 #: ui/about_dialog.ui:13
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr ""
+msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
 
 #: ui/about_dialog.ui:14
 msgid "Tool for working with mind maps. "
-msgstr ""
+msgstr "Hulpprogramma om te werken met mindmaps. "
 
 #: ui/about_dialog.ui:16
 msgid ""
@@ -186,367 +193,371 @@ msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
 "Luis Garcia Sevillano <floss.dev@gmail.com>"
 msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>"
 
 #: ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
-msgstr ""
+msgstr "Wilt u de wijzigingen aan het document opslaan?"
 
 #: ui/close_file_dialog.ui:25
 msgid "Close _without save"
-msgstr ""
+msgstr "Sluiten _zonder opslaan"
 
 #: ui/close_file_dialog.ui:107
 msgid "Save changes to document %s before exit?"
 msgstr ""
+"Wilt u de wijzigingen opslaan naar het document, %s, alvorens af te sluiten?"
 
 #: ui/close_file_dialog.ui:125
 msgid "Your changes will be lost, if you don't save the file."
 msgstr ""
+"Als u het bestand niet opslaat, dan zullen uw wijzigingen verloren gaan."
 
 #: ui/color_dialog.ui:40
 msgid "Default color"
-msgstr ""
+msgstr "Standaardkleur"
 
 #: ui/color_dialog.ui:56
 msgid "Parent color"
-msgstr ""
+msgstr "Bovenliggende kleur"
 
 #: ui/color_dialog.ui:73
 msgid "Own color"
-msgstr ""
+msgstr "Eigen kleur"
 
 #: ui/main.ui:8
 msgid "Mind Map Architect"
-msgstr ""
+msgstr "Mind Map Architect"
 
 #: ui/main.ui:28
 msgid "_File"
-msgstr ""
+msgstr "_Bestand"
 
 #: ui/main.ui:38
 msgid "New"
-msgstr ""
+msgstr "Nieuw"
 
 #: ui/main.ui:54
 msgid "Open"
-msgstr ""
+msgstr "Openen"
 
 #: ui/main.ui:64
 msgid "Save"
-msgstr ""
+msgstr "Opslaan"
 
 #: ui/main.ui:74
 msgid "Save As"
-msgstr ""
+msgstr "Opslaan als"
 
 #: ui/main.ui:84
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: ui/main.ui:100
 msgid "Print"
-msgstr ""
+msgstr "Afdrukken"
 
 #: ui/main.ui:116
 msgid "Export"
-msgstr ""
+msgstr "Exporteren"
 
 #: ui/main.ui:125
 msgid "Import"
-msgstr ""
+msgstr "Importeren"
 
 #: ui/main.ui:140
 msgid "Properties"
-msgstr ""
+msgstr "Eigenschappen"
 
 #: ui/main.ui:155
 msgid "Quit"
-msgstr ""
+msgstr "Afsluiten"
 
 #: ui/main.ui:168
 msgid "_Edit"
-msgstr ""
+msgstr "B_ewerken"
 
 #: ui/main.ui:178 ui/main.ui:493
 msgid "Expand"
-msgstr ""
+msgstr "Uitklappen"
 
 #: ui/main.ui:187 ui/main.ui:502
 msgid "Collapse"
-msgstr ""
+msgstr "Inklappen"
 
 #: ui/main.ui:202 ui/main.ui:511
 msgid "Cut"
-msgstr ""
+msgstr "Knippen"
 
 #: ui/main.ui:212 ui/main.ui:520
 msgid "Copy"
-msgstr ""
+msgstr "Kopiëren"
 
 #: ui/main.ui:222 ui/main.ui:529
 msgid "Paste"
-msgstr ""
+msgstr "Plakken"
 
 #: ui/main.ui:232 ui/main.ui:538
 msgid "Delete"
-msgstr ""
+msgstr "Verwijderen"
 
 #: ui/main.ui:247 ui/main.ui:484
 msgid "Edit"
-msgstr ""
+msgstr "Bewerken"
 
 #: ui/main.ui:262
 msgid "Preferences"
-msgstr ""
+msgstr "Voorkeuren"
 
 #: ui/main.ui:275
 msgid "_View"
-msgstr ""
+msgstr "Bee_ld"
 
 #: ui/main.ui:285 ui/main.ui:462
 msgid "Expand all branches"
-msgstr ""
+msgstr "Alle takken uitklappen"
 
 #: ui/main.ui:294 ui/main.ui:471
 msgid "Collapse all branches"
-msgstr ""
+msgstr "Alle takken inklappen"
 
 #: ui/main.ui:309
 msgid "Home"
-msgstr ""
+msgstr "Begin"
 
 #: ui/main.ui:323
 msgid "_Help"
-msgstr ""
+msgstr "_Hulp"
 
 #: ui/main.ui:547
 msgid "Move"
-msgstr ""
+msgstr "Verplaatsen"
 
 #: ui/main.ui:557
 msgid "Move Up"
-msgstr ""
+msgstr "Omhoog verplaatsen"
 
 #: ui/main.ui:566
 msgid "Move Down"
-msgstr ""
+msgstr "Omlaag verplaatsen"
 
 #: ui/main.ui:575
 msgid "Move Left"
-msgstr ""
+msgstr "Naar links verplaatsen"
 
 #: ui/main.ui:583
 msgid "Move Right"
-msgstr ""
+msgstr "Naar rechts verplaatsen"
 
 #: ui/map.ui:30
 msgid "_disable"
-msgstr ""
+msgstr "ui_tschakelen"
 
 #: ui/map.ui:47
 msgid "count _branches"
-msgstr ""
+msgstr "_takken tellen"
 
 #: ui/map.ui:64
 msgid "count _points"
-msgstr ""
+msgstr "_punten tellen"
 
 #: ui/map.ui:87
 msgid "<b>Rising method</b>"
-msgstr ""
+msgstr "<b>Stijgmethode</b>"
 
 #: ui/map.ui:117
 msgid "Ideas"
-msgstr ""
+msgstr "Ideeën"
 
 #: ui/map.ui:132
 msgid "Branches"
-msgstr ""
+msgstr "Takken"
 
 #: ui/map.ui:153
 msgid "<b>Rise elemens</b>"
-msgstr ""
+msgstr "<b>Stijgelementen</b>"
 
 #: ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
-msgstr ""
+msgstr "Mind Map Architect-voorkeuren"
 
 #: ui/preferences.ui:92
 msgid "<b>Author</b>"
-msgstr ""
+msgstr "<b>Auteur</b>"
 
 #: ui/preferences.ui:121
 msgid "Choose directory"
-msgstr ""
+msgstr "Map kiezen"
 
 #: ui/preferences.ui:130
 msgid "<b>Default dokuments directory</b>"
-msgstr ""
+msgstr "<b>Standaard documentenmap</b>"
 
 #: ui/preferences.ui:160
 msgid "_Welcome tab"
-msgstr ""
+msgstr "_Welkomsttablad"
 
 #: ui/preferences.ui:176
 msgid "_Empty document"
-msgstr ""
+msgstr "L_eeg document"
 
 #: ui/preferences.ui:193
 msgid "_Last opened documents"
-msgstr ""
+msgstr "_Laatst geopende documenten"
 
 #: ui/preferences.ui:216
 msgid "<b>Start program with</b>"
-msgstr ""
+msgstr "<b>Applicatie starten met</b>"
 
 #: ui/preferences.ui:234
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: ui/preferences.ui:264 ui/preferences.ui:577
 msgid "Use system font"
-msgstr ""
+msgstr "Systeemlettertype gebruiken"
 
 #: ui/preferences.ui:304
 msgid "<b>Idea font</b>"
-msgstr ""
+msgstr "<b>Idee-lettertype</b>"
 
 #: ui/preferences.ui:337
 msgid "Font"
-msgstr ""
+msgstr "Lettertype"
 
 #: ui/preferences.ui:365
 msgid "Line"
-msgstr ""
+msgstr "Regel"
 
 #: ui/preferences.ui:394
 msgid "<b>Rising</b>"
-msgstr ""
+msgstr "<b>Stijging</b>"
 
 #: ui/preferences.ui:427
 msgid "Text padding"
-msgstr ""
+msgstr "Tekstopvulling"
 
 #: ui/preferences.ui:465
 msgid "Height padding"
-msgstr ""
+msgstr "Hoogte-opvulling"
 
 #: ui/preferences.ui:477
 msgid "Width padding"
-msgstr ""
+msgstr "Breedte-opvulling"
 
 #: ui/preferences.ui:505
 msgid "<b>Idea's padding</b>"
-msgstr ""
+msgstr "<b>Idee-opvulling</b>"
 
 #: ui/preferences.ui:552
 msgid "Height"
-msgstr ""
+msgstr "Hoogte"
 
 #: ui/preferences.ui:600
 msgid "<b>Note's text</b>"
-msgstr ""
+msgstr "<b>Notitietekst</b>"
 
 #: ui/preferences.ui:622
 msgid "Style"
-msgstr ""
+msgstr "Stijl"
 
 #: ui/preferences.ui:647
 msgid "Use system colors"
-msgstr ""
+msgstr "Systeemkleuren gebruiken"
 
 #: ui/preferences.ui:662
 msgid "<b>System colors</b>"
-msgstr ""
+msgstr "<b>Systeemkleuren</b>"
 
 #: ui/preferences.ui:762
 msgid "Default line color"
-msgstr ""
+msgstr "Standaard regelkleur"
 
 #: ui/preferences.ui:775
 msgid "Canvas color"
-msgstr ""
+msgstr "Canvaskleur"
 
 #: ui/preferences.ui:788
 msgid "Text normal color"
-msgstr ""
+msgstr "Normale tekstkleur"
 
 #: ui/preferences.ui:801
 msgid "Text selected color"
-msgstr ""
+msgstr "Geselecteerde tekstkleur"
 
 #: ui/preferences.ui:814
 msgid "Background normal color"
-msgstr ""
+msgstr "Normale achtergrondkleur"
 
 #: ui/preferences.ui:827
 msgid "Background selected color"
-msgstr ""
+msgstr "Geselecteerde achtergrondkleur"
 
 #: ui/preferences.ui:842
 msgid "<b>Colors definitions</b>"
-msgstr ""
+msgstr "<b>Kleurdefinities</b>"
 
 #: ui/preferences.ui:862
 msgid "Colors"
-msgstr ""
+msgstr "Kleuren"
 
 #: ui/preferences.ui:886
 msgid "Map"
-msgstr ""
+msgstr "Mindmap"
 
 #: ui/properties.ui:8
 msgid "File properties"
-msgstr ""
+msgstr "Bestandseigenschappen"
 
 #: ui/properties.ui:88
 msgid "Author"
-msgstr ""
+msgstr "Auteur"
 
 #: ui/properties.ui:114
 msgid "Created"
-msgstr ""
+msgstr "Gecreëerd"
 
 #: ui/properties.ui:127 ui/properties.ui:154 ui/properties.ui:181
 #: ui/welcome.ui:198
 msgid "label"
-msgstr ""
+msgstr "label"
 
 #: ui/properties.ui:142
 msgid "Modified"
-msgstr ""
+msgstr "Bewerkt"
 
 #: ui/properties.ui:169
 msgid "Path"
-msgstr ""
+msgstr "Pad"
 
 #: ui/properties.ui:198
 msgid "<b>File</b>"
-msgstr ""
+msgstr "<b>Bestand</b>"
 
 #: ui/properties.ui:222
 msgid "<b>Map</b>"
-msgstr ""
+msgstr "<b>Mindmap</b>"
 
 #: ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
-msgstr ""
+msgstr "<b>>Recente bestanden:</b>"
 
 #: ui/welcome.ui:159
 msgid "<b>Tip:</b>"
-msgstr ""
+msgstr "<b>Tip:</b>"
 
 #: ui/welcome.ui:179
 msgid "<b><big>label</big></b>"
-msgstr ""
+msgstr "<b><big>label</big></b>"
 
 #: ui/welcome.ui:214
 msgid "<a href=\"#next_tip\">Next Tip</a>"
-msgstr ""
+msgstr "<a href=\"#next_tip\">Volgende tip</a>"
 
 #: ui/welcome.ui:256
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
-msgstr ""
+msgstr "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project-webpagina</a>"
 
 #: ui/welcome.ui:276
 msgid ""
@@ -554,12 +565,17 @@ msgid ""
 "version, or you want to start with helping us, see Home page of Mind Map "
 "Architect."
 msgstr ""
+"Als u op zoek bent naar meer informatie over het project, een nieuwe versie "
+"wilt downloaden of wilt beginnen met bijdragen, bekijk dan de Begin-pagina "
+"van Mind Map Architect."
 
 #: ui/welcome.ui:305
 msgid ""
 "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General "
 "Discussion</a>"
 msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">"
+"Algemene discussie</a>"
 
 #: ui/welcome.ui:325
 msgid ""
@@ -567,11 +583,16 @@ msgid ""
 "or other users ? Can you help to other users. Or you anly wnat to see whats "
 "new in project ? Watch General Discussion on SourceForge.net."
 msgstr ""
+"Heeft u een vraag over deze applicatie? Heeft u een tip voor ons of voor "
+"andere gebruikers? Kunt u andere gebruikers helpen? Of wilt u bekijken wat "
+"er nieuw is in de applicatie? Bekijk dan de Algemene discussie op "
+"SourceForge.net."
 
 #: ui/welcome.ui:355
 msgid ""
 "<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tasks and Bugs</a>"
 msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Taken en bugs</a>"
 
 #: ui/welcome.ui:375
 msgid ""
@@ -579,12 +600,16 @@ msgid ""
 "mmarchitect ? Please tell us more information about that. Thank you for your "
 "response."
 msgstr ""
+"Heeft u een fout (bug) gevonden? Ontbreekt er een functie in mmarchitect? "
+"Vertel ons meer! Bij voorbaat dank."
 
 #: ui/welcome.ui:405
 msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
 msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\""
+">Ontwikkeling</a>"
 
 #: ui/welcome.ui:424
 msgid ""
@@ -592,3 +617,6 @@ msgid ""
 "languege, develop, create package for your distribution, or anything what "
 "you can do for help us, see development page."
 msgstr ""
+"Als u ons wilt helpen met het project, berichten wilt vertalen naar uw taal, "
+"ontwikkelen, een pakket creëren voor uw distributie of wat dan ook, bekijk "
+"dan de ontwikkeling-pagina."
