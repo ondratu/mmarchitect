@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 11:07+0100\n"
-"PO-Revision-Date: 2017-11-28 20:48+0000\n"
+"PO-Revision-Date: 2018-04-01 19:09+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
-"Language-Team: Norwegian Bokmål "
-"<https://hosted.weblate.org/projects/mmarchitect/translations/nb/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"mmarchitect/translations/nb/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18-dev\n"
+"X-Generator: Weblate 2.20-dev\n"
 
 #: src/app.vala:85 src/app.vala:264 src/welcometab.vala:63
 #: src/welcometab.vala:69
@@ -80,7 +80,7 @@ msgstr "I går"
 
 #: src/editform.vala:298
 msgid "Extends edit"
-msgstr ""
+msgstr "Utvider redigering"
 
 #: src/export_dialog.vala:62
 #, fuzzy
@@ -114,7 +114,7 @@ msgstr "Kunne ikke laste inn programbrukergrensesnitt: %s\n"
 
 #: src/mindmap.vala:75
 msgid "Main Idea"
-msgstr ""
+msgstr "Hovedidé"
 
 #: src/print.vala:59
 msgid "Printing error:"
@@ -122,13 +122,16 @@ msgstr "Utskriftsfeil:"
 
 #: src/tips.vala:29
 msgid "Moving with Ideas"
-msgstr ""
+msgstr "Flytting med idéer"
 
 #: src/tips.vala:30
+#, fuzzy
 msgid ""
 "You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
 "Left or Right to move with selected Ideas."
 msgstr ""
+"Du kan flytte med idéer ved bruk av hurtigtaster. Du kan bruke CTRL+↑, ↓, ← "
+"eller→ for å flytte med valgte idéer."
 
 #: src/tips.vala:32
 #, fuzzy
@@ -191,12 +194,40 @@ msgid ""
 "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
+"Kopirett  2011-2017, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
 #: ui/about_dialog.ui:44
 msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
 "Luis Garcia Sevillano <floss.dev@gmail.com>"
 msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>"
 
 #: ui/close_file_dialog.ui:7
 #, fuzzy
@@ -365,7 +396,7 @@ msgstr "tell _poeng"
 
 #: ui/map.ui:87
 msgid "<b>Rising method</b>"
-msgstr ""
+msgstr "<b>Hevingsmetode</b>"
 
 #: ui/map.ui:117
 msgid "Ideas"
@@ -377,7 +408,7 @@ msgstr "Forgreninger"
 
 #: ui/map.ui:153
 msgid "<b>Rise elemens</b>"
-msgstr ""
+msgstr "<b>Hev elementer</b>"
 
 #: ui/preferences.ui:8
 #, fuzzy
@@ -437,7 +468,7 @@ msgstr "Linje"
 
 #: ui/preferences.ui:394
 msgid "<b>Rising</b>"
-msgstr ""
+msgstr "<b>Hever</b>"
 
 #: ui/preferences.ui:427
 msgid "Text padding"
