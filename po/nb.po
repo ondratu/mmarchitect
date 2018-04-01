@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 11:07+0100\n"
-"PO-Revision-Date: 2018-04-01 19:10+0000\n"
+"PO-Revision-Date: 2018-04-02 19:39+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "mmarchitect/translations/nb/>\n"
@@ -166,6 +166,7 @@ msgid "Tool for working with mind maps. "
 msgstr "Verktøy for tankekart. "
 
 #: ui/about_dialog.ui:16
+#, fuzzy
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
 "All rights reserved.\n"
