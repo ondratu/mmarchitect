@@ -7,7 +7,7 @@
  * Code is present with BSD licence.
  */
 
-// modules: gtk+-3.0
+// modules: Gtk
 
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
@@ -593,7 +593,7 @@ public class App : GLib.Object {
             return;
 
         var file = tab as FileTab;
-        if (file.properties (this.window)) {
+        if (file.properties_dialog (this.window)) {
             file.on_mindmap_change ();
         }
     }

@@ -342,7 +342,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         return true;
     }
 
-    public bool properties (Gtk.Window parent) {
+    public bool properties_dialog (Gtk.Window parent) {
         prop.filepath = filepath;
         bool rv = prop.dialog (parent);
         if (rv) {
