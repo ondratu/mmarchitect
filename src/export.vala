@@ -55,7 +55,15 @@ namespace Exporter {
             //w.write_attribute ("style", "color:" + node.color.to_string()+";");
             w.write_attribute ("style", "color:" + rgb_to_hex(node.rgb) + ";");
 
+        w.start_element("b");
         w.write_string(node.title);
+
+        if (node.flags.size > 0){
+            w.write_string(" [");
+            w.write_string(string.joinv("|", node.flags.to_array()));
+            w.write_string("] ");
+        }
+        w.end_element(); // </b>
 
         if (node.points != 0)
             w.write_attribute ("points", node.points.to_string());

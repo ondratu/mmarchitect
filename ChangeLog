@@ -4,6 +4,7 @@
 ### Added
  * number icons
  * FreeMind import with number icons and hook text
+ * Simple HTML export supports flags
 
 ### Changed
  * Use Gtk+3 library
