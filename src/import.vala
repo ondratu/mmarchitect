@@ -24,6 +24,19 @@ namespace  Importer {
         }
     }
 
+    void read_mm_node_icon (Xml.Node* x, Node c) {
+        for (Xml.Attr* it = x->properties; it != null; it = it->next) {
+            if (it->name == "BUILTIN"){
+                if (it->children->content.substring(0, 5) == "full-"){
+                    int number = int.parse(it->children->content.substring(5,1));
+                    c.flags.add(number.to_string());
+                } else {
+                    c.flags.add(it->children->content);
+                }
+            }
+        }
+    }
+
     void read_mm_node(Xml.Node* x, Node n){
         for (Xml.Node* it = x->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
@@ -38,6 +51,14 @@ namespace  Importer {
 
             } else if (it->name == "richcontent"){
                 n.text = it->get_content().strip();
+            } else if (it->name == "hook"){
+                read_mm_node(it, n);
+            } else if (it->name == "text"){
+                n.text = it->get_content().strip();     // read text from hook
+            } else if (it->name == "icon") {
+                read_mm_node_icon(it, n);
+            } else {
+                stderr.printf("unknown child node `%s'\n", it->name);
             }
         }
     }

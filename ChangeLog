@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 ### Added
+ * number icons
+ * FreeMind import with number icons and hook text
 
 ### Changed
  * Use Gtk+3 library

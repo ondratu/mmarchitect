@@ -17,7 +17,8 @@ public enum Direction {
 
 public static string [] node_flags () {
     return { "done", "leave", "idea", "tip", "bomb", "question", "warning",
-             "phone", "mail", "bug", "plan", "web", "yes", "no", "maybe" };
+             "phone", "mail", "bug", "plan", "web", "yes", "no", "maybe",
+             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 }
 
 public enum PointsFce {
