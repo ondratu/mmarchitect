@@ -8,6 +8,8 @@
  */
 // modules: Glib
 
+const string ICO_URL = "https://mmarchitect.zeropage.cz/icons/";
+
 namespace Exporter {
 
     public errordomain ExportError {
@@ -46,6 +48,43 @@ namespace Exporter {
         }
     }
 
+    void write_html_root (Xml.TextWriter w, Node node){
+        w.start_element("h1");
+
+        if (node.points != 0)
+            w.write_attribute ("points", node.points.to_string());
+
+        if (!node.default_color)
+            w.write_attribute ("style", "color:" + rgb_to_hex(node.rgb) + ";");
+
+        if (node.flags.size > 0){
+            foreach (var flag in node.flags) {
+                w.start_element("img");
+                w.write_attribute("alt", "[" + flag + "]");
+                w.write_attribute("src", ICO_URL + flag + ".svg");
+                w.write_attribute("height", ICO_SIZE.to_string());
+                w.end_element();
+            }
+        }
+
+        w.write_string(node.title);
+        w.end_element();    // h1
+
+        if (node.text != "") {
+            w.write_string("\n");
+            w.write_element ("p", node.text);
+        }
+
+        if (node.children.length () > 0) {     // <ul>
+            w.write_string("\n");
+            w.start_element ("ul");
+        }
+        foreach (var n in node.children)
+            write_html_node(w, n);
+        if (node.children.length () > 0)       // </ul>
+            w.end_element ();
+    }
+
     void write_html_node (Xml.TextWriter w, Node node){
         w.start_element("li");            // <li>
 
@@ -56,13 +95,18 @@ namespace Exporter {
             w.write_attribute ("style", "color:" + rgb_to_hex(node.rgb) + ";");
 
         w.start_element("b");
-        w.write_string(node.title);
 
         if (node.flags.size > 0){
-            w.write_string(" [");
-            w.write_string(string.joinv("|", node.flags.to_array()));
-            w.write_string("] ");
+            foreach (var flag in node.flags) {
+                w.start_element("img");
+                w.write_attribute("alt", "[" + flag + "]");
+                w.write_attribute("src", ICO_URL + flag + ".svg");
+                w.write_attribute("height", ICO_SIZE.to_string());
+                w.end_element();
+            }
         }
+
+        w.write_string(node.title);
         w.end_element(); // </b>
 
         if (node.points != 0)
@@ -103,22 +147,23 @@ namespace Exporter {
         w.set_indent (true);
         w.set_indent_string (" ");
 
-        //w.start_document ();
         w.start_element ("html");
         w.start_element ("head");
         write_html_meta (w, "charset", "utf-8");
         write_html_meta (w, "name", "generator", "content", PROGRAM);
         write_html_meta (w, "name", "author", "content", prop.author);
         w.write_element ("title", root.title); //encoding
+        w.write_element (
+            "style",
+            "body {font-family: sans-serif; width: 80%; margin: auto;}");
         w.end_element ();   // </head>
 
         w.start_element ("body");
 
-        write_html_node (w, root);
+        write_html_root (w, root);
 
         w.end_element();    // </body>
         w.end_element();    // </html>
-        //w.end_document();
 
         w.flush();
         return true;

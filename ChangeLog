@@ -4,7 +4,7 @@
 ### Added
  * number icons
  * FreeMind import with number icons and hook text
- * Simple HTML export supports flags
+ * Simple HTML export supports flags (icons from web)
 
 ### Changed
  * Use Gtk+3 library
@@ -12,6 +12,7 @@
  * Enter || Return key save values on points widget
  * select color by new ColorChooserDialog
  * Changelog for users
+ * Simple HTML export style
 
 ### Fixed
  * center map when it is possible
