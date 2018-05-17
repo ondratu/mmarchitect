@@ -849,7 +849,7 @@ public class Node : GLib.Object {
         int f = 0;
         foreach (var flag in this.flags) {
             int ico_padding = (ICO_SIZE + 1) * f;
-            set_source_svg (cr, DATA + "/icons/" + flag + ".svg",
+            set_source_svg (cr, DATA_DIR + "/icons/" + flag + ".svg",
                     area.x + ico_padding,
                     area.y + (area.height - ICO_SIZE) /2,
                     ICO_SIZE, ICO_SIZE);

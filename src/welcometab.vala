@@ -6,7 +6,7 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
-// modules: gtk+-3.0
+// modules: Gtk
 
 public class WelcomeTab : Gtk.ScrolledWindow, ITab {
     public TabLabel tablabel { get; protected set; }
@@ -47,7 +47,7 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
 
     private void loadui () throws Error {
         var builder = new Gtk.Builder();
-        builder.add_from_file (DATA + "/ui/welcome.ui");
+        builder.add_from_file (DATA_DIR + "/ui/welcome.ui");
         builder.connect_signals (this);
 
         var mainbox = builder.get_object ("mainbox") as Gtk.Box;

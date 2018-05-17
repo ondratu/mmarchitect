@@ -38,7 +38,7 @@ public class MapWidgets: GLib.Object {
 
     public virtual void loadui () throws Error {
         var builder = new Gtk.Builder ();
-        builder.add_from_file (DATA + "/ui/map.ui");
+        builder.add_from_file (DATA_DIR + "/ui/map.ui");
         builder.connect_signals (this);
 
         this.rise_method_disable = builder.get_object("rise_method_disable")

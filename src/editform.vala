@@ -157,7 +157,7 @@ public class ColorButton : Gtk.Button {
             var rgba = this.color_widget.get_rgba();
 
             var builder = new Gtk.Builder ();
-            builder.add_from_file (DATA + "/ui/color_dialog.ui");
+            builder.add_from_file (DATA_DIR + "/ui/color_dialog.ui");
             builder.connect_signals (this);
 
             this.chooser = builder.get_object ("color_dialog")
@@ -238,7 +238,7 @@ public class ToggleFlagButton : Gtk.ToggleToolButton {
         name = flag;
         set_label(_(flag));
         set_tooltip_text(_(flag));
-        var icon_path = DATA + "/icons/" + flag + ".svg";
+        var icon_path = DATA_DIR + "/icons/" + flag + ".svg";
 
         try {
             var pb = new Gdk.Pixbuf.from_file (icon_path);

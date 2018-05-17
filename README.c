@@ -12,7 +12,7 @@ on another system with same config settings. For examle like this:
     $ make install
 
 On debian (squeeze for example) coud be use this:
-    
+
     $ dh_auto_build
     $ dh_auto_test
     $ fakeroot make -f debian/rules binary

@@ -13,6 +13,7 @@
  * select color by new ColorChooserDialog
  * Changelog for users
  * Simple HTML export style
+ * Makefile is split to more Makefiles in each directory
 
 ### Fixed
  * center map when it is possible

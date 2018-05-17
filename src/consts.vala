@@ -1,3 +1,6 @@
+extern const string VERSION;
+
+const string PROGRAM = "mmarchitect";
 
 const int PAGE_PADDING = 20;
 

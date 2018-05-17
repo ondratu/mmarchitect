@@ -30,7 +30,7 @@ public class App : GLib.Object {
 
     public void loadui (string filename) throws Error {
         var builder = new Gtk.Builder ();
-        builder.add_from_file (DATA + "/ui/main.ui");
+        builder.add_from_file (DATA_DIR + "/ui/main.ui");
         builder.connect_signals (this);
 
         this.window = builder.get_object("window") as Gtk.Window;
@@ -49,7 +49,7 @@ public class App : GLib.Object {
         this.menu_item_paste = builder.get_object("menuitem_paste") as Gtk.MenuItem;
         this.menu_item_delete = builder.get_object("menuitem_delete") as Gtk.MenuItem;
 
-        Gtk.Window.set_default_icon_from_file (DATA+ "/icons/" + PROGRAM + ".png");
+        Gtk.Window.set_default_icon_from_file (DATA_DIR + "/icons/" + PROGRAM + ".png");
         this.new_file_from_args(this.window, filename);
 
         this.nodemenu = builder.get_object("nodemenu") as Gtk.Menu;
@@ -395,7 +395,7 @@ public class App : GLib.Object {
     private bool ask_for_save (FileTab file) {
         try {
             var builder = new Gtk.Builder ();
-            builder.add_from_file (DATA + "/ui/close_file_dialog.ui");
+            builder.add_from_file (DATA_DIR + "/ui/close_file_dialog.ui");
 
             var d = builder.get_object("dialog") as Gtk.Dialog;
             var w = builder.get_object("warning_label") as Gtk.Label;
@@ -766,10 +766,10 @@ public class App : GLib.Object {
     public void about (Gtk.Widget w) {
         try {
             var builder = new Gtk.Builder ();
-            builder.add_from_file (DATA + "/ui/about_dialog.ui");
+            builder.add_from_file (DATA_DIR + "/ui/about_dialog.ui");
 
             var d = builder.get_object ("aboutdialog") as Gtk.AboutDialog;
-            var p = new Gdk.Pixbuf.from_file (DATA + "/icons/" + PROGRAM + ".png");
+            var p = new Gdk.Pixbuf.from_file (DATA_DIR + "/icons/" + PROGRAM + ".png");
 
             d.set_logo (p);
             d.set_version (VERSION);

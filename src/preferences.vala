@@ -90,7 +90,7 @@ public class PreferenceWidgets : MapWidgets {
         base.loadui();
 
         var builder = new Gtk.Builder ();
-        builder.add_from_file (DATA + "/ui/preferences.ui");
+        builder.add_from_file (DATA_DIR + "/ui/preferences.ui");
         builder.connect_signals (this);
 
         this.dialog = builder.get_object ("dialog") as Gtk.Dialog;
