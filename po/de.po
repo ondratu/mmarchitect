@@ -8,27 +8,29 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-10 08:00+0200\n"
-"PO-Revision-Date: 2018-09-10 08:00+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2018-12-01 15:09+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/mmarchitect/"
+"translations/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #: ../src/mindmap.vala:75
 msgid "Main Idea"
-msgstr ""
+msgstr "Hauptidee"
 
 #: ../src/main.vala:46
 #, c-format
 msgid "Could not load app UI: %s\n"
-msgstr ""
+msgstr "App-Benutzeroberfläche konnte nicht geladen werden: %s\n"
 
 #: ../src/tips.vala:29
 msgid "Moving with Ideas"
-msgstr ""
+msgstr "Mit Ideen verschieben"
 
 #: ../src/tips.vala:30
 msgid ""
@@ -38,7 +40,7 @@ msgstr ""
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
-msgstr ""
+msgstr "Gedankenkarten als TODO-Liste verwenden"
 
 #: ../src/tips.vala:33
 msgid ""
@@ -52,145 +54,145 @@ msgstr ""
 
 #: ../src/clavertime.vala:30
 msgid "Today %H:%M"
-msgstr ""
+msgstr "Heute %H:%M"
 
 #: ../src/clavertime.vala:32
 msgid "Yesterday %H:%M"
-msgstr ""
+msgstr "Gestern %H:%M"
 
 #: ../src/clavertime.vala:49
 msgid "Today"
-msgstr ""
+msgstr "Heute"
 
 #: ../src/clavertime.vala:52
 msgid "Yesterday"
-msgstr ""
+msgstr "Gestern"
 
 #: ../src/print.vala:59
 msgid "Printing error:"
-msgstr ""
+msgstr "Druckfehler:"
 
 #: ../src/app.vala:85 ../src/app.vala:264 ../src/welcometab.vala:63
 #: ../src/welcometab.vala:69
 msgid "Open file"
-msgstr ""
+msgstr "Datei öffnen"
 
 #: ../src/app.vala:87 ../src/welcometab.vala:65 ../src/welcometab.vala:71
 msgid "New file"
-msgstr ""
+msgstr "Neue Datei"
 
 #: ../src/app.vala:89
 msgid "Save file"
-msgstr ""
+msgstr "Datei speichern"
 
 #: ../src/app.vala:91 ../src/app.vala:487
 msgid "Save file as"
-msgstr ""
+msgstr "Datei speichern unter"
 
 #: ../src/app.vala:120
 msgid "File $fname can't be imported!"
-msgstr ""
+msgstr "Datei $fname kann nicht importiert werden!"
 
 #: ../src/app.vala:267 ../src/app.vala:358 ../src/app.vala:490
 #: ../src/export_dialog.vala:68
 msgid "_Cancel"
-msgstr ""
+msgstr "Abbre_chen"
 
 #: ../src/app.vala:268 ../src/app.vala:359
 msgid "_Open"
-msgstr ""
+msgstr "_Öffnen"
 
 #: ../src/app.vala:299
 msgid "File $path not found!"
-msgstr ""
+msgstr "Datei $path nicht gefunden!"
 
 #: ../src/app.vala:355
 msgid "Import file"
-msgstr ""
+msgstr "Datei importieren"
 
 #: ../src/app.vala:491
 msgid "_Save"
-msgstr ""
+msgstr "_Speichern"
 
 #: ../src/welcometab.vala:14
 msgid "Start here"
-msgstr ""
+msgstr "Beginnen Sie hier"
 
 #: ../src/export_dialog.vala:62
 msgid "Export Map as"
-msgstr ""
+msgstr "Karte exportieren als"
 
 #: ../src/export_dialog.vala:69
 msgid "_Export As"
-msgstr ""
+msgstr "_Exportieren als"
 
 #: ../src/export_dialog.vala:72
 msgid "Plain Text"
-msgstr ""
+msgstr "Klartext"
 
 #: ../src/export_dialog.vala:76
 msgid "Simple Web Page"
-msgstr ""
+msgstr "Einfache Webseite"
 
 #: ../src/export_dialog.vala:80
 msgid "Dynamic Web Page"
-msgstr ""
+msgstr "Dynamische Webseite"
 
 #: ../src/export_dialog.vala:84
 msgid "PNG Image"
-msgstr ""
+msgstr "PNG-Bild"
 
 #: ../ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
-msgstr ""
+msgstr "Mind Map Architect-Einstellungen"
 
 #: ../ui/preferences.ui:92
 msgid "<b>Author</b>"
-msgstr ""
+msgstr "<b>Autor</b>"
 
 #: ../ui/preferences.ui:121
 msgid "Choose directory"
-msgstr ""
+msgstr "Verzeichnis auswählen"
 
 #: ../ui/preferences.ui:130
 msgid "<b>Default dokuments directory</b>"
-msgstr ""
+msgstr "<b>Standard-Dokumentenverzeichnis</b>"
 
 #: ../ui/preferences.ui:160
 msgid "_Welcome tab"
-msgstr ""
+msgstr "_Willkommens-Tab"
 
 #: ../ui/preferences.ui:176
 msgid "_Empty document"
-msgstr ""
+msgstr "L_eeres Dokument"
 
 #: ../ui/preferences.ui:193
 msgid "_Last opened documents"
-msgstr ""
+msgstr "Zu_letzt geöffnete Dokumente"
 
 #: ../ui/preferences.ui:216
 msgid "<b>Start program with</b>"
-msgstr ""
+msgstr "<b>Programm starten mit</b>"
 
 #: ../ui/preferences.ui:234
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: ../ui/preferences.ui:264 ../ui/preferences.ui:577
 msgid "Use system font"
-msgstr ""
+msgstr "Systemschriftart verwenden"
 
 #: ../ui/preferences.ui:304
 msgid "<b>Idea font</b>"
-msgstr ""
+msgstr "<b>Ideenschriftart</b>"
 
 #: ../ui/preferences.ui:337
 msgid "Font"
-msgstr ""
+msgstr "Schriftart"
 
 #: ../ui/preferences.ui:365
 msgid "Line"
-msgstr ""
+msgstr "Linie"
 
 #: ../ui/preferences.ui:394
 msgid "<b>Rising</b>"
@@ -214,71 +216,71 @@ msgstr ""
 
 #: ../ui/preferences.ui:552
 msgid "Height"
-msgstr ""
+msgstr "Höhe"
 
 #: ../ui/preferences.ui:600
 msgid "<b>Note's text</b>"
-msgstr ""
+msgstr "<b>Notiztext</b>"
 
 #: ../ui/preferences.ui:622
 msgid "Style"
-msgstr ""
+msgstr "Stil"
 
 #: ../ui/preferences.ui:647
 msgid "Use system colors"
-msgstr ""
+msgstr "Systemfarben verwenden"
 
 #: ../ui/preferences.ui:662
 msgid "<b>System colors</b>"
-msgstr ""
+msgstr "<b>Systemfarben</b>"
 
 #: ../ui/preferences.ui:762
 msgid "Default line color"
-msgstr ""
+msgstr "Standard-Linienfarbe"
 
 #: ../ui/preferences.ui:775
 msgid "Canvas color"
-msgstr ""
+msgstr "Leinwandfarbe"
 
 #: ../ui/preferences.ui:788
 msgid "Text normal color"
-msgstr ""
+msgstr "Farbe für normalen Text"
 
 #: ../ui/preferences.ui:801
 msgid "Text selected color"
-msgstr ""
+msgstr "Farbe für ausgewählten Text"
 
 #: ../ui/preferences.ui:814
 msgid "Background normal color"
-msgstr ""
+msgstr "Farbe für normalen Hintergrund"
 
 #: ../ui/preferences.ui:827
 msgid "Background selected color"
-msgstr ""
+msgstr "Farbe für ausgewählten Hintergrund"
 
 #: ../ui/preferences.ui:842
 msgid "<b>Colors definitions</b>"
-msgstr ""
+msgstr "<b>Farbdefinitionen</b>"
 
 #: ../ui/preferences.ui:862
 msgid "Colors"
-msgstr ""
+msgstr "Farben"
 
 #: ../ui/preferences.ui:886
 msgid "Map"
-msgstr ""
+msgstr "Karte"
 
 #: ../ui/map.ui:30
 msgid "_disable"
-msgstr ""
+msgstr "_deaktivieren"
 
 #: ../ui/map.ui:47
 msgid "count _branches"
-msgstr ""
+msgstr "_Zweige zählen"
 
 #: ../ui/map.ui:64
 msgid "count _points"
-msgstr ""
+msgstr "_Punkte zählen"
 
 #: ../ui/map.ui:87
 msgid "<b>Rising method</b>"
@@ -286,11 +288,11 @@ msgstr ""
 
 #: ../ui/map.ui:117
 msgid "Ideas"
-msgstr ""
+msgstr "Ideen"
 
 #: ../ui/map.ui:132
 msgid "Branches"
-msgstr ""
+msgstr "Zweige"
 
 #: ../ui/map.ui:153
 msgid "<b>Rise elemens</b>"
@@ -298,115 +300,115 @@ msgstr ""
 
 #: ../ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
-msgstr ""
+msgstr "Änderungen am Dokument speichern?"
 
 #: ../ui/close_file_dialog.ui:25
 msgid "Close _without save"
-msgstr ""
+msgstr "_Ohne zu Speichern schließen"
 
 #: ../ui/close_file_dialog.ui:107
 msgid "Save changes to document %s before exit?"
-msgstr ""
+msgstr "Änderungen am Dokument %s vor dem Beenden speichern?"
 
 #: ../ui/close_file_dialog.ui:125
 msgid "Your changes will be lost, if you don't save the file."
-msgstr ""
+msgstr "Ihre Änderungen gehen verloren, wenn Sie die Datei nicht speichern."
 
 #: ../ui/main.ui:8
 msgid "Mind Map Architect"
-msgstr ""
+msgstr "Mind Map Architect"
 
 #: ../ui/main.ui:28
 msgid "_File"
-msgstr ""
+msgstr "_Datei"
 
 #: ../ui/main.ui:38
 msgid "New"
-msgstr ""
+msgstr "Neu"
 
 #: ../ui/main.ui:54
 msgid "Open"
-msgstr ""
+msgstr "Öffnen"
 
 #: ../ui/main.ui:64
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: ../ui/main.ui:74
 msgid "Save As"
-msgstr ""
+msgstr "Speichern unter"
 
 #: ../ui/main.ui:84
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #: ../ui/main.ui:100
 msgid "Print"
-msgstr ""
+msgstr "Drucken"
 
 #: ../ui/main.ui:116
 msgid "Export"
-msgstr ""
+msgstr "Exportieren"
 
 #: ../ui/main.ui:125
 msgid "Import"
-msgstr ""
+msgstr "Importieren"
 
 #: ../ui/main.ui:140
 msgid "Properties"
-msgstr ""
+msgstr "Eigenschaften"
 
 #: ../ui/main.ui:155
 msgid "Quit"
-msgstr ""
+msgstr "Beenden"
 
 #: ../ui/main.ui:168
 msgid "_Edit"
-msgstr ""
+msgstr "B_earbeiten"
 
 #: ../ui/main.ui:178 ../ui/main.ui:493
 msgid "Expand"
-msgstr ""
+msgstr "Ausklappen"
 
 #: ../ui/main.ui:187 ../ui/main.ui:502
 msgid "Collapse"
-msgstr ""
+msgstr "Einklappen"
 
 #: ../ui/main.ui:202 ../ui/main.ui:511
 msgid "Cut"
-msgstr ""
+msgstr "Ausschneiden"
 
 #: ../ui/main.ui:212 ../ui/main.ui:520
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: ../ui/main.ui:222 ../ui/main.ui:529
 msgid "Paste"
-msgstr ""
+msgstr "Einfügen"
 
 #: ../ui/main.ui:232 ../ui/main.ui:538
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: ../ui/main.ui:247 ../ui/main.ui:484
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #: ../ui/main.ui:262
 msgid "Preferences"
-msgstr ""
+msgstr "Einstellungen"
 
 #: ../ui/main.ui:275
 msgid "_View"
-msgstr ""
+msgstr "_Ansicht"
 
 #: ../ui/main.ui:285 ../ui/main.ui:462
 msgid "Expand all branches"
-msgstr ""
+msgstr "Alle Zweige ausklappen"
 
 #: ../ui/main.ui:294 ../ui/main.ui:471
 msgid "Collapse all branches"
-msgstr ""
+msgstr "Alle Zweige einklappen"
 
 #: ../ui/main.ui:309
 msgid "Home"
@@ -414,39 +416,39 @@ msgstr ""
 
 #: ../ui/main.ui:323
 msgid "_Help"
-msgstr ""
+msgstr "_Hilfe"
 
 #: ../ui/main.ui:547
 msgid "Move"
-msgstr ""
+msgstr "Verschieben"
 
 #: ../ui/main.ui:557
 msgid "Move Up"
-msgstr ""
+msgstr "Nach oben verschieben"
 
 #: ../ui/main.ui:566
 msgid "Move Down"
-msgstr ""
+msgstr "Nach unten verschieben"
 
 #: ../ui/main.ui:575
 msgid "Move Left"
-msgstr ""
+msgstr "Nach links verschieben"
 
 #: ../ui/main.ui:583
 msgid "Move Right"
-msgstr ""
+msgstr "Nach rechts verschieben"
 
 #: ../ui/properties.ui:8
 msgid "File properties"
-msgstr ""
+msgstr "Dateieigenschaften"
 
 #: ../ui/properties.ui:88
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: ../ui/properties.ui:114
 msgid "Created"
-msgstr ""
+msgstr "Erstellt"
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
 #: ../ui/welcome.ui:198
@@ -455,43 +457,43 @@ msgstr ""
 
 #: ../ui/properties.ui:142
 msgid "Modified"
-msgstr ""
+msgstr "Geändert"
 
 #: ../ui/properties.ui:169
 msgid "Path"
-msgstr ""
+msgstr "Pfad"
 
 #: ../ui/properties.ui:198
 msgid "<b>File</b>"
-msgstr ""
+msgstr "<b>Datei</b>"
 
 #: ../ui/properties.ui:222
 msgid "<b>Map</b>"
-msgstr ""
+msgstr "<b>Karte</b>"
 
 #: ../ui/color_dialog.ui:40
 msgid "Default color"
-msgstr ""
+msgstr "Standard-Farbe"
 
 #: ../ui/color_dialog.ui:56
 msgid "Parent color"
-msgstr ""
+msgstr "Übergeordnete Farbe"
 
 #: ../ui/color_dialog.ui:73
 msgid "Own color"
-msgstr ""
+msgstr "Eigene Farbe"
 
 #: ../ui/about_dialog.ui:7
 msgid "About Application Mind Map Architect"
-msgstr ""
+msgstr "Über die Anwendung Mind Map Architect"
 
 #: ../ui/about_dialog.ui:13
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr ""
+msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
 
 #: ../ui/about_dialog.ui:14
 msgid "Tool for working with mind maps. "
-msgstr ""
+msgstr "Werkzeug zur Arbeit mit Gedankenkarten. "
 
 #: ../ui/about_dialog.ui:16
 msgid ""
@@ -528,14 +530,16 @@ msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
 "Luis Garcia Sevillano <floss.dev@gmail.com>"
 msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
-msgstr ""
+msgstr "<b>Neueste Dateien:</b>"
 
 #: ../ui/welcome.ui:159
 msgid "<b>Tip:</b>"
-msgstr ""
+msgstr "<b>Tipp:</b>"
 
 #: ../ui/welcome.ui:179
 msgid "<b><big>label</big></b>"
@@ -543,11 +547,11 @@ msgstr ""
 
 #: ../ui/welcome.ui:214
 msgid "<a href=\"#next_tip\">Next Tip</a>"
-msgstr ""
+msgstr "<a href=\"#next_tip\">Nächster Tipp</a>"
 
 #: ../ui/welcome.ui:256
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
-msgstr ""
+msgstr "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Projekt-Webseiten</a>"
 
 #: ../ui/welcome.ui:276
 msgid ""
@@ -561,6 +565,8 @@ msgid ""
 "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General "
 "Discussion</a>"
 msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">"
+"Allgemeine Diskussion</a>"
 
 #: ../ui/welcome.ui:325
 msgid ""
@@ -573,6 +579,8 @@ msgstr ""
 msgid ""
 "<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tasks and Bugs</a>"
 msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Aufgaben und "
+"Fehler</a>"
 
 #: ../ui/welcome.ui:375
 msgid ""
@@ -586,6 +594,8 @@ msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
 msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">"
+"Entwicklung des Projekts</a>"
 
 #: ../ui/welcome.ui:424
 msgid ""
