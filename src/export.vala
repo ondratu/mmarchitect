@@ -178,12 +178,61 @@ namespace Exporter {
             return false;
         }
     }
+    
+    void write_mm_icon (Xml.TextWriter w, string flag){
+		string icon = null;
+		if (flag == "leave"){
+			icon = "button_cancel";
+		} else if (flag == "done"){
+			icon = "button_ok";
+		} else if (flag == "idea"){
+			icon = flag; //same
+		} else if (flag == "bomb"){
+			icon = "clanbomber";
+		} else if (flag == "question"){
+			icon = "help";
+		} else if (flag == "warning"){
+			icon = "yes";
+		} else if (flag == "tip"){
+			icon = "bookmark";
+		} else if (flag == "mail"){
+			icon = "Mail"; /*not "mail"*/
+		} else if (flag == "phone") {
+			icon = "kaddressbook";
+		} else if (flag == "no"){
+			icon = "stop";
+		} else if (flag == "maybe"){
+			icon = "prepare";
+		} else if (flag == "yes"){
+			icon = "go";
+		}
+		if (icon != null){
+			w.start_element ("icon");
+			w.write_attribute ("BUILTIN", icon);
+			w.end_element();
+		}
+	}
 
-    void write_mm_node (Xml.TextWriter w, Node node){
+    void write_mm_node (Xml.TextWriter w, Node node, bool parentIsRoot){
         foreach (var n in node.children) {
             w.start_element("node");
+            if (parentIsRoot) {
+				if (n.direction == 0) {
+					w.write_attribute ("POSITION", "left");
+				} else { //1
+					w.write_attribute ("POSITION", "right");
+				}
+			}
             w.write_attribute ("TEXT", n.title);
-            write_mm_node(w, n);
+            if (! n.default_color) {
+				w.start_element ("edge");
+				w.write_attribute ("COLOR", rgb_to_hex(n.rgb));
+				w.end_element();
+			}
+			foreach (var f in n.flags) {
+				write_mm_icon (w, f);
+			}
+            write_mm_node (w, n, false);
             w.end_element();
         }
     }
@@ -195,22 +244,10 @@ namespace Exporter {
 
         //w.start_document ();
         w.start_element ("map");
-        w.write_attribute("version", "0.9.0");
+        w.write_attribute ("version", "1.0.1");
         w.start_element ("node");
         w.write_attribute ("TEXT", root.title);
-
-        foreach (var n in root.children) {
-            w.start_element("node");
-            if (n.direction == 0) {
-                w.write_attribute ("POSITION", "left");
-            } else { //1
-                w.write_attribute ("POSITION", "right");
-            }
-            w.write_attribute ("TEXT", n.title);
-            write_mm_node(w, n);
-            w.end_element();
-        }
-
+		write_mm_node (w, root, true);
         w.end_element();    // </node>
         w.end_element();    // </map>
         //w.end_document();

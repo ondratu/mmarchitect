@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<map>
+	<info>
+		<author>Unknown</author>
+		<version>0.6.0</version>
+		<created>1543779842</created>
+		<modified>1543791212</modified>
+	</info>
+	<settings>
+		<rise_method>BRANCHES</rise_method>
+		<rise_ideas>true</rise_ideas>
+		<rise_branches>true</rise_branches>
+	</settings>
+	<node title="Nouvelle carte mentale" expand="true">
+		<node title="Bug" direction="0" expand="true">
+			<flag>bug</flag>
+		</node>
+		<node title="Node 1" direction="1" expand="true">
+			<flag>1</flag>
+			<node title="SubNode 1.1" expand="true">
+				<flag>leave</flag>
+				<flag>done</flag>
+			</node>
+			<node title="SubNode 1.2" expand="true"/>
+		</node>
+		<node title="Plan" direction="0" expand="true">
+			<flag>plan</flag>
+		</node>
+		<node title="Node 2" direction="1" expand="true" color="#3465a4">
+			<node title="SubNode 2.1" expand="true"/>
+			<node title="SubNode 2.2" expand="true">
+				<flag>done</flag>
+			</node>
+		</node>
+		<node title="Web" direction="0" expand="true">
+			<flag>web</flag>
+		</node>
+		<node title="Bomb" direction="1" expand="true">
+			<flag>bomb</flag>
+		</node>
+		<node title="Idea" direction="1" expand="true">
+			<flag>idea</flag>
+		</node>
+		<node title="Question" direction="1" expand="true">
+			<flag>question</flag>
+		</node>
+		<node title="Warning" direction="1" expand="true">
+			<flag>warning</flag>
+		</node>
+		<node title="Tip / Excellent" direction="1" expand="true">
+			<flag>tip</flag>
+		</node>
+		<node title="Email" direction="1" expand="true">
+			<flag>mail</flag>
+		</node>
+		<node title="Phone" direction="1" expand="true">
+			<flag>phone</flag>
+		</node>
+		<node title="Yes" direction="1" expand="true">
+			<flag>yes</flag>
+		</node>
+		<node title="No" direction="1" expand="true">
+			<flag>no</flag>
+		</node>
+		<node title="Maybe" direction="1" expand="true">
+			<flag>maybe</flag>
+		</node>
+	</node>
+</map>
