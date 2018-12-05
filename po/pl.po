@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 08:00+0200\n"
+"POT-Creation-Date: 2018-12-05 07:00+0100\n"
 "PO-Revision-Date: 2018-09-16 16:28+0000\n"
 "Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/mmarchitect/"
@@ -488,19 +488,19 @@ msgstr "Kolor macierzysty"
 msgid "Own color"
 msgstr "Własny kolor"
 
-#: ../ui/about_dialog.ui:7
+#: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
 msgstr "Informacje o aplikacji Mind Map Architect"
 
-#: ../ui/about_dialog.ui:13
+#: ../ui/about_dialog.ui:14
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
 msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
 
-#: ../ui/about_dialog.ui:14
+#: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
 msgstr "Narzędzie do pracy z mapami myśli. "
 
-#: ../ui/about_dialog.ui:16
+#: ../ui/about_dialog.ui:17
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -562,13 +562,16 @@ msgstr ""
 "SPOSOBU WYKORZYSTANIA NINIEJSZEGO OPROGRAMOWANIA, NAWET JEŚLI ZOSTAŁY\n"
 "POINFORMOWANE O MOŻLIWOŚCI WYSTĄPIENIA TAKICH SZKÓD."
 
-#: ../ui/about_dialog.ui:44
+#: ../ui/about_dialog.ui:45
 msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>"
 msgstr ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -641,8 +644,8 @@ msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
 msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">"
-"Opracowanie projektu</a>"
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
+"gtk=1\">Opracowanie projektu</a>"
 
 #: ../ui/welcome.ui:424
 msgid ""
@@ -653,3 +656,10 @@ msgstr ""
 "Jeśli chcesz nam pomóc w tym projekcie, przetłumaczyć wiadomości na język, "
 "opracuj, utwórz pakiet dla swojej dystrybucji lub cokolwiek, co możesz "
 "zrobić, aby nam pomóc, zobacz stronę poświęconą rozwojowi."
+
+#~ msgid ""
+#~ "evanmac <nicola.lomartire@gmail.com>\n"
+#~ "Luis Garcia Sevillano <floss.dev@gmail.com>"
+#~ msgstr ""
+#~ "evanmac <nicola.lomartire@gmail.com>\n"
+#~ "Luis Garcia Sevillano <floss.dev@gmail.com>"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 08:00+0200\n"
+"POT-Creation-Date: 2018-12-05 07:00+0100\n"
 "PO-Revision-Date: 2018-12-01 15:09+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/mmarchitect/"
@@ -483,19 +483,19 @@ msgstr "Übergeordnete Farbe"
 msgid "Own color"
 msgstr "Eigene Farbe"
 
-#: ../ui/about_dialog.ui:7
+#: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
 msgstr "Über die Anwendung Mind Map Architect"
 
-#: ../ui/about_dialog.ui:13
+#: ../ui/about_dialog.ui:14
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
 msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
 
-#: ../ui/about_dialog.ui:14
+#: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
 msgstr "Werkzeug zur Arbeit mit Gedankenkarten. "
 
-#: ../ui/about_dialog.ui:16
+#: ../ui/about_dialog.ui:17
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -525,13 +525,16 @@ msgid ""
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
 
-#: ../ui/about_dialog.ui:44
+#: ../ui/about_dialog.ui:45
 msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>"
 msgstr ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -551,7 +554,8 @@ msgstr "<a href=\"#next_tip\">Nächster Tipp</a>"
 
 #: ../ui/welcome.ui:256
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
-msgstr "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Projekt-Webseiten</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Projekt-Webseiten</a>"
 
 #: ../ui/welcome.ui:276
 msgid ""
@@ -565,8 +569,8 @@ msgid ""
 "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General "
 "Discussion</a>"
 msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">"
-"Allgemeine Diskussion</a>"
+"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
+"\">Allgemeine Diskussion</a>"
 
 #: ../ui/welcome.ui:325
 msgid ""
@@ -594,8 +598,8 @@ msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
 msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">"
-"Entwicklung des Projekts</a>"
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
+"gtk=1\">Entwicklung des Projekts</a>"
 
 #: ../ui/welcome.ui:424
 msgid ""
@@ -603,3 +607,10 @@ msgid ""
 "languege, develop, create package for your distribution, or anything what "
 "you can do for help us, see development page."
 msgstr ""
+
+#~ msgid ""
+#~ "evanmac <nicola.lomartire@gmail.com>\n"
+#~ "Luis Garcia Sevillano <floss.dev@gmail.com>"
+#~ msgstr ""
+#~ "evanmac <nicola.lomartire@gmail.com>\n"
+#~ "Luis Garcia Sevillano <floss.dev@gmail.com>"

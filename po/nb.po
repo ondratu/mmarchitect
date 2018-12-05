@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 08:00+0200\n"
+"POT-Creation-Date: 2018-12-05 07:00+0100\n"
 "PO-Revision-Date: 2018-04-02 19:39+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -503,21 +503,21 @@ msgstr "Overnevnt farge"
 msgid "Own color"
 msgstr "Egen farge"
 
-#: ../ui/about_dialog.ui:7
+#: ../ui/about_dialog.ui:8
 #, fuzzy
 msgid "About Application Mind Map Architect"
 msgstr "Om"
 
-#: ../ui/about_dialog.ui:13
+#: ../ui/about_dialog.ui:14
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
 msgstr "Kopirett © 2011-1017, Ondřej Tůma"
 
-#: ../ui/about_dialog.ui:14
+#: ../ui/about_dialog.ui:15
 #, fuzzy
 msgid "Tool for working with mind maps. "
 msgstr "Verktøy for tankekart. "
 
-#: ../ui/about_dialog.ui:16
+#: ../ui/about_dialog.ui:17
 #, fuzzy
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
@@ -574,13 +574,16 @@ msgstr ""
 "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
-#: ../ui/about_dialog.ui:44
+#: ../ui/about_dialog.ui:45
 msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>"
 msgstr ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -668,3 +671,10 @@ msgstr ""
 "Hvis du ønsker å hjelpe til med prosjektet, oversette meldinger til ditt "
 "språk, utvikle, lage pakker for din distribusjon, eller hva som helst annet "
 "du kan, se utviklingssiden."
+
+#~ msgid ""
+#~ "evanmac <nicola.lomartire@gmail.com>\n"
+#~ "Luis Garcia Sevillano <floss.dev@gmail.com>"
+#~ msgstr ""
+#~ "evanmac <nicola.lomartire@gmail.com>\n"
+#~ "Luis Garcia Sevillano <floss.dev@gmail.com>"

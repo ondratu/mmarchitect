@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 08:00+0200\n"
+"POT-Creation-Date: 2018-12-05 07:00+0100\n"
 "PO-Revision-Date: 2013-01-06 16:35+0100\n"
 "Last-Translator: evanmac <nicola.lomartire@mac.com>\n"
 "Language-Team: evanmac <nicola.lomartire@gmail.com>\n"
@@ -500,20 +500,20 @@ msgstr "Colore padre"
 msgid "Own color"
 msgstr "Proprio colore"
 
-#: ../ui/about_dialog.ui:7
+#: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
 msgstr "Informazioni sull'applicazione Mind Map Architet"
 
-#: ../ui/about_dialog.ui:13
+#: ../ui/about_dialog.ui:14
 #, fuzzy
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
 msgstr "Copyright © 2011-2012, Ondřej Tůma"
 
-#: ../ui/about_dialog.ui:14
+#: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
 msgstr "Strumenti per lavorare con mind maps."
 
-#: ../ui/about_dialog.ui:16
+#: ../ui/about_dialog.ui:17
 #, fuzzy
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
@@ -577,10 +577,15 @@ msgstr ""
 "THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
-#: ../ui/about_dialog.ui:44
+#: ../ui/about_dialog.ui:45
 msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>"
 msgstr ""
 
 #: ../ui/welcome.ui:125
