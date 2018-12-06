@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<map>
+	<info>
+		<author>Ondřej Tůma</author>
+		<version>0.6.0</version>
+		<created>1544078973</created>
+		<modified>1544088971</modified>
+	</info>
+	<settings>
+		<rise_method>BRANCHES</rise_method>
+		<rise_ideas>true</rise_ideas>
+		<rise_branches>true</rise_branches>
+	</settings>
+	<node title="Hlavn&#xED; my&#x161;lenka" expand="true">
+		<node title="ok" direction="0" expand="true">
+			<flag>done</flag>
+		</node>
+		<node title="1" direction="1" expand="true">
+			<flag>1</flag>
+		</node>
+		<node title="no" direction="0" expand="true">
+			<flag>leave</flag>
+		</node>
+		<node title="2" direction="1" expand="true">
+			<flag>2</flag>
+		</node>
+		<node title="idea" direction="0" expand="true">
+			<flag>idea</flag>
+		</node>
+		<node title="3" direction="1" expand="true">
+			<flag>3</flag>
+		</node>
+		<node title="tip" direction="0" expand="true">
+			<flag>tip</flag>
+		</node>
+		<node title="4" direction="1" expand="true">
+			<flag>4</flag>
+		</node>
+		<node title="bomb" direction="0" expand="true">
+			<flag>bomb</flag>
+		</node>
+		<node title="5" direction="1" expand="true">
+			<flag>5</flag>
+		</node>
+		<node title="question" direction="0" expand="true">
+			<flag>question</flag>
+		</node>
+		<node title="6" direction="1" expand="true">
+			<flag>6</flag>
+		</node>
+		<node title="warning" direction="0" expand="true">
+			<flag>warning</flag>
+		</node>
+		<node title="7" direction="1" expand="true">
+			<flag>7</flag>
+		</node>
+		<node title="phone" direction="0" expand="true">
+			<flag>phone</flag>
+		</node>
+		<node title="8" direction="1" expand="true">
+			<flag>8</flag>
+		</node>
+		<node title="mail" direction="0" expand="true">
+			<flag>mail</flag>
+		</node>
+		<node title="9" direction="1" expand="true">
+			<flag>9</flag>
+		</node>
+		<node title="bug" direction="0" expand="true">
+			<flag>bug</flag>
+		</node>
+		<node title="0" direction="1" expand="true">
+			<flag>0</flag>
+		</node>
+		<node title="plan" direction="0" expand="true">
+			<flag>plan</flag>
+		</node>
+		<node title="web" direction="0" expand="true">
+			<flag>web</flag>
+		</node>
+		<node title="mmarchitect" direction="0" expand="true">
+			<flag>mmarchitect</flag>
+		</node>
+		<node title="yes" direction="0" expand="true">
+			<flag>yes</flag>
+		</node>
+		<node title="no" direction="0" expand="true">
+			<flag>no</flag>
+		</node>
+		<node title="maybe" direction="0" expand="true">
+			<flag>maybe</flag>
+		</node>
+	</node>
+</map>

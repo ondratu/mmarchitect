@@ -1,11 +1,5 @@
 /*
- * FILE             $Id: $
- * DESCRIPTION      Importers from FreeMind, ...
- * PROJECT          Mind Map Architect
- * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>
- *
- * Copyright (C) Ondrej Tuma 2011
- * Code is present with BSD licence.
+  Importers from FreeMind, ...
  */
 
 // modules: Gtk
@@ -23,12 +17,12 @@ namespace  Importer {
             }
         }
     }
-    
-     void read_mm_node_edge (Xml.Node* x, Node c) {
+
+    void read_mm_node_edge (Xml.Node* x, Node c) {
         for (Xml.Attr* it = x->properties; it != null; it = it->next) {
             if (it->name == "COLOR"){
-				c.rgb.parse (it->children->content);
-				c.default_color = false;
+                c.rgb.parse (it->children->content);
+                c.default_color = false;
             }
         }
     }
@@ -49,20 +43,34 @@ namespace  Importer {
                     c.flags.add("bomb");
                 } else if (it->children->content == "help"){
                     c.flags.add("question");
-                } else if (it->children->content == "yes" || it->children->content == "messagebox_warning"){
+                } else if (it->children->content == "yes" ||
+                           it->children->content == "messagebox_warning")
+                {
                     c.flags.add("warning");
-                } else if (it->children->content == "bookmark" || it->children->content == "info"){
+                } else if (it->children->content == "bookmark" ||
+                           it->children->content == "info")
+                {
                     c.flags.add("tip");
-                } else if (it->children->content == "Mail" /*not "mail"*/ || it->children->content == "kmail"){
+                } else if (it->children->content == "Mail" /*not "mail"*/ ||
+                           it->children->content == "kmail" ||
+                           it->children->content == "korn")
+                {
                     c.flags.add("mail");
                 } else if (it->children->content == "kaddressbook") {
                     c.flags.add("phone");
-                } else if (it->children->content == "stop" || it->children->content == "stop-sign" || it->children->content == "closed"){
+                } else if (it->children->content == "stop" ||
+                           it->children->content == "stop-sign" ||
+                           it->children->content == "closed")
+                {
                     c.flags.add("no");
                 } else if (it->children->content == "prepare"){
                     c.flags.add("maybe");
                 } else if (it->children->content == "go"){
                     c.flags.add("yes");
+                } else if (it->children->content == "calendar"){
+                    c.flags.add("plan");
+                } else if (it->children->content == "freemind_butterfly"){
+                    c.flags.add("mmarchitect");
                 }
             }
         }
@@ -89,7 +97,7 @@ namespace  Importer {
             } else if (it->name == "icon") {
                 read_mm_node_icon(it, n);
             } else if (it->name == "edge") {
-				read_mm_node_edge(it, n);
+                read_mm_node_edge(it, n);
             } else {
                 stderr.printf("unknown child node `%s'\n", it->name);
             }

@@ -1,17 +1,24 @@
-Icons names are not same between Freemind and Mind Map Architect. For 
+Icons names are not same between Freemind and Mind Map Architect. For
 import / export feature, the following table is used :
 
-Freemind icon			<->		Mind Map Architect icon
-=======================================================
-button_cancel			<->		leave
-button_ok				<->		done
-idea					<->		idea
-clanbomber				<->		bomb
-help					<->		question
-yes,messagebox_warning	<->		warning
-bookmark,info			<->		tip
-Mail,kmail				<->		mail
-kaddressbook			<->		phone
-stop,closed,stop-sign	<->		no	
-prepare					<->		maybe
-go						<->		yes
+Freemind                ->  Mind Map Architect  ->  Freemind
+==================================================================
+button_cancel           ->  leave               ->  button_cancel
+button_ok               ->  done                ->  button_ok
+idea                    ->  idea                ->  idea
+clanbomber              ->  bomb                ->  clanbomber
+help                    ->  question            ->  help
+yes,messagebox_warning  ->  warning             ->  yes
+bookmark,info           ->  tip                 ->  bookmark
+Mail,kmail,korn         ->  mail                ->  Mail
+kaddressbook            ->  phone               ->  kaddressbook
+stop,closed,stop-sign   ->  no                  ->  stop
+prepare                 ->  maybe               ->  prepare
+go                      ->  yes                 ->  yes
+                            bug
+calendar                ->  plan                ->  calendar
+                            web
+freemind_butterfly      ->  mmarchitect         ->  freemind_butterfly
+full-0                  ->  0                   ->  full-0
+...                         ...                     ...
+full-9                  ->  9                   ->  full-9
