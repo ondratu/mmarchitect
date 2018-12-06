@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 08:00+0200\n"
+"POT-Creation-Date: 2018-12-05 07:00+0100\n"
 "PO-Revision-Date: 2018-09-10 08:00+0200\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Frank Endres <frank@endres.fr>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -36,8 +36,8 @@ msgid ""
 "Left or Right to move with selected Ideas."
 msgstr ""
 "Vous pouvez déplacer les idées avec des raccourcis clavier. Vous pouvez "
-"utiliser Ctrl - Flèche Haut, Bas, Gauche ou Droite pour déplacer les"
-"idées sélectionnées."
+"utiliser Ctrl - Flèche Haut, Bas, Gauche ou Droite pour déplacer lesidées "
+"sélectionnées."
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
@@ -48,9 +48,9 @@ msgid ""
 "Mind Maps could be use as TODO lists. You have more tree like possibility "
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
-"Les cartes heuristiques peuvent être utilisées pour lister les choses à faire. "
-"Vous avez plus de possibilité avec l'organisation arborescente ; exemple : "
-"catégories, importance, difficulté."
+"Les cartes heuristiques peuvent être utilisées pour lister les choses à "
+"faire. Vous avez plus de possibilité avec l'organisation arborescente ; "
+"exemple : catégories, importance, difficulté."
 
 #: ../src/editform.vala:298
 msgid "Extends edit"
@@ -487,19 +487,19 @@ msgstr "Couleur du parent"
 msgid "Own color"
 msgstr "Couleur propre"
 
-#: ../ui/about_dialog.ui:7
+#: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
 msgstr "À propos de l'application Mind Map Architect"
 
-#: ../ui/about_dialog.ui:13
+#: ../ui/about_dialog.ui:14
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
 msgstr ""
 
-#: ../ui/about_dialog.ui:14
+#: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
 msgstr "Outil pour travailler avec les cartes heuristiques. "
 
-#: ../ui/about_dialog.ui:16
+#: ../ui/about_dialog.ui:17
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -529,10 +529,15 @@ msgid ""
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
 
-#: ../ui/about_dialog.ui:44
+#: ../ui/about_dialog.ui:45
 msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>"
 msgstr ""
 
 #: ../ui/welcome.ui:125
@@ -553,7 +558,8 @@ msgstr "<a href=\"#next_tip\">Astuce suivante</a>"
 
 #: ../ui/welcome.ui:256
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
-msgstr "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Page web du projet</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Page web du projet</a>"
 
 #: ../ui/welcome.ui:276
 msgid ""
@@ -562,16 +568,16 @@ msgid ""
 "Architect."
 msgstr ""
 "Si vous recherchez plus d'informations sur le projet, voulez le télécharger "
-"la nouvelle version, ou voulez nous aider, visitez la page d'accueil de "
-"Mind Map Architect."
+"la nouvelle version, ou voulez nous aider, visitez la page d'accueil de Mind "
+"Map Architect."
 
 #: ../ui/welcome.ui:305
 msgid ""
 "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General "
 "Discussion</a>"
 msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">Discussions "
-"générales</a>"
+"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
+"\">Discussions générales</a>"
 
 #: ../ui/welcome.ui:325
 msgid ""
@@ -614,5 +620,5 @@ msgid ""
 "you can do for help us, see development page."
 msgstr ""
 "Si vous souhaitez nous aider avec ce projet, traduire les messages dans "
-"votre langue, développer, créer des paquetages pour votre distribution, "
-"ou autre chose qui pourrait nous aider, visitez la page de développement."
+"votre langue, développer, créer des paquetages pour votre distribution, ou "
+"autre chose qui pourrait nous aider, visitez la page de développement."
