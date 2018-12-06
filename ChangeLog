@@ -2,9 +2,16 @@
 
 ## [Unreleased]
 ### Added
- * number icons
- * FreeMind import with number icons and hook text
+ * number and Mind Map Architect icons
+ * FreeMind import and export with icons, colors and hook text
  * Simple HTML export supports flags (icons from web)
+ * New translations:
+    * nb - Norwegian Bokmål by Allan Nordhøy
+    * nl - Dutch by Heimen Stoffels
+    * es - Spanish by Luis García Sevillano
+    * pl - Polish by WaldiS
+    * de - German by Ettore Atalan
+    * fr - French by Frank Endres
 
 ### Changed
  * Use Gtk+3 library
