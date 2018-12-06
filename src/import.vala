@@ -1,11 +1,5 @@
 /*
- * FILE             $Id: $
- * DESCRIPTION      Importers from FreeMind, ...
- * PROJECT          Mind Map Architect
- * AUTHOR           Ondrej Tuma <mcbig@zeropage.cz>
- *
- * Copyright (C) Ondrej Tuma 2011
- * Code is present with BSD licence.
+  Importers from FreeMind, ...
  */
 
 // modules: Gtk
@@ -24,14 +18,59 @@ namespace  Importer {
         }
     }
 
+    void read_mm_node_edge (Xml.Node* x, Node c) {
+        for (Xml.Attr* it = x->properties; it != null; it = it->next) {
+            if (it->name == "COLOR"){
+                c.rgb.parse (it->children->content);
+                c.default_color = false;
+            }
+        }
+    }
+
     void read_mm_node_icon (Xml.Node* x, Node c) {
         for (Xml.Attr* it = x->properties; it != null; it = it->next) {
             if (it->name == "BUILTIN"){
                 if (it->children->content.substring(0, 5) == "full-"){
                     int number = int.parse(it->children->content.substring(5,1));
                     c.flags.add(number.to_string());
-                } else {
-                    c.flags.add(it->children->content);
+                } else if (it->children->content == "button_cancel"){
+                    c.flags.add("leave");
+                } else if (it->children->content == "button_ok"){
+                    c.flags.add("done");
+                } else if (it->children->content == "idea"){
+                    c.flags.add(it->children->content); //same
+                } else if (it->children->content == "clanbomber"){
+                    c.flags.add("bomb");
+                } else if (it->children->content == "help"){
+                    c.flags.add("question");
+                } else if (it->children->content == "yes" ||
+                           it->children->content == "messagebox_warning")
+                {
+                    c.flags.add("warning");
+                } else if (it->children->content == "bookmark" ||
+                           it->children->content == "info")
+                {
+                    c.flags.add("tip");
+                } else if (it->children->content == "Mail" /*not "mail"*/ ||
+                           it->children->content == "kmail" ||
+                           it->children->content == "korn")
+                {
+                    c.flags.add("mail");
+                } else if (it->children->content == "kaddressbook") {
+                    c.flags.add("phone");
+                } else if (it->children->content == "stop" ||
+                           it->children->content == "stop-sign" ||
+                           it->children->content == "closed")
+                {
+                    c.flags.add("no");
+                } else if (it->children->content == "prepare"){
+                    c.flags.add("maybe");
+                } else if (it->children->content == "go"){
+                    c.flags.add("yes");
+                } else if (it->children->content == "calendar"){
+                    c.flags.add("plan");
+                } else if (it->children->content == "freemind_butterfly"){
+                    c.flags.add("mmarchitect");
                 }
             }
         }
@@ -57,6 +96,8 @@ namespace  Importer {
                 n.text = it->get_content().strip();     // read text from hook
             } else if (it->name == "icon") {
                 read_mm_node_icon(it, n);
+            } else if (it->name == "edge") {
+                read_mm_node_edge(it, n);
             } else {
                 stderr.printf("unknown child node `%s'\n", it->name);
             }
