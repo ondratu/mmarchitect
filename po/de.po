@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-05 07:00+0100\n"
-"PO-Revision-Date: 2019-05-08 21:48+0000\n"
+"PO-Revision-Date: 2019-05-19 12:49+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/de/>\n"
@@ -37,6 +37,9 @@ msgid ""
 "You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
 "Left or Right to move with selected Ideas."
 msgstr ""
+"Sie können sich mit Ideen per Tastenkombinationen bewegen. Sie können STRG - "
+"Pfeil nach oben, unten, links oder rechts verwenden, um sich mit "
+"ausgewählten Ideen zu bewegen."
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
@@ -53,7 +56,7 @@ msgstr ""
 
 #: ../src/editform.vala:298
 msgid "Extends edit"
-msgstr ""
+msgstr "Erweitert die Bearbeitung"
 
 #: ../src/clavertime.vala:30
 msgid "Today %H:%M"
@@ -199,23 +202,23 @@ msgstr "Linie"
 
 #: ../ui/preferences.ui:394
 msgid "<b>Rising</b>"
-msgstr ""
+msgstr "<b>Aufsteigend</b>"
 
 #: ../ui/preferences.ui:427
 msgid "Text padding"
-msgstr ""
+msgstr "Text-Padding"
 
 #: ../ui/preferences.ui:465
 msgid "Height padding"
-msgstr ""
+msgstr "Höhen-Padding"
 
 #: ../ui/preferences.ui:477
 msgid "Width padding"
-msgstr ""
+msgstr "Breiten-Padding"
 
 #: ../ui/preferences.ui:505
 msgid "<b>Idea's padding</b>"
-msgstr ""
+msgstr "<b>Ideen-Padding</b>"
 
 #: ../ui/preferences.ui:552
 msgid "Height"
@@ -538,6 +541,13 @@ msgid ""
 "Ondřej Tůma <mcbig@zeropage.cz>\n"
 "Ettore Atalan <atalanttore@googlemail.com>"
 msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -566,6 +576,9 @@ msgid ""
 "version, or you want to start with helping us, see Home page of Mind Map "
 "Architect."
 msgstr ""
+"Wenn Sie mehr Informationen über das Projekt suchen, eine neue Version "
+"herunterladen möchten oder mit der Unterstützung beginnen möchten, besuchen "
+"Sie die Startseite von Mind Map Architect."
 
 #: ../ui/welcome.ui:305
 msgid ""
@@ -581,6 +594,10 @@ msgid ""
 "or other users ? Can you help to other users. Or you anly wnat to see whats "
 "new in project ? Watch General Discussion on SourceForge.net."
 msgstr ""
+"Haben Sie Fragen zu dieser Anwendung? Oder haben Sie einen Tipp für uns oder "
+"andere Nutzer? Sie können anderen Nutzern helfen. Oder Sie wollen etwas "
+"Neues im Projekt sehen? Beobachten Sie allgemeine Diskussion auf "
+"SourceForge.net."
 
 #: ../ui/welcome.ui:355
 msgid ""
@@ -595,6 +612,8 @@ msgid ""
 "mmarchitect ? Please tell us more information about that. Thank you for your "
 "response."
 msgstr ""
+"Gibt es Fehler in diesem Programm? Fehlt Ihnen in mmarchitect etwas? Bitte "
+"teilen Sie es uns mit. Vielen Dank für Ihre Antwort."
 
 #: ../ui/welcome.ui:405
 msgid ""
@@ -610,6 +629,10 @@ msgid ""
 "languege, develop, create package for your distribution, or anything what "
 "you can do for help us, see development page."
 msgstr ""
+"Wenn Sie uns bei diesem Projekt helfen wollen, übersetzen Sie Nachrichten in "
+"Ihre Sprache, entwickeln Sie, erstellen Sie ein Paket für Ihre Distribution, "
+"oder was Sie sonst tun können, um uns zu helfen; lesen Sie dazu die "
+"Entwicklungsseite."
 
 #~ msgid ""
 #~ "evanmac <nicola.lomartire@gmail.com>\n"
