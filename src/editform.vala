@@ -136,12 +136,14 @@ public class ColorButton : Gtk.Button {
     private bool rgba_lock;
 
     private unowned Gtk.ColorChooserDialog chooser;
+    private unowned Gtk.Window window;
 
-    public ColorButton (Node node) {
+    public ColorButton (Node node, Gtk.Window window) {
         this.node = node;
         this.default_color = node.default_color;
         this.color_widget = new Swatch ();
         this.rgba_lock = true;
+        this.window = window;
 
         this.color_widget.set_rgba(node.rgb);
         this.color_widget.set_size_request(20, 20);
@@ -162,6 +164,7 @@ public class ColorButton : Gtk.Button {
 
             this.chooser = builder.get_object ("color_dialog")
                     as Gtk.ColorChooserDialog;
+            this.chooser.set_transient_for(this.window);
             this.chooser.set_rgba(rgba);
 
             // couse this settings call dialog_color_changed event
@@ -275,7 +278,7 @@ public class EditForm : Gtk.Box {
     public bool newone;
     public bool is_expand = false;
 
-    public EditForm (Node node, bool newone, Preferences pref){
+    public EditForm (Node node, bool newone, Preferences pref, Gtk.Window window){
         Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
         // TODO: move application style to css file
         string editform_css = ".editform { border: 1px solid gray; border-radius: 4px; }";
@@ -316,7 +319,7 @@ public class EditForm : Gtk.Box {
                                 + pref.font_padding * 2, -1);
         this.points.entry.key_press_event.connect (this.on_key_press_event);
 
-        this.btn_color = new ColorButton (node);
+        this.btn_color = new ColorButton (node, window);
 
         this.btn_save.clicked.connect(() => {save(); close();});
         this.btn_close.clicked.connect(() => {close();});

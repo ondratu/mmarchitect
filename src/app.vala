@@ -209,7 +209,7 @@ public class App : GLib.Object {
             string index = (++this.tabs_counter).to_string();
             fname = "map"+index;
         }
-        var file = new FileTab.empty (fname, this.pref);
+        var file = new FileTab.empty (fname, this.pref, this.window);
         file.closed.connect (this.on_close_tab);
         file.mindmap.editform_open.connect (this.disable_menu_edit);
         file.mindmap.editform_close.connect (this.enable_menu_edit);
@@ -226,7 +226,7 @@ public class App : GLib.Object {
     }
 
     private void open_file_private(string fname){
-        var file = new FileTab.from_file (fname, this.pref);
+        var file = new FileTab.from_file (fname, this.pref, this.window);
         file.closed.connect (this.on_close_tab);
         file.mindmap.editform_open.connect (this.disable_menu_edit);
         file.mindmap.editform_close.connect (this.enable_menu_edit);
@@ -315,7 +315,7 @@ public class App : GLib.Object {
         string ext = fname.substring(-3).down();    // .mm
         fname = fname.substring(0, fname.length-3); // .mm
 
-        var file = new FileTab.empty (fname, this.pref);
+        var file = new FileTab.empty (fname, this.pref, this.window);
         if (ext == ".mm") {
             Importer.import_from_mm (fpath, file.mindmap);
             file.queue_center ();

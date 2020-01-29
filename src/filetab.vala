@@ -21,7 +21,7 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
     private bool saved;
     public Properties prop { get; private set; }
 
-    private FileTab(string t, Preferences pref){
+    private FileTab(string t, Preferences pref, Gtk.Window window){
         title = t;
 
         tablabel = new TabLabel (title);
@@ -34,15 +34,15 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
 
         prop = new Properties (pref);
 
-        mindmap = new MindMap (pref, prop);
+        mindmap = new MindMap (pref, prop, window);
         mindmap.change.connect (on_mindmap_change);
         mindmap.focus_changed.connect (on_focus_changed);
         set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         add(mindmap);
     }
 
-    public FileTab.empty(string title, Preferences pref){
-        this(title, pref);
+    public FileTab.empty(string title, Preferences pref, Gtk.Window window){
+        this(title, pref, window);
         saved = true;
         tablabel.set_title (title+"*");
         menulabel.label = title+"*";
@@ -50,8 +50,8 @@ public class FileTab : Gtk.ScrolledWindow, ITab {
         show_all();
     }
 
-    public FileTab.from_file(string path, Preferences pref){
-        this(GLib.Path.get_basename(path), pref);
+    public FileTab.from_file(string path, Preferences pref, Gtk.Window window){
+        this(GLib.Path.get_basename(path), pref, window);
         do_load(path);
         show_all();
         queue_center ();

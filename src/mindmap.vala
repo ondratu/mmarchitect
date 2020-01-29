@@ -8,6 +8,7 @@
  */
 
 // modules: gtk+-3.0
+// sources: preferences
 
 public class MindMap : Gtk.Fixed {
     public Preferences pref;
@@ -28,13 +29,15 @@ public class MindMap : Gtk.Fixed {
     private bool mod_alt;
     private bool mod_shift;
     private bool event_context;
+    private unowned Gtk.Window window;
 
     public Gdk.RGBA background { private get; construct set; }
 
-    public MindMap(Preferences pref, Properties prop) {
+    public MindMap(Preferences pref, Properties prop, Gtk.Window window) {
         Object (background: pref.canvas_color);
         this.pref = pref;
         this.prop = prop;
+        this.window = window;
 
         this.set_has_window (true);
         this.set_can_focus (true);
@@ -499,7 +502,8 @@ public class MindMap : Gtk.Fixed {
 
             this.editform_open();        // emit signal that editform will be open
             this.set_can_focus (false);
-            this.editform = new EditForm(this.focused, newone, this.pref);
+            this.editform = new EditForm(this.focused, newone, this.pref,
+                                         this.window);
             this.editform.close.connect (this.on_close_editform);
             this.editform.save.connect (() => {this.change();});
             this.editform.size_allocate.connect (this.on_change_editform);
