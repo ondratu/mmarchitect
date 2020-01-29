@@ -27,7 +27,8 @@ public enum PointsFce {
     SUM,
     AVG,
     MIN,
-    MAX;
+    MAX,
+    COUNT;
 
     public static string to_string(int i) {
         switch (i) {
@@ -39,6 +40,8 @@ public enum PointsFce {
                 return "AVG";
             case PointsFce.SUM:
                 return "SUM";
+            case PointsFce.COUNT:
+                return "COUNT";
             case PointsFce.OWN:
             default:
                 return "OWN";
@@ -54,16 +57,18 @@ public enum PointsFce {
             return PointsFce.AVG;
         if (s == "SUM")
             return PointsFce.SUM;
+        if (s == "COUNT")
+            return PointsFce.COUNT;
         else    // OWN is default
             return PointsFce.OWN;
     }
 
     public static string [] labels () {
-        return { "OWN", "SUM", "AVG", "MIN", "MAX"};
+        return { "OWN", "SUM", "AVG", "MIN", "MAX", "COUNT"};
     }
     public static int [] values () {
         return { PointsFce.OWN, PointsFce.SUM, PointsFce.AVG, PointsFce.MIN,
-                 PointsFce.MAX };
+                 PointsFce.MAX, PointsFce.COUNT };
     }
 }
 
@@ -242,6 +247,9 @@ public class Node : GLib.Object {
 
         if (function == PointsFce.OWN) {
             this.fpoints = this.points;
+        } else if (function == PointsFce.COUNT) {
+            this.fpoints = this.children.length();
+
         } else {
             // start on second children, for right MIN fce
             uint len = this.children.length();
@@ -301,7 +309,7 @@ public class Node : GLib.Object {
                 it.count_weight_by_points (down);
         }
 
-        if (this.function == PointsFce.OWN) {
+        if (this.function == PointsFce.OWN || this.function == PointsFce.COUNT) {
             this.weight = this.points;
         } else if (this.children.length() == 0) {
             this.weight = 0;

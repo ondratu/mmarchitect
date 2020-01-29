@@ -12,6 +12,7 @@
     * pl - Polish by WaldiS
     * de - German by Ettore Atalan
     * fr - French by Frank Endres
+ * COUNT function
 
 ### Changed
  * Use Gtk+3 library
