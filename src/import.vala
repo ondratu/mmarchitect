@@ -2,7 +2,8 @@
   Importers from FreeMind, ...
  */
 
-// modules: Gtk
+// modules: libxml-2.0
+// sources: node.vala mindmap.vala
 
 namespace  Importer {
 

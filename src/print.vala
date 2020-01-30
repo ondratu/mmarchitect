@@ -6,6 +6,9 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
+// modules: gtk+-3.0
+// sources: preferences.vala
+
 
 // XXX: could be singleton
 public class Print : GLib.Object {
@@ -42,7 +45,7 @@ public class Print : GLib.Object {
     public void run (Gtk.Window parent) {
         try {
             var res = po.run (Gtk.PrintOperationAction.PRINT_DIALOG, parent);
-            
+
             if (res == Gtk.PrintOperationResult.ERROR)
                 po.get_error();
 

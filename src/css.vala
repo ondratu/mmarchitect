@@ -1,4 +1,4 @@
-// modules: gtk+-3.0 
+// modules: gtk+-3.0
 
 public int get_dpi (Gtk.Settings ? gtk_sett=null) {
 #if ! WINDOWS
@@ -9,7 +9,7 @@ public int get_dpi (Gtk.Settings ? gtk_sett=null) {
 #else
     return 96;              // there is no gtk_xft_dpi property on windows
 #endif
- 
+
 }
 
 public string font_to_css(Pango.FontDescription font, string class_name) {

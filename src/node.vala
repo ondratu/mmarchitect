@@ -7,7 +7,8 @@
  * Code is present with BSD licence.
  */
 
-// modules: Gtk
+// modules: gtk+-3.0 gee-0.8
+// sources: mindmap.vala
 
 public enum Direction {
     LEFT,

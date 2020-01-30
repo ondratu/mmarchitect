@@ -8,7 +8,7 @@
  */
 
 // modules: gtk+-3.0
-// sources: preferences
+// sources: preferences.vala editform.vala properties.vala node.vala
 
 public class MindMap : Gtk.Fixed {
     public Preferences pref;

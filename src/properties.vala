@@ -1,4 +1,5 @@
 // modules: gtk+-3.0
+// sources: mapwidgets.vala preferences.vala
 
 public class PropertiesWidgets : MapWidgets {
     public Gtk.Dialog dialog;

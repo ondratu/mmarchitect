@@ -6,7 +6,8 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
-// modules: Gtk
+// modules: gtk+-3.0
+// sources: tab.vala tips.vala preferences.vala
 
 public class WelcomeTab : Gtk.ScrolledWindow, ITab {
     public TabLabel tablabel { get; protected set; }

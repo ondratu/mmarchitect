@@ -6,7 +6,6 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
-// modules: Gtk
 
 public struct ClaverTime {
     public time_t val;

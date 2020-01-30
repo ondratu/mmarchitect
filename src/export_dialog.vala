@@ -6,7 +6,8 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
-// modules: Gtk
+// modules: gtk+-3.0
+// sources: filetab.vala
 
 enum ExportFilterID {
     TXT,

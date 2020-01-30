@@ -1,4 +1,4 @@
-// modules: Gtk
+// modules: gtk+-3.0 cairo librsvg-2.0
 
 public bool set_source_svg (Cairo.Context cr, string file_name,
                             double x, double y, int width = 20, int height = 20 )

@@ -1,7 +1,8 @@
 /*
  * Welcome panel with tips and last open files.
  */
-// modules: Glib
+// modules: glib-2.0 libxml-2.0 gio-2.0
+// sources: properties.vala
 
 const string ICO_URL = "https://mmarchitect.zeropage.cz/icons/";
 

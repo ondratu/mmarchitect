@@ -8,6 +8,7 @@
  */
 
 // modules: gtk+-3.0
+// sources: preferences.vala
 
 public class PointsEntry : Gtk.ComboBoxText {
     public double points;

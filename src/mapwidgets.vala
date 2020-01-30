@@ -1,4 +1,5 @@
 // modules: gtk+-3.0
+// sources: consts.vala
 
 enum RisingMethod {
     DISABLE,                // not rising

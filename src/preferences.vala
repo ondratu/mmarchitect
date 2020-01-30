@@ -1,4 +1,5 @@
 // modules: gtk+-3.0 libxml-2.0 gee-0.8
+// sources: mapwidgets.vala css.vala consts.vala
 
 enum Start {
     EMPTY,

@@ -7,7 +7,8 @@
  * Code is present with BSD licence.
  */
 
-// modules: Gtk
+// modules: gtk+-3.0
+// sources: preferences.vala welcometab.vala tab.vala filetab.vala
 
 public class App : GLib.Object {
     private Gtk.Notebook notebook;
