@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-24 20:09+0100\n"
-"PO-Revision-Date: 2021-06-18 21:33+0000\n"
-"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2020-09-14 17:36+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 4.7\n"
+"X-Generator: Weblate 4.3-dev\n"
 
 #: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
 #: ../src/welcometab.vala:70
@@ -257,7 +257,7 @@ msgstr "Fermer sans enregistrer"
 
 #: ../ui/close_file_dialog.ui:107
 msgid "Save changes to document %s before exit?"
-msgstr "Enregistrer les changements du document %s avant de quitter ?"
+msgstr "Enregistrer les changements du document %s avant de quitter ?"
 
 #: ../ui/close_file_dialog.ui:125
 msgid "Your changes will be lost, if you don't save the file."
@@ -353,7 +353,7 @@ msgstr "Supprimer"
 
 #: ../ui/main.ui:247 ../ui/main.ui:484
 msgid "Edit"
-msgstr "Modifier"
+msgstr "Éditer"
 
 #: ../ui/main.ui:262
 msgid "Preferences"
@@ -565,7 +565,7 @@ msgstr "Auteur"
 
 #: ../ui/properties.ui:114
 msgid "Created"
-msgstr "Créé le"
+msgstr "Crée le"
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
 #: ../ui/welcome.ui:198
@@ -629,8 +629,8 @@ msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
 msgstr ""
-"Y a t-il une erreur dans ce programme ? Vous manque-t-il des fonctionnalités "
-"? Dites-nous-en plus, s'il vous plait. Merci pour votre réponse."
+"Y a t-il un bug dans ce programme ? Vous manque t-il des fonctionnalités ? "
+"Dites-nous-en plus s'il vous plait. Merci pour votre réponse."
 
 #: ../ui/welcome.ui:355
 msgid ""
