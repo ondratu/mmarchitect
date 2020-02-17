@@ -9,4 +9,3 @@ install:
 
 uninstall:
 	$(RM) -r $(DESTDIR)$(DATADIR)/ui
-

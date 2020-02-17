@@ -6,7 +6,7 @@ enum Start {
     LAST,
     WELCOME;
 
-    public static string to_string(uint i){
+    public static string to_string (uint i) {
         switch (i) {
             case Start.LAST:
                 return "LAST";
@@ -18,7 +18,7 @@ enum Start {
         }
     }
 
-    public static uint parse(string s){
+    public static uint parse (string s) {
         if (s == "LAST")
             return Start.LAST;
         if (s == "EMPTY")
@@ -34,7 +34,7 @@ public class RecentFile {
 
     public RecentFile (string path) {
         this.path = path;
-        time_t(out this.time);     // fill with now time
+        time_t (out time);     // fill with now time
     }
 
     public RecentFile.with_time (string path, time_t time) {
@@ -42,11 +42,11 @@ public class RecentFile {
         this.time = time;
     }
 
-    public RecentFile copy() {
+    public RecentFile copy () {
         return new RecentFile.with_time (path, time);
     }
 
-    public static int comp(ref RecentFile a, ref RecentFile b) {
+    public static int comp (ref RecentFile a, ref RecentFile b) {
         if (a.path == b.path)
             return 0;
         if (a.time > b.time)
@@ -88,87 +88,87 @@ public class PreferenceWidgets : MapWidgets {
     public Gtk.ColorButton back_selected;
 
     public override void loadui () throws Error {
-        base.loadui();
+        base.loadui ();
 
         var builder = new Gtk.Builder ();
         builder.add_from_file (DATA_DIR + "/ui/preferences.ui");
         builder.connect_signals (this);
 
-        this.dialog = builder.get_object ("dialog") as Gtk.Dialog;
+        dialog = (Gtk.Dialog) builder.get_object ("dialog");
 
         // general tab
-        this.author = builder.get_object ("author") as Gtk.Entry;
-        this.default_directory = builder.get_object("default_directory")
-                    as Gtk.FileChooserButton;
-        this.start_empty = builder.get_object("start_empty") as Gtk.RadioButton;
-        this.start_last = builder.get_object("start_last") as Gtk.RadioButton;
-        this.start_welcome = builder.get_object("start_welcome") as Gtk.RadioButton;
+        author = (Gtk.Entry) builder.get_object ("author");
+        default_directory = (Gtk.FileChooserButton)
+                builder.get_object ("default_directory");
+        start_empty = (Gtk.RadioButton) builder.get_object ("start_empty");
+        start_last = (Gtk.RadioButton) builder.get_object ("start_last");
+        start_welcome = (Gtk.RadioButton) builder.get_object ("start_welcome");
 
         // style tab
-        this.node_system_font = builder.get_object("node_system_font")
-                    as Gtk.CheckButton;
-        this.node_font = builder.get_object("node_font") as Gtk.FontButton;
-        this.font_rise = builder.get_object("font_rise") as Gtk.SpinButton;
-        this.font_rise.set_increments (10, 50);
-        this.font_rise.set_range (20, 400);
+        node_system_font = (Gtk.CheckButton)
+                builder.get_object ("node_system_font");
+        node_font = (Gtk.FontButton) builder.get_object ("node_font");
+        font_rise = (Gtk.SpinButton) builder.get_object ("font_rise");
+        font_rise.set_increments (10, 50);
+        font_rise.set_range (20, 400);
 
-        this.line_rise = builder.get_object("line_rise") as Gtk.SpinButton;
-        this.line_rise.set_increments (5, 10);
-        this.line_rise.set_range (1, 100);
+        line_rise = (Gtk.SpinButton) builder.get_object ("line_rise");
+        line_rise.set_increments (5, 10);
+        line_rise.set_range (1, 100);
 
-        this.font_padding = builder.get_object("font_padding") as Gtk.SpinButton;
-        this.font_padding.set_increments (1, 5);
-        this.font_padding.set_range (1, 200);
+        font_padding = (Gtk.SpinButton) builder.get_object ("font_padding");
+        font_padding.set_increments (1, 5);
+        font_padding.set_range (1, 200);
 
-        this.height_padding = builder.get_object("height_padding") as Gtk.SpinButton;
-        this.height_padding.set_increments (1, 5);
-        this.height_padding.set_range (1, 200);
+        height_padding = (Gtk.SpinButton) builder.get_object ("height_padding");
+        height_padding.set_increments (1, 5);
+        height_padding.set_range (1, 200);
 
-        this.width_padding = builder.get_object("width_padding") as Gtk.SpinButton;
-        this.width_padding.set_increments (1, 5);
-        this.width_padding.set_range (1, 200);
+        width_padding = (Gtk.SpinButton) builder.get_object ("width_padding");
+        width_padding.set_increments (1, 5);
+        width_padding.set_range (1, 200);
 
-        this.text_system_font = builder.get_object("text_system_font")
-                    as Gtk.CheckButton;
-        this.text_font = builder.get_object("text_font") as Gtk.FontButton;
-        this.text_height = builder.get_object("text_height") as Gtk.SpinButton;
-        this.text_height.set_increments (5, 10);
-        this.text_height.set_range (100, 1000);
+        text_system_font = (Gtk.CheckButton)
+                builder.get_object ("text_system_font");
+        text_font = (Gtk.FontButton) builder.get_object ("text_font");
+        text_height = (Gtk.SpinButton) builder.get_object ("text_height");
+        text_height.set_increments (5, 10);
+        text_height.set_range (100, 1000);
 
         // color tab
-        this.system_colors = builder.get_object("system_colors") as Gtk.CheckButton;
-        this.default_color = builder.get_object("default_color") as Gtk.ColorButton;
-        this.canvas_color = builder.get_object("canvas_color") as Gtk.ColorButton;
-        this.text_normal = builder.get_object("text_normal") as Gtk.ColorButton;
-        this.text_selected = builder.get_object("text_selected") as Gtk.ColorButton;
-        this.back_normal = builder.get_object("back_normal") as Gtk.ColorButton;
-        this.back_selected = builder.get_object("back_selected") as Gtk.ColorButton;
+        system_colors = (Gtk.CheckButton) builder.get_object ("system_colors");
+        default_color = (Gtk.ColorButton) builder.get_object ("default_color");
+        canvas_color = (Gtk.ColorButton) builder.get_object ("canvas_color");
+        text_normal = (Gtk.ColorButton) builder.get_object ("text_normal");
+        text_selected = (Gtk.ColorButton) builder.get_object ("text_selected");
+        back_normal = (Gtk.ColorButton) builder.get_object ("back_normal");
+        back_selected = (Gtk.ColorButton) builder.get_object ("back_selected");
 
         // map tab
         // add map vbox to application preference dialog
-        var notebook = builder.get_object("notebook") as Gtk.Notebook;
-        var label_map = builder.get_object("label_map") as Gtk.Label;
-        notebook.append_page (this.box, label_map);
+        var notebook = (Gtk.Notebook) builder.get_object ("notebook");
+        var label_map = (Gtk.Label) builder.get_object ("label_map");
+        notebook.append_page (box, label_map);
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_node_font")]
     public void toggled_node_font (Gtk.Widget sender) {
-        this.node_font.set_sensitive(!node_system_font.get_active());
+        node_font.set_sensitive (!node_system_font.get_active ());
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_text_font")]
     public void toggled_text_font (Gtk.Widget sender) {
-        this.text_font.set_sensitive(!text_system_font.get_active());
+        text_font.set_sensitive (!text_system_font.get_active ());
     }
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT preference_widgets_toggled_system_colors")]
     public void toggled_system_colors (Gtk.Widget sender) {
-        this.default_color.set_sensitive(!system_colors.get_active());
-        this.canvas_color.set_sensitive(!system_colors.get_active());
-        this.text_normal.set_sensitive(!system_colors.get_active());
-        this.text_selected.set_sensitive(!system_colors.get_active());
-        this.back_normal.set_sensitive(!system_colors.get_active());
-        this.back_selected.set_sensitive(!system_colors.get_active());
+        default_color.set_sensitive (!system_colors.get_active ());
+        canvas_color.set_sensitive (!system_colors.get_active ());
+        text_normal.set_sensitive (!system_colors.get_active ());
+        text_selected.set_sensitive (!system_colors.get_active ());
+        back_normal.set_sensitive (!system_colors.get_active ());
+        back_selected.set_sensitive (!system_colors.get_active ());
     }
 }
 
@@ -213,80 +213,83 @@ public class Preferences : GLib.Object {
     private GLib.List<string> last_files;
 
     public Preferences () {
-        this.print_settings = new Gee.HashMap<string, string> ();
-        this.recent_files = new GLib.List<RecentFile> ();
-        this.last_files = new GLib.List<string> ();
+        print_settings = new Gee.HashMap<string, string> ();
+        recent_files = new GLib.List<RecentFile> ();
+        last_files = new GLib.List<string> ();
 
-        this.gtk_sett = Gtk.Settings.get_default ();
-        this.dpi = get_dpi (gtk_sett);
+        gtk_sett = Gtk.Settings.get_default ();
+        dpi = get_dpi (gtk_sett);
 
-        this.load_default ();
-        this.load_style_from_gtk ();
-        this.load_from_config ();
+        load_default ();
+        load_style_from_gtk ();
+        load_from_config ();
     }
 
-    public GLib.List<RecentFile> get_recent_files(){
+    public GLib.List<RecentFile> get_recent_files () {
         // BUG: copy fails ! :(
         // return recent_files.copy ();
 
-        var rv = new GLib.List<RecentFile>();
-        foreach (var it in this.recent_files)
-            rv.append (it.copy());
+        var rv = new GLib.List<RecentFile> ();
+        foreach (var it in recent_files) {
+            rv.append (it.copy ());
+        }
         return rv;
     }
 
-    public GLib.List<string> get_last_files() {
+    public GLib.List<string> get_last_files () {
         var rv = new GLib.List<string> ();
-        foreach (var it in this.last_files)
-            rv.append(it);
+        foreach (var it in last_files) {
+            rv.append (it);
+        }
         return rv;
     }
 
-    private void load_style_from_gtk() {
-        if (! this.system_colors)
+    private void load_style_from_gtk () {
+        if (! system_colors) {
             return;
+        }
 
-        var widget = new Gtk.TextView();
+        var widget = new Gtk.TextView ();
         var stylecx = widget.get_style_context ();
 
-        this.default_color = (Gdk.RGBA) stylecx.get_property (
+        default_color = (Gdk.RGBA) stylecx.get_property (
                 "border-color", Gtk.StateFlags.NORMAL);
-        this.canvas_color = (Gdk.RGBA) stylecx.get_property (
+        canvas_color = (Gdk.RGBA) stylecx.get_property (
                 "background-color", Gtk.StateFlags.NORMAL);
-        this.text_normal = stylecx.get_color(Gtk.StateFlags.NORMAL);
-        this.text_selected = stylecx.get_color(Gtk.StateFlags.SELECTED);
-        this.back_normal = (Gdk.RGBA) stylecx.get_property (
+        text_normal = stylecx.get_color (Gtk.StateFlags.NORMAL);
+        text_selected = stylecx.get_color (Gtk.StateFlags.SELECTED);
+        back_normal = (Gdk.RGBA) stylecx.get_property (
                 "background-color", Gtk.StateFlags.NORMAL);
-        this.back_selected = (Gdk.RGBA) stylecx.get_property (
+        back_selected = (Gdk.RGBA) stylecx.get_property (
                 "background-color", Gtk.StateFlags.SELECTED);
     }
 
-    private void load_default() {
-        author = GLib.Environment.get_real_name();
-        default_directory = GLib.Environment.get_home_dir();
+    private void load_default () {
+        author = GLib.Environment.get_real_name ();
+        default_directory = GLib.Environment.get_home_dir ();
         start_with = Start.WELCOME;
 
         node_system_font = true;
-        node_font = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
-        node_font_size = (int) GLib.Math.lrint (
-                            (node_font.get_size() / Pango.SCALE) * (dpi / 100.0));
+        node_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
+        node_font_size = (int) Math.lrint (
+                (node_font.get_size () / Pango.SCALE) * (dpi / 100.0));
         font_rise = FONT_RISE;
         line_rise = LINE_RISE;
         font_padding = FONT_PADDING;
         height_padding = NODE_PADDING_HEIGHT;
         width_padding = NODE_PADDING_WEIGHT;
         text_system_font = true;
-        text_font = Pango.FontDescription.from_string(gtk_sett.gtk_font_name);
-        text_font_size = (int) GLib.Math.lrint (
-                            (text_font.get_size() / Pango.SCALE) * (dpi / 100.0));
+        text_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
+        text_font_size = (int) Math.lrint (
+                (text_font.get_size () / Pango.SCALE) * (dpi / 100.0));
         text_height = TEXT_HEIGHT;
 
         system_colors = true;
-        default_color = { uint32.MAX/2, uint16.MAX/2, uint16.MAX/2, uint16.MAX/2 };   // gray
-        canvas_color = { uint32.MAX, uint16.MAX, uint16.MAX, uint16.MAX };          // white
-        text_normal   = { uint32.MIN, uint16.MIN, uint16.MIN, uint16.MIN };         // black
+        default_color = {uint32.MAX / 2, uint16.MAX / 2, uint16.MAX / 2, uint16.MAX / 2};   // gray
+        canvas_color = {uint32.MAX, uint16.MAX, uint16.MAX, uint16.MAX};          // white
+        text_normal = {uint32.MIN, uint16.MIN, uint16.MIN, uint16.MIN};         // black
         text_selected = canvas_color;
-        back_normal   = canvas_color;
+        back_normal = canvas_color;
         back_selected = default_color;
 
         rise_method = RisingMethod.BRANCHES;
@@ -294,110 +297,113 @@ public class Preferences : GLib.Object {
         rise_branches = true;
     }
 
-    private void read_general_node(Xml.Node* node) {
+    private void read_general_node (Xml.Node* node) {
         for (Xml.Node* it = node->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
 
-            if (it->name == "author"){
-                author = it->get_content().strip();
-            } else if (it->name == "default_directory"){
-                default_directory = it->get_content().strip();
-            } else if (it->name == "start_with"){
-                start_with = Start.parse (it->get_content().strip());
+            if (it->name == "author") {
+                author = it->get_content ().strip ();
+            } else if (it->name == "default_directory") {
+                default_directory = it->get_content ().strip ();
+            } else if (it->name == "start_with") {
+                start_with = Start.parse (it->get_content ().strip ());
             }
         }
     }
 
-    private void read_style_node(Xml.Node* node) {
+    private void read_style_node (Xml.Node* node) {
         for (Xml.Node* it = node->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
 
-            if (it->name == "node_system_font"){
-                node_system_font = bool.parse(it->get_content().strip());
-            } else if (it->name == "node_font"){
+            if (it->name == "node_system_font") {
+                node_system_font = bool.parse (it->get_content ().strip ());
+            } else if (it->name == "node_font") {
                 if (!node_system_font)
-                    node_font = Pango.FontDescription.from_string(
-                            it->get_content().strip());
-            } else if (it->name == "font_rise"){
-                font_rise = int.parse(it->get_content().strip());
-            } else if (it->name == "line_rise"){
-                line_rise = int.parse(it->get_content().strip());
-            } else if (it->name == "font_padding"){
-                font_padding = int.parse(it->get_content().strip());
-            } else if (it->name == "height_padding"){
-                height_padding = int.parse(it->get_content().strip());
-            } else if (it->name == "width_padding"){
-                width_padding = int.parse(it->get_content().strip());
-            } else if (it->name == "text_system_font"){
-                text_system_font = bool.parse(it->get_content().strip());
-            } else if (it->name == "text_font"){
-                if (!text_system_font)
-                    text_font = Pango.FontDescription.from_string(
-                            it->get_content().strip());
-            } else if (it->name == "text_height"){
-                text_height = int.parse(it->get_content().strip());
+                    node_font = Pango.FontDescription.from_string (
+                            it->get_content ().strip ());
+            } else if (it->name == "font_rise") {
+                font_rise = int.parse (it->get_content ().strip ());
+            } else if (it->name == "line_rise") {
+                line_rise = int.parse (it->get_content ().strip ());
+            } else if (it->name == "font_padding") {
+                font_padding = int.parse (it->get_content ().strip ());
+            } else if (it->name == "height_padding") {
+                height_padding = int.parse (it->get_content ().strip ());
+            } else if (it->name == "width_padding") {
+                width_padding = int.parse (it->get_content ().strip ());
+            } else if (it->name == "text_system_font") {
+                text_system_font = bool.parse (it->get_content ().strip ());
+            } else if (it->name == "text_font") {
+                if (!text_system_font) {
+                    text_font = Pango.FontDescription.from_string (
+                            it->get_content ().strip ());
+                }
+            } else if (it->name == "text_height") {
+                text_height = int.parse (it->get_content ().strip ());
             }
         }
     }
 
-    private void read_colors_node(Xml.Node* node) {
+    private void read_colors_node (Xml.Node* node) {
         for (Xml.Node* it = node->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
 
             // XXX: tady pokud neni system colors false prvni tak to neklapne
-            if (it->name == "system_colors"){
-                system_colors = bool.parse(it->get_content().strip());
+            if (it->name == "system_colors") {
+                system_colors = bool.parse (it->get_content ().strip ());
             } else if (!system_colors) {
-                if (it->name == "default_color"){
-                    default_color.parse(it->get_content());
-                } else if (it->name == "canvas_color"){
-                    canvas_color.parse(it->get_content());
-                } else if (it->name == "text_normal"){
-                    text_normal.parse(it->get_content());
-                } else if (it->name == "text_selected"){
-                    text_selected.parse(it->get_content());
-                } else if (it->name == "back_normal"){
-                    back_normal.parse(it->get_content());
-                } else if (it->name == "back_selected"){
-                    back_selected.parse(it->get_content());
+                if (it->name == "default_color") {
+                    default_color.parse (it->get_content ());
+                } else if (it->name == "canvas_color") {
+                    canvas_color.parse (it->get_content ());
+                } else if (it->name == "text_normal") {
+                    text_normal.parse (it->get_content ());
+                } else if (it->name == "text_selected") {
+                    text_selected.parse (it->get_content ());
+                } else if (it->name == "back_normal") {
+                    back_normal.parse (it->get_content ());
+                } else if (it->name == "back_selected") {
+                    back_selected.parse (it->get_content ());
                 }
             }
         }
     }
 
-    private void read_map_node(Xml.Node* node) {
+    private void read_map_node (Xml.Node* node) {
         for (Xml.Node* it = node->children; it != null; it = it->next) {
             if (it->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
 
-            if (it->name == "rise_method"){
-                rise_method = RisingMethod.parse(it->get_content().strip());
-            } else if (it->name == "rise_ideas"){
-                rise_ideas = bool.parse(it->get_content().strip());
-            } else if (it->name == "rise_branches"){
-                rise_branches = bool.parse(it->get_content().strip());
+            if (it->name == "rise_method") {
+                rise_method = RisingMethod.parse (it->get_content ().strip ());
+            } else if (it->name == "rise_ideas") {
+                rise_ideas = bool.parse (it->get_content ().strip ());
+            } else if (it->name == "rise_branches") {
+                rise_branches = bool.parse (it->get_content ().strip ());
             }
         }
     }
 
     private void load_from_config () {
-        var path = GLib.Environment.get_user_config_dir() + "/"+PROGRAM+".conf";
-        if (!GLib.File.new_for_path (path).query_exists())
+        var path = Environment.get_user_config_dir () + "/" + PROGRAM + ".conf";
+        if (!File.new_for_path (path).query_exists ()) {
             return;
+        }
 
         var r = new Xml.TextReader.filename (path);
-        r.read();
+        r.read ();
 
         Xml.Node* x = r.expand ();
-        if (x == null)
+        if (x == null) {
             return;
+        }
 
         // read the file
         for (Xml.Node* it = x->children; it != null; it = it->next) {
@@ -405,31 +411,31 @@ public class Preferences : GLib.Object {
                 continue;
             }
 
-            if (it->name == "general"){
-                read_general_node(it);
+            if (it->name == "general") {
+                read_general_node (it);
             }
-            if (it->name == "style"){
-                read_style_node(it);
+            if (it->name == "style") {
+                read_style_node (it);
             }
-            if (it->name == "colors"){
-                read_colors_node(it);
+            if (it->name == "colors") {
+                read_colors_node (it);
             }
-            if (it->name == "map"){
-                read_map_node(it);
+            if (it->name == "map") {
+                read_map_node (it);
             }
-            if (it->name == "print"){
-                read_print_node(it);
+            if (it->name == "print") {
+                read_print_node (it);
             }
-            if (it->name == "recent"){
-                read_recent_node(it);
+            if (it->name == "recent") {
+                read_recent_node (it);
             }
             if (it->name == "last"){
-                read_last_node(it);
+                read_last_node (it);
             }
         }
     }
 
-    private void load_from_ui() {
+    private void load_from_ui () {
         // general tab
         author = pw.author.get_text ();
         default_directory = pw.default_directory.get_current_folder ();
@@ -442,36 +448,38 @@ public class Preferences : GLib.Object {
         }
 
         // style tab
-        node_system_font = pw.node_system_font.get_active();
-        if (!node_system_font)
+        node_system_font = pw.node_system_font.get_active ();
+        if (!node_system_font) {
             node_font = Pango.FontDescription.from_string (pw.node_font.font_name);
-        else
+        } else {
             node_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
-        node_font_size = (int) GLib.Math.lrint (
-                        (node_font.get_size() / Pango.SCALE) * (dpi / 100.0));
+        }
+        node_font_size = (int) Math.lrint (
+                (node_font.get_size () / Pango.SCALE) * (dpi / 100.0));
         font_rise = pw.font_rise.get_value ();
         line_rise = pw.line_rise.get_value ();
         font_padding = (int) pw.font_padding.get_value ();
         height_padding = (int) pw.height_padding.get_value ();
         width_padding = (int) pw.width_padding.get_value ();
-        text_system_font = pw.text_system_font.get_active();
-        if (!text_system_font)
+        text_system_font = pw.text_system_font.get_active ();
+        if (!text_system_font) {
             text_font = Pango.FontDescription.from_string (pw.text_font.font_name);
-        else
+        } else {
             text_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
-        text_font_size = (int) GLib.Math.lrint (
-                        (text_font.get_size() / Pango.SCALE) * (dpi / 100.0));
+        }
+        text_font_size = (int) Math.lrint (
+                (text_font.get_size () / Pango.SCALE) * (dpi / 100.0));
         text_height = (int) pw.text_height.get_value ();
 
         // colors map
-        system_colors = pw.system_colors.get_active();
+        system_colors = pw.system_colors.get_active ();
         if (!system_colors) {
-            default_color = pw.default_color.get_rgba();
-            canvas_color = pw.canvas_color.get_rgba();
-            text_normal = pw.text_normal.get_rgba();
-            text_selected = pw.text_selected.get_rgba();
-            back_normal = pw.back_normal.get_rgba();
-            back_selected = pw.back_selected.get_rgba();
+            default_color = pw.default_color.get_rgba ();
+            canvas_color = pw.canvas_color.get_rgba ();
+            text_normal = pw.text_normal.get_rgba ();
+            text_selected = pw.text_selected.get_rgba ();
+            back_normal = pw.back_normal.get_rgba ();
+            back_selected = pw.back_selected.get_rgba ();
         } else {
             load_style_from_gtk ();
         }
@@ -482,16 +490,17 @@ public class Preferences : GLib.Object {
         rise_branches = pw.get_rise_branches ();
     }
 
-    private void save_to_ui() {
+    private void save_to_ui () {
         // general tab
         pw.author.set_text (author);
         pw.default_directory.set_current_folder (default_directory);
-        if (start_with == Start.EMPTY)
+        if (start_with == Start.EMPTY) {
             pw.start_empty.set_active (true);
-        else if (start_with == Start.LAST)
+        } else if (start_with == Start.LAST) {
             pw.start_last.set_active (true);
-        else
+        } else {
             pw.start_welcome.set_active (true);
+        }
 
         // style tab
         pw.node_system_font.set_active (node_system_font);
@@ -535,15 +544,17 @@ public class Preferences : GLib.Object {
         w.start_element ("style");
 
         w.write_element ("node_system_font", node_system_font.to_string ());
-        if (!node_system_font)
+        if (!node_system_font) {
             w.write_element ("node_font", node_font.to_string ());
+        }
         w.write_element ("font_rise", font_rise.to_string ());
         w.write_element ("line_rise", line_rise.to_string ());
         w.write_element ("font_padding", font_padding.to_string ());
         w.write_element ("width_padding", width_padding.to_string ());
         w.write_element ("text_system_font", text_system_font.to_string ());
-        if (!text_system_font)
+        if (!text_system_font) {
             w.write_element ("text_font", text_font.to_string ());
+        }
         w.write_element ("text_font_size", text_font_size.to_string ());
         w.write_element ("text_height", text_height.to_string ());
 
@@ -555,12 +566,12 @@ public class Preferences : GLib.Object {
 
         w.write_element ("system_colors", system_colors.to_string ());
         if (!system_colors) {
-            w.write_element ("default_color", default_color.to_string());
-            w.write_element ("canvas_color", canvas_color.to_string());
-            w.write_element ("text_normal", text_normal.to_string());
-            w.write_element ("text_selected", text_selected.to_string());
-            w.write_element ("back_normal", back_normal.to_string());
-            w.write_element ("back_selected", back_selected.to_string());
+            w.write_element ("default_color", default_color.to_string ());
+            w.write_element ("canvas_color", canvas_color.to_string ());
+            w.write_element ("text_normal", text_normal.to_string ());
+            w.write_element ("text_selected", text_selected.to_string ());
+            w.write_element ("back_normal", back_normal.to_string ());
+            w.write_element ("back_selected", back_selected.to_string ());
         }
 
         w.end_element ();
@@ -576,15 +587,17 @@ public class Preferences : GLib.Object {
         w.end_element ();
     }
 
-    private void save_to_config() throws Error {
-        string config_dir_str = GLib.Environment.get_user_config_dir();
-        var config_dir = GLib.File.new_for_path(config_dir_str);
-        if (!config_dir.query_exists())
-            GLib.DirUtils.create_with_parents(config_dir_str, 0755);
-        if (config_dir.query_file_type (0) != FileType.DIRECTORY)
-            throw new GLib.FileError.NOTDIR (config_dir_str + " is not directory!");
+    private void save_to_config () throws Error {
+        string config_dir_str = Environment.get_user_config_dir ();
+        var config_dir = File.new_for_path (config_dir_str);
+        if (!config_dir.query_exists ()) {
+            DirUtils.create_with_parents (config_dir_str, 0755);
+        }
+        if (config_dir.query_file_type (0) != FileType.DIRECTORY) {
+            throw new FileError.NOTDIR (config_dir_str + " is not directory!");
+        }
 
-        var w = new Xml.TextWriter.filename (config_dir_str + "/"+PROGRAM+".conf");
+        var w = new Xml.TextWriter.filename (config_dir_str + "/" + PROGRAM + ".conf");
         w.set_indent (true);
         w.set_indent_string ("\t");
 
@@ -599,19 +612,19 @@ public class Preferences : GLib.Object {
         write_last_node (w);
         write_print_node (w);
 
-        w.end_element();
-        w.end_document();
-        w.flush();
+        w.end_element ();
+        w.end_document ();
+        w.flush ();
     }
 
     public bool dialog (Gtk.Window parent) {
-        if (this.pw != null) {
-            stderr.printf("Preferences are open yet.\n");
+        if (pw != null) {
+            stderr.printf ("Preferences are open yet.\n");
             return false;
         }
 
         var pref_widgets = new PreferenceWidgets ();
-        this.pw = pref_widgets;
+        pw = pref_widgets;
 
         try {
             pw.loadui ();
@@ -621,32 +634,32 @@ public class Preferences : GLib.Object {
             return false;
         }
 
-        this.save_to_ui();
+        save_to_ui ();
 
-        var retval = (this.pw.dialog.run() == 1);
+        var retval = (pw.dialog.run () == 1);
 
         if (retval) {
-            this.load_from_ui ();
+            load_from_ui ();
             try {
-                this.save_to_config ();
+                save_to_config ();
             } catch (Error e) {
                 stderr.printf ("%s\n", e.message);
             }
         }
 
-        this.pw.dialog.destroy();
-        this.pw = null;
+        pw.dialog.destroy ();
+        pw = null;
 
         return retval;
     }
 
     private void read_from_print_settings (string key, string val) {
-        this.print_settings.set (key, val);
+        print_settings.set (key, val);
     }
 
     public void load_print_settings (Gtk.PrintSettings settings) {
-        this.print_settings.foreach((entry) => {
-            settings.set(entry.key, entry.value);
+        print_settings.foreach ((entry) => {
+            settings.set (entry.key, entry.value);
             return true;
         });
     }
@@ -654,7 +667,7 @@ public class Preferences : GLib.Object {
     private void write_print_node (Xml.TextWriter w) {
         w.start_element ("print");
 
-        this.print_settings.foreach((it) => {
+        print_settings.foreach ((it) => {
             w.write_element (it.key, it.value);
             return true;
         });
@@ -668,11 +681,11 @@ public class Preferences : GLib.Object {
                 continue;
             }
 
-            print_settings.set(it->name, it->get_content());
+            print_settings.set (it->name, it->get_content ());
         }
     }
 
-    public void save_print_settings(Gtk.PrintSettings settings)  throws Error {
+    public void save_print_settings (Gtk.PrintSettings settings) throws Error {
         settings.foreach (read_from_print_settings);
         save_to_config ();
     }
@@ -693,7 +706,7 @@ public class Preferences : GLib.Object {
         try {
             save_to_config ();
         } catch (Error e) {
-            stderr.printf("%s\n", e.message);
+            stderr.printf ("%s\n", e.message);
         }
     }
 
@@ -701,14 +714,14 @@ public class Preferences : GLib.Object {
         w.start_element ("recent");
 
         uint i = 0;
-        foreach (var it in recent_files){
+        foreach (var it in recent_files) {
             uint64 utime = it.time;    // time_t have not to_string method
             w.start_element ("file");
             w.write_attribute ("path", it.path);
-            w.write_attribute ("time", utime.to_string());
+            w.write_attribute ("time", utime.to_string ());
             w.end_element ();
             ++i;
-            if (i == RECENT_FILES)  break;         // only 5 recent files
+            if (i == RECENT_FILES) break;         // only 5 recent files
         }
 
         w.end_element ();
@@ -720,52 +733,56 @@ public class Preferences : GLib.Object {
                 continue;
             }
 
-            if (it->name != "file")     // don't know item
+            if (it->name != "file") {     // don't know item
                 continue;
+            }
 
             string ? path = null;
             time_t ? time = null;
 
-            for (Xml.Attr* at = it->properties; at != null; at = at->next){
-                if (at->name == "path")
+            for (Xml.Attr* at = it->properties; at != null; at = at->next) {
+                if (at->name == "path") {
                     path = at->children->content;
-                else if (at->name == "time")
-                    time = (time_t) uint64.parse(at->children->content);
+                } else if (at->name == "time") {
+                    time = (time_t) uint64.parse (at->children->content);
+                }
             }
 
-            if (path != null && time != null)
-                recent_files.append (new RecentFile.with_time(path, time));
-            else
+            if (path != null && time != null) {
+                recent_files.append (new RecentFile.with_time (path, time));
+            } else {
                 stderr.printf ("Missing file attribute %s\n", path);
+            }
         }
     }
 
     public void append_last (string path) {
-        unowned GLib.List<string>? item = last_files.find_custom (path, strcmp);
-        if (item == null)
+        unowned List<string>? item = last_files.find_custom (path, strcmp);
+        if (item == null) {
             last_files.append (path);
+        }
 
         try {
             save_to_config ();
         } catch (Error e) {
-            stderr.printf("%s\n", e.message);
+            stderr.printf ("%s\n", e.message);
         }
     }
 
     public void remove_last (string path) {
-        unowned GLib.List<string>? item = last_files.find_custom (path, strcmp);
+        unowned List<string>? item = last_files.find_custom (path, strcmp);
         assert (item != null);
         last_files.remove_link (item);
 
         try {
             save_to_config ();
         } catch (Error e) {
-            stderr.printf("%s\n", e.message);
+            stderr.printf ("%s\n", e.message);
         }
     }
 
     public void reorder_last (string path, uint pos) {
-        unowned GLib.List<string>? item = last_files.find_custom (path, strcmp);
+        unowned List<string>? item = last_files.find_custom (path, strcmp);
         assert (item != null);
         last_files.remove_link (item);
         last_files.insert (path, (int) pos);
@@ -773,7 +790,7 @@ public class Preferences : GLib.Object {
         try {
             save_to_config ();
         } catch (Error e) {
-            stderr.printf("%s\n", e.message);
+            stderr.printf ("%s\n", e.message);
         }
     }
 
@@ -794,9 +811,9 @@ public class Preferences : GLib.Object {
                 continue;
             }
             if (it->name == "file") {
-                item = last_files.find_custom (it->get_content(), strcmp);
+                item = last_files.find_custom (it->get_content (), strcmp);
                 if (item == null)
-                    last_files.append (it->get_content());
+                    last_files.append (it->get_content ());
             }
         }
     }

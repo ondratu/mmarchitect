@@ -11,15 +11,15 @@ public struct ClaverTime {
     public time_t val;
     public time_t now;
 
-    public ClaverTime (time_t tv_sec){
-        this.val = tv_sec;
-        time_t (out this.now);
+    public ClaverTime (time_t tv_sec) {
+        val = tv_sec;
+        time_t (out now);
     }
 
     public string to_string () {
         uint64 vdays = val / 86400;    // 60 * 60 * 24
         uint64 ndays = now / 86400;    // 60 * 60 * 24
-        uint64 days =  ndays - vdays;
+        uint64 days = ndays - vdays;
 
         // couse localtime_r is no available on win32
 #if ! WINDOWS
@@ -37,18 +37,20 @@ public struct ClaverTime {
         var gtime = GLib.TimeVal ();
         gtime.tv_sec = val;
 
-        string iso = gtime.to_iso8601();
-        string Y = iso.substring(0,4);
-        string m = iso.substring(5,2);
-        string d = iso.substring(8,2);
-        //string H = iso.substring(11,2);
-        //string M = iso.substring(14,2);
+        string iso = gtime.to_iso8601 ();
+        string Y = iso.substring (0,4);
+        string m = iso.substring (5,2);
+        string d = iso.substring (8,2);
+        //string H = iso.substring (11,2);
+        //string M = iso.substring (14,2);
 
-        if (days == 0)
+        if (days == 0) {
             return _("Today");     // bad time without timezone
+        }
             // return _(@"Today $H:$M");
-        if (days == 1)
+        if (days == 1) {
             return _("Yesterday"); // bad time without timezone
+        }
             // return _(@"Yesterday $H:$M");
         //if (days < 7)
         //    return @"$d. $m. $H:$M";

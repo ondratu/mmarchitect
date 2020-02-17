@@ -8,11 +8,11 @@ public bool set_source_svg (Cairo.Context cr, string file_name,
     var context = new Cairo.Context (surface);
 
     try {
-        svg = new Rsvg.Handle.from_file(file_name);
+        svg = new Rsvg.Handle.from_file (file_name);
         //context.translate(0,0);
         context.scale (1.0 * width / svg.width, 1.0 * height / svg.height);
-        svg.render_cairo(context);
-        cr.set_source_surface(surface, x, y);
+        svg.render_cairo (context);
+        cr.set_source_surface (surface, x, y);
         return true;
     } catch (Error e) {
         context.set_source_rgb (1.0, 0.2, 0.2);
@@ -21,8 +21,8 @@ public bool set_source_svg (Cairo.Context cr, string file_name,
         context.line_to (width - 1, height - 1);
         context.move_to (width - 1, height / 1.5);
         context.line_to (width / 1.5, height - 1);
-        context.stroke();
-        cr.set_source_surface(surface, x, y);
+        context.stroke ();
+        cr.set_source_surface (surface, x, y);
         // stock
         return false;
     }
@@ -56,7 +56,7 @@ public class SVGImage : Gtk.Widget {
         var window = new Gdk.Window (get_parent_window (), attrs, 0);
         set_window (window);
 
-        var allocation = Gtk.Allocation();
+        var allocation = Gtk.Allocation ();
         get_allocation (out allocation);
         window.move_resize (allocation.x, allocation.y,
                             allocation.width, allocation.height);

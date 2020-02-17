@@ -6,7 +6,7 @@ enum RisingMethod {
     BRANCHES,               // rising by branches
     POINTS;                 // rising by points
 
-    public static string to_string(uint i){
+    public static string to_string (uint i){
         switch (i) {
             case RisingMethod.DISABLE:
                 return "DISABLE";
@@ -18,13 +18,14 @@ enum RisingMethod {
         }
     }
 
-    public static uint parse(string s){
-        if (s == "DISABLE")
+    public static uint parse (string s) {
+        if (s == "DISABLE") {
             return RisingMethod.DISABLE;
-        if (s == "POINTS")
+        }
+        if (s == "POINTS") {
             return RisingMethod.POINTS;
-        else // BRANCHES and default
-            return RisingMethod.BRANCHES;
+        }
+        return RisingMethod.BRANCHES;
     }
 }
 
@@ -42,48 +43,53 @@ public class MapWidgets: GLib.Object {
         builder.add_from_file (DATA_DIR + "/ui/map.ui");
         builder.connect_signals (this);
 
-        this.rise_method_disable = builder.get_object("rise_method_disable")
-                    as Gtk.RadioButton;
-        this.rise_method_branches = builder.get_object("rise_method_branches")
-                    as Gtk.RadioButton;
-        this.rise_method_points = builder.get_object("rise_method_points")
-                    as Gtk.RadioButton;
-        this.rise_ideas = builder.get_object("rise_ideas") as Gtk.CheckButton;
-        this.rise_branches = builder.get_object("rise_branches") as Gtk.CheckButton;
+        rise_method_disable = (Gtk.RadioButton)
+                builder.get_object ("rise_method_disable");
+        rise_method_branches = (Gtk.RadioButton)
+                builder.get_object ("rise_method_branches");
+        rise_method_points = (Gtk.RadioButton)
+                builder.get_object ("rise_method_points");
+        rise_ideas = (Gtk.CheckButton)
+                builder.get_object ("rise_ideas");
+        rise_branches = (Gtk.CheckButton)
+                builder.get_object ("rise_branches");
 
-        this.box = builder.get_object("box_map") as Gtk.Box;
+        box = (Gtk.Box) builder.get_object ("box_map");
     }
 
     public void set_rise_method (uint method) {
-        if (method == RisingMethod.BRANCHES)
-            this.rise_method_branches.set_active (true);
-        else if (method == RisingMethod.POINTS)
-            this.rise_method_points.set_active (true);
-        else        // RisingMethod.DISABLE
-            this.rise_method_disable.set_active (true);
+        if (method == RisingMethod.BRANCHES) {
+            rise_method_branches.set_active (true);
+        } else if (method == RisingMethod.POINTS) {
+            rise_method_points.set_active (true);
+        } else {        // RisingMethod.DISABLE
+            rise_method_disable.set_active (true);
+        }
     }
 
     public uint get_rise_method () {
-        if (this.rise_method_branches.get_active ())
+        if (rise_method_branches.get_active ()) {
             return RisingMethod.BRANCHES;
-        if (this.rise_method_points.get_active ())
+        }
+        if (rise_method_points.get_active ()) {
             return RisingMethod.POINTS;
+        }
         return RisingMethod.DISABLE;
     }
 
     public void set_rise_ideas (bool state) {
-        this.rise_ideas.set_active (state);
+        rise_ideas.set_active (state);
     }
 
     public bool get_rise_ideas () {
-        return this.rise_ideas.get_active ();
+        return rise_ideas.get_active ();
     }
 
     public void set_rise_branches (bool state) {
-        this.rise_branches.set_active (state);
+        rise_branches.set_active (state);
     }
 
     public bool get_rise_branches () {
-        return this.rise_branches.get_active ();
+        return rise_branches.get_active ();
     }
 }

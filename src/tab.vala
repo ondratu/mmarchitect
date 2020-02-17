@@ -10,8 +10,8 @@
 
 public class CloseIco : Gtk.EventBox {
     public CloseIco () {
-        this.add (new Gtk.Image.from_icon_name ("window-close",
-                                                Gtk.IconSize.SMALL_TOOLBAR));
+        add (new Gtk.Image.from_icon_name ("window-close",
+                                           Gtk.IconSize.SMALL_TOOLBAR));
     }
 }
 
@@ -21,17 +21,17 @@ public class TabLabel : Gtk.Box {
 
     public TabLabel (string title) {
         Object (orientation: Gtk.Orientation.HORIZONTAL, spacing: 10);
-        this.label = new Gtk.Label(title);
-        this.add (label);
+        label = new Gtk.Label (title);
+        add (label);
 
-        this.close_button = new CloseIco();
-        this.add (close_button);
+        close_button = new CloseIco ();
+        add (close_button);
 
-        this.show_all ();
+        show_all ();
     }
 
     public void set_title (string title) {
-        this.label.label = title;
+        label.label = title;
     }
 }
 

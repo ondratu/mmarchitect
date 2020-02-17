@@ -30,5 +30,3 @@ uninstall:
 	$(RM) $(DESTDIR)$(PREFIX)/share/icons/hicolor/32x32/apps/$(PROGRAM).png
 	$(RM) $(DESTDIR)$(PREFIX)/share/pixmaps/$(PROGRAM).png
 	$(RM) $(DESTDIR)$(PREFIX)/share/pixmaps/$(PROGRAM).xpm
-
-

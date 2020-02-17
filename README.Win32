@@ -1,7 +1,7 @@
 mmarchitect for Win32
 ---------------------
 
-Sources are possible to compile with Valac for windows. See 
+Sources are possible to compile with Valac for windows. See
 http://live.gnome.org/Vala/ValaOnWindows. After that, you will need unzip some
 tools from UnxUtils https://sourceforge.net/projects/unxutils/ to valac bin
 directory. You will need this tools:

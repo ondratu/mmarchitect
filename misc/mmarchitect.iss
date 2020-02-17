@@ -58,4 +58,3 @@ Filename: "cmd"; Parameters: "/c mkdir etc\gtk-2.0 & bin\gdk-pixbuf-query-loader
 Type: files; Name: "{app}\etc\gtk-2.0\gdk-pixbuf.loaders"
 Type: dirifempty; Name: "{app}\etc\gtk-2.0"
 Type: dirifempty; Name: "{app}\etc"
-

@@ -11,31 +11,34 @@ public static int main (string[] args) {
     string ? lc_time = null;
 
 #if ! WINDOWS
-    lc_time = GLib.Environment.get_variable("LC_TIME");
-    if (lc_time == null)
-        lc_time = GLib.Environment.get_variable("LC_ALL");
-    if (lc_time == null)
-        lc_time = GLib.Environment.get_variable("LANG");
+    lc_time = Environment.get_variable ("LC_TIME");
+    if (lc_time == null) {
+        lc_time = Environment.get_variable ("LC_ALL");
+    }
+    if (lc_time == null) {
+        lc_time = Environment.get_variable ("LANG");
+    }
 #else
-    lc_time = GLib.Win32.getlocale();
+    lc_time = Win32.getlocale ();
 #endif
-    if (lc_time != null)
+    if (lc_time != null) {
         GLib.Intl.setlocale (LocaleCategory.TIME, lc_time);
+    }
 
-    DATA_DIR = GLib.Environment.get_variable("DATADIR");
+    DATA_DIR = Environment.get_variable ("DATADIR");
     if (DATA_DIR == null){
         DATA_DIR = DATADIR;
     }
 
     string ? locale_dir = null;
-    locale_dir = GLib.Environment.get_variable("LOCALEDIR");
-    if (locale_dir == null){
+    locale_dir = GLib.Environment.get_variable ("LOCALEDIR");
+    if (locale_dir == null) {
         locale_dir = LOCALEDIR;
     }
 
-    Intl.bindtextdomain(GETTEXT_PACKAGE, locale_dir);
-    Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-    Intl.textdomain(GETTEXT_PACKAGE);
+    Intl.bindtextdomain (GETTEXT_PACKAGE, locale_dir);
+    Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+    Intl.textdomain (GETTEXT_PACKAGE);
 
     Gtk.init (ref args);
     var app = new App ();
