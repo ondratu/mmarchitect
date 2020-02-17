@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkBox" id="mainbox">
@@ -298,61 +298,11 @@
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel" id="etitle2">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="xpad">10</property>
-                <property name="label" translatable="yes">&lt;a href="http://sourceforge.net/p/mmarchitect/discussion/general/"&gt;General Discussion&lt;/a&gt;</property>
-                <property name="use_markup">True</property>
-                <property name="xalign">0</property>
-                <attributes>
-                  <attribute name="scale" value="1.3999999999999999"/>
-                </attributes>
-                <signal name="activate-link" handler="welcome_tab_open_uri" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="ebody2">
-                <property name="width_request">400</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="xpad">10</property>
-                <property name="label" translatable="yes">Have you any question about this application? Or have you some tip for us, or other users ? Can you help to other users. Or you anly wnat to see whats new in project ? Watch General Discussion on SourceForge.net.</property>
-                <property name="justify">fill</property>
-                <property name="wrap">True</property>
-                <property name="wrap_mode">word-char</property>
-                <property name="xalign">0</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="padding">10</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <child>
               <object class="GtkLabel" id="etitle3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">&lt;a href="http://sourceforge.net/p/mmarchitect/tickets/"&gt;Tasks and Bugs&lt;/a&gt;</property>
+                <property name="label" translatable="yes">&lt;a href="https://github.com/ondratu/mmarchitect/issues"&gt;Issues&lt;/a&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="xalign">0</property>
                 <attributes>
@@ -372,7 +322,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="xpad">10</property>
-                <property name="label" translatable="yes">Is there bug in this program ? Is missing some future for you in mmarchitect ? Please tell us more information about that. Thank you for your response.</property>
+                <property name="label" translatable="yes">Is there bug in this program? Is missing some future for you in mmarchitect? Please tell us more information about that. Thank you for your response.</property>
                 <property name="justify">fill</property>
                 <property name="wrap">True</property>
                 <property name="wrap_mode">word-char</property>
@@ -389,7 +339,7 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="padding">10</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -438,7 +388,7 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="padding">10</property>
-            <property name="position">3</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
