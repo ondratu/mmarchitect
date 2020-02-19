@@ -44,3 +44,14 @@ summary = [
 ]
 
 message('\n'.join(summary))
+
+executable(
+    project_name,
+    sources,
+    dependencies: dependencies)
+
+executable(
+    'mmarchitect-ng',
+    [sources_ng, resources],
+    dependencies: dependencies,
+    vala_args: [resource_args])
