@@ -46,4 +46,7 @@ sources = files(
     'welcometab.vala'
 )
 
-executable(project_name, sources, dependencies: dependencies)
+sources_ng = files(
+    'application.vala',
+    'main_window.vala'
+)
