@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-05 07:00+0100\n"
+"POT-Creation-Date: 2020-03-03 21:05+0100\n"
 "PO-Revision-Date: 2019-08-01 05:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.8-dev\n"
 
-#: ../src/mindmap.vala:75
+#: ../src/mindmap.vala:79
 msgid "Main Idea"
 msgstr "Hovedidé"
 
-#: ../src/main.vala:46
+#: ../src/main.vala:49
 #, c-format
 msgid "Could not load app UI: %s\n"
 msgstr "Kunne ikke laste inn programbrukergrensesnitt: %s\n"
@@ -55,19 +55,19 @@ msgstr ""
 "Tankekart kan brukes som gjøremålslister. Du har en mer tre-lignende "
 "mulighet med tankekart, som kategorier, viktighet eller vanskelighetsgrad."
 
-#: ../src/editform.vala:298
+#: ../src/editform.vala:306
 msgid "Extends edit"
 msgstr "Utvider redigering"
 
-#: ../src/clavertime.vala:30
+#: ../src/clavertime.vala:29
 msgid "Today %H:%M"
 msgstr "I dag %H:%M"
 
-#: ../src/clavertime.vala:32
+#: ../src/clavertime.vala:31
 msgid "Yesterday %H:%M"
 msgstr "I går %H:%M"
 
-#: ../src/clavertime.vala:49
+#: ../src/clavertime.vala:48
 msgid "Today"
 msgstr "I dag"
 
@@ -75,80 +75,80 @@ msgstr "I dag"
 msgid "Yesterday"
 msgstr "I går"
 
-#: ../src/print.vala:59
-msgid "Printing error:"
-msgstr "Utskriftsfeil:"
+#: ../src/welcometab.vala:15
+msgid "Start here"
+msgstr "Start her"
 
-#: ../src/app.vala:85 ../src/app.vala:264 ../src/welcometab.vala:63
-#: ../src/welcometab.vala:69
+#: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
+#: ../src/app.vala:267
 msgid "Open file"
 msgstr "Åpne fil"
 
-#: ../src/app.vala:87 ../src/welcometab.vala:65 ../src/welcometab.vala:71
+#: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
 msgid "New file"
 msgstr "Ny fil"
 
-#: ../src/app.vala:89
+#: ../src/app.vala:90
 msgid "Save file"
 msgstr "Lagre fil"
 
-#: ../src/app.vala:91 ../src/app.vala:487
+#: ../src/app.vala:92 ../src/app.vala:495
 msgid "Save file as"
 msgstr "Lagre fil som"
 
-#: ../src/app.vala:120
+#: ../src/app.vala:122
 #, fuzzy
 msgid "File $fname can't be imported!"
 msgstr "Fila %fname kan ikke importeres."
 
-#: ../src/app.vala:267 ../src/app.vala:358 ../src/app.vala:490
-#: ../src/export_dialog.vala:68
+#: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
+#: ../src/export_dialog.vala:69
 msgid "_Cancel"
 msgstr "_Avbryt"
 
-#: ../src/app.vala:268 ../src/app.vala:359
+#: ../src/app.vala:271 ../src/app.vala:364
 msgid "_Open"
 msgstr "_Åpne"
 
-#: ../src/app.vala:299
+#: ../src/app.vala:303
 #, fuzzy
 msgid "File $path not found!"
 msgstr "Fila $path ble ikke funnet."
 
-#: ../src/app.vala:355
+#: ../src/app.vala:360
 msgid "Import file"
 msgstr "Importer fil"
 
-#: ../src/app.vala:491
+#: ../src/app.vala:499
 msgid "_Save"
 msgstr "_Lagre"
 
-#: ../src/welcometab.vala:14
-msgid "Start here"
-msgstr "Start her"
+#: ../src/print.vala:62
+msgid "Printing error:"
+msgstr "Utskriftsfeil:"
 
-#: ../src/export_dialog.vala:62
+#: ../src/export_dialog.vala:63
 #, fuzzy
 msgid "Export Map as"
 msgstr "Eksporter tankekart som"
 
-#: ../src/export_dialog.vala:69
+#: ../src/export_dialog.vala:70
 msgid "_Export As"
 msgstr "_Eksporter som"
 
-#: ../src/export_dialog.vala:72
+#: ../src/export_dialog.vala:73
 msgid "Plain Text"
 msgstr "Klartekst"
 
-#: ../src/export_dialog.vala:76
+#: ../src/export_dialog.vala:77
 msgid "Simple Web Page"
 msgstr "Enkel nettside"
 
-#: ../src/export_dialog.vala:80
+#: ../src/export_dialog.vala:81
 msgid "Dynamic Web Page"
 msgstr "Dynamisk nettside"
 
-#: ../src/export_dialog.vala:84
+#: ../src/export_dialog.vala:85
 msgid "PNG Image"
 msgstr "PNG-bilde"
 
@@ -288,6 +288,97 @@ msgstr "Farger"
 msgid "Map"
 msgstr "Tankekart"
 
+#: ../ui/about_dialog.ui:8
+#, fuzzy
+msgid "About Application Mind Map Architect"
+msgstr "Om"
+
+#: ../ui/about_dialog.ui:14
+msgid "Copyright (c) 2011-2017, Ondřej Tůma"
+msgstr "Kopirett © 2011-1017, Ondřej Tůma"
+
+#: ../ui/about_dialog.ui:15
+#, fuzzy
+msgid "Tool for working with mind maps. "
+msgstr "Verktøy for tankekart. "
+
+#: ../ui/about_dialog.ui:17
+#, fuzzy
+msgid ""
+"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+"Kopirett © 2011-2018, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+
+#: ../ui/about_dialog.ui:45
+#, fuzzy
+msgid ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
+msgstr ""
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"WaldiS <admin@sto.ugu.pl>"
+
 #: ../ui/map.ui:30
 msgid "_disable"
 msgstr "_skru av"
@@ -332,6 +423,119 @@ msgstr "Lagre endringer i dokumentet %s før avslutning?"
 #: ../ui/close_file_dialog.ui:125
 msgid "Your changes will be lost, if you don't save the file."
 msgstr "Endringene vil gå tapt hvis du ikke lagrer fila."
+
+#: ../ui/properties.ui:8
+msgid "File properties"
+msgstr "Filegenskaper"
+
+#: ../ui/properties.ui:88
+#, fuzzy
+msgid "Author"
+msgstr "Forfatter"
+
+#: ../ui/properties.ui:114
+msgid "Created"
+msgstr "Opprettet"
+
+#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
+#: ../ui/welcome.ui:198
+msgid "label"
+msgstr "etikett"
+
+#: ../ui/properties.ui:142
+msgid "Modified"
+msgstr "Endret"
+
+#: ../ui/properties.ui:169
+msgid "Path"
+msgstr "Sti"
+
+#: ../ui/properties.ui:198
+msgid "<b>File</b>"
+msgstr "<b>Fil</b>"
+
+#: ../ui/properties.ui:222
+msgid "<b>Map</b>"
+msgstr "<b>Tankekart</b>"
+
+#: ../ui/color_dialog.ui:40
+msgid "Default color"
+msgstr "Forvalgt farge"
+
+#: ../ui/color_dialog.ui:56
+msgid "Parent color"
+msgstr "Ovennevnt farge"
+
+#: ../ui/color_dialog.ui:73
+msgid "Own color"
+msgstr "Egen farge"
+
+#: ../ui/welcome.ui:125
+msgid "<b>Recent files:</b>"
+msgstr "<b>Nylige filer:</b>"
+
+#: ../ui/welcome.ui:159
+msgid "<b>Tip:</b>"
+msgstr "<b>Tips:</b>"
+
+#: ../ui/welcome.ui:179
+msgid "<b><big>label</big></b>"
+msgstr "<b><big>etikett</big></b>"
+
+#: ../ui/welcome.ui:214
+msgid "<a href=\"#next_tip\">Next Tip</a>"
+msgstr "<a href=\"#next_tip\">Neste tips</a>"
+
+#: ../ui/welcome.ui:256
+#, fuzzy
+msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Prosjektets nettsider</a>"
+
+#: ../ui/welcome.ui:276
+#, fuzzy
+msgid ""
+"If you are looking for more informations about project, want to download new "
+"version, or you want to start with helping us, see Home page of Mind Map "
+"Architect."
+msgstr ""
+"Hvis du ser etter mer informasjon om prosjektet, ønsker å laste ned en ny "
+"versjon, eller vil hjelpe til, sjekk hjemmesiden."
+
+#: ../ui/welcome.ui:305
+#, fuzzy
+msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
+msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Oppgaver og feil</"
+"a>"
+
+#: ../ui/welcome.ui:325
+#, fuzzy
+msgid ""
+"Is there bug in this program? Is missing some future for you in mmarchitect? "
+"Please tell us more information about that. Thank you for your response."
+msgstr ""
+"Feil i programmet? Savner du en funksjon i mmarchitect? Din tilbakemelding "
+"er kjærkommen."
+
+#: ../ui/welcome.ui:355
+msgid ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
+"gtk=1\">Development of project</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Utvikling "
+"av prosjektet</a>"
+
+#: ../ui/welcome.ui:374
+#, fuzzy
+msgid ""
+"If you want to help us with this project, translate messages to your "
+"languege, develop, create package for your distribution, or anything what "
+"you can do for help us, see development page."
+msgstr ""
+"Hvis du ønsker å hjelpe til med prosjektet, oversette meldinger til ditt "
+"språk, utvikle, lage pakker for din distribusjon, eller hva som helst annet "
+"du kan, se utviklingssiden."
 
 #: ../ui/main.ui:8
 msgid "Mind Map Architect"
@@ -457,227 +661,22 @@ msgstr "Flytt til venstre"
 msgid "Move Right"
 msgstr "Flytt til høyre"
 
-#: ../ui/properties.ui:8
-msgid "File properties"
-msgstr "Filegenskaper"
-
-#: ../ui/properties.ui:88
 #, fuzzy
-msgid "Author"
-msgstr "Forfatter"
+#~ msgid ""
+#~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
+#~ "\">General Discussion</a>"
+#~ msgstr ""
+#~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
+#~ "\">Diskusjon</a>"
 
-#: ../ui/properties.ui:114
-msgid "Created"
-msgstr "Opprettet"
-
-#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
-#: ../ui/welcome.ui:198
-msgid "label"
-msgstr "etikett"
-
-#: ../ui/properties.ui:142
-msgid "Modified"
-msgstr "Endret"
-
-#: ../ui/properties.ui:169
-msgid "Path"
-msgstr "Sti"
-
-#: ../ui/properties.ui:198
-msgid "<b>File</b>"
-msgstr "<b>Fil</b>"
-
-#: ../ui/properties.ui:222
-msgid "<b>Map</b>"
-msgstr "<b>Tankekart</b>"
-
-#: ../ui/color_dialog.ui:40
-msgid "Default color"
-msgstr "Forvalgt farge"
-
-#: ../ui/color_dialog.ui:56
-msgid "Parent color"
-msgstr "Ovennevnt farge"
-
-#: ../ui/color_dialog.ui:73
-msgid "Own color"
-msgstr "Egen farge"
-
-#: ../ui/about_dialog.ui:8
-#, fuzzy
-msgid "About Application Mind Map Architect"
-msgstr "Om"
-
-#: ../ui/about_dialog.ui:14
-msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr "Kopirett © 2011-1017, Ondřej Tůma"
-
-#: ../ui/about_dialog.ui:15
-#, fuzzy
-msgid "Tool for working with mind maps. "
-msgstr "Verktøy for tankekart. "
-
-#: ../ui/about_dialog.ui:17
-#, fuzzy
-msgid ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
-"All rights reserved.\n"
-"\n"
-"Redistribution and use in source and binary forms, with or without\n"
-"modification, are permitted provided that the following conditions\n"
-"are met:\n"
-" 1. Redistributions of source code must retain the above copyright\n"
-"    notice, this list of conditions and the following disclaimer.\n"
-" 2. Redistributions in binary form must reproduce the above copyright\n"
-"    notice, this list of conditions and the following disclaimer in the\n"
-"    documentation and/or other materials provided with the distribution.\n"
-" 3. Neither the name of the University nor the names of its contributors\n"
-"    may be used to endorse or promote products derived from this software\n"
-"    without specific prior written permission.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
-"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
-"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
-"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
-"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
-"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
-"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
-"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
-"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
-"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-msgstr ""
-"Kopirett © 2011-2018, Ondřej Tůma\n"
-"All rights reserved.\n"
-"\n"
-"Redistribution and use in source and binary forms, with or without\n"
-"modification, are permitted provided that the following conditions\n"
-"are met:\n"
-" 1. Redistributions of source code must retain the above copyright\n"
-"    notice, this list of conditions and the following disclaimer.\n"
-" 2. Redistributions in binary form must reproduce the above copyright\n"
-"    notice, this list of conditions and the following disclaimer in the\n"
-"    documentation and/or other materials provided with the distribution.\n"
-" 3. Neither the name of the University nor the names of its contributors\n"
-"    may be used to endorse or promote products derived from this software\n"
-"    without specific prior written permission.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
-"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
-"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
-"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
-"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
-"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
-"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
-"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
-"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
-"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-
-#: ../ui/about_dialog.ui:45
-msgid ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"WaldiS <admin@sto.ugu.pl>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Ettore Atalan <atalanttore@googlemail.com>"
-msgstr ""
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Ettore Atalan <atalanttore@googlemail.com>\n"
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"WaldiS <admin@sto.ugu.pl>"
-
-#: ../ui/welcome.ui:125
-msgid "<b>Recent files:</b>"
-msgstr "<b>Nylige filer:</b>"
-
-#: ../ui/welcome.ui:159
-msgid "<b>Tip:</b>"
-msgstr "<b>Tips:</b>"
-
-#: ../ui/welcome.ui:179
-msgid "<b><big>label</big></b>"
-msgstr "<b><big>etikett</big></b>"
-
-#: ../ui/welcome.ui:214
-msgid "<a href=\"#next_tip\">Next Tip</a>"
-msgstr "<a href=\"#next_tip\">Neste tips</a>"
-
-#: ../ui/welcome.ui:256
-#, fuzzy
-msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
-msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Prosjektets nettsider</a>"
-
-#: ../ui/welcome.ui:276
-#, fuzzy
-msgid ""
-"If you are looking for more informations about project, want to download new "
-"version, or you want to start with helping us, see Home page of Mind Map "
-"Architect."
-msgstr ""
-"Hvis du ser etter mer informasjon om prosjektet, ønsker å laste ned en ny "
-"versjon, eller vil hjelpe til, sjekk hjemmesiden."
-
-#: ../ui/welcome.ui:305
-#, fuzzy
-msgid ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General "
-"Discussion</a>"
-msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
-"\">Diskusjon</a>"
-
-#: ../ui/welcome.ui:325
-msgid ""
-"Have you any question about this application? Or have you some tip for us, "
-"or other users ? Can you help to other users. Or you anly wnat to see whats "
-"new in project ? Watch General Discussion on SourceForge.net."
-msgstr ""
-"Har du spørsmål vedrørende programmet? Har du tips til utviklerne, eller "
-"andre brukere? Kan du hjelpe noen? Eller vil du bare se hva som er nytt i "
-"prosjektet? Ta del i dikusjonen på SourceForge.net."
-
-#: ../ui/welcome.ui:355
-#, fuzzy
-msgid ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tasks and Bugs</a>"
-msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Oppgaver og feil</"
-"a>"
-
-#: ../ui/welcome.ui:375
-msgid ""
-"Is there bug in this program ? Is missing some future for you in "
-"mmarchitect ? Please tell us more information about that. Thank you for your "
-"response."
-msgstr ""
-"Feil i programmet? Savner du en funksjon i mmarchitect? Din tilbakemelding "
-"er kjærkommen."
-
-#: ../ui/welcome.ui:405
-msgid ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
-"gtk=1\">Development of project</a>"
-msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Utvikling "
-"av prosjektet</a>"
-
-#: ../ui/welcome.ui:424
-#, fuzzy
-msgid ""
-"If you want to help us with this project, translate messages to your "
-"languege, develop, create package for your distribution, or anything what "
-"you can do for help us, see development page."
-msgstr ""
-"Hvis du ønsker å hjelpe til med prosjektet, oversette meldinger til ditt "
-"språk, utvikle, lage pakker for din distribusjon, eller hva som helst annet "
-"du kan, se utviklingssiden."
+#~ msgid ""
+#~ "Have you any question about this application? Or have you some tip for "
+#~ "us, or other users ? Can you help to other users. Or you anly wnat to see "
+#~ "whats new in project ? Watch General Discussion on SourceForge.net."
+#~ msgstr ""
+#~ "Har du spørsmål vedrørende programmet? Har du tips til utviklerne, eller "
+#~ "andre brukere? Kan du hjelpe noen? Eller vil du bare se hva som er nytt i "
+#~ "prosjektet? Ta del i dikusjonen på SourceForge.net."
 
 #~ msgid ""
 #~ "evanmac <nicola.lomartire@gmail.com>\n"

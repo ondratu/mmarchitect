@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-05 07:00+0100\n"
+"POT-Creation-Date: 2020-03-03 21:05+0100\n"
 "PO-Revision-Date: 2013-01-06 16:35+0100\n"
 "Last-Translator: evanmac <nicola.lomartire@mac.com>\n"
 "Language-Team: evanmac <nicola.lomartire@gmail.com>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: ../src/mindmap.vala:75
+#: ../src/mindmap.vala:79
 msgid "Main Idea"
 msgstr "Idea principale"
 
-#: ../src/main.vala:46
+#: ../src/main.vala:49
 #, c-format
 msgid "Could not load app UI: %s\n"
 msgstr "Non posso caricare l'applicazione per la UI: %s\n"
@@ -51,19 +51,19 @@ msgstr ""
 "possibiltà simili ad un albero con mind maps, come le categorie, importanza "
 "o difficoltà."
 
-#: ../src/editform.vala:298
+#: ../src/editform.vala:306
 msgid "Extends edit"
 msgstr "Modifiche estese"
 
-#: ../src/clavertime.vala:30
+#: ../src/clavertime.vala:29
 msgid "Today %H:%M"
 msgstr "Oggi %H:%M"
 
-#: ../src/clavertime.vala:32
+#: ../src/clavertime.vala:31
 msgid "Yesterday %H:%M"
 msgstr "Ieri %H:%M"
 
-#: ../src/clavertime.vala:49
+#: ../src/clavertime.vala:48
 msgid "Today"
 msgstr "Oggi"
 
@@ -71,79 +71,79 @@ msgstr "Oggi"
 msgid "Yesterday"
 msgstr "Ieri"
 
-#: ../src/print.vala:59
-msgid "Printing error:"
-msgstr "Errore di stampa:"
-
-#: ../src/app.vala:85 ../src/app.vala:264 ../src/welcometab.vala:63
-#: ../src/welcometab.vala:69
-msgid "Open file"
-msgstr "Apri file"
-
-#: ../src/app.vala:87 ../src/welcometab.vala:65 ../src/welcometab.vala:71
-msgid "New file"
-msgstr "Nuovo file"
-
-#: ../src/app.vala:89
-msgid "Save file"
-msgstr "Salva file"
-
-#: ../src/app.vala:91 ../src/app.vala:487
-msgid "Save file as"
-msgstr "Salva con nome..."
-
-#: ../src/app.vala:120
-msgid "File $fname can't be imported!"
-msgstr "Il file $fname non può essere importato!"
-
-#: ../src/app.vala:267 ../src/app.vala:358 ../src/app.vala:490
-#: ../src/export_dialog.vala:68
-msgid "_Cancel"
-msgstr ""
-
-#: ../src/app.vala:268 ../src/app.vala:359
-msgid "_Open"
-msgstr ""
-
-#: ../src/app.vala:299
-msgid "File $path not found!"
-msgstr "Il file $path non è stato trovato!"
-
-#: ../src/app.vala:355
-msgid "Import file"
-msgstr "Importa file"
-
-#: ../src/app.vala:491
-msgid "_Save"
-msgstr ""
-
-#: ../src/welcometab.vala:14
+#: ../src/welcometab.vala:15
 msgid "Start here"
 msgstr "Inizia qui"
 
-#: ../src/export_dialog.vala:62
+#: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
+#: ../src/app.vala:267
+msgid "Open file"
+msgstr "Apri file"
+
+#: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
+msgid "New file"
+msgstr "Nuovo file"
+
+#: ../src/app.vala:90
+msgid "Save file"
+msgstr "Salva file"
+
+#: ../src/app.vala:92 ../src/app.vala:495
+msgid "Save file as"
+msgstr "Salva con nome..."
+
+#: ../src/app.vala:122
+msgid "File $fname can't be imported!"
+msgstr "Il file $fname non può essere importato!"
+
+#: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
+#: ../src/export_dialog.vala:69
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/app.vala:271 ../src/app.vala:364
+msgid "_Open"
+msgstr ""
+
+#: ../src/app.vala:303
+msgid "File $path not found!"
+msgstr "Il file $path non è stato trovato!"
+
+#: ../src/app.vala:360
+msgid "Import file"
+msgstr "Importa file"
+
+#: ../src/app.vala:499
+msgid "_Save"
+msgstr ""
+
+#: ../src/print.vala:62
+msgid "Printing error:"
+msgstr "Errore di stampa:"
+
+#: ../src/export_dialog.vala:63
 #, fuzzy
 msgid "Export Map as"
 msgstr "Esporta file con nome..."
 
-#: ../src/export_dialog.vala:69
+#: ../src/export_dialog.vala:70
 #, fuzzy
 msgid "_Export As"
 msgstr "_Esporta"
 
-#: ../src/export_dialog.vala:72
+#: ../src/export_dialog.vala:73
 msgid "Plain Text"
 msgstr "Testo non formattato"
 
-#: ../src/export_dialog.vala:76
+#: ../src/export_dialog.vala:77
 msgid "Simple Web Page"
 msgstr "Semplice pagina web"
 
-#: ../src/export_dialog.vala:80
+#: ../src/export_dialog.vala:81
 msgid "Dynamic Web Page"
 msgstr "Pagina web dinamica"
 
-#: ../src/export_dialog.vala:84
+#: ../src/export_dialog.vala:85
 msgid "PNG Image"
 msgstr "Immagine PNG"
 
@@ -275,6 +275,95 @@ msgstr "Colori"
 msgid "Map"
 msgstr "Mappa"
 
+#: ../ui/about_dialog.ui:8
+msgid "About Application Mind Map Architect"
+msgstr "Informazioni sull'applicazione Mind Map Architet"
+
+#: ../ui/about_dialog.ui:14
+#, fuzzy
+msgid "Copyright (c) 2011-2017, Ondřej Tůma"
+msgstr "Copyright © 2011-2012, Ondřej Tůma"
+
+#: ../ui/about_dialog.ui:15
+msgid "Tool for working with mind maps. "
+msgstr "Strumenti per lavorare con mind maps."
+
+#: ../ui/about_dialog.ui:17
+#, fuzzy
+msgid ""
+"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+"Copyright © 2011-2012, Ondřej Tůma\n"
+"Tutti i diritti riservati.\n"
+"\n"
+"Ridistribuzione e uso di codice sorgente o binario, con o senza\n"
+"modifiche, sono permesse purché siano rispettate le seguenti condizioni:\n"
+"1. La ridistribuzione del codice sorgente deve contenere il copyright\n"
+"    di cui sopra, questa lista di condizioni e il seguente avvertimento\n"
+"2. La ridistribuzione in forma binaria deve riprodurre il copyright di cui "
+"sopra,\n"
+"    questa lista di condizioni e il seguente avvertimento nella "
+"documentazione\n"
+"    e/o nei materiali forniti con la distribuzione stessa.\n"
+"3. Tutto il materiale pubblicitario che menzioni funzioni o uso di questo "
+"software\n"
+"    deve mostrare il seguente accordo:\n"
+"    Questo prodotto include software sviluppato da Ondřej Tůma.\n"
+"4. Nè il nome dell'autore, né il nome di coloro i quali ocntribuiscono\n"
+"    può essere usato per sostenere e promuovere prodotti\n"
+"    derivati da questo software senza specifica e precedente "
+"autorizzazione.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY ONDŘEJ TǓMA ''AS IS'' AND ANY\n"
+"EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
+"WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
+"DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
+"DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
+"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
+"SERVICES;\n"
+"LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
+"ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
+"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
+"THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+
+#: ../ui/about_dialog.ui:45
+msgid ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
+msgstr ""
+
 #: ../ui/map.ui:30
 msgid "_disable"
 msgstr "_disabilita"
@@ -320,6 +409,119 @@ msgstr ""
 #: ../ui/close_file_dialog.ui:125
 msgid "Your changes will be lost, if you don't save the file."
 msgstr "I cambiamenti andranno persi se non salvi il file."
+
+#: ../ui/properties.ui:8
+msgid "File properties"
+msgstr ""
+
+#: ../ui/properties.ui:88
+#, fuzzy
+msgid "Author"
+msgstr "<b>Autore</b>"
+
+#: ../ui/properties.ui:114
+msgid "Created"
+msgstr ""
+
+#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
+#: ../ui/welcome.ui:198
+msgid "label"
+msgstr "etichetta"
+
+#: ../ui/properties.ui:142
+msgid "Modified"
+msgstr ""
+
+#: ../ui/properties.ui:169
+msgid "Path"
+msgstr ""
+
+#: ../ui/properties.ui:198
+#, fuzzy
+msgid "<b>File</b>"
+msgstr "<b>Suggerimento:</b>"
+
+#: ../ui/properties.ui:222
+#, fuzzy
+msgid "<b>Map</b>"
+msgstr "<b>Suggerimento:</b>"
+
+#: ../ui/color_dialog.ui:40
+msgid "Default color"
+msgstr "Colore di default"
+
+#: ../ui/color_dialog.ui:56
+msgid "Parent color"
+msgstr "Colore padre"
+
+#: ../ui/color_dialog.ui:73
+msgid "Own color"
+msgstr "Proprio colore"
+
+#: ../ui/welcome.ui:125
+msgid "<b>Recent files:</b>"
+msgstr "<b>File recenti</b>"
+
+#: ../ui/welcome.ui:159
+msgid "<b>Tip:</b>"
+msgstr "<b>Suggerimento:</b>"
+
+#: ../ui/welcome.ui:179
+msgid "<b><big>label</big></b>"
+msgstr "<b><big>etichetta</big></b>"
+
+#: ../ui/welcome.ui:214
+msgid "<a href=\"#next_tip\">Next Tip</a>"
+msgstr "<a href=\"#next_tip\">Prossimo suggerimento</a>"
+
+#: ../ui/welcome.ui:256
+msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Pagina web del progetto</a>"
+
+#: ../ui/welcome.ui:276
+msgid ""
+"If you are looking for more informations about project, want to download new "
+"version, or you want to start with helping us, see Home page of Mind Map "
+"Architect."
+msgstr ""
+"Se cerchi più informazioni sul progetto, vuoi scaricare l'ultima versione, o "
+"vuoi iniziare ad aiutarci, guarda l'Home Page di Mind Map Architet."
+
+#: ../ui/welcome.ui:305
+#, fuzzy
+msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
+msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Attività ed "
+"errori</a>"
+
+#: ../ui/welcome.ui:325
+#, fuzzy
+msgid ""
+"Is there bug in this program? Is missing some future for you in mmarchitect? "
+"Please tell us more information about that. Thank you for your response."
+msgstr ""
+"C'è qualche errore in questa applicazione? Manca qualcosa secondo te in "
+"mmarchitect? Per favore daci maggiori informazioni al riguardo. Grazie per "
+"la tua risposta."
+
+#: ../ui/welcome.ui:355
+msgid ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
+"gtk=1\">Development of project</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Sviluppo "
+"del progetto</a>"
+
+#: ../ui/welcome.ui:374
+msgid ""
+"If you want to help us with this project, translate messages to your "
+"languege, develop, create package for your distribution, or anything what "
+"you can do for help us, see development page."
+msgstr ""
+"Se ti va di aiutarci con questo progetto, tradurre i messaggi nella tua "
+"lingua, creare pacchetti per la distribuzione, o qualsiasi cosa che tu possa "
+"fare per aiutarci, dai un'occhiata alla pagina dello sviluppo."
 
 #: ../ui/main.ui:8
 msgid "Mind Map Architect"
@@ -452,225 +654,22 @@ msgstr ""
 msgid "Move Right"
 msgstr "Altezza"
 
-#: ../ui/properties.ui:8
-msgid "File properties"
-msgstr ""
+#~ msgid ""
+#~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
+#~ "\">General Discussion</a>"
+#~ msgstr ""
+#~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
+#~ "\">Discussione Generica</a>"
 
-#: ../ui/properties.ui:88
-#, fuzzy
-msgid "Author"
-msgstr "<b>Autore</b>"
-
-#: ../ui/properties.ui:114
-msgid "Created"
-msgstr ""
-
-#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
-#: ../ui/welcome.ui:198
-msgid "label"
-msgstr "etichetta"
-
-#: ../ui/properties.ui:142
-msgid "Modified"
-msgstr ""
-
-#: ../ui/properties.ui:169
-msgid "Path"
-msgstr ""
-
-#: ../ui/properties.ui:198
-#, fuzzy
-msgid "<b>File</b>"
-msgstr "<b>Suggerimento:</b>"
-
-#: ../ui/properties.ui:222
-#, fuzzy
-msgid "<b>Map</b>"
-msgstr "<b>Suggerimento:</b>"
-
-#: ../ui/color_dialog.ui:40
-msgid "Default color"
-msgstr "Colore di default"
-
-#: ../ui/color_dialog.ui:56
-msgid "Parent color"
-msgstr "Colore padre"
-
-#: ../ui/color_dialog.ui:73
-msgid "Own color"
-msgstr "Proprio colore"
-
-#: ../ui/about_dialog.ui:8
-msgid "About Application Mind Map Architect"
-msgstr "Informazioni sull'applicazione Mind Map Architet"
-
-#: ../ui/about_dialog.ui:14
-#, fuzzy
-msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr "Copyright © 2011-2012, Ondřej Tůma"
-
-#: ../ui/about_dialog.ui:15
-msgid "Tool for working with mind maps. "
-msgstr "Strumenti per lavorare con mind maps."
-
-#: ../ui/about_dialog.ui:17
-#, fuzzy
-msgid ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
-"All rights reserved.\n"
-"\n"
-"Redistribution and use in source and binary forms, with or without\n"
-"modification, are permitted provided that the following conditions\n"
-"are met:\n"
-" 1. Redistributions of source code must retain the above copyright\n"
-"    notice, this list of conditions and the following disclaimer.\n"
-" 2. Redistributions in binary form must reproduce the above copyright\n"
-"    notice, this list of conditions and the following disclaimer in the\n"
-"    documentation and/or other materials provided with the distribution.\n"
-" 3. Neither the name of the University nor the names of its contributors\n"
-"    may be used to endorse or promote products derived from this software\n"
-"    without specific prior written permission.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
-"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
-"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
-"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
-"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
-"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
-"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
-"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
-"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
-"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-msgstr ""
-"Copyright © 2011-2012, Ondřej Tůma\n"
-"Tutti i diritti riservati.\n"
-"\n"
-"Ridistribuzione e uso di codice sorgente o binario, con o senza\n"
-"modifiche, sono permesse purché siano rispettate le seguenti condizioni:\n"
-"1. La ridistribuzione del codice sorgente deve contenere il copyright\n"
-"    di cui sopra, questa lista di condizioni e il seguente avvertimento\n"
-"2. La ridistribuzione in forma binaria deve riprodurre il copyright di cui "
-"sopra,\n"
-"    questa lista di condizioni e il seguente avvertimento nella "
-"documentazione\n"
-"    e/o nei materiali forniti con la distribuzione stessa.\n"
-"3. Tutto il materiale pubblicitario che menzioni funzioni o uso di questo "
-"software\n"
-"    deve mostrare il seguente accordo:\n"
-"    Questo prodotto include software sviluppato da Ondřej Tůma.\n"
-"4. Nè il nome dell'autore, né il nome di coloro i quali ocntribuiscono\n"
-"    può essere usato per sostenere e promuovere prodotti\n"
-"    derivati da questo software senza specifica e precedente "
-"autorizzazione.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY ONDŘEJ TǓMA ''AS IS'' AND ANY\n"
-"EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
-"WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
-"DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
-"DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
-"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
-"SERVICES;\n"
-"LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
-"ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
-"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
-"THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-
-#: ../ui/about_dialog.ui:45
-msgid ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"WaldiS <admin@sto.ugu.pl>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Ettore Atalan <atalanttore@googlemail.com>"
-msgstr ""
-
-#: ../ui/welcome.ui:125
-msgid "<b>Recent files:</b>"
-msgstr "<b>File recenti</b>"
-
-#: ../ui/welcome.ui:159
-msgid "<b>Tip:</b>"
-msgstr "<b>Suggerimento:</b>"
-
-#: ../ui/welcome.ui:179
-msgid "<b><big>label</big></b>"
-msgstr "<b><big>etichetta</big></b>"
-
-#: ../ui/welcome.ui:214
-msgid "<a href=\"#next_tip\">Next Tip</a>"
-msgstr "<a href=\"#next_tip\">Prossimo suggerimento</a>"
-
-#: ../ui/welcome.ui:256
-msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
-msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Pagina web del progetto</a>"
-
-#: ../ui/welcome.ui:276
-msgid ""
-"If you are looking for more informations about project, want to download new "
-"version, or you want to start with helping us, see Home page of Mind Map "
-"Architect."
-msgstr ""
-"Se cerchi più informazioni sul progetto, vuoi scaricare l'ultima versione, o "
-"vuoi iniziare ad aiutarci, guarda l'Home Page di Mind Map Architet."
-
-#: ../ui/welcome.ui:305
-msgid ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/\">General "
-"Discussion</a>"
-msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
-"\">Discussione Generica</a>"
-
-#: ../ui/welcome.ui:325
-msgid ""
-"Have you any question about this application? Or have you some tip for us, "
-"or other users ? Can you help to other users. Or you anly wnat to see whats "
-"new in project ? Watch General Discussion on SourceForge.net."
-msgstr ""
-"Hai qualsiasi domanda riguardo questa applicazione? Oppure hai qualche "
-"suggerimento per noi, o altri utenti? Puoi aiutare altri utenti. O vuoi solo "
-"conoscere le novità del progetto? Guarda alla discussione generica su "
-"sourceforge.net"
-
-#: ../ui/welcome.ui:355
-msgid ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tasks and Bugs</a>"
-msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Attività ed "
-"errori</a>"
-
-#: ../ui/welcome.ui:375
-msgid ""
-"Is there bug in this program ? Is missing some future for you in "
-"mmarchitect ? Please tell us more information about that. Thank you for your "
-"response."
-msgstr ""
-"C'è qualche errore in questa applicazione? Manca qualcosa secondo te in "
-"mmarchitect? Per favore daci maggiori informazioni al riguardo. Grazie per "
-"la tua risposta."
-
-#: ../ui/welcome.ui:405
-msgid ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
-"gtk=1\">Development of project</a>"
-msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Sviluppo "
-"del progetto</a>"
-
-#: ../ui/welcome.ui:424
-msgid ""
-"If you want to help us with this project, translate messages to your "
-"languege, develop, create package for your distribution, or anything what "
-"you can do for help us, see development page."
-msgstr ""
-"Se ti va di aiutarci con questo progetto, tradurre i messaggi nella tua "
-"lingua, creare pacchetti per la distribuzione, o qualsiasi cosa che tu possa "
-"fare per aiutarci, dai un'occhiata alla pagina dello sviluppo."
+#~ msgid ""
+#~ "Have you any question about this application? Or have you some tip for "
+#~ "us, or other users ? Can you help to other users. Or you anly wnat to see "
+#~ "whats new in project ? Watch General Discussion on SourceForge.net."
+#~ msgstr ""
+#~ "Hai qualsiasi domanda riguardo questa applicazione? Oppure hai qualche "
+#~ "suggerimento per noi, o altri utenti? Puoi aiutare altri utenti. O vuoi "
+#~ "solo conoscere le novità del progetto? Guarda alla discussione generica "
+#~ "su sourceforge.net"
 
 #~ msgid "Point"
 #~ msgstr "Punto"
