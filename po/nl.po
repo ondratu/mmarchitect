@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-03 21:05+0100\n"
-"PO-Revision-Date: 2018-12-06 10:13+0000\n"
+"PO-Revision-Date: 2020-03-04 23:33+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: ../src/mindmap.vala:79
 msgid "Main Idea"
@@ -344,7 +344,6 @@ msgstr ""
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
 #: ../ui/about_dialog.ui:45
-#, fuzzy
 msgid ""
 "evanmac <nicola.lomartire@gmail.com>\n"
 "Luis Garcia Sevillano <floss.dev@gmail.com>\n"
@@ -361,7 +360,8 @@ msgstr ""
 "Heimen Stoffels <vistausss@outlook.com>\n"
 "WaldiS <admin@sto.ugu.pl>\n"
 "Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Ettore Atalan <atalanttore@googlemail.com>"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
 
 #: ../ui/map.ui:30
 msgid "_disable"
@@ -486,13 +486,10 @@ msgstr ""
 "van Mind Map Architect."
 
 #: ../ui/welcome.ui:305
-#, fuzzy
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
-msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Taken en bugs</a>"
+msgstr "<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Problemen</a>"
 
 #: ../ui/welcome.ui:325
-#, fuzzy
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
