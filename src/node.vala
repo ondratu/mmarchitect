@@ -564,7 +564,7 @@ public class Node : GLib.Object {
     public void realize (Gdk.Window window) {
         assert (window != null);
 
-        window = window;
+        this.window = window;
         if (default_color) {
             rgb = map.pref.default_color;
         }

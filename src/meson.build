@@ -24,7 +24,7 @@ conf_data.set('VERSION', version)
 # )
 
 sources = files(
-    'app.vala',
+    'application.vala',
     'clavertime.vala',
     'consts.vala',
     'css.vala',
@@ -33,7 +33,7 @@ sources = files(
     'export.vala',
     'filetab.vala',
     'import.vala',
-    'main.vala',
+    'main_window.vala',
     'mapwidgets.vala',
     'mindmap.vala',
     'node.vala',
@@ -44,9 +44,4 @@ sources = files(
     'tab.vala',
     'tips.vala',
     'welcometab.vala'
-)
-
-sources_ng = files(
-    'application.vala',
-    'main_window.vala'
 )
