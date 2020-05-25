@@ -8,188 +8,200 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-03 21:05+0100\n"
-"PO-Revision-Date: 2018-09-10 08:00+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-05-26 02:41+0000\n"
+"Last-Translator: mada985 <mohammedmohsen958@gmail.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/mmarchitect/"
+"translations/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: ../src/mindmap.vala:79
 msgid "Main Idea"
-msgstr ""
+msgstr "الفكرة الرئيسية"
 
 #: ../src/main.vala:49
 #, c-format
 msgid "Could not load app UI: %s\n"
-msgstr ""
+msgstr "تعذر تحميل واجهة المستخدم: %s\n"
 
 #: ../src/tips.vala:29
 msgid "Moving with Ideas"
-msgstr ""
+msgstr "الانتقال مع الأفكار"
 
 #: ../src/tips.vala:30
 msgid ""
 "You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
 "Left or Right to move with selected Ideas."
 msgstr ""
+"يمكنك الانتقال مع الأفكار عن طريق اختصارات المفاتيح. يمكنك استخدام CTRL - "
+"السهم لأعلى أو لأسفل أو اليسار أو اليمين للتحرك مع أفكار محددة."
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
-msgstr ""
+msgstr "استخدام الخرائط الذهنية كقائمة TODO"
 
 #: ../src/tips.vala:33
 msgid ""
 "Mind Maps could be use as TODO lists. You have more tree like possibility "
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
+"يمكن استخدام خرائط العقل كقوائم TODO. لديك المزيد من الأشجار مثل إمكانية مع "
+"خرائط العقل، مثل الفئات، وأهمية أو صعوبة."
 
 #: ../src/editform.vala:306
 msgid "Extends edit"
-msgstr ""
+msgstr "توسيع نطاق تحرير"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
-msgstr ""
+msgstr "اليوم %H:%M"
 
 #: ../src/clavertime.vala:31
 msgid "Yesterday %H:%M"
-msgstr ""
+msgstr "الأمس %H:%M"
 
 #: ../src/clavertime.vala:48
 msgid "Today"
-msgstr ""
+msgstr "اليوم"
 
 #: ../src/clavertime.vala:52
 msgid "Yesterday"
-msgstr ""
+msgstr "الأمس"
 
 #: ../src/welcometab.vala:15
 msgid "Start here"
-msgstr ""
+msgstr "أبدأ هنا"
 
 #: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
 #: ../src/app.vala:267
 msgid "Open file"
-msgstr ""
+msgstr "افتح الملف"
 
 #: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
 msgid "New file"
-msgstr ""
+msgstr "ملف جديد"
 
 #: ../src/app.vala:90
 msgid "Save file"
-msgstr ""
+msgstr "احفظ الملف"
 
 #: ../src/app.vala:92 ../src/app.vala:495
 msgid "Save file as"
-msgstr ""
+msgstr "حفظ الملف باسم"
 
 #: ../src/app.vala:122
 msgid "File $fname can't be imported!"
-msgstr ""
+msgstr "لا يمكن استيراد ملف fname$ !"
 
 #: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
 #: ../src/export_dialog.vala:69
 msgid "_Cancel"
-msgstr ""
+msgstr "_إلغاء"
 
 #: ../src/app.vala:271 ../src/app.vala:364
 msgid "_Open"
-msgstr ""
+msgstr "_افتح"
 
 #: ../src/app.vala:303
 msgid "File $path not found!"
-msgstr ""
+msgstr "لم يتم العثور على ملف path$ !"
 
 #: ../src/app.vala:360
 msgid "Import file"
-msgstr ""
+msgstr "استيراد ملف"
 
 #: ../src/app.vala:499
 msgid "_Save"
-msgstr ""
+msgstr "_حفظ"
 
 #: ../src/print.vala:62
 msgid "Printing error:"
-msgstr ""
+msgstr "خطأ أثناء الطباعة:"
 
 #: ../src/export_dialog.vala:63
 msgid "Export Map as"
-msgstr ""
+msgstr "تصدير الخريطة باسم"
 
 #: ../src/export_dialog.vala:70
 msgid "_Export As"
-msgstr ""
+msgstr "_تصدير باسم"
 
 #: ../src/export_dialog.vala:73
 msgid "Plain Text"
-msgstr ""
+msgstr "نص عادي"
 
 #: ../src/export_dialog.vala:77
 msgid "Simple Web Page"
-msgstr ""
+msgstr "صفحة ويب بسيطة"
 
 #: ../src/export_dialog.vala:81
 msgid "Dynamic Web Page"
-msgstr ""
+msgstr "صفحة ويب ديناميكية"
 
 #: ../src/export_dialog.vala:85
 msgid "PNG Image"
-msgstr ""
+msgstr "صورة PNG"
 
 #: ../ui/preferences.ui:8
+#, fuzzy
 msgid "Mind Map Architect Preferences"
-msgstr ""
+msgstr "تفضيلات مهندس خريطة العقل"
 
 #: ../ui/preferences.ui:92
 msgid "<b>Author</b>"
-msgstr ""
+msgstr "<b>الكاتب</b>"
 
 #: ../ui/preferences.ui:121
 msgid "Choose directory"
-msgstr ""
+msgstr "اختر الدليل"
 
 #: ../ui/preferences.ui:130
 msgid "<b>Default dokuments directory</b>"
-msgstr ""
+msgstr "<b> دليل المستندات الافتراضي </b>"
 
 #: ../ui/preferences.ui:160
+#, fuzzy
 msgid "_Welcome tab"
-msgstr ""
+msgstr "_علامة التبويب الترحيبية"
 
 #: ../ui/preferences.ui:176
 msgid "_Empty document"
-msgstr ""
+msgstr "_ مستند فارغ"
 
 #: ../ui/preferences.ui:193
 msgid "_Last opened documents"
-msgstr ""
+msgstr "_آخر المستندات المفتوحة"
 
 #: ../ui/preferences.ui:216
 msgid "<b>Start program with</b>"
-msgstr ""
+msgstr "<b> ابدأ البرنامج ب </b>"
 
 #: ../ui/preferences.ui:234
 msgid "General"
-msgstr ""
+msgstr "عام"
 
 #: ../ui/preferences.ui:264 ../ui/preferences.ui:577
+#, fuzzy
 msgid "Use system font"
-msgstr ""
+msgstr "استخدم خط النظام"
 
 #: ../ui/preferences.ui:304
 msgid "<b>Idea font</b>"
-msgstr ""
+msgstr "<b> خط الفكرة </b>"
 
 #: ../ui/preferences.ui:337
 msgid "Font"
-msgstr ""
+msgstr "الخط"
 
 #: ../ui/preferences.ui:365
+#, fuzzy
 msgid "Line"
-msgstr ""
+msgstr "سطر"
 
 #: ../ui/preferences.ui:394
 msgid "<b>Rising</b>"
