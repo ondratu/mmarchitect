@@ -20,8 +20,9 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.MenuItem menu_item_paste;
     private Gtk.MenuItem menu_item_delete;
 
-    [GtkChild name=nodemenu]
+    [GtkChild]
     private Gtk.Menu nodemenu;
+    [GtkChild]
     private Gtk.Menu mapmenu;
 
     private int tabs_counter = 0;
@@ -42,7 +43,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         // show_all ();
     }
 
-    public void loadui (string filename) throws Error {
+    public void _loadui (string filename) throws Error {
         var builder = new Gtk.Builder ();
         builder.add_from_file (DATA_DIR + "/ui/main.ui");
         builder.connect_signals (this);
