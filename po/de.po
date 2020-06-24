@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-03 21:05+0100\n"
-"PO-Revision-Date: 2020-04-04 05:09+0000\n"
-"Last-Translator: Jeannette L <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2020-06-25 15:41+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: ../src/mindmap.vala:79
 msgid "Main Idea"
@@ -289,7 +289,6 @@ msgid "Tool for working with mind maps. "
 msgstr "Werkzeug zur Arbeit mit Gedankenkarten. "
 
 #: ../ui/about_dialog.ui:17
-#, fuzzy
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -393,7 +392,6 @@ msgid "count _points"
 msgstr "_Punkte zählen"
 
 #: ../ui/map.ui:87
-#, fuzzy
 msgid "<b>Rising method</b>"
 msgstr "<b>Steigende Methode</b>"
 
@@ -440,7 +438,7 @@ msgstr "Erstellt"
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
 #: ../ui/welcome.ui:198
 msgid "label"
-msgstr ""
+msgstr "Bezeichnung"
 
 #: ../ui/properties.ui:142
 msgid "Modified"
@@ -480,7 +478,7 @@ msgstr "<b>Tipp:</b>"
 
 #: ../ui/welcome.ui:179
 msgid "<b><big>label</big></b>"
-msgstr ""
+msgstr "<b><big>Bezeichnung</big></b>"
 
 #: ../ui/welcome.ui:214
 msgid "<a href=\"#next_tip\">Next Tip</a>"
@@ -502,19 +500,17 @@ msgstr ""
 "Sie die Startseite von Mind Map Architect."
 
 #: ../ui/welcome.ui:305
-#, fuzzy
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
 msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Aufgaben und "
+"<a href=\"https://github.com/ondratu/mmarchitect/issues\">Aufgaben und "
 "Fehler</a>"
 
 #: ../ui/welcome.ui:325
-#, fuzzy
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
 msgstr ""
-"Gibt es Fehler in diesem Programm? Fehlt Ihnen in mmarchitect etwas? Bitte "
+"Gibt es Fehler in diesem Programm? Fehlt Ihnen etwas in mmarchitect? Bitte "
 "teilen Sie es uns mit. Vielen Dank für Ihre Antwort."
 
 #: ../ui/welcome.ui:355
@@ -634,7 +630,7 @@ msgstr "Alle Zweige einklappen"
 
 #: ../ui/main.ui:309
 msgid "Home"
-msgstr ""
+msgstr "Startseite"
 
 #: ../ui/main.ui:323
 msgid "_Help"
