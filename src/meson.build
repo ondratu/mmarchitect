@@ -28,6 +28,7 @@ sources = files(
     'application.vala',
     'clavertime.vala',
     'consts.vala',
+    'color_dialog.vala',
     'css.vala',
     'editform.vala',
     'export_dialog.vala',
