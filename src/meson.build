@@ -24,6 +24,7 @@ conf_data.set('VERSION', version)
 # )
 
 sources = files(
+    'about.vala',
     'application.vala',
     'clavertime.vala',
     'consts.vala',

@@ -1,5 +1,5 @@
 // modules: gtk+-3.0
-// sources: main_window.vala
+// sources: main_window.vala about.vala
 
 extern const string GETTEXT_PACKAGE;
 extern const string LOCALEDIR;
@@ -53,6 +53,12 @@ public class Application : Gtk.Application {
         });
         add_action (action);
 
+        action = new SimpleAction ("about", null);
+        action.activate.connect (() => {
+            var dialog = new AboutDialog ();
+            dialog.present ();
+        });
+        add_action (action);
     }
 
     public override void activate () {

@@ -770,28 +770,4 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
         }
     }
-
-    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT app_about")]
-    public void about (Gtk.Widget w) {
-        try {
-            var builder = new Gtk.Builder ();
-            builder.add_from_file (DATA_DIR + "/ui/about_dialog.ui");
-
-            var d = builder.get_object ("aboutdialog") as Gtk.AboutDialog;
-            var p = new Gdk.Pixbuf.from_file (DATA_DIR + "/icons/" + PROGRAM + ".png");
-
-            d.set_logo (p);
-            d.set_version (VERSION);
-            d.run ();
-            d.destroy ();
-        } catch (Error e) {
-            var d = new Gtk.MessageDialog (this,
-                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                    Gtk.MessageType.ERROR,
-                    Gtk.ButtonsType.CLOSE,
-                    e.message);
-            d.run ();
-            d.destroy ();
-        }
-    }
 }
