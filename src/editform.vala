@@ -8,7 +8,7 @@
  */
 
 // modules: gtk+-3.0
-// sources: preferences.vala
+// sources: preferences.vala color_dialog.vala
 
 public class PointsEntry : Gtk.ComboBoxText {
     public double points;
@@ -106,136 +106,6 @@ public class PointsEntry : Gtk.ComboBoxText {
     }
 }
 
-private class Swatch: Gtk.DrawingArea {
-    private Gdk.RGBA rgba;
-
-    public void set_rgba (Gdk.RGBA rgba){
-        this.rgba = rgba;
-        queue_draw ();
-    }
-
-    public Gdk.RGBA get_rgba () {
-        return rgba;
-    }
-
-    public override bool draw (Cairo.Context cr) {
-        var allocation = Gtk.Allocation ();
-        get_allocation (out allocation);
-
-        cr.set_source_rgb (rgba.red, rgba.green, rgba.blue);
-        cr.rectangle (0, 0, allocation.width, allocation.height);
-        cr.fill_preserve ();
-
-        return false;
-    }
-}
-
-public class ColorButton : Gtk.Button {
-    private Node node;
-    private Swatch color_widget;
-    private bool default_color;
-    private bool rgba_lock;
-
-    private unowned Gtk.ColorChooserDialog chooser;
-    private unowned Gtk.Window window;
-
-    public ColorButton (Node node, Gtk.Window window) {
-        this.node = node;
-        default_color = node.default_color;
-        color_widget = new Swatch ();
-        rgba_lock = true;
-        this.window = window;
-
-        color_widget.set_rgba (node.rgb);
-        color_widget.set_size_request (20, 20);
-        set_image (this.color_widget);
-    }
-
-    public Gdk.RGBA get_rgba () {
-        return color_widget.get_rgba ();
-    }
-
-    public override void clicked () {
-        try {
-            var rgba = color_widget.get_rgba ();
-
-            var builder = new Gtk.Builder ();
-            builder.add_from_file (DATA_DIR + "/ui/color_dialog.ui");
-            builder.connect_signals (this);
-
-            chooser = (Gtk.ColorChooserDialog)
-                    builder.get_object ("color_dialog");
-            chooser.set_transient_for (window);
-            chooser.set_rgba (rgba);
-
-            // couse this settings call dialog_color_changed event
-            var radio_default = (Gtk.RadioButton)
-                    builder.get_object ("radio_default");
-            var radio_parent = (Gtk.RadioButton)
-                    builder.get_object ("radio_parent");
-            var radio_own = (Gtk.RadioButton)
-                    builder.get_object ("radio_own");
-
-            if (default_color || rgba.equal (node.map.pref.default_color)) {
-                radio_default.set_active (true);
-            } else if (node.parent == null || !rgba.equal (node.parent.rgb)) {
-                radio_own.set_active (true);
-            } else {
-                radio_parent.set_active (true);
-            }
-
-            rgba_lock = false;     // unlock rgba notify
-            chooser.notify.connect ((property) => {
-                if (!rgba_lock && property.name == "rgba") {
-                    radio_own.set_active (true);
-                }
-            });
-
-            if (chooser.run () == Gtk.ResponseType.OK) {
-                if (radio_default.get_active ()) {
-                    color_widget.set_rgba (node.map.pref.default_color);
-                    default_color = true;
-                } else if (radio_own.get_active ()) {
-                    color_widget.set_rgba (chooser.get_rgba ());
-                    default_color = false;
-                } else {
-                    this.default_color = true;
-                    if (node.parent != null) {
-                        color_widget.set_rgba (node.parent.rgb);
-                    } else {
-                        color_widget.set_rgba (node.map.pref.default_color);
-                    }
-                }
-            }
-
-            chooser.destroy ();
-        } catch (Error e) {
-            stderr.printf ("Could not load app UI: %s\n", e.message);
-        }
-    }
-
-    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_default_toggled")]
-    public void default_toggled (Gtk.Widget sender) {
-        if ((sender as Gtk.ToggleButton).get_active ()){
-            rgba_lock = true;
-            chooser.set_rgba (this.node.map.pref.default_color);
-            rgba_lock = false;
-        }
-    }
-
-    [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_parent_toggled")]
-    public void parent_toggled (Gtk.Widget sender) {
-        if (((Gtk.ToggleButton) sender).get_active ()){
-            rgba_lock = true;
-            if (node.parent != null) {
-                this.chooser.set_rgba (this.node.parent.rgb);
-            } else {
-                chooser.set_rgba (node.map.pref.default_color);
-            }
-            rgba_lock = false;
-        }
-    }
-}
 
 public class ToggleFlagButton : Gtk.ToggleToolButton {
     public ToggleFlagButton (string flag) {
