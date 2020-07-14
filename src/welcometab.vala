@@ -9,6 +9,7 @@
 // modules: gtk+-3.0
 // sources: tab.vala tips.vala preferences.vala
 
+[GtkTemplate (ui = "/cz/zeropage/mmarchitect/welcome.ui")]
 public class WelcomeTab : Gtk.ScrolledWindow, ITab {
     public TabLabel tablabel { get; protected set; }
     public Gtk.Label menulabel { get; protected set; }
@@ -20,13 +21,16 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
 
     private Tip[] tips;
     public uint tip_index { get; private set; }
+    [GtkChild]
     private Gtk.Label tip_title;
+    [GtkChild]
     private Gtk.Label tip_body;
+    [GtkChild]
     private Gtk.Box file_box;
 
     private Preferences pref;
 
-    public WelcomeTab (Preferences pref) throws Error {
+    public WelcomeTab (Preferences pref) {
         Object (hscrollbar_policy: Gtk.PolicyType.AUTOMATIC,
                 vscrollbar_policy: Gtk.PolicyType.AUTOMATIC);
         this.pref = pref;
@@ -39,37 +43,10 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
                 });
         menulabel = new Gtk.Label (title);
 
-        loadui ();
         set_recent ();
         set_tips ();
 
         show_all ();
-    }
-
-    private void loadui () throws Error {
-        var builder = new Gtk.Builder ();
-        builder.add_from_file (DATA_DIR + "/ui/welcome.ui");
-        builder.connect_signals (this);
-
-        var mainbox = (Gtk.Box) builder.get_object ("mainbox");
-        add (mainbox);
-
-        tip_title = (Gtk.Label) builder.get_object ("tip_title");
-        tip_body = (Gtk.Label) builder.get_object ("tip_body");
-        file_box = (Gtk.Box) builder.get_object ("file_box");
-
-        // set tooltip
-        unowned Gtk.Button bt;
-        bt = (Gtk.Button) builder.get_object ("open_file_button");
-        bt.set_tooltip_text (_("Open file"));
-        bt = (Gtk.Button) builder.get_object ("new_file_button");
-        bt.set_tooltip_text (_("New file"));
-
-        unowned Gtk.EventBox bx;
-        bx = (Gtk.EventBox) builder.get_object ("open_file_eventbox");
-        bx.set_tooltip_text (_("Open file"));
-        bx = (Gtk.EventBox) builder.get_object ("new_file_eventbox");
-        bx.set_tooltip_text (_("New file"));
     }
 
     public void set_recent () {
