@@ -9,7 +9,7 @@ string ? DATA_DIR = null;
 
 public class Application : Gtk.Application {
     private static bool version = false;
-    private static string? filename = null;
+    private static string filename = "";
 
     private const OptionEntry[] options = {
         { "version", 0,
@@ -32,14 +32,10 @@ public class Application : Gtk.Application {
     }
 
     public override void startup () {
-        stdout.printf ("startup\n");
-
         base.startup ();
 
         var action = new SimpleAction("new-window", null);
         action.activate.connect (() => {
-            stdout.printf ("new-window\n");
-
             hold();
             add_window (new MainWindow ());
             active_window.present ();
@@ -62,8 +58,6 @@ public class Application : Gtk.Application {
     }
 
     public override void activate () {
-        stdout.printf ("activate\n");
-
         this.hold ();
         base.activate ();
 
@@ -82,8 +76,6 @@ public class Application : Gtk.Application {
     }
 
     public override int handle_local_options (VariantDict options) {
-        stdout.printf ("handle_local_options\n");
-
         if (version) {
             stdout.printf ("mmarchitect - Version 0.0.0\n");
             return 0;           // just like help
@@ -94,15 +86,9 @@ public class Application : Gtk.Application {
 
     // is called when handle_local_options return -1
     public override int command_line (ApplicationCommandLine command_line) {
-        stdout.printf ("command_line\n");
-
-        if (filename != null) {
-            stdout.printf (@"filename: $(filename)\n");
-        }
-
         this.hold ();
 
-        this.add_window (new MainWindow ());
+        this.add_window (new MainWindow (filename));
         this.active_window.present ();
         this.release ();
 

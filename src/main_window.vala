@@ -30,7 +30,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Preferences pref = new Preferences ();
     private string _title;
 
-    public MainWindow () {
+    public MainWindow (string filename = "") {
         _title = title;     // title backup....
 
         notebook.page_added.connect (
@@ -40,29 +40,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         notebook.page_reordered.connect (this.on_page_reordered);
 
         destroy.connect (Gtk.main_quit);
-        // show_all ();
-    }
-
-    public void _loadui (string filename) throws Error {
-        var builder = new Gtk.Builder ();
-        builder.add_from_file (DATA_DIR + "/ui/main.ui");
-        builder.connect_signals (this);
-
-        set_tooltips (builder);
-
-        menu_item_cut = (Gtk.MenuItem) builder.get_object ("menuitem_cut");
-        menu_item_copy = (Gtk.MenuItem) builder.get_object ("menuitem_copy");
-        menu_item_paste = (Gtk.MenuItem) builder.get_object ("menuitem_paste");
-        menu_item_delete = (Gtk.MenuItem) builder.get_object ("menuitem_delete");
-
-        Gtk.Window.set_default_icon_from_file (DATA_DIR + "/icons/" + PROGRAM + ".png");
-        new_file_from_args (this, filename);
-
-        nodemenu = (Gtk.Menu) builder.get_object ("nodemenu");
-        nodemenu.show_all ();
-
-        mapmenu = (Gtk.Menu) builder.get_object ("mapmenu");
-        mapmenu.show_all ();
+        new_file_from_args (filename);
     }
 
     public void set_sensitive_menu_edit (bool sensitive) {
@@ -80,19 +58,6 @@ public class MainWindow : Gtk.ApplicationWindow {
         set_sensitive_menu_edit (true);
     }
 
-    public void set_tooltips (Gtk.Builder builder) {
-        unowned Gtk.ToolButton tb;
-
-        tb = (Gtk.ToolButton) builder.get_object ("toolbutton_open");
-        tb.set_tooltip_text (_("Open file"));
-        tb = (Gtk.ToolButton) builder.get_object ("toolbutton_new");
-        tb.set_tooltip_text (_("New file"));
-        tb = (Gtk.ToolButton) builder.get_object ("toolbutton_save");
-        tb.set_tooltip_text (_("Save file"));
-        tb = (Gtk.ToolButton) builder.get_object ("toolbutton_save_as");
-        tb.set_tooltip_text (_("Save file as"));
-    }
-
     public Gtk.FileFilter create_filter (string name, string [] patterns) {
         var filter = new Gtk.FileFilter ();
         filter.set_filter_name (name);
@@ -102,7 +67,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         return filter;
     }
 
-    private void new_file_from_args (Gtk.Window w, owned string fname) {
+    private void new_file_from_args (owned string fname) {
         start_application_private ();  // open what could be set
         if (fname.length == 0) {            // filename is not specified
             return;
