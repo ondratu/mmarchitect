@@ -53,7 +53,7 @@ public class ColorDialog : Gtk.ColorChooserDialog {
 
     [CCode (instance_pos = -1, cname = "G_MODULE_EXPORT color_button_default_toggled")]
     public void default_toggled (Gtk.Widget sender) {
-        if ((sender as Gtk.ToggleButton).get_active ()){
+        if (((Gtk.ToggleButton) sender).get_active ()){
             rgba_lock = true;
             set_rgba (node.map.pref.default_color);
             rgba_lock = false;
