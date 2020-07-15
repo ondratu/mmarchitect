@@ -132,24 +132,13 @@ public class MainWindow : Gtk.ApplicationWindow {
     }
 
     private void new_welcome_tab () {
-        try {
-            var tab = new WelcomeTab (pref);
-            tab.closed.connect (on_close_tab);
-            tab.sig_new_file.connect (on_new_file);
-            tab.sig_open_file.connect (on_open_file);
-            tab.sig_open_path.connect (on_open_path);
-            this.notebook.set_current_page (notebook.append_page_menu (
-                                            tab, tab.tablabel, tab.menulabel));
-        } catch (Error e) {
-            var d = new Gtk.MessageDialog (
-                    this,
-                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                    Gtk.MessageType.ERROR,
-                    Gtk.ButtonsType.CLOSE,
-                    e.message);
-            d.run ();
-            d.destroy ();
-        }
+        var tab = new WelcomeTab (pref);
+        tab.closed.connect (on_close_tab);
+        tab.sig_new_file.connect (on_new_file);
+        tab.sig_open_file.connect (on_open_file);
+        tab.sig_open_path.connect (on_open_path);
+        this.notebook.set_current_page (notebook.append_page_menu (
+                    tab, tab.tablabel, tab.menulabel));
     }
 
     /* If welcome tab is set in pref and no welcome tab is not in notebook,
