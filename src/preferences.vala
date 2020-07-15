@@ -56,102 +56,70 @@ public class RecentFile {
     }
 }
 
-public class PreferenceWidgets : GLib.Object {
-    public Gtk.Dialog dialog;
-
+[GtkTemplate (ui = "/cz/zeropage/mmarchitect/preferences.ui")]
+public class PreferenceWidgets : Gtk.Dialog {
     // general tab
+    [GtkChild]
     public Gtk.Entry author;
+    [GtkChild]
     public Gtk.FileChooserButton default_directory;
+    [GtkChild]
     public Gtk.RadioButton start_empty;
+    [GtkChild]
     public Gtk.RadioButton start_last;
+    [GtkChild]
     public Gtk.RadioButton start_welcome;
 
     // style tab
+    [GtkChild]
     public Gtk.CheckButton node_system_font;
+    [GtkChild]
     public Gtk.FontButton node_font;
+    [GtkChild]
     public Gtk.SpinButton font_rise;
+    [GtkChild]
     public Gtk.SpinButton line_rise;
+    [GtkChild]
     public Gtk.SpinButton font_padding;
+    [GtkChild]
     public Gtk.SpinButton height_padding;
+    [GtkChild]
     public Gtk.SpinButton width_padding;
+    [GtkChild]
     public Gtk.CheckButton text_system_font;
+    [GtkChild]
     public Gtk.FontButton text_font;
+    [GtkChild]
     public Gtk.SpinButton text_height;
 
     // color tab
+    [GtkChild]
     public Gtk.CheckButton system_colors;
+    [GtkChild]
     public Gtk.ColorButton default_color;
+    [GtkChild]
     public Gtk.ColorButton canvas_color;
+    [GtkChild]
     public Gtk.ColorButton text_normal;
+    [GtkChild]
     public Gtk.ColorButton text_selected;
+    [GtkChild]
     public Gtk.ColorButton back_normal;
+    [GtkChild]
     public Gtk.ColorButton back_selected;
 
     public MapWidgets box;
 
-    public void loadui () throws Error {
-        //base.loadui ();
-        box = new MapWidgets ();
+    [GtkChild]
+    private Gtk.Notebook notebook;
 
-
-        var builder = new Gtk.Builder ();
-        builder.add_from_file (DATA_DIR + "/ui/preferences.ui");
-        builder.connect_signals (this);
-
-        dialog = (Gtk.Dialog) builder.get_object ("dialog");
-
-        // general tab
-        author = (Gtk.Entry) builder.get_object ("author");
-        default_directory = (Gtk.FileChooserButton)
-                builder.get_object ("default_directory");
-        start_empty = (Gtk.RadioButton) builder.get_object ("start_empty");
-        start_last = (Gtk.RadioButton) builder.get_object ("start_last");
-        start_welcome = (Gtk.RadioButton) builder.get_object ("start_welcome");
-
-        // style tab
-        node_system_font = (Gtk.CheckButton)
-                builder.get_object ("node_system_font");
-        node_font = (Gtk.FontButton) builder.get_object ("node_font");
-        font_rise = (Gtk.SpinButton) builder.get_object ("font_rise");
-        font_rise.set_increments (10, 50);
-        font_rise.set_range (20, 400);
-
-        line_rise = (Gtk.SpinButton) builder.get_object ("line_rise");
-        line_rise.set_increments (5, 10);
-        line_rise.set_range (1, 100);
-
-        font_padding = (Gtk.SpinButton) builder.get_object ("font_padding");
-        font_padding.set_increments (1, 5);
-        font_padding.set_range (1, 200);
-
-        height_padding = (Gtk.SpinButton) builder.get_object ("height_padding");
-        height_padding.set_increments (1, 5);
-        height_padding.set_range (1, 200);
-
-        width_padding = (Gtk.SpinButton) builder.get_object ("width_padding");
-        width_padding.set_increments (1, 5);
-        width_padding.set_range (1, 200);
-
-        text_system_font = (Gtk.CheckButton)
-                builder.get_object ("text_system_font");
-        text_font = (Gtk.FontButton) builder.get_object ("text_font");
-        text_height = (Gtk.SpinButton) builder.get_object ("text_height");
-        text_height.set_increments (5, 10);
-        text_height.set_range (100, 1000);
-
-        // color tab
-        system_colors = (Gtk.CheckButton) builder.get_object ("system_colors");
-        default_color = (Gtk.ColorButton) builder.get_object ("default_color");
-        canvas_color = (Gtk.ColorButton) builder.get_object ("canvas_color");
-        text_normal = (Gtk.ColorButton) builder.get_object ("text_normal");
-        text_selected = (Gtk.ColorButton) builder.get_object ("text_selected");
-        back_normal = (Gtk.ColorButton) builder.get_object ("back_normal");
-        back_selected = (Gtk.ColorButton) builder.get_object ("back_selected");
-
+    public PreferenceWidgets () {
         // map tab
         // add map vbox to application preference dialog
-        var notebook = (Gtk.Notebook) builder.get_object ("notebook");
-        var label_map = (Gtk.Label) builder.get_object ("label_map");
+
+        box = new MapWidgets ();
+
+        var label_map = new Gtk.Label (_("Map"));
         notebook.append_page (box, label_map);
     }
 
@@ -454,7 +422,7 @@ public class Preferences : GLib.Object {
         // style tab
         node_system_font = pw.node_system_font.get_active ();
         if (!node_system_font) {
-            node_font = Pango.FontDescription.from_string (pw.node_font.font_name);
+            node_font = Pango.FontDescription.from_string (pw.node_font.font);
         } else {
             node_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
         }
@@ -467,7 +435,7 @@ public class Preferences : GLib.Object {
         width_padding = (int) pw.width_padding.get_value ();
         text_system_font = pw.text_system_font.get_active ();
         if (!text_system_font) {
-            text_font = Pango.FontDescription.from_string (pw.text_font.font_name);
+            text_font = Pango.FontDescription.from_string (pw.text_font.font);
         } else {
             text_font = Pango.FontDescription.from_string (gtk_sett.gtk_font_name);
         }
@@ -508,14 +476,14 @@ public class Preferences : GLib.Object {
 
         // style tab
         pw.node_system_font.set_active (node_system_font);
-        pw.node_font.set_font_name (node_font.to_string ());
+        pw.node_font.font = node_font.to_string ();
         pw.font_rise.set_value (font_rise);
         pw.line_rise.set_value (line_rise);
         pw.font_padding.set_value (font_padding);
         pw.height_padding.set_value (height_padding);
         pw.width_padding.set_value (width_padding);
         pw.text_system_font.set_active (text_system_font);
-        pw.text_font.set_font_name (text_font.to_string ());
+        pw.text_font.font = text_font.to_string ();
         pw.text_height.set_value (text_height);
 
         // colors map
@@ -629,18 +597,11 @@ public class Preferences : GLib.Object {
 
         var pref_widgets = new PreferenceWidgets ();
         pw = pref_widgets;
-
-        try {
-            pw.loadui ();
-            pw.dialog.set_transient_for (parent);
-        } catch (Error e) {
-            stderr.printf ("Could not load app UI: %s\n", e.message);
-            return false;
-        }
+        pw.set_transient_for (parent);
 
         save_to_ui ();
 
-        var retval = (pw.dialog.run () == 1);
+        var retval = (pw.run () == 1);
 
         if (retval) {
             load_from_ui ();
@@ -651,7 +612,7 @@ public class Preferences : GLib.Object {
             }
         }
 
-        pw.dialog.destroy ();
+        pw.destroy ();
         pw = null;
 
         return retval;
