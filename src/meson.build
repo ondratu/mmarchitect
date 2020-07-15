@@ -24,8 +24,8 @@ conf_data.set('VERSION', version)
 # )
 
 sources = files(
-    'about.vala',
     'application.vala',
+    'dialogs.vala',
     'clavertime.vala',
     'consts.vala',
     'color_dialog.vala',

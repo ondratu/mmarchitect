@@ -8,7 +8,7 @@
  */
 
 // modules: gtk+-3.0
-// sources: preferences.vala welcometab.vala tab.vala filetab.vala
+// sources: dialogs.vala preferences.vala welcometab.vala tab.vala filetab.vala
 
 [GtkTemplate (ui = "/cz/zeropage/mmarchitect/main_window.ui")]
 public class MainWindow : Gtk.ApplicationWindow {
@@ -355,35 +355,18 @@ public class MainWindow : Gtk.ApplicationWindow {
     }
 
     private bool ask_for_save (FileTab file) {
-        try {
-            var builder = new Gtk.Builder ();
-            builder.add_from_file (DATA_DIR + "/ui/close_file_dialog.ui");
+        var d = new CloseFileDialog (file.title);
+        var rv = d.run ();
+        d.destroy ();
 
-            var d = (Gtk.Dialog) builder.get_object ("dialog");
-            var w = (Gtk.Label) builder.get_object ("warning_label");
-            w.label = w.label.replace ("%s", file.title);
-
-            var rv = d.run ();
-            d.destroy ();
-
-            if (rv < 1 || rv > 2)   // do not close 0 or something
-                return false;
-            if (rv == 2) {          // save file
-                if (file.filepath != "") {
-                    file.do_save ();
-                } else if (!this.on_save_file_as (file)) {
-                    return false; // if save as file is cancled, do not close
-                }
-            }
-        } catch (Error e) {
-            var d = new Gtk.MessageDialog (this,
-                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                    Gtk.MessageType.ERROR,
-                    Gtk.ButtonsType.CLOSE,
-                    e.message);
-            d.run ();
-            d.destroy ();
+        if (rv < 1 || rv > 2)   // do not close 0 or something
             return false;
+        if (rv == 2) {          // save file
+            if (file.filepath != "") {
+                file.do_save ();
+            } else if (!this.on_save_file_as (file)) {
+                return false; // if save as file is cancled, do not close
+            }
         }
         return true;
     }
