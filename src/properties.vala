@@ -1,7 +1,7 @@
 // modules: gtk+-3.0
 // sources: mapwidgets.vala preferences.vala
 
-public class PropertiesWidgets : MapWidgets {
+public class PropertiesWidgets : GLib.Object {
     public Gtk.Dialog dialog;
 
     // file side
@@ -10,10 +10,13 @@ public class PropertiesWidgets : MapWidgets {
     public Gtk.Label modified;
     public Gtk.Label filepath;
 
+    public MapWidgets box;
+
     public PropertiesWidgets () {}
 
-    public override void loadui () throws Error {
-        base.loadui ();
+    public void loadui () throws Error {
+        //base.loadui ();
+        box = new MapWidgets();
 
         var builder = new Gtk.Builder ();
         builder.add_from_file (DATA_DIR + "/ui/properties.ui");
@@ -61,9 +64,9 @@ public class Properties : GLib.Object {
     private void load_from_ui () {
         author = pw.author.get_text ();
 
-        rise_method = pw.get_rise_method ();
-        rise_ideas = pw.get_rise_ideas ();
-        rise_branches = pw.get_rise_branches ();
+        rise_method = pw.box.get_rise_method ();
+        rise_ideas = pw.box.get_rise_ideas ();
+        rise_branches = pw.box.get_rise_branches ();
     }
 
     private void save_to_ui () {
@@ -77,9 +80,9 @@ public class Properties : GLib.Object {
 
         pw.filepath.set_text (filepath);
 
-        pw.set_rise_method (rise_method);
-        pw.set_rise_ideas (rise_ideas);
-        pw.set_rise_branches (rise_branches);
+        pw.box.set_rise_method (rise_method);
+        pw.box.set_rise_ideas (rise_ideas);
+        pw.box.set_rise_branches (rise_branches);
     }
 
     public bool dialog (Gtk.Window parent) {
