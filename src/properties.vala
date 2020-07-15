@@ -1,35 +1,27 @@
 // modules: gtk+-3.0
 // sources: mapwidgets.vala preferences.vala
 
-public class PropertiesWidgets : GLib.Object {
+[GtkTemplate (ui = "/cz/zeropage/mmarchitect/properties.ui")]
+public class PropertiesWidgets : Gtk.Dialog {
     public Gtk.Dialog dialog;
 
     // file side
+    [GtkChild]
     public Gtk.Entry author;
+    [GtkChild]
     public Gtk.Label created;
+    [GtkChild]
     public Gtk.Label modified;
+    [GtkChild]
     public Gtk.Label filepath;
 
     public MapWidgets box;
 
-    public PropertiesWidgets () {}
+    [GtkChild]
+    private Gtk.Frame frame_map;
 
-    public void loadui () throws Error {
-        //base.loadui ();
+    public PropertiesWidgets () {
         box = new MapWidgets();
-
-        var builder = new Gtk.Builder ();
-        builder.add_from_file (DATA_DIR + "/ui/properties.ui");
-        builder.connect_signals (this);
-
-        dialog = builder.get_object ("dialog") as Gtk.Dialog;
-
-        author = (Gtk.Entry) builder.get_object ("author");
-        created = (Gtk.Label) builder.get_object ("label_created");
-        modified = (Gtk.Label) builder.get_object ("label_modified");
-        filepath = (Gtk.Label) builder.get_object ("label_path");
-
-        var frame_map = (Gtk.Frame) builder.get_object ("frame_map");
         frame_map.add (box);
     }
 }
@@ -94,22 +86,15 @@ public class Properties : GLib.Object {
         var pref_widgets = new PropertiesWidgets ();
         pw = pref_widgets;
 
-        try {
-            pw.loadui ();
-            pw.dialog.set_transient_for (parent);
-        } catch (Error e) {
-            stderr.printf ("Could not load app UI: %s\n", e.message);
-            return false;
-        }
-
+        pw.set_transient_for (parent);
         save_to_ui ();
 
-        var retval = (pw.dialog.run () == 1);
+        var retval = (pw.run () == 1);
         if (retval) {
             load_from_ui ();
         }
 
-        pw.dialog.destroy ();
+        pw.destroy ();
         pw = null;
 
         return retval;

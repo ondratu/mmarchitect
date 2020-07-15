@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.20.0 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
-  <object class="GtkDialog" id="dialog">
+  <requires lib="gtk+" version="3.20"/>
+  <template class="PropertiesWidgets" parent="GtkDialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">File properties</property>
@@ -121,7 +121,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label_created">
+                          <object class="GtkLabel" id="created">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">label</property>
@@ -148,7 +148,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label_modified">
+                          <object class="GtkLabel" id="modified">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">label</property>
@@ -175,7 +175,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label_path">
+                          <object class="GtkLabel" id="filepath">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">label</property>
@@ -243,5 +243,5 @@
       <action-widget response="0">button_cancel</action-widget>
       <action-widget response="1">button_ok</action-widget>
     </action-widgets>
-  </object>
+  </template>
 </interface>
