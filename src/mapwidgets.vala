@@ -29,33 +29,18 @@ enum RisingMethod {
     }
 }
 
-public class MapWidgets: GLib.Object {
+[GtkTemplate (ui = "/cz/zeropage/mmarchitect/map.ui")]
+public class MapWidgets: Gtk.Box {
+    [GtkChild]
     public Gtk.RadioButton rise_method_disable;
+    [GtkChild]
     public Gtk.RadioButton rise_method_branches;
+    [GtkChild]
     public Gtk.RadioButton rise_method_points;
+    [GtkChild]
     public Gtk.CheckButton rise_ideas;
+    [GtkChild]
     public Gtk.CheckButton rise_branches;
-
-    public Gtk.Box box;
-
-    public virtual void loadui () throws Error {
-        var builder = new Gtk.Builder ();
-        builder.add_from_file (DATA_DIR + "/ui/map.ui");
-        builder.connect_signals (this);
-
-        rise_method_disable = (Gtk.RadioButton)
-                builder.get_object ("rise_method_disable");
-        rise_method_branches = (Gtk.RadioButton)
-                builder.get_object ("rise_method_branches");
-        rise_method_points = (Gtk.RadioButton)
-                builder.get_object ("rise_method_points");
-        rise_ideas = (Gtk.CheckButton)
-                builder.get_object ("rise_ideas");
-        rise_branches = (Gtk.CheckButton)
-                builder.get_object ("rise_branches");
-
-        box = (Gtk.Box) builder.get_object ("box_map");
-    }
 
     public void set_rise_method (uint method) {
         if (method == RisingMethod.BRANCHES) {

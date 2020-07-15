@@ -56,7 +56,7 @@ public class RecentFile {
     }
 }
 
-public class PreferenceWidgets : MapWidgets {
+public class PreferenceWidgets : GLib.Object {
     public Gtk.Dialog dialog;
 
     // general tab
@@ -87,8 +87,12 @@ public class PreferenceWidgets : MapWidgets {
     public Gtk.ColorButton back_normal;
     public Gtk.ColorButton back_selected;
 
-    public override void loadui () throws Error {
-        base.loadui ();
+    public MapWidgets box;
+
+    public void loadui () throws Error {
+        //base.loadui ();
+        box = new MapWidgets ();
+
 
         var builder = new Gtk.Builder ();
         builder.add_from_file (DATA_DIR + "/ui/preferences.ui");
@@ -485,9 +489,9 @@ public class Preferences : GLib.Object {
         }
 
         // map tab
-        rise_method = pw.get_rise_method ();
-        rise_ideas = pw.get_rise_ideas ();
-        rise_branches = pw.get_rise_branches ();
+        rise_method = pw.box.get_rise_method ();
+        rise_ideas = pw.box.get_rise_ideas ();
+        rise_branches = pw.box.get_rise_branches ();
     }
 
     private void save_to_ui () {
@@ -524,9 +528,9 @@ public class Preferences : GLib.Object {
         pw.back_selected.set_rgba (back_selected);
 
         // map tab
-        pw.set_rise_method (rise_method);
-        pw.set_rise_ideas (rise_ideas);
-        pw.set_rise_branches (rise_branches);
+        pw.box.set_rise_method (rise_method);
+        pw.box.set_rise_ideas (rise_ideas);
+        pw.box.set_rise_branches (rise_branches);
     }
 
 

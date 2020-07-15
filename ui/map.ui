@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
-  <object class="GtkBox" id="box_map">
+  <requires lib="gtk+" version="3.20"/>
+  <template class="MapWidgets" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="margin_left">10</property>
@@ -167,5 +167,5 @@
     <child>
       <placeholder/>
     </child>
-  </object>
+  </template>
 </interface>
