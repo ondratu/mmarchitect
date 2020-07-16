@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-03 21:05+0100\n"
-"PO-Revision-Date: 2020-06-25 15:41+0000\n"
+"PO-Revision-Date: 2020-07-17 12:41+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/de/>\n"
@@ -202,7 +202,7 @@ msgstr "Linie"
 
 #: ../ui/preferences.ui:394
 msgid "<b>Rising</b>"
-msgstr "<b>Aufsteigend</b>"
+msgstr "<b>Wachstum</b>"
 
 #: ../ui/preferences.ui:427
 msgid "Text padding"
@@ -393,7 +393,7 @@ msgstr "_Punkte zählen"
 
 #: ../ui/map.ui:87
 msgid "<b>Rising method</b>"
-msgstr "<b>Steigende Methode</b>"
+msgstr "<b>Wachstumsmethode</b>"
 
 #: ../ui/map.ui:117
 msgid "Ideas"
@@ -405,7 +405,7 @@ msgstr "Zweige"
 
 #: ../ui/map.ui:153
 msgid "<b>Rise elemens</b>"
-msgstr ""
+msgstr "<b>Wachsende Elemente</b>"
 
 #: ../ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
