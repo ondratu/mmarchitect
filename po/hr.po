@@ -8,278 +8,285 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-03 21:05+0100\n"
-"PO-Revision-Date: 2020-01-10 17:43+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-07-17 12:41+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/mmarchitect/"
+"translations/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: ../src/mindmap.vala:79
 msgid "Main Idea"
-msgstr ""
+msgstr "Glavna ideja"
 
 #: ../src/main.vala:49
 #, c-format
 msgid "Could not load app UI: %s\n"
-msgstr ""
+msgstr "Neuspjelo učitavanje sučelja programa: %s\n"
 
 #: ../src/tips.vala:29
 msgid "Moving with Ideas"
-msgstr ""
+msgstr "Kretanje s idejama"
 
 #: ../src/tips.vala:30
 msgid ""
 "You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
 "Left or Right to move with selected Ideas."
 msgstr ""
+"Ideje se mogu premještati pomoću tipkovničkih prečaca. Za premještanje "
+"odabranih ideja može se koristiti CTRL - strelica gore, dolje, lijevo ili "
+"desno."
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
-msgstr ""
+msgstr "Upotreba mentalnih karata kao popis ZADATAKA"
 
 #: ../src/tips.vala:33
 msgid ""
 "Mind Maps could be use as TODO lists. You have more tree like possibility "
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
+"Mentalne karte se mogu koristiti kao popis ZADATAKA. One omogućuju stablasti "
+"prikaz kategorija, važnosti ili razine teškoće."
 
 #: ../src/editform.vala:306
 msgid "Extends edit"
-msgstr ""
+msgstr "Proširuje uređivanje"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
-msgstr ""
+msgstr "Danas, %H:%M"
 
 #: ../src/clavertime.vala:31
 msgid "Yesterday %H:%M"
-msgstr ""
+msgstr "Jučer, %H∶%M"
 
 #: ../src/clavertime.vala:48
 msgid "Today"
-msgstr ""
+msgstr "Danas"
 
 #: ../src/clavertime.vala:52
 msgid "Yesterday"
-msgstr ""
+msgstr "Jučer"
 
 #: ../src/welcometab.vala:15
 msgid "Start here"
-msgstr ""
+msgstr "Počni ovdje"
 
 #: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
 #: ../src/app.vala:267
 msgid "Open file"
-msgstr ""
+msgstr "Otvori datoteku"
 
 #: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
 msgid "New file"
-msgstr ""
+msgstr "Nova datoteka"
 
 #: ../src/app.vala:90
 msgid "Save file"
-msgstr ""
+msgstr "Spremi datoteku"
 
 #: ../src/app.vala:92 ../src/app.vala:495
 msgid "Save file as"
-msgstr ""
+msgstr "Spremi datoteku kao"
 
 #: ../src/app.vala:122
 msgid "File $fname can't be imported!"
-msgstr ""
+msgstr "Nije moguće uvesti datoteku $fname!"
 
 #: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
 #: ../src/export_dialog.vala:69
 msgid "_Cancel"
-msgstr ""
+msgstr "O_dustani"
 
 #: ../src/app.vala:271 ../src/app.vala:364
 msgid "_Open"
-msgstr ""
+msgstr "_Otvori"
 
 #: ../src/app.vala:303
 msgid "File $path not found!"
-msgstr ""
+msgstr "Datoteka $path nije pronađena!"
 
 #: ../src/app.vala:360
 msgid "Import file"
-msgstr ""
+msgstr "Uvezi datoteku"
 
 #: ../src/app.vala:499
 msgid "_Save"
-msgstr ""
+msgstr "_Spremi"
 
 #: ../src/print.vala:62
 msgid "Printing error:"
-msgstr ""
+msgstr "Greška u ispisu:"
 
 #: ../src/export_dialog.vala:63
 msgid "Export Map as"
-msgstr ""
+msgstr "Izvezi kartu kao"
 
 #: ../src/export_dialog.vala:70
 msgid "_Export As"
-msgstr ""
+msgstr "_Izvezi kao"
 
 #: ../src/export_dialog.vala:73
 msgid "Plain Text"
-msgstr ""
+msgstr "Običan tekst"
 
 #: ../src/export_dialog.vala:77
 msgid "Simple Web Page"
-msgstr ""
+msgstr "Jednostavna web-stranica"
 
 #: ../src/export_dialog.vala:81
 msgid "Dynamic Web Page"
-msgstr ""
+msgstr "Dinamična web-stranica"
 
 #: ../src/export_dialog.vala:85
 msgid "PNG Image"
-msgstr ""
+msgstr "PNG slika"
 
 #: ../ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
-msgstr ""
+msgstr "Mind Map Architect postavke"
 
 #: ../ui/preferences.ui:92
 msgid "<b>Author</b>"
-msgstr ""
+msgstr "<b>Autor</b>"
 
 #: ../ui/preferences.ui:121
 msgid "Choose directory"
-msgstr ""
+msgstr "Odaberi mapu"
 
 #: ../ui/preferences.ui:130
 msgid "<b>Default dokuments directory</b>"
-msgstr ""
+msgstr "<b>Standardna mapa za dokumente</b>"
 
 #: ../ui/preferences.ui:160
 msgid "_Welcome tab"
-msgstr ""
+msgstr "Kartica _dobrodošlice"
 
 #: ../ui/preferences.ui:176
 msgid "_Empty document"
-msgstr ""
+msgstr "_Prazni dokument"
 
 #: ../ui/preferences.ui:193
 msgid "_Last opened documents"
-msgstr ""
+msgstr "_Zadnji otvoreni dokumenti"
 
 #: ../ui/preferences.ui:216
 msgid "<b>Start program with</b>"
-msgstr ""
+msgstr "<b>Pokreni program s</b>"
 
 #: ../ui/preferences.ui:234
 msgid "General"
-msgstr ""
+msgstr "Opće"
 
 #: ../ui/preferences.ui:264 ../ui/preferences.ui:577
 msgid "Use system font"
-msgstr ""
+msgstr "Koristi font sustava"
 
 #: ../ui/preferences.ui:304
 msgid "<b>Idea font</b>"
-msgstr ""
+msgstr "<b>Font za ideje</b>"
 
 #: ../ui/preferences.ui:337
 msgid "Font"
-msgstr ""
+msgstr "Font"
 
 #: ../ui/preferences.ui:365
 msgid "Line"
-msgstr ""
+msgstr "Crta"
 
 #: ../ui/preferences.ui:394
 msgid "<b>Rising</b>"
-msgstr ""
+msgstr "<b>Rast</b>"
 
 #: ../ui/preferences.ui:427
 msgid "Text padding"
-msgstr ""
+msgstr "Odmak teksta"
 
 #: ../ui/preferences.ui:465
 msgid "Height padding"
-msgstr ""
+msgstr "Odmak u širini"
 
 #: ../ui/preferences.ui:477
 msgid "Width padding"
-msgstr ""
+msgstr "Odmak u visini"
 
 #: ../ui/preferences.ui:505
 msgid "<b>Idea's padding</b>"
-msgstr ""
+msgstr "<b>Odmak za ideje</b>"
 
 #: ../ui/preferences.ui:552
 msgid "Height"
-msgstr ""
+msgstr "Visina"
 
 #: ../ui/preferences.ui:600
 msgid "<b>Note's text</b>"
-msgstr ""
+msgstr "<b>Tekst napomene</b>"
 
 #: ../ui/preferences.ui:622
 msgid "Style"
-msgstr ""
+msgstr "Stil"
 
 #: ../ui/preferences.ui:647
 msgid "Use system colors"
-msgstr ""
+msgstr "Koristi boje sustava"
 
 #: ../ui/preferences.ui:662
 msgid "<b>System colors</b>"
-msgstr ""
+msgstr "<b>Boje sustava</b>"
 
 #: ../ui/preferences.ui:762
 msgid "Default line color"
-msgstr ""
+msgstr "Standardna boja crta"
 
 #: ../ui/preferences.ui:775
 msgid "Canvas color"
-msgstr ""
+msgstr "Boja podloge"
 
 #: ../ui/preferences.ui:788
 msgid "Text normal color"
-msgstr ""
+msgstr "Standardna boja teksta"
 
 #: ../ui/preferences.ui:801
 msgid "Text selected color"
-msgstr ""
+msgstr "Odabrana boja teksta"
 
 #: ../ui/preferences.ui:814
 msgid "Background normal color"
-msgstr ""
+msgstr "Standardna boja pozadine"
 
 #: ../ui/preferences.ui:827
 msgid "Background selected color"
-msgstr ""
+msgstr "Odabrana boja pozadine"
 
 #: ../ui/preferences.ui:842
 msgid "<b>Colors definitions</b>"
-msgstr ""
+msgstr "<b>Definicije boja</b>"
 
 #: ../ui/preferences.ui:862
 msgid "Colors"
-msgstr ""
+msgstr "Boje"
 
 #: ../ui/preferences.ui:886
 msgid "Map"
-msgstr ""
+msgstr "Karta"
 
 #: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
-msgstr ""
+msgstr "O programu Mind Map Architect"
 
 #: ../ui/about_dialog.ui:14
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr ""
+msgstr "Copyright (c) 2011. – 2017., Ondřej Tůma"
 
 #: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
-msgstr ""
+msgstr "Alat za rad s mentalnim kartana. "
 
 #: ../ui/about_dialog.ui:17
 msgid ""
@@ -310,6 +317,32 @@ msgid ""
 "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
+"Autorska prava (c) 2011. – 2017., Ondřej Tůma\n"
+"Sva prava pridržana.\n"
+"\n"
+"Redistribucija i upotreba u izvornom i binarnom obliku, sa ili bez\n"
+"izmjene, dopuštene su pod sljedećim uvjetima:\n"
+" 1. Redistribucija izvornog koda mora zadržavati gore navedena autorska\n"
+"    prava, ovaj popis uvjeta i sljedeće odricanje odgovornosti.\n"
+" 2. Redistribucije u binarnom obliku moraju sadržavati gore navedena\n"
+"    autorska prava, ovaj popis uvjeta i sljedeće odricanje odgovornosti u\n"
+"    dokumentaciju i/ili drugim dokumentima isporučeni s distribucijom.\n"
+" 3. Ime Sveučilišta, kao niti imena njegovih suradnika ne smiju se "
+"koristiti\n"
+"    za podržavanje ili promoviranje proizvoda proizašlih iz ovog softvera\n"
+"    bez posebnog prethodnog pismenog odobrenja.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
 #: ../ui/about_dialog.ui:45
 msgid ""
@@ -322,115 +355,124 @@ msgid ""
 "Ettore Atalan <atalanttore@googlemail.com>\n"
 "Frank Endres <frank@endres.fr>"
 msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
 
 #: ../ui/map.ui:30
 msgid "_disable"
-msgstr ""
+msgstr "_deaktiviraj"
 
 #: ../ui/map.ui:47
 msgid "count _branches"
-msgstr ""
+msgstr "_broji grane"
 
 #: ../ui/map.ui:64
 msgid "count _points"
-msgstr ""
+msgstr "broji _točke"
 
 #: ../ui/map.ui:87
 msgid "<b>Rising method</b>"
-msgstr ""
+msgstr "<b>Metoda rasta</b>"
 
 #: ../ui/map.ui:117
 msgid "Ideas"
-msgstr ""
+msgstr "Ideje"
 
 #: ../ui/map.ui:132
 msgid "Branches"
-msgstr ""
+msgstr "Grane"
 
 #: ../ui/map.ui:153
 msgid "<b>Rise elemens</b>"
-msgstr ""
+msgstr "<b>Rastući elementi</b>"
 
 #: ../ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
-msgstr ""
+msgstr "Spremiti promjene u dokument?"
 
 #: ../ui/close_file_dialog.ui:25
 msgid "Close _without save"
-msgstr ""
+msgstr "Zatvori be_z spremanja"
 
 #: ../ui/close_file_dialog.ui:107
 msgid "Save changes to document %s before exit?"
-msgstr ""
+msgstr "Spremiti promjene u dokument %s prije zatvaranja programa?"
 
 #: ../ui/close_file_dialog.ui:125
 msgid "Your changes will be lost, if you don't save the file."
-msgstr ""
+msgstr "Promjene ćeš izgubiti, ako ne spremiš dadoteku."
 
 #: ../ui/properties.ui:8
 msgid "File properties"
-msgstr ""
+msgstr "Svojstva datoteke"
 
 #: ../ui/properties.ui:88
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: ../ui/properties.ui:114
 msgid "Created"
-msgstr ""
+msgstr "Stvoreno"
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
 #: ../ui/welcome.ui:198
 msgid "label"
-msgstr ""
+msgstr "oznaka"
 
 #: ../ui/properties.ui:142
 msgid "Modified"
-msgstr ""
+msgstr "Promijenjeno"
 
 #: ../ui/properties.ui:169
 msgid "Path"
-msgstr ""
+msgstr "Staza"
 
 #: ../ui/properties.ui:198
 msgid "<b>File</b>"
-msgstr ""
+msgstr "<b>Datoteka</b>"
 
 #: ../ui/properties.ui:222
 msgid "<b>Map</b>"
-msgstr ""
+msgstr "<b>Karta</b>"
 
 #: ../ui/color_dialog.ui:40
 msgid "Default color"
-msgstr ""
+msgstr "Standardna boja"
 
 #: ../ui/color_dialog.ui:56
 msgid "Parent color"
-msgstr ""
+msgstr "Nadređena boja"
 
 #: ../ui/color_dialog.ui:73
 msgid "Own color"
-msgstr ""
+msgstr "Vlastita boja"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
-msgstr ""
+msgstr "<b>Nedavne datoteke</b>"
 
 #: ../ui/welcome.ui:159
 msgid "<b>Tip:</b>"
-msgstr ""
+msgstr "<b>Savjet:</b>"
 
 #: ../ui/welcome.ui:179
 msgid "<b><big>label</big></b>"
-msgstr ""
+msgstr "<b><big>oznaka</big></b>"
 
 #: ../ui/welcome.ui:214
 msgid "<a href=\"#next_tip\">Next Tip</a>"
-msgstr ""
+msgstr "<a href=\"#next_tip\">Sljedeći savjet</a>"
 
 #: ../ui/welcome.ui:256
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
 msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Web-stranice projekta</a>"
 
 #: ../ui/welcome.ui:276
 msgid ""
@@ -438,22 +480,28 @@ msgid ""
 "version, or you want to start with helping us, see Home page of Mind Map "
 "Architect."
 msgstr ""
+"Ako tražiš daljnje informacije o projektu, ako želiš preuzeti novu verziju "
+"ili ako nam želiš pomoći, pogledaj web-stranicu Mind Map Architect."
 
 #: ../ui/welcome.ui:305
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
-msgstr ""
+msgstr "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Problemi</a>"
 
 #: ../ui/welcome.ui:325
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
 msgstr ""
+"Greška u programu? Nešto ti nedostaje u mmarchitektu? Javi nam! Hvala ti na "
+"odgovoru."
 
 #: ../ui/welcome.ui:355
 msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
 msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Razvoj "
+"projekta</a>"
 
 #: ../ui/welcome.ui:374
 msgid ""
@@ -461,127 +509,129 @@ msgid ""
 "languege, develop, create package for your distribution, or anything what "
 "you can do for help us, see development page."
 msgstr ""
+"Ako želiš pomoći ovom projektu – prevoditi, razvijati, izraditi paket za "
+"distribuciju ili bilo što drugo – pogledaj stranicu za razvoj."
 
 #: ../ui/main.ui:8
 msgid "Mind Map Architect"
-msgstr ""
+msgstr "Mind Map Architect"
 
 #: ../ui/main.ui:28
 msgid "_File"
-msgstr ""
+msgstr "_Datoteka"
 
 #: ../ui/main.ui:38
 msgid "New"
-msgstr ""
+msgstr "Nova"
 
 #: ../ui/main.ui:54
 msgid "Open"
-msgstr ""
+msgstr "Otvori"
 
 #: ../ui/main.ui:64
 msgid "Save"
-msgstr ""
+msgstr "Spremi"
 
 #: ../ui/main.ui:74
 msgid "Save As"
-msgstr ""
+msgstr "Spremi kao"
 
 #: ../ui/main.ui:84
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: ../ui/main.ui:100
 msgid "Print"
-msgstr ""
+msgstr "Ispiši"
 
 #: ../ui/main.ui:116
 msgid "Export"
-msgstr ""
+msgstr "Izvezi"
 
 #: ../ui/main.ui:125
 msgid "Import"
-msgstr ""
+msgstr "Uvezi"
 
 #: ../ui/main.ui:140
 msgid "Properties"
-msgstr ""
+msgstr "Svojstva"
 
 #: ../ui/main.ui:155
 msgid "Quit"
-msgstr ""
+msgstr "Zatvori program"
 
 #: ../ui/main.ui:168
 msgid "_Edit"
-msgstr ""
+msgstr "_Uredi"
 
 #: ../ui/main.ui:178 ../ui/main.ui:493
 msgid "Expand"
-msgstr ""
+msgstr "Rasklopi"
 
 #: ../ui/main.ui:187 ../ui/main.ui:502
 msgid "Collapse"
-msgstr ""
+msgstr "Sklopi"
 
 #: ../ui/main.ui:202 ../ui/main.ui:511
 msgid "Cut"
-msgstr ""
+msgstr "Izreži"
 
 #: ../ui/main.ui:212 ../ui/main.ui:520
 msgid "Copy"
-msgstr ""
+msgstr "Kopiraj"
 
 #: ../ui/main.ui:222 ../ui/main.ui:529
 msgid "Paste"
-msgstr ""
+msgstr "Umetni"
 
 #: ../ui/main.ui:232 ../ui/main.ui:538
 msgid "Delete"
-msgstr ""
+msgstr "Izbriši"
 
 #: ../ui/main.ui:247 ../ui/main.ui:484
 msgid "Edit"
-msgstr ""
+msgstr "Uredi"
 
 #: ../ui/main.ui:262
 msgid "Preferences"
-msgstr ""
+msgstr "Postavke"
 
 #: ../ui/main.ui:275
 msgid "_View"
-msgstr ""
+msgstr "_Pogled"
 
 #: ../ui/main.ui:285 ../ui/main.ui:462
 msgid "Expand all branches"
-msgstr ""
+msgstr "Rasklopi sve grane"
 
 #: ../ui/main.ui:294 ../ui/main.ui:471
 msgid "Collapse all branches"
-msgstr ""
+msgstr "Sklopi sve grane"
 
 #: ../ui/main.ui:309
 msgid "Home"
-msgstr ""
+msgstr "Početna"
 
 #: ../ui/main.ui:323
 msgid "_Help"
-msgstr ""
+msgstr "Po_moć"
 
 #: ../ui/main.ui:547
 msgid "Move"
-msgstr ""
+msgstr "Premjesti"
 
 #: ../ui/main.ui:557
 msgid "Move Up"
-msgstr ""
+msgstr "Premjesti gore"
 
 #: ../ui/main.ui:566
 msgid "Move Down"
-msgstr ""
+msgstr "Premjesti dolje"
 
 #: ../ui/main.ui:575
 msgid "Move Left"
-msgstr ""
+msgstr "Premjesti lijevo"
 
 #: ../ui/main.ui:583
 msgid "Move Right"
-msgstr ""
+msgstr "Premjesti desno"
