@@ -1,42 +1,41 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2013 THE PACKAGE'S COPYRIGHT HOLDER
+# Marathi translations for PACKAGE package.
+# Copyright (C) 2020 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#  Luis García Sevillano <floss.dev@gmail.com>, 2013.
+# Automatically generated, 2020.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Mind Map Architect\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-24 20:09+0100\n"
-"PO-Revision-Date: 2013-03-24 21:10+0100\n"
-"Last-Translator: Luis García Sevillano <floss.dev@gmail.com>\n"
-"Language-Team:  <floss.dev@gmail.com>\n"
-"Language: Spanish\n"
+"PO-Revision-Date: 2020-11-24 20:09+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
 
 #: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
 #: ../src/welcometab.vala:70
 msgid "Open file"
-msgstr "Abrir archivo"
+msgstr ""
 
 #: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
 msgid "New file"
-msgstr "Nuevo archivo"
+msgstr ""
 
 #: ../src/app.vala:90
 msgid "Save file"
-msgstr "Guardar archivo"
+msgstr ""
 
 #: ../src/app.vala:92 ../src/app.vala:495
 msgid "Save file as"
-msgstr "Guardar archivo como"
+msgstr ""
 
 #: ../src/app.vala:122
 msgid "File $fname can't be imported!"
-msgstr "¡El archivo $fname no puede ser importado!"
+msgstr ""
 
 #: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
 #: ../src/export_dialog.vala:69
@@ -49,11 +48,11 @@ msgstr ""
 
 #: ../src/app.vala:303
 msgid "File $path not found!"
-msgstr "¡No se encuentra el archivo $path!"
+msgstr ""
 
 #: ../src/app.vala:360
 msgid "Import file"
-msgstr "Importar archivo"
+msgstr ""
 
 #: ../src/app.vala:499
 msgid "_Save"
@@ -61,108 +60,98 @@ msgstr ""
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
-msgstr "Hoy %H:%M"
+msgstr ""
 
 #: ../src/clavertime.vala:31
 msgid "Yesterday %H:%M"
-msgstr "Ayer %H:%M"
+msgstr ""
 
 #: ../src/clavertime.vala:48
 msgid "Today"
-msgstr "Hoy"
+msgstr ""
 
 #: ../src/clavertime.vala:52
 msgid "Yesterday"
-msgstr "Ayer"
+msgstr ""
 
 #: ../src/editform.vala:306
 msgid "Extends edit"
-msgstr "Ampliar edición"
+msgstr ""
 
 #: ../src/export_dialog.vala:63
-#, fuzzy
 msgid "Export Map as"
-msgstr "Exportar archivo como"
+msgstr ""
 
 #: ../src/export_dialog.vala:70
-#, fuzzy
 msgid "_Export As"
-msgstr "_Exportar"
+msgstr ""
 
 #: ../src/export_dialog.vala:73
 msgid "Plain Text"
-msgstr "Texto plano"
+msgstr ""
 
 #: ../src/export_dialog.vala:77
 msgid "Simple Web Page"
-msgstr "Página web sencilla"
+msgstr ""
 
 #: ../src/export_dialog.vala:81
 msgid "Dynamic Web Page"
-msgstr "Página web dinámica"
+msgstr ""
 
 #: ../src/export_dialog.vala:85
 msgid "PNG Image"
-msgstr "Imagen PNG"
+msgstr ""
 
 #: ../src/main.vala:49
 #, c-format
 msgid "Could not load app UI: %s\n"
-msgstr "No puede cargarse IU de la aplicación: %s\n"
+msgstr ""
 
 #: ../src/mindmap.vala:79
 msgid "Main Idea"
-msgstr "Idea principal"
+msgstr ""
 
 #: ../src/print.vala:62
 msgid "Printing error:"
-msgstr "Error de impresión:"
+msgstr ""
 
 #: ../src/tips.vala:29
 msgid "Moving with Ideas"
-msgstr "En movimiento con las Ideas"
+msgstr ""
 
 #: ../src/tips.vala:30
 msgid ""
 "You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
 "Left or Right to move with selected Ideas."
 msgstr ""
-"Puede mover las ideas con atajos de teclado. Use CTRL - Flecha Arriba, "
-"Abajo, Izquierda o Derecha para mover la idea seleccionada"
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
-msgstr "Use Mind Maps como lista de tareas por hacer (TODO)"
+msgstr ""
 
 #: ../src/tips.vala:33
 msgid ""
 "Mind Maps could be use as TODO lists. You have more tree like possibility "
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
-"Mind Maps puede ser usado como lista de tareas por hacer. Tiene tres "
-"posibilidades más con mind maps, como categorías, importancia o dificultad"
 
 #: ../src/welcometab.vala:15
 msgid "Start here"
-msgstr "Empezar aquí"
+msgstr ""
 
 #: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
-msgstr "Acerca de la aplicación Mind Map Architet"
+msgstr ""
 
 #: ../ui/about_dialog.ui:14
-#, fuzzy
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr "Copyright © 2011-2012, Ondřej Tůma"
+msgstr ""
 
-# Mind maps --> "Mapas mentales"
-# (sounds strange in spanish)
 #: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
-msgstr "Herramienta para trabajar con mind maps."
+msgstr ""
 
 #: ../ui/about_dialog.ui:17
-#, fuzzy
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -191,41 +180,6 @@ msgid ""
 "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
-"Copyright © 2011-2012, Ondřej Tůma\n"
-"Todos los derechos reservados.\n"
-"\n"
-"La redistribución y uso del código fuente y formato binario, con o sin\n"
-"modificación, está permitido siempre y cuando se cumplan las siguientes "
-"condiciones:\n"
-"1. La redistribución de código fuente debe mantener el texto de copyright "
-"superior,\n"
-"    esta lista de condiciones y los siguientes avisos legales.\n"
-"2. La redistribución en forma binaria debe mantener el texto de copyright "
-"superior,\n"
-"    esta lista de condiciones y los siguientes avisos legales en la "
-"documentación,\n"
-"     y/o en otros materiales proporcionados con la distribución.\n"
-"3. Todo material publicitario que mencione funcionalidades o use este "
-"software\n"
-"    debe mostrar el siguiente reconocimiento:\n"
-"    Este producto incluye software desarrollado por Ondřej Tůma.\n"
-"4. Ni el nombre de los autores ni el nombre de los\n"
-"    colaboradores debe ser usado para avalar o promover productos\n"
-"    derivados de este software sin permiso específico proporcionado "
-"previamente por escrito.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY ONDŘEJ TǓMA ''AS IS'' AND ANY\n"
-"EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
-"WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
-"DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
-"DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
-"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
-"SERVICES;\n"
-"LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
-"ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
-"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
-"THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
 #: ../ui/about_dialog.ui:45
 msgid ""
@@ -241,58 +195,55 @@ msgstr ""
 
 #: ../ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
-msgstr "¿Guardar los cambios del documento?"
+msgstr ""
 
 #: ../ui/close_file_dialog.ui:25
 msgid "Close _without save"
-msgstr "Cerrar _sin gruardar"
+msgstr ""
 
 #: ../ui/close_file_dialog.ui:107
 msgid "Save changes to document %s before exit?"
-msgstr "¿Guardar los cambios del documento %s antes de salir?"
+msgstr ""
 
 #: ../ui/close_file_dialog.ui:125
 msgid "Your changes will be lost, if you don't save the file."
-msgstr "Sus cambios se perderán si no guarda el archivo."
+msgstr ""
 
 #: ../ui/color_dialog.ui:40
 msgid "Default color"
-msgstr "Color por defecto"
+msgstr ""
 
 #: ../ui/color_dialog.ui:56
 msgid "Parent color"
-msgstr "Color padre"
+msgstr ""
 
 #: ../ui/color_dialog.ui:73
 msgid "Own color"
-msgstr "Color propio"
+msgstr ""
 
 #: ../ui/main.ui:8
 msgid "Mind Map Architect"
-msgstr "Mind Map Architet"
+msgstr ""
 
 #: ../ui/main.ui:28
 msgid "_File"
-msgstr "_Archivo"
+msgstr ""
 
 #: ../ui/main.ui:38
 msgid "New"
 msgstr ""
 
 #: ../ui/main.ui:54
-#, fuzzy
 msgid "Open"
-msgstr "Abrir archivo"
+msgstr ""
 
 #: ../ui/main.ui:64
-#, fuzzy
 msgid "Save"
-msgstr "Guardar archivo"
+msgstr ""
 
 #: ../ui/main.ui:74
-#, fuzzy
 msgid "Save As"
-msgstr "Guardar archivo como"
+msgstr ""
 
 #: ../ui/main.ui:84
 msgid "Close"
@@ -304,11 +255,11 @@ msgstr ""
 
 #: ../ui/main.ui:116
 msgid "Export"
-msgstr "Exportar"
+msgstr ""
 
 #: ../ui/main.ui:125
 msgid "Import"
-msgstr "Importar"
+msgstr ""
 
 #: ../ui/main.ui:140
 msgid "Properties"
@@ -320,16 +271,15 @@ msgstr ""
 
 #: ../ui/main.ui:168
 msgid "_Edit"
-msgstr "_Editar"
+msgstr ""
 
-# Ampliar (other possibility to "Expand" word)
 #: ../ui/main.ui:178 ../ui/main.ui:493
 msgid "Expand"
-msgstr "Expandir"
+msgstr ""
 
 #: ../ui/main.ui:187 ../ui/main.ui:502
 msgid "Collapse"
-msgstr "Contraer"
+msgstr ""
 
 #: ../ui/main.ui:202 ../ui/main.ui:511
 msgid "Cut"
@@ -348,9 +298,8 @@ msgid "Delete"
 msgstr ""
 
 #: ../ui/main.ui:247 ../ui/main.ui:484
-#, fuzzy
 msgid "Edit"
-msgstr "_Editar"
+msgstr ""
 
 #: ../ui/main.ui:262
 msgid "Preferences"
@@ -358,17 +307,15 @@ msgstr ""
 
 #: ../ui/main.ui:275
 msgid "_View"
-msgstr "_Ver"
+msgstr ""
 
 #: ../ui/main.ui:285 ../ui/main.ui:462
-#, fuzzy
 msgid "Expand all branches"
-msgstr "_Expandir todas las ramas"
+msgstr ""
 
 #: ../ui/main.ui:294 ../ui/main.ui:471
-#, fuzzy
 msgid "Collapse all branches"
-msgstr "_Contraer todas las ramas"
+msgstr ""
 
 #: ../ui/main.ui:309
 msgid "Home"
@@ -376,7 +323,7 @@ msgstr ""
 
 #: ../ui/main.ui:323
 msgid "_Help"
-msgstr "A_yuda"
+msgstr ""
 
 #: ../ui/main.ui:547
 msgid "Move"
@@ -395,177 +342,172 @@ msgid "Move Left"
 msgstr ""
 
 #: ../ui/main.ui:583
-#, fuzzy
 msgid "Move Right"
-msgstr "Alto"
+msgstr ""
 
 #: ../ui/map.ui:30
 msgid "_disable"
-msgstr "_desactivar"
+msgstr ""
 
 #: ../ui/map.ui:47
 msgid "count _branches"
-msgstr "contar _ramas"
+msgstr ""
 
 #: ../ui/map.ui:64
-#, fuzzy
 msgid "count _points"
-msgstr "contar _ramas"
+msgstr ""
 
 #: ../ui/map.ui:87
 msgid "<b>Rising method</b>"
-msgstr "<b>Método de aumento</b>"
+msgstr ""
 
 #: ../ui/map.ui:117
 msgid "Ideas"
-msgstr "Ideas"
+msgstr ""
 
 #: ../ui/map.ui:132
 msgid "Branches"
-msgstr "Ramas"
+msgstr ""
 
 #: ../ui/map.ui:153
 msgid "<b>Rise elemens</b>"
-msgstr "<b>Subir elemento</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
-msgstr "Preferencias de Mind Map Architect "
+msgstr ""
 
 #: ../ui/preferences.ui:92
 msgid "<b>Author</b>"
-msgstr "<b>Autor</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:121
 msgid "Choose directory"
-msgstr "Seleccione directorio"
+msgstr ""
 
 #: ../ui/preferences.ui:130
 msgid "<b>Default dokuments directory</b>"
-msgstr "<b>Directorio de documentos por defecto</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:160
 msgid "_Welcome tab"
-msgstr "Pestaña de _Bienvenida"
+msgstr ""
 
 #: ../ui/preferences.ui:176
 msgid "_Empty document"
-msgstr "_Documento vacío"
+msgstr ""
 
 #: ../ui/preferences.ui:193
 msgid "_Last opened documents"
-msgstr "_Últimos documentos abiertos"
+msgstr ""
 
 #: ../ui/preferences.ui:216
 msgid "<b>Start program with</b>"
-msgstr "<b>Iniciar programa con</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:234
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #: ../ui/preferences.ui:264 ../ui/preferences.ui:577
 msgid "Use system font"
-msgstr "Usar fuente del sistema"
+msgstr ""
 
 #: ../ui/preferences.ui:304
 msgid "<b>Idea font</b>"
-msgstr "<b>Fuente de la Idea</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:337
 msgid "Font"
-msgstr "Fuente"
+msgstr ""
 
 #: ../ui/preferences.ui:365
 msgid "Line"
-msgstr "Línea"
+msgstr ""
 
 #: ../ui/preferences.ui:394
 msgid "<b>Rising</b>"
-msgstr "<b>Aumentando</b>"
+msgstr ""
 
-# padding --> espaciado
-# (another possibility. Perhaps, sounds better if related to 'empty spaces')
 #: ../ui/preferences.ui:427
 msgid "Text padding"
-msgstr "Texto de relleno"
+msgstr ""
 
 #: ../ui/preferences.ui:465
 msgid "Height padding"
-msgstr "Altura de relleno"
+msgstr ""
 
 #: ../ui/preferences.ui:477
 msgid "Width padding"
-msgstr "Ancho de relleno"
+msgstr ""
 
 #: ../ui/preferences.ui:505
 msgid "<b>Idea's padding</b>"
-msgstr "<b>Relleno de Idea</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:552
 msgid "Height"
-msgstr "Alto"
+msgstr ""
 
 #: ../ui/preferences.ui:600
 msgid "<b>Note's text</b>"
-msgstr "<b>Texto de la nota</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:622
 msgid "Style"
-msgstr "Estilo"
+msgstr ""
 
 #: ../ui/preferences.ui:647
 msgid "Use system colors"
-msgstr "Usar colores del sistema"
+msgstr ""
 
 #: ../ui/preferences.ui:662
 msgid "<b>System colors</b>"
-msgstr "<b>Colores del sistema</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:762
 msgid "Default line color"
-msgstr "Color por defecto de línea"
+msgstr ""
 
 #: ../ui/preferences.ui:775
 msgid "Canvas color"
-msgstr "Color del lienzo"
+msgstr ""
 
 #: ../ui/preferences.ui:788
 msgid "Text normal color"
-msgstr "Color texto normal"
+msgstr ""
 
 #: ../ui/preferences.ui:801
 msgid "Text selected color"
-msgstr "Color texto seleccionado"
+msgstr ""
 
 #: ../ui/preferences.ui:814
 msgid "Background normal color"
-msgstr "Color de fondo normal"
+msgstr ""
 
 #: ../ui/preferences.ui:827
 msgid "Background selected color"
-msgstr "Color de fondo seleccionado"
+msgstr ""
 
 #: ../ui/preferences.ui:842
 msgid "<b>Colors definitions</b>"
-msgstr "<b>Definición de colores</b>"
+msgstr ""
 
 #: ../ui/preferences.ui:862
 msgid "Colors"
-msgstr "Colores"
+msgstr ""
 
 #: ../ui/preferences.ui:886
 msgid "Map"
-msgstr "Mapa"
+msgstr ""
 
 #: ../ui/properties.ui:8
 msgid "File properties"
 msgstr ""
 
 #: ../ui/properties.ui:88
-#, fuzzy
 msgid "Author"
-msgstr "<b>Autor</b>"
+msgstr ""
 
 #: ../ui/properties.ui:114
 msgid "Created"
@@ -574,7 +516,7 @@ msgstr ""
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
 #: ../ui/welcome.ui:198
 msgid "label"
-msgstr "etiqueta"
+msgstr ""
 
 #: ../ui/properties.ui:142
 msgid "Modified"
@@ -585,35 +527,32 @@ msgid "Path"
 msgstr ""
 
 #: ../ui/properties.ui:198
-#, fuzzy
 msgid "<b>File</b>"
-msgstr "<b>Sugerencia:</b>"
+msgstr ""
 
 #: ../ui/properties.ui:222
-#, fuzzy
 msgid "<b>Map</b>"
-msgstr "<b>Sugerencia:</b>"
+msgstr ""
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
-msgstr "<b>Arhivos recientes-</b>"
+msgstr ""
 
 #: ../ui/welcome.ui:159
 msgid "<b>Tip:</b>"
-msgstr "<b>Sugerencia:</b>"
+msgstr ""
 
 #: ../ui/welcome.ui:179
 msgid "<b><big>label</big></b>"
-msgstr "<b><big>etiqueta</big></b>"
+msgstr ""
 
 #: ../ui/welcome.ui:214
 msgid "<a href=\"#next_tip\">Next Tip</a>"
-msgstr "<a href=\"#next_tip\">Siguiente sugerencia</a>"
+msgstr ""
 
 #: ../ui/welcome.ui:256
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
 msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Página web del proyecto</a>"
 
 #: ../ui/welcome.ui:276
 msgid ""
@@ -621,32 +560,22 @@ msgid ""
 "version, or you want to start with helping us, see Home page of Mind Map "
 "Architect."
 msgstr ""
-"Si busca más información sobre el proyecto, desea descargar una nueva "
-"versión, o ayudarnos, visite la página web de Mind Map Architect."
 
 #: ../ui/welcome.ui:305
-#, fuzzy
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
 msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tareas y errores</"
-"a>"
 
 #: ../ui/welcome.ui:325
-#, fuzzy
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
 msgstr ""
-"¿Hay un error en el programa? ¿Echa en falta al en mmarchitect? Por favor, "
-"haganoslo saber. Gracias por su respueta"
 
 #: ../ui/welcome.ui:355
 msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
 msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Desarrollo "
-"del proyecto</a>"
 
 #: ../ui/welcome.ui:374
 msgid ""
@@ -654,47 +583,3 @@ msgid ""
 "languege, develop, create package for your distribution, or anything what "
 "you can do for help us, see development page."
 msgstr ""
-"Si desea ayudarnos con este proyecto, traducir mensajes a su idioma, "
-"desarrollar, crear un empaquetado para su distribución, o cualquier cosa que "
-"pueda hacer para ayudarnos, vea la página de desarrollo."
-
-#~ msgid ""
-#~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
-#~ "\">General Discussion</a>"
-#~ msgstr ""
-#~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"
-#~ "\">Discusión General</a>"
-
-#~ msgid ""
-#~ "Have you any question about this application? Or have you some tip for "
-#~ "us, or other users ? Can you help to other users. Or you anly wnat to see "
-#~ "whats new in project ? Watch General Discussion on SourceForge.net."
-#~ msgstr ""
-#~ "¿Tiene alguna pregunta sobre la aplicación? o ¿tiene alguna sugerencia "
-#~ "para nosotros, u otros usuarios? Puede ayudar a otros usuarios. ¿O tan "
-#~ "solo desea ver qué novedades se dan en el proyecto? Visite el foro de "
-#~ "discusión General en sourceforge.net"
-
-#~ msgid "Point"
-#~ msgstr "Punto"
-
-#~ msgid "_min (points)"
-#~ msgstr "_min (puntos)"
-
-#~ msgid "ma_x (points)"
-#~ msgstr "ma_x (puntos)"
-
-#~ msgid "_avg (points)"
-#~ msgstr "_media (puntos)"
-
-#~ msgid "_ignore parent's points"
-#~ msgstr "_ignorar puntos del padre"
-
-#~ msgid "_sum with branches points"
-#~ msgstr "_sumar con puntos de las ramas"
-
-#~ msgid "_replace branches points"
-#~ msgstr "_reemplazar puntos de ramas"
-
-#~ msgid "<b>Branches and Idea poinst</b>"
-#~ msgstr "<b>Ramas y puntos de Idea</b>"

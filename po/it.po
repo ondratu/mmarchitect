@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 21:05+0100\n"
+"POT-Creation-Date: 2020-11-24 20:09+0100\n"
 "PO-Revision-Date: 2013-01-06 16:35+0100\n"
 "Last-Translator: evanmac <nicola.lomartire@mac.com>\n"
 "Language-Team: evanmac <nicola.lomartire@gmail.com>\n"
@@ -17,70 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: ../src/mindmap.vala:79
-msgid "Main Idea"
-msgstr "Idea principale"
-
-#: ../src/main.vala:49
-#, c-format
-msgid "Could not load app UI: %s\n"
-msgstr "Non posso caricare l'applicazione per la UI: %s\n"
-
-#: ../src/tips.vala:29
-msgid "Moving with Ideas"
-msgstr "Muoverti con le idee"
-
-#: ../src/tips.vala:30
-msgid ""
-"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
-"Left or Right to move with selected Ideas."
-msgstr ""
-"Puoi muoverti con le idee con scorciatoie da tastiera. Puoi usare CTRL - "
-"Freccia Su, Giù, Sinistra o Destra per muoverti con le idee selezionate"
-
-#: ../src/tips.vala:32
-msgid "Using Mind Maps as TODO list"
-msgstr "Usa Mind Maps come lista di cose da fare (TODO)"
-
-#: ../src/tips.vala:33
-msgid ""
-"Mind Maps could be use as TODO lists. You have more tree like possibility "
-"with mind maps, like categories, importance or difficulty."
-msgstr ""
-"Mind Maps può essere usato come lista di cose da fare (TODO list). Hai più "
-"possibiltà simili ad un albero con mind maps, come le categorie, importanza "
-"o difficoltà."
-
-#: ../src/editform.vala:306
-msgid "Extends edit"
-msgstr "Modifiche estese"
-
-#: ../src/clavertime.vala:29
-msgid "Today %H:%M"
-msgstr "Oggi %H:%M"
-
-#: ../src/clavertime.vala:31
-msgid "Yesterday %H:%M"
-msgstr "Ieri %H:%M"
-
-#: ../src/clavertime.vala:48
-msgid "Today"
-msgstr "Oggi"
-
-#: ../src/clavertime.vala:52
-msgid "Yesterday"
-msgstr "Ieri"
-
-#: ../src/welcometab.vala:15
-msgid "Start here"
-msgstr "Inizia qui"
-
-#: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
-#: ../src/app.vala:267
+#: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
+#: ../src/welcometab.vala:70
 msgid "Open file"
 msgstr "Apri file"
 
-#: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
+#: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
 msgid "New file"
 msgstr "Nuovo file"
 
@@ -117,9 +59,25 @@ msgstr "Importa file"
 msgid "_Save"
 msgstr ""
 
-#: ../src/print.vala:62
-msgid "Printing error:"
-msgstr "Errore di stampa:"
+#: ../src/clavertime.vala:29
+msgid "Today %H:%M"
+msgstr "Oggi %H:%M"
+
+#: ../src/clavertime.vala:31
+msgid "Yesterday %H:%M"
+msgstr "Ieri %H:%M"
+
+#: ../src/clavertime.vala:48
+msgid "Today"
+msgstr "Oggi"
+
+#: ../src/clavertime.vala:52
+msgid "Yesterday"
+msgstr "Ieri"
+
+#: ../src/editform.vala:306
+msgid "Extends edit"
+msgstr "Modifiche estese"
 
 #: ../src/export_dialog.vala:63
 #, fuzzy
@@ -147,133 +105,47 @@ msgstr "Pagina web dinamica"
 msgid "PNG Image"
 msgstr "Immagine PNG"
 
-#: ../ui/preferences.ui:8
-msgid "Mind Map Architect Preferences"
-msgstr "Preferenze"
+#: ../src/main.vala:49
+#, c-format
+msgid "Could not load app UI: %s\n"
+msgstr "Non posso caricare l'applicazione per la UI: %s\n"
 
-#: ../ui/preferences.ui:92
-msgid "<b>Author</b>"
-msgstr "<b>Autore</b>"
+#: ../src/mindmap.vala:79
+msgid "Main Idea"
+msgstr "Idea principale"
 
-#: ../ui/preferences.ui:121
-msgid "Choose directory"
-msgstr "Scegli cartella"
+#: ../src/print.vala:62
+msgid "Printing error:"
+msgstr "Errore di stampa:"
 
-#: ../ui/preferences.ui:130
-msgid "<b>Default dokuments directory</b>"
-msgstr "<b>Cartella di default per i documenti</b>"
+#: ../src/tips.vala:29
+msgid "Moving with Ideas"
+msgstr "Muoverti con le idee"
 
-#: ../ui/preferences.ui:160
-msgid "_Welcome tab"
-msgstr "_Targhetta di benvenuto"
+#: ../src/tips.vala:30
+msgid ""
+"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
+"Left or Right to move with selected Ideas."
+msgstr ""
+"Puoi muoverti con le idee con scorciatoie da tastiera. Puoi usare CTRL - "
+"Freccia Su, Giù, Sinistra o Destra per muoverti con le idee selezionate"
 
-#: ../ui/preferences.ui:176
-msgid "_Empty document"
-msgstr "_Documento vuoto"
+#: ../src/tips.vala:32
+msgid "Using Mind Maps as TODO list"
+msgstr "Usa Mind Maps come lista di cose da fare (TODO)"
 
-#: ../ui/preferences.ui:193
-msgid "_Last opened documents"
-msgstr "_Ultimo documento aperto"
+#: ../src/tips.vala:33
+msgid ""
+"Mind Maps could be use as TODO lists. You have more tree like possibility "
+"with mind maps, like categories, importance or difficulty."
+msgstr ""
+"Mind Maps può essere usato come lista di cose da fare (TODO list). Hai più "
+"possibiltà simili ad un albero con mind maps, come le categorie, importanza "
+"o difficoltà."
 
-#: ../ui/preferences.ui:216
-msgid "<b>Start program with</b>"
-msgstr "<b>Avvia l'applicazione con...</b>"
-
-#: ../ui/preferences.ui:234
-msgid "General"
-msgstr "Generale"
-
-#: ../ui/preferences.ui:264 ../ui/preferences.ui:577
-msgid "Use system font"
-msgstr "Usa i caratteri di sistema"
-
-#: ../ui/preferences.ui:304
-msgid "<b>Idea font</b>"
-msgstr "<b>Carattere per l'idea</b>"
-
-#: ../ui/preferences.ui:337
-msgid "Font"
-msgstr "Carattere"
-
-#: ../ui/preferences.ui:365
-msgid "Line"
-msgstr "Linea"
-
-#: ../ui/preferences.ui:394
-msgid "<b>Rising</b>"
-msgstr "<b>Aumento</b>"
-
-#: ../ui/preferences.ui:427
-msgid "Text padding"
-msgstr "Spaziatura testo"
-
-#: ../ui/preferences.ui:465
-msgid "Height padding"
-msgstr "Spazio altezza"
-
-#: ../ui/preferences.ui:477
-msgid "Width padding"
-msgstr "Spazio larghezza"
-
-#: ../ui/preferences.ui:505
-msgid "<b>Idea's padding</b>"
-msgstr "<b>Estensione idea</b>"
-
-#: ../ui/preferences.ui:552
-msgid "Height"
-msgstr "Altezza"
-
-#: ../ui/preferences.ui:600
-msgid "<b>Note's text</b>"
-msgstr "<b>Testo della nota</b>"
-
-#: ../ui/preferences.ui:622
-msgid "Style"
-msgstr "Stile"
-
-#: ../ui/preferences.ui:647
-msgid "Use system colors"
-msgstr "Usa i colori di sistema"
-
-#: ../ui/preferences.ui:662
-msgid "<b>System colors</b>"
-msgstr "<b>Colori di sistema</b>"
-
-#: ../ui/preferences.ui:762
-msgid "Default line color"
-msgstr "Colore di default della linea"
-
-#: ../ui/preferences.ui:775
-msgid "Canvas color"
-msgstr "Colore della tela"
-
-#: ../ui/preferences.ui:788
-msgid "Text normal color"
-msgstr "Colore per il testo normale"
-
-#: ../ui/preferences.ui:801
-msgid "Text selected color"
-msgstr "Color eper il testo selezionato"
-
-#: ../ui/preferences.ui:814
-msgid "Background normal color"
-msgstr "Colore per lo sfondo normale"
-
-#: ../ui/preferences.ui:827
-msgid "Background selected color"
-msgstr "Colore per lo sfondo selezionato"
-
-#: ../ui/preferences.ui:842
-msgid "<b>Colors definitions</b>"
-msgstr "<b>Definizioni dei colori</b>"
-
-#: ../ui/preferences.ui:862
-msgid "Colors"
-msgstr "Colori"
-
-#: ../ui/preferences.ui:886
-msgid "Map"
-msgstr "Mappa"
+#: ../src/welcometab.vala:15
+msgid "Start here"
+msgstr "Inizia qui"
 
 #: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
@@ -364,35 +236,6 @@ msgid ""
 "Frank Endres <frank@endres.fr>"
 msgstr ""
 
-#: ../ui/map.ui:30
-msgid "_disable"
-msgstr "_disabilita"
-
-#: ../ui/map.ui:47
-msgid "count _branches"
-msgstr "conta _rami"
-
-#: ../ui/map.ui:64
-#, fuzzy
-msgid "count _points"
-msgstr "conta _rami"
-
-#: ../ui/map.ui:87
-msgid "<b>Rising method</b>"
-msgstr "<b>Metodo per l'aumento</b>"
-
-#: ../ui/map.ui:117
-msgid "Ideas"
-msgstr "Idee"
-
-#: ../ui/map.ui:132
-msgid "Branches"
-msgstr "Rami"
-
-#: ../ui/map.ui:153
-msgid "<b>Rise elemens</b>"
-msgstr "<b>Aumenta elementi</b>"
-
 #: ../ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
 msgstr "Vuoi salvare le modifiche al documento?"
@@ -410,42 +253,6 @@ msgstr ""
 msgid "Your changes will be lost, if you don't save the file."
 msgstr "I cambiamenti andranno persi se non salvi il file."
 
-#: ../ui/properties.ui:8
-msgid "File properties"
-msgstr ""
-
-#: ../ui/properties.ui:88
-#, fuzzy
-msgid "Author"
-msgstr "<b>Autore</b>"
-
-#: ../ui/properties.ui:114
-msgid "Created"
-msgstr ""
-
-#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
-#: ../ui/welcome.ui:198
-msgid "label"
-msgstr "etichetta"
-
-#: ../ui/properties.ui:142
-msgid "Modified"
-msgstr ""
-
-#: ../ui/properties.ui:169
-msgid "Path"
-msgstr ""
-
-#: ../ui/properties.ui:198
-#, fuzzy
-msgid "<b>File</b>"
-msgstr "<b>Suggerimento:</b>"
-
-#: ../ui/properties.ui:222
-#, fuzzy
-msgid "<b>Map</b>"
-msgstr "<b>Suggerimento:</b>"
-
 #: ../ui/color_dialog.ui:40
 msgid "Default color"
 msgstr "Colore di default"
@@ -457,71 +264,6 @@ msgstr "Colore padre"
 #: ../ui/color_dialog.ui:73
 msgid "Own color"
 msgstr "Proprio colore"
-
-#: ../ui/welcome.ui:125
-msgid "<b>Recent files:</b>"
-msgstr "<b>File recenti</b>"
-
-#: ../ui/welcome.ui:159
-msgid "<b>Tip:</b>"
-msgstr "<b>Suggerimento:</b>"
-
-#: ../ui/welcome.ui:179
-msgid "<b><big>label</big></b>"
-msgstr "<b><big>etichetta</big></b>"
-
-#: ../ui/welcome.ui:214
-msgid "<a href=\"#next_tip\">Next Tip</a>"
-msgstr "<a href=\"#next_tip\">Prossimo suggerimento</a>"
-
-#: ../ui/welcome.ui:256
-msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
-msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Pagina web del progetto</a>"
-
-#: ../ui/welcome.ui:276
-msgid ""
-"If you are looking for more informations about project, want to download new "
-"version, or you want to start with helping us, see Home page of Mind Map "
-"Architect."
-msgstr ""
-"Se cerchi più informazioni sul progetto, vuoi scaricare l'ultima versione, o "
-"vuoi iniziare ad aiutarci, guarda l'Home Page di Mind Map Architet."
-
-#: ../ui/welcome.ui:305
-#, fuzzy
-msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
-msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Attività ed "
-"errori</a>"
-
-#: ../ui/welcome.ui:325
-#, fuzzy
-msgid ""
-"Is there bug in this program? Is missing some future for you in mmarchitect? "
-"Please tell us more information about that. Thank you for your response."
-msgstr ""
-"C'è qualche errore in questa applicazione? Manca qualcosa secondo te in "
-"mmarchitect? Per favore daci maggiori informazioni al riguardo. Grazie per "
-"la tua risposta."
-
-#: ../ui/welcome.ui:355
-msgid ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
-"gtk=1\">Development of project</a>"
-msgstr ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Sviluppo "
-"del progetto</a>"
-
-#: ../ui/welcome.ui:374
-msgid ""
-"If you want to help us with this project, translate messages to your "
-"languege, develop, create package for your distribution, or anything what "
-"you can do for help us, see development page."
-msgstr ""
-"Se ti va di aiutarci con questo progetto, tradurre i messaggi nella tua "
-"lingua, creare pacchetti per la distribuzione, o qualsiasi cosa che tu possa "
-"fare per aiutarci, dai un'occhiata alla pagina dello sviluppo."
 
 #: ../ui/main.ui:8
 msgid "Mind Map Architect"
@@ -653,6 +395,264 @@ msgstr ""
 #, fuzzy
 msgid "Move Right"
 msgstr "Altezza"
+
+#: ../ui/map.ui:30
+msgid "_disable"
+msgstr "_disabilita"
+
+#: ../ui/map.ui:47
+msgid "count _branches"
+msgstr "conta _rami"
+
+#: ../ui/map.ui:64
+#, fuzzy
+msgid "count _points"
+msgstr "conta _rami"
+
+#: ../ui/map.ui:87
+msgid "<b>Rising method</b>"
+msgstr "<b>Metodo per l'aumento</b>"
+
+#: ../ui/map.ui:117
+msgid "Ideas"
+msgstr "Idee"
+
+#: ../ui/map.ui:132
+msgid "Branches"
+msgstr "Rami"
+
+#: ../ui/map.ui:153
+msgid "<b>Rise elemens</b>"
+msgstr "<b>Aumenta elementi</b>"
+
+#: ../ui/preferences.ui:8
+msgid "Mind Map Architect Preferences"
+msgstr "Preferenze"
+
+#: ../ui/preferences.ui:92
+msgid "<b>Author</b>"
+msgstr "<b>Autore</b>"
+
+#: ../ui/preferences.ui:121
+msgid "Choose directory"
+msgstr "Scegli cartella"
+
+#: ../ui/preferences.ui:130
+msgid "<b>Default dokuments directory</b>"
+msgstr "<b>Cartella di default per i documenti</b>"
+
+#: ../ui/preferences.ui:160
+msgid "_Welcome tab"
+msgstr "_Targhetta di benvenuto"
+
+#: ../ui/preferences.ui:176
+msgid "_Empty document"
+msgstr "_Documento vuoto"
+
+#: ../ui/preferences.ui:193
+msgid "_Last opened documents"
+msgstr "_Ultimo documento aperto"
+
+#: ../ui/preferences.ui:216
+msgid "<b>Start program with</b>"
+msgstr "<b>Avvia l'applicazione con...</b>"
+
+#: ../ui/preferences.ui:234
+msgid "General"
+msgstr "Generale"
+
+#: ../ui/preferences.ui:264 ../ui/preferences.ui:577
+msgid "Use system font"
+msgstr "Usa i caratteri di sistema"
+
+#: ../ui/preferences.ui:304
+msgid "<b>Idea font</b>"
+msgstr "<b>Carattere per l'idea</b>"
+
+#: ../ui/preferences.ui:337
+msgid "Font"
+msgstr "Carattere"
+
+#: ../ui/preferences.ui:365
+msgid "Line"
+msgstr "Linea"
+
+#: ../ui/preferences.ui:394
+msgid "<b>Rising</b>"
+msgstr "<b>Aumento</b>"
+
+#: ../ui/preferences.ui:427
+msgid "Text padding"
+msgstr "Spaziatura testo"
+
+#: ../ui/preferences.ui:465
+msgid "Height padding"
+msgstr "Spazio altezza"
+
+#: ../ui/preferences.ui:477
+msgid "Width padding"
+msgstr "Spazio larghezza"
+
+#: ../ui/preferences.ui:505
+msgid "<b>Idea's padding</b>"
+msgstr "<b>Estensione idea</b>"
+
+#: ../ui/preferences.ui:552
+msgid "Height"
+msgstr "Altezza"
+
+#: ../ui/preferences.ui:600
+msgid "<b>Note's text</b>"
+msgstr "<b>Testo della nota</b>"
+
+#: ../ui/preferences.ui:622
+msgid "Style"
+msgstr "Stile"
+
+#: ../ui/preferences.ui:647
+msgid "Use system colors"
+msgstr "Usa i colori di sistema"
+
+#: ../ui/preferences.ui:662
+msgid "<b>System colors</b>"
+msgstr "<b>Colori di sistema</b>"
+
+#: ../ui/preferences.ui:762
+msgid "Default line color"
+msgstr "Colore di default della linea"
+
+#: ../ui/preferences.ui:775
+msgid "Canvas color"
+msgstr "Colore della tela"
+
+#: ../ui/preferences.ui:788
+msgid "Text normal color"
+msgstr "Colore per il testo normale"
+
+#: ../ui/preferences.ui:801
+msgid "Text selected color"
+msgstr "Color eper il testo selezionato"
+
+#: ../ui/preferences.ui:814
+msgid "Background normal color"
+msgstr "Colore per lo sfondo normale"
+
+#: ../ui/preferences.ui:827
+msgid "Background selected color"
+msgstr "Colore per lo sfondo selezionato"
+
+#: ../ui/preferences.ui:842
+msgid "<b>Colors definitions</b>"
+msgstr "<b>Definizioni dei colori</b>"
+
+#: ../ui/preferences.ui:862
+msgid "Colors"
+msgstr "Colori"
+
+#: ../ui/preferences.ui:886
+msgid "Map"
+msgstr "Mappa"
+
+#: ../ui/properties.ui:8
+msgid "File properties"
+msgstr ""
+
+#: ../ui/properties.ui:88
+#, fuzzy
+msgid "Author"
+msgstr "<b>Autore</b>"
+
+#: ../ui/properties.ui:114
+msgid "Created"
+msgstr ""
+
+#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
+#: ../ui/welcome.ui:198
+msgid "label"
+msgstr "etichetta"
+
+#: ../ui/properties.ui:142
+msgid "Modified"
+msgstr ""
+
+#: ../ui/properties.ui:169
+msgid "Path"
+msgstr ""
+
+#: ../ui/properties.ui:198
+#, fuzzy
+msgid "<b>File</b>"
+msgstr "<b>Suggerimento:</b>"
+
+#: ../ui/properties.ui:222
+#, fuzzy
+msgid "<b>Map</b>"
+msgstr "<b>Suggerimento:</b>"
+
+#: ../ui/welcome.ui:125
+msgid "<b>Recent files:</b>"
+msgstr "<b>File recenti</b>"
+
+#: ../ui/welcome.ui:159
+msgid "<b>Tip:</b>"
+msgstr "<b>Suggerimento:</b>"
+
+#: ../ui/welcome.ui:179
+msgid "<b><big>label</big></b>"
+msgstr "<b><big>etichetta</big></b>"
+
+#: ../ui/welcome.ui:214
+msgid "<a href=\"#next_tip\">Next Tip</a>"
+msgstr "<a href=\"#next_tip\">Prossimo suggerimento</a>"
+
+#: ../ui/welcome.ui:256
+msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Pagina web del progetto</a>"
+
+#: ../ui/welcome.ui:276
+msgid ""
+"If you are looking for more informations about project, want to download new "
+"version, or you want to start with helping us, see Home page of Mind Map "
+"Architect."
+msgstr ""
+"Se cerchi più informazioni sul progetto, vuoi scaricare l'ultima versione, o "
+"vuoi iniziare ad aiutarci, guarda l'Home Page di Mind Map Architet."
+
+#: ../ui/welcome.ui:305
+#, fuzzy
+msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
+msgstr ""
+"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Attività ed "
+"errori</a>"
+
+#: ../ui/welcome.ui:325
+#, fuzzy
+msgid ""
+"Is there bug in this program? Is missing some future for you in mmarchitect? "
+"Please tell us more information about that. Thank you for your response."
+msgstr ""
+"C'è qualche errore in questa applicazione? Manca qualcosa secondo te in "
+"mmarchitect? Per favore daci maggiori informazioni al riguardo. Grazie per "
+"la tua risposta."
+
+#: ../ui/welcome.ui:355
+msgid ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
+"gtk=1\">Development of project</a>"
+msgstr ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Sviluppo "
+"del progetto</a>"
+
+#: ../ui/welcome.ui:374
+msgid ""
+"If you want to help us with this project, translate messages to your "
+"languege, develop, create package for your distribution, or anything what "
+"you can do for help us, see development page."
+msgstr ""
+"Se ti va di aiutarci con questo progetto, tradurre i messaggi nella tua "
+"lingua, creare pacchetti per la distribuzione, o qualsiasi cosa che tu possa "
+"fare per aiutarci, dai un'occhiata alla pagina dello sviluppo."
 
 #~ msgid ""
 #~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"

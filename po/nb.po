@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 21:05+0100\n"
+"POT-Creation-Date: 2020-11-24 20:09+0100\n"
 "PO-Revision-Date: 2019-08-01 05:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -19,72 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.8-dev\n"
 
-#: ../src/mindmap.vala:79
-msgid "Main Idea"
-msgstr "Hovedidé"
-
-#: ../src/main.vala:49
-#, c-format
-msgid "Could not load app UI: %s\n"
-msgstr "Kunne ikke laste inn programbrukergrensesnitt: %s\n"
-
-#: ../src/tips.vala:29
-msgid "Moving with Ideas"
-msgstr "Flytting med idéer"
-
-#: ../src/tips.vala:30
-#, fuzzy
-msgid ""
-"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
-"Left or Right to move with selected Ideas."
-msgstr ""
-"Du kan flytte med idéer ved bruk av hurtigtaster. Du kan bruke CTRL+↑, ↓, ← "
-"eller→ for å flytte med valgte idéer."
-
-#: ../src/tips.vala:32
-#, fuzzy
-msgid "Using Mind Maps as TODO list"
-msgstr "Bruk av tankekart som gjøremålsliste"
-
-#: ../src/tips.vala:33
-#, fuzzy
-msgid ""
-"Mind Maps could be use as TODO lists. You have more tree like possibility "
-"with mind maps, like categories, importance or difficulty."
-msgstr ""
-"Tankekart kan brukes som gjøremålslister. Du har en mer tre-lignende "
-"mulighet med tankekart, som kategorier, viktighet eller vanskelighetsgrad."
-
-#: ../src/editform.vala:306
-msgid "Extends edit"
-msgstr "Utvider redigering"
-
-#: ../src/clavertime.vala:29
-msgid "Today %H:%M"
-msgstr "I dag %H:%M"
-
-#: ../src/clavertime.vala:31
-msgid "Yesterday %H:%M"
-msgstr "I går %H:%M"
-
-#: ../src/clavertime.vala:48
-msgid "Today"
-msgstr "I dag"
-
-#: ../src/clavertime.vala:52
-msgid "Yesterday"
-msgstr "I går"
-
-#: ../src/welcometab.vala:15
-msgid "Start here"
-msgstr "Start her"
-
-#: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
-#: ../src/app.vala:267
+#: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
+#: ../src/welcometab.vala:70
 msgid "Open file"
 msgstr "Åpne fil"
 
-#: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
+#: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
 msgid "New file"
 msgstr "Ny fil"
 
@@ -123,9 +63,25 @@ msgstr "Importer fil"
 msgid "_Save"
 msgstr "_Lagre"
 
-#: ../src/print.vala:62
-msgid "Printing error:"
-msgstr "Utskriftsfeil:"
+#: ../src/clavertime.vala:29
+msgid "Today %H:%M"
+msgstr "I dag %H:%M"
+
+#: ../src/clavertime.vala:31
+msgid "Yesterday %H:%M"
+msgstr "I går %H:%M"
+
+#: ../src/clavertime.vala:48
+msgid "Today"
+msgstr "I dag"
+
+#: ../src/clavertime.vala:52
+msgid "Yesterday"
+msgstr "I går"
+
+#: ../src/editform.vala:306
+msgid "Extends edit"
+msgstr "Utvider redigering"
 
 #: ../src/export_dialog.vala:63
 #, fuzzy
@@ -151,6 +107,322 @@ msgstr "Dynamisk nettside"
 #: ../src/export_dialog.vala:85
 msgid "PNG Image"
 msgstr "PNG-bilde"
+
+#: ../src/main.vala:49
+#, c-format
+msgid "Could not load app UI: %s\n"
+msgstr "Kunne ikke laste inn programbrukergrensesnitt: %s\n"
+
+#: ../src/mindmap.vala:79
+msgid "Main Idea"
+msgstr "Hovedidé"
+
+#: ../src/print.vala:62
+msgid "Printing error:"
+msgstr "Utskriftsfeil:"
+
+#: ../src/tips.vala:29
+msgid "Moving with Ideas"
+msgstr "Flytting med idéer"
+
+#: ../src/tips.vala:30
+#, fuzzy
+msgid ""
+"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
+"Left or Right to move with selected Ideas."
+msgstr ""
+"Du kan flytte med idéer ved bruk av hurtigtaster. Du kan bruke CTRL+↑, ↓, ← "
+"eller→ for å flytte med valgte idéer."
+
+#: ../src/tips.vala:32
+#, fuzzy
+msgid "Using Mind Maps as TODO list"
+msgstr "Bruk av tankekart som gjøremålsliste"
+
+#: ../src/tips.vala:33
+#, fuzzy
+msgid ""
+"Mind Maps could be use as TODO lists. You have more tree like possibility "
+"with mind maps, like categories, importance or difficulty."
+msgstr ""
+"Tankekart kan brukes som gjøremålslister. Du har en mer tre-lignende "
+"mulighet med tankekart, som kategorier, viktighet eller vanskelighetsgrad."
+
+#: ../src/welcometab.vala:15
+msgid "Start here"
+msgstr "Start her"
+
+#: ../ui/about_dialog.ui:8
+#, fuzzy
+msgid "About Application Mind Map Architect"
+msgstr "Om"
+
+#: ../ui/about_dialog.ui:14
+msgid "Copyright (c) 2011-2017, Ondřej Tůma"
+msgstr "Kopirett © 2011-1017, Ondřej Tůma"
+
+#: ../ui/about_dialog.ui:15
+#, fuzzy
+msgid "Tool for working with mind maps. "
+msgstr "Verktøy for tankekart. "
+
+#: ../ui/about_dialog.ui:17
+#, fuzzy
+msgid ""
+"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+"Kopirett © 2011-2018, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+
+#: ../ui/about_dialog.ui:45
+#, fuzzy
+msgid ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
+msgstr ""
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"WaldiS <admin@sto.ugu.pl>"
+
+#: ../ui/close_file_dialog.ui:7
+#, fuzzy
+msgid "Save changes to document ?"
+msgstr "Lagre endringer i dokumentet?"
+
+#: ../ui/close_file_dialog.ui:25
+msgid "Close _without save"
+msgstr "Lukk _uten å lagre"
+
+#: ../ui/close_file_dialog.ui:107
+msgid "Save changes to document %s before exit?"
+msgstr "Lagre endringer i dokumentet %s før avslutning?"
+
+#: ../ui/close_file_dialog.ui:125
+msgid "Your changes will be lost, if you don't save the file."
+msgstr "Endringene vil gå tapt hvis du ikke lagrer fila."
+
+#: ../ui/color_dialog.ui:40
+msgid "Default color"
+msgstr "Forvalgt farge"
+
+#: ../ui/color_dialog.ui:56
+msgid "Parent color"
+msgstr "Ovennevnt farge"
+
+#: ../ui/color_dialog.ui:73
+msgid "Own color"
+msgstr "Egen farge"
+
+#: ../ui/main.ui:8
+msgid "Mind Map Architect"
+msgstr "Tankekart-arkitekt"
+
+#: ../ui/main.ui:28
+msgid "_File"
+msgstr "_Fil"
+
+#: ../ui/main.ui:38
+msgid "New"
+msgstr "Nytt"
+
+#: ../ui/main.ui:54
+msgid "Open"
+msgstr "Åpne"
+
+#: ../ui/main.ui:64
+msgid "Save"
+msgstr "Lagre"
+
+#: ../ui/main.ui:74
+msgid "Save As"
+msgstr "Lagre som"
+
+#: ../ui/main.ui:84
+msgid "Close"
+msgstr "Lukk"
+
+#: ../ui/main.ui:100
+msgid "Print"
+msgstr "Skriv ut"
+
+#: ../ui/main.ui:116
+msgid "Export"
+msgstr "Eksporter"
+
+#: ../ui/main.ui:125
+msgid "Import"
+msgstr "Importer"
+
+#: ../ui/main.ui:140
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: ../ui/main.ui:155
+msgid "Quit"
+msgstr "Avslutt"
+
+#: ../ui/main.ui:168
+msgid "_Edit"
+msgstr "_Rediger"
+
+#: ../ui/main.ui:178 ../ui/main.ui:493
+msgid "Expand"
+msgstr "Utvid"
+
+#: ../ui/main.ui:187 ../ui/main.ui:502
+msgid "Collapse"
+msgstr "Fold sammen"
+
+#: ../ui/main.ui:202 ../ui/main.ui:511
+msgid "Cut"
+msgstr "Klipp ut"
+
+#: ../ui/main.ui:212 ../ui/main.ui:520
+msgid "Copy"
+msgstr "Kopier"
+
+#: ../ui/main.ui:222 ../ui/main.ui:529
+msgid "Paste"
+msgstr "Lim inn"
+
+#: ../ui/main.ui:232 ../ui/main.ui:538
+msgid "Delete"
+msgstr "Slett"
+
+#: ../ui/main.ui:247 ../ui/main.ui:484
+msgid "Edit"
+msgstr "Rediger"
+
+#: ../ui/main.ui:262
+msgid "Preferences"
+msgstr "Innstillinger"
+
+#: ../ui/main.ui:275
+msgid "_View"
+msgstr "_Vis"
+
+#: ../ui/main.ui:285 ../ui/main.ui:462
+msgid "Expand all branches"
+msgstr "Utvid alle forgreninger"
+
+#: ../ui/main.ui:294 ../ui/main.ui:471
+msgid "Collapse all branches"
+msgstr "Fold sammen alle forgreninger"
+
+#: ../ui/main.ui:309
+msgid "Home"
+msgstr "Hjem"
+
+#: ../ui/main.ui:323
+msgid "_Help"
+msgstr "_Hjelp"
+
+#: ../ui/main.ui:547
+msgid "Move"
+msgstr "Flytt"
+
+#: ../ui/main.ui:557
+msgid "Move Up"
+msgstr "Flytt oppover"
+
+#: ../ui/main.ui:566
+msgid "Move Down"
+msgstr "Flytt nedover"
+
+#: ../ui/main.ui:575
+msgid "Move Left"
+msgstr "Flytt til venstre"
+
+#: ../ui/main.ui:583
+msgid "Move Right"
+msgstr "Flytt til høyre"
+
+#: ../ui/map.ui:30
+msgid "_disable"
+msgstr "_skru av"
+
+#: ../ui/map.ui:47
+msgid "count _branches"
+msgstr "tell _forgreninger"
+
+#: ../ui/map.ui:64
+msgid "count _points"
+msgstr "tell _poeng"
+
+#: ../ui/map.ui:87
+msgid "<b>Rising method</b>"
+msgstr "<b>Hevingsmetode</b>"
+
+#: ../ui/map.ui:117
+msgid "Ideas"
+msgstr "Idéer"
+
+#: ../ui/map.ui:132
+msgid "Branches"
+msgstr "Forgreninger"
+
+#: ../ui/map.ui:153
+msgid "<b>Rise elemens</b>"
+msgstr "<b>Hev elementer</b>"
 
 #: ../ui/preferences.ui:8
 #, fuzzy
@@ -288,142 +560,6 @@ msgstr "Farger"
 msgid "Map"
 msgstr "Tankekart"
 
-#: ../ui/about_dialog.ui:8
-#, fuzzy
-msgid "About Application Mind Map Architect"
-msgstr "Om"
-
-#: ../ui/about_dialog.ui:14
-msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr "Kopirett © 2011-1017, Ondřej Tůma"
-
-#: ../ui/about_dialog.ui:15
-#, fuzzy
-msgid "Tool for working with mind maps. "
-msgstr "Verktøy for tankekart. "
-
-#: ../ui/about_dialog.ui:17
-#, fuzzy
-msgid ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
-"All rights reserved.\n"
-"\n"
-"Redistribution and use in source and binary forms, with or without\n"
-"modification, are permitted provided that the following conditions\n"
-"are met:\n"
-" 1. Redistributions of source code must retain the above copyright\n"
-"    notice, this list of conditions and the following disclaimer.\n"
-" 2. Redistributions in binary form must reproduce the above copyright\n"
-"    notice, this list of conditions and the following disclaimer in the\n"
-"    documentation and/or other materials provided with the distribution.\n"
-" 3. Neither the name of the University nor the names of its contributors\n"
-"    may be used to endorse or promote products derived from this software\n"
-"    without specific prior written permission.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
-"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
-"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
-"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
-"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
-"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
-"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
-"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
-"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
-"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-msgstr ""
-"Kopirett © 2011-2018, Ondřej Tůma\n"
-"All rights reserved.\n"
-"\n"
-"Redistribution and use in source and binary forms, with or without\n"
-"modification, are permitted provided that the following conditions\n"
-"are met:\n"
-" 1. Redistributions of source code must retain the above copyright\n"
-"    notice, this list of conditions and the following disclaimer.\n"
-" 2. Redistributions in binary form must reproduce the above copyright\n"
-"    notice, this list of conditions and the following disclaimer in the\n"
-"    documentation and/or other materials provided with the distribution.\n"
-" 3. Neither the name of the University nor the names of its contributors\n"
-"    may be used to endorse or promote products derived from this software\n"
-"    without specific prior written permission.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
-"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
-"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
-"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
-"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
-"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
-"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
-"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
-"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
-"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-
-#: ../ui/about_dialog.ui:45
-#, fuzzy
-msgid ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"WaldiS <admin@sto.ugu.pl>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Ettore Atalan <atalanttore@googlemail.com>\n"
-"Frank Endres <frank@endres.fr>"
-msgstr ""
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Ettore Atalan <atalanttore@googlemail.com>\n"
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"WaldiS <admin@sto.ugu.pl>"
-
-#: ../ui/map.ui:30
-msgid "_disable"
-msgstr "_skru av"
-
-#: ../ui/map.ui:47
-msgid "count _branches"
-msgstr "tell _forgreninger"
-
-#: ../ui/map.ui:64
-msgid "count _points"
-msgstr "tell _poeng"
-
-#: ../ui/map.ui:87
-msgid "<b>Rising method</b>"
-msgstr "<b>Hevingsmetode</b>"
-
-#: ../ui/map.ui:117
-msgid "Ideas"
-msgstr "Idéer"
-
-#: ../ui/map.ui:132
-msgid "Branches"
-msgstr "Forgreninger"
-
-#: ../ui/map.ui:153
-msgid "<b>Rise elemens</b>"
-msgstr "<b>Hev elementer</b>"
-
-#: ../ui/close_file_dialog.ui:7
-#, fuzzy
-msgid "Save changes to document ?"
-msgstr "Lagre endringer i dokumentet?"
-
-#: ../ui/close_file_dialog.ui:25
-msgid "Close _without save"
-msgstr "Lukk _uten å lagre"
-
-#: ../ui/close_file_dialog.ui:107
-msgid "Save changes to document %s before exit?"
-msgstr "Lagre endringer i dokumentet %s før avslutning?"
-
-#: ../ui/close_file_dialog.ui:125
-msgid "Your changes will be lost, if you don't save the file."
-msgstr "Endringene vil gå tapt hvis du ikke lagrer fila."
-
 #: ../ui/properties.ui:8
 msgid "File properties"
 msgstr "Filegenskaper"
@@ -457,18 +593,6 @@ msgstr "<b>Fil</b>"
 #: ../ui/properties.ui:222
 msgid "<b>Map</b>"
 msgstr "<b>Tankekart</b>"
-
-#: ../ui/color_dialog.ui:40
-msgid "Default color"
-msgstr "Forvalgt farge"
-
-#: ../ui/color_dialog.ui:56
-msgid "Parent color"
-msgstr "Ovennevnt farge"
-
-#: ../ui/color_dialog.ui:73
-msgid "Own color"
-msgstr "Egen farge"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -536,130 +660,6 @@ msgstr ""
 "Hvis du ønsker å hjelpe til med prosjektet, oversette meldinger til ditt "
 "språk, utvikle, lage pakker for din distribusjon, eller hva som helst annet "
 "du kan, se utviklingssiden."
-
-#: ../ui/main.ui:8
-msgid "Mind Map Architect"
-msgstr "Tankekart-arkitekt"
-
-#: ../ui/main.ui:28
-msgid "_File"
-msgstr "_Fil"
-
-#: ../ui/main.ui:38
-msgid "New"
-msgstr "Nytt"
-
-#: ../ui/main.ui:54
-msgid "Open"
-msgstr "Åpne"
-
-#: ../ui/main.ui:64
-msgid "Save"
-msgstr "Lagre"
-
-#: ../ui/main.ui:74
-msgid "Save As"
-msgstr "Lagre som"
-
-#: ../ui/main.ui:84
-msgid "Close"
-msgstr "Lukk"
-
-#: ../ui/main.ui:100
-msgid "Print"
-msgstr "Skriv ut"
-
-#: ../ui/main.ui:116
-msgid "Export"
-msgstr "Eksporter"
-
-#: ../ui/main.ui:125
-msgid "Import"
-msgstr "Importer"
-
-#: ../ui/main.ui:140
-msgid "Properties"
-msgstr "Egenskaper"
-
-#: ../ui/main.ui:155
-msgid "Quit"
-msgstr "Avslutt"
-
-#: ../ui/main.ui:168
-msgid "_Edit"
-msgstr "_Rediger"
-
-#: ../ui/main.ui:178 ../ui/main.ui:493
-msgid "Expand"
-msgstr "Utvid"
-
-#: ../ui/main.ui:187 ../ui/main.ui:502
-msgid "Collapse"
-msgstr "Fold sammen"
-
-#: ../ui/main.ui:202 ../ui/main.ui:511
-msgid "Cut"
-msgstr "Klipp ut"
-
-#: ../ui/main.ui:212 ../ui/main.ui:520
-msgid "Copy"
-msgstr "Kopier"
-
-#: ../ui/main.ui:222 ../ui/main.ui:529
-msgid "Paste"
-msgstr "Lim inn"
-
-#: ../ui/main.ui:232 ../ui/main.ui:538
-msgid "Delete"
-msgstr "Slett"
-
-#: ../ui/main.ui:247 ../ui/main.ui:484
-msgid "Edit"
-msgstr "Rediger"
-
-#: ../ui/main.ui:262
-msgid "Preferences"
-msgstr "Innstillinger"
-
-#: ../ui/main.ui:275
-msgid "_View"
-msgstr "_Vis"
-
-#: ../ui/main.ui:285 ../ui/main.ui:462
-msgid "Expand all branches"
-msgstr "Utvid alle forgreninger"
-
-#: ../ui/main.ui:294 ../ui/main.ui:471
-msgid "Collapse all branches"
-msgstr "Fold sammen alle forgreninger"
-
-#: ../ui/main.ui:309
-msgid "Home"
-msgstr "Hjem"
-
-#: ../ui/main.ui:323
-msgid "_Help"
-msgstr "_Hjelp"
-
-#: ../ui/main.ui:547
-msgid "Move"
-msgstr "Flytt"
-
-#: ../ui/main.ui:557
-msgid "Move Up"
-msgstr "Flytt oppover"
-
-#: ../ui/main.ui:566
-msgid "Move Down"
-msgstr "Flytt nedover"
-
-#: ../ui/main.ui:575
-msgid "Move Left"
-msgstr "Flytt til venstre"
-
-#: ../ui/main.ui:583
-msgid "Move Right"
-msgstr "Flytt til høyre"
 
 #, fuzzy
 #~ msgid ""

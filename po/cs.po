@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 21:05+0100\n"
+"POT-Creation-Date: 2020-11-24 20:09+0100\n"
 "PO-Revision-Date: 2017-11-23 10:56+0000\n"
 "Last-Translator: Ondřej Tůma <mcbig@zeropage.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/mmarchitect/"
@@ -20,65 +20,12 @@ msgstr ""
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
-#: ../src/mindmap.vala:79
-msgid "Main Idea"
-msgstr "Hlavní myšlenka"
-
-#: ../src/main.vala:49
-#, c-format
-msgid "Could not load app UI: %s\n"
-msgstr "Nelze načíst aplikační rozhraní: %s\n"
-
-#: ../src/tips.vala:29
-msgid "Moving with Ideas"
-msgstr ""
-
-#: ../src/tips.vala:30
-msgid ""
-"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
-"Left or Right to move with selected Ideas."
-msgstr ""
-
-#: ../src/tips.vala:32
-msgid "Using Mind Maps as TODO list"
-msgstr ""
-
-#: ../src/tips.vala:33
-msgid ""
-"Mind Maps could be use as TODO lists. You have more tree like possibility "
-"with mind maps, like categories, importance or difficulty."
-msgstr ""
-
-#: ../src/editform.vala:306
-msgid "Extends edit"
-msgstr ""
-
-#: ../src/clavertime.vala:29
-msgid "Today %H:%M"
-msgstr "Dnes %H:%M"
-
-#: ../src/clavertime.vala:31
-msgid "Yesterday %H:%M"
-msgstr "Včera %H:%M"
-
-#: ../src/clavertime.vala:48
-msgid "Today"
-msgstr "Dnes"
-
-#: ../src/clavertime.vala:52
-msgid "Yesterday"
-msgstr "Včera"
-
-#: ../src/welcometab.vala:15
-msgid "Start here"
-msgstr "Začni zde"
-
-#: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
-#: ../src/app.vala:267
+#: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
+#: ../src/welcometab.vala:70
 msgid "Open file"
 msgstr "Otevřít soubor"
 
-#: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
+#: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
 msgid "New file"
 msgstr "Nový soubor"
 
@@ -115,9 +62,25 @@ msgstr "Importovat soubor"
 msgid "_Save"
 msgstr "_Uložit"
 
-#: ../src/print.vala:62
-msgid "Printing error:"
-msgstr "Chyba tisku:"
+#: ../src/clavertime.vala:29
+msgid "Today %H:%M"
+msgstr "Dnes %H:%M"
+
+#: ../src/clavertime.vala:31
+msgid "Yesterday %H:%M"
+msgstr "Včera %H:%M"
+
+#: ../src/clavertime.vala:48
+msgid "Today"
+msgstr "Dnes"
+
+#: ../src/clavertime.vala:52
+msgid "Yesterday"
+msgstr "Včera"
+
+#: ../src/editform.vala:306
+msgid "Extends edit"
+msgstr ""
 
 #: ../src/export_dialog.vala:63
 msgid "Export Map as"
@@ -143,133 +106,42 @@ msgstr "Dynamická webové stránka"
 msgid "PNG Image"
 msgstr "PNG Obrázek"
 
-#: ../ui/preferences.ui:8
-msgid "Mind Map Architect Preferences"
-msgstr "Nastavení Mind Map Architecta"
+#: ../src/main.vala:49
+#, c-format
+msgid "Could not load app UI: %s\n"
+msgstr "Nelze načíst aplikační rozhraní: %s\n"
 
-#: ../ui/preferences.ui:92
-msgid "<b>Author</b>"
-msgstr "<b>Autor</b>"
+#: ../src/mindmap.vala:79
+msgid "Main Idea"
+msgstr "Hlavní myšlenka"
 
-#: ../ui/preferences.ui:121
-msgid "Choose directory"
-msgstr "Vyber adresář"
+#: ../src/print.vala:62
+msgid "Printing error:"
+msgstr "Chyba tisku:"
 
-#: ../ui/preferences.ui:130
-msgid "<b>Default dokuments directory</b>"
+#: ../src/tips.vala:29
+msgid "Moving with Ideas"
 msgstr ""
 
-#: ../ui/preferences.ui:160
-msgid "_Welcome tab"
-msgstr "_Úvodní list"
-
-#: ../ui/preferences.ui:176
-msgid "_Empty document"
-msgstr "_Prázdný dokument"
-
-#: ../ui/preferences.ui:193
-msgid "_Last opened documents"
-msgstr "_Poslední otevřené dokumenty"
-
-#: ../ui/preferences.ui:216
-msgid "<b>Start program with</b>"
+#: ../src/tips.vala:30
+msgid ""
+"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
+"Left or Right to move with selected Ideas."
 msgstr ""
 
-#: ../ui/preferences.ui:234
-msgid "General"
+#: ../src/tips.vala:32
+msgid "Using Mind Maps as TODO list"
 msgstr ""
 
-#: ../ui/preferences.ui:264 ../ui/preferences.ui:577
-msgid "Use system font"
-msgstr "Použít font systému"
-
-#: ../ui/preferences.ui:304
-msgid "<b>Idea font</b>"
+#: ../src/tips.vala:33
+msgid ""
+"Mind Maps could be use as TODO lists. You have more tree like possibility "
+"with mind maps, like categories, importance or difficulty."
 msgstr ""
 
-#: ../ui/preferences.ui:337
-msgid "Font"
-msgstr ""
-
-#: ../ui/preferences.ui:365
-msgid "Line"
-msgstr ""
-
-#: ../ui/preferences.ui:394
-msgid "<b>Rising</b>"
-msgstr ""
-
-#: ../ui/preferences.ui:427
-msgid "Text padding"
-msgstr "Odsazení textu"
-
-#: ../ui/preferences.ui:465
-msgid "Height padding"
-msgstr "Odsazení do výšky"
-
-#: ../ui/preferences.ui:477
-msgid "Width padding"
-msgstr "Odsazení do šířky"
-
-#: ../ui/preferences.ui:505
-msgid "<b>Idea's padding</b>"
-msgstr ""
-
-#: ../ui/preferences.ui:552
-msgid "Height"
-msgstr "Výška"
-
-#: ../ui/preferences.ui:600
-msgid "<b>Note's text</b>"
-msgstr ""
-
-#: ../ui/preferences.ui:622
-msgid "Style"
-msgstr "Styl"
-
-#: ../ui/preferences.ui:647
-msgid "Use system colors"
-msgstr ""
-
-#: ../ui/preferences.ui:662
-msgid "<b>System colors</b>"
-msgstr ""
-
-#: ../ui/preferences.ui:762
-msgid "Default line color"
-msgstr "Implicitní barva čáry"
-
-#: ../ui/preferences.ui:775
-msgid "Canvas color"
-msgstr "Barva plátna"
-
-#: ../ui/preferences.ui:788
-msgid "Text normal color"
-msgstr "Barva textu"
-
-#: ../ui/preferences.ui:801
-msgid "Text selected color"
-msgstr "Barva vybraného textu"
-
-#: ../ui/preferences.ui:814
-msgid "Background normal color"
-msgstr ""
-
-#: ../ui/preferences.ui:827
-msgid "Background selected color"
-msgstr ""
-
-#: ../ui/preferences.ui:842
-msgid "<b>Colors definitions</b>"
-msgstr ""
-
-#: ../ui/preferences.ui:862
-msgid "Colors"
-msgstr ""
-
-#: ../ui/preferences.ui:886
-msgid "Map"
-msgstr "Mapa"
+#: ../src/welcometab.vala:15
+msgid "Start here"
+msgstr "Začni zde"
 
 #: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
@@ -325,34 +197,6 @@ msgid ""
 "Frank Endres <frank@endres.fr>"
 msgstr ""
 
-#: ../ui/map.ui:30
-msgid "_disable"
-msgstr ""
-
-#: ../ui/map.ui:47
-msgid "count _branches"
-msgstr ""
-
-#: ../ui/map.ui:64
-msgid "count _points"
-msgstr ""
-
-#: ../ui/map.ui:87
-msgid "<b>Rising method</b>"
-msgstr ""
-
-#: ../ui/map.ui:117
-msgid "Ideas"
-msgstr "Myšlenky"
-
-#: ../ui/map.ui:132
-msgid "Branches"
-msgstr "Větve"
-
-#: ../ui/map.ui:153
-msgid "<b>Rise elemens</b>"
-msgstr ""
-
 #: ../ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
 msgstr "Uložit změny do dokumentu ?"
@@ -369,42 +213,6 @@ msgstr "Uložit změny do dokumentu %s před ukončením ?"
 msgid "Your changes will be lost, if you don't save the file."
 msgstr "Pokud soubor neuložíte, vaše změny budou ztraceny."
 
-#: ../ui/properties.ui:8
-msgid "File properties"
-msgstr ""
-
-#: ../ui/properties.ui:88
-#, fuzzy
-msgid "Author"
-msgstr "<b>Autor</b>"
-
-#: ../ui/properties.ui:114
-msgid "Created"
-msgstr ""
-
-#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
-#: ../ui/welcome.ui:198
-msgid "label"
-msgstr ""
-
-#: ../ui/properties.ui:142
-msgid "Modified"
-msgstr ""
-
-#: ../ui/properties.ui:169
-msgid "Path"
-msgstr ""
-
-#: ../ui/properties.ui:198
-#, fuzzy
-msgid "<b>File</b>"
-msgstr "<b>Nedávné soubory:</b>"
-
-#: ../ui/properties.ui:222
-#, fuzzy
-msgid "<b>Map</b>"
-msgstr "<b>Autor</b>"
-
 #: ../ui/color_dialog.ui:40
 msgid "Default color"
 msgstr "Implicitní barva"
@@ -416,56 +224,6 @@ msgstr "Barva rodiče"
 #: ../ui/color_dialog.ui:73
 msgid "Own color"
 msgstr "Vlastní barva"
-
-#: ../ui/welcome.ui:125
-msgid "<b>Recent files:</b>"
-msgstr "<b>Nedávné soubory:</b>"
-
-#: ../ui/welcome.ui:159
-msgid "<b>Tip:</b>"
-msgstr ""
-
-#: ../ui/welcome.ui:179
-msgid "<b><big>label</big></b>"
-msgstr ""
-
-#: ../ui/welcome.ui:214
-msgid "<a href=\"#next_tip\">Next Tip</a>"
-msgstr ""
-
-#: ../ui/welcome.ui:256
-msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
-msgstr ""
-
-#: ../ui/welcome.ui:276
-msgid ""
-"If you are looking for more informations about project, want to download new "
-"version, or you want to start with helping us, see Home page of Mind Map "
-"Architect."
-msgstr ""
-
-#: ../ui/welcome.ui:305
-msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
-msgstr ""
-
-#: ../ui/welcome.ui:325
-msgid ""
-"Is there bug in this program? Is missing some future for you in mmarchitect? "
-"Please tell us more information about that. Thank you for your response."
-msgstr ""
-
-#: ../ui/welcome.ui:355
-msgid ""
-"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
-"gtk=1\">Development of project</a>"
-msgstr ""
-
-#: ../ui/welcome.ui:374
-msgid ""
-"If you want to help us with this project, translate messages to your "
-"languege, develop, create package for your distribution, or anything what "
-"you can do for help us, see development page."
-msgstr ""
 
 #: ../ui/main.ui:8
 msgid "Mind Map Architect"
@@ -596,3 +354,245 @@ msgstr ""
 #, fuzzy
 msgid "Move Right"
 msgstr "Výška"
+
+#: ../ui/map.ui:30
+msgid "_disable"
+msgstr ""
+
+#: ../ui/map.ui:47
+msgid "count _branches"
+msgstr ""
+
+#: ../ui/map.ui:64
+msgid "count _points"
+msgstr ""
+
+#: ../ui/map.ui:87
+msgid "<b>Rising method</b>"
+msgstr ""
+
+#: ../ui/map.ui:117
+msgid "Ideas"
+msgstr "Myšlenky"
+
+#: ../ui/map.ui:132
+msgid "Branches"
+msgstr "Větve"
+
+#: ../ui/map.ui:153
+msgid "<b>Rise elemens</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:8
+msgid "Mind Map Architect Preferences"
+msgstr "Nastavení Mind Map Architecta"
+
+#: ../ui/preferences.ui:92
+msgid "<b>Author</b>"
+msgstr "<b>Autor</b>"
+
+#: ../ui/preferences.ui:121
+msgid "Choose directory"
+msgstr "Vyber adresář"
+
+#: ../ui/preferences.ui:130
+msgid "<b>Default dokuments directory</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:160
+msgid "_Welcome tab"
+msgstr "_Úvodní list"
+
+#: ../ui/preferences.ui:176
+msgid "_Empty document"
+msgstr "_Prázdný dokument"
+
+#: ../ui/preferences.ui:193
+msgid "_Last opened documents"
+msgstr "_Poslední otevřené dokumenty"
+
+#: ../ui/preferences.ui:216
+msgid "<b>Start program with</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:234
+msgid "General"
+msgstr ""
+
+#: ../ui/preferences.ui:264 ../ui/preferences.ui:577
+msgid "Use system font"
+msgstr "Použít font systému"
+
+#: ../ui/preferences.ui:304
+msgid "<b>Idea font</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:337
+msgid "Font"
+msgstr ""
+
+#: ../ui/preferences.ui:365
+msgid "Line"
+msgstr ""
+
+#: ../ui/preferences.ui:394
+msgid "<b>Rising</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:427
+msgid "Text padding"
+msgstr "Odsazení textu"
+
+#: ../ui/preferences.ui:465
+msgid "Height padding"
+msgstr "Odsazení do výšky"
+
+#: ../ui/preferences.ui:477
+msgid "Width padding"
+msgstr "Odsazení do šířky"
+
+#: ../ui/preferences.ui:505
+msgid "<b>Idea's padding</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:552
+msgid "Height"
+msgstr "Výška"
+
+#: ../ui/preferences.ui:600
+msgid "<b>Note's text</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:622
+msgid "Style"
+msgstr "Styl"
+
+#: ../ui/preferences.ui:647
+msgid "Use system colors"
+msgstr ""
+
+#: ../ui/preferences.ui:662
+msgid "<b>System colors</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:762
+msgid "Default line color"
+msgstr "Implicitní barva čáry"
+
+#: ../ui/preferences.ui:775
+msgid "Canvas color"
+msgstr "Barva plátna"
+
+#: ../ui/preferences.ui:788
+msgid "Text normal color"
+msgstr "Barva textu"
+
+#: ../ui/preferences.ui:801
+msgid "Text selected color"
+msgstr "Barva vybraného textu"
+
+#: ../ui/preferences.ui:814
+msgid "Background normal color"
+msgstr ""
+
+#: ../ui/preferences.ui:827
+msgid "Background selected color"
+msgstr ""
+
+#: ../ui/preferences.ui:842
+msgid "<b>Colors definitions</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:862
+msgid "Colors"
+msgstr ""
+
+#: ../ui/preferences.ui:886
+msgid "Map"
+msgstr "Mapa"
+
+#: ../ui/properties.ui:8
+msgid "File properties"
+msgstr ""
+
+#: ../ui/properties.ui:88
+#, fuzzy
+msgid "Author"
+msgstr "<b>Autor</b>"
+
+#: ../ui/properties.ui:114
+msgid "Created"
+msgstr ""
+
+#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
+#: ../ui/welcome.ui:198
+msgid "label"
+msgstr ""
+
+#: ../ui/properties.ui:142
+msgid "Modified"
+msgstr ""
+
+#: ../ui/properties.ui:169
+msgid "Path"
+msgstr ""
+
+#: ../ui/properties.ui:198
+#, fuzzy
+msgid "<b>File</b>"
+msgstr "<b>Nedávné soubory:</b>"
+
+#: ../ui/properties.ui:222
+#, fuzzy
+msgid "<b>Map</b>"
+msgstr "<b>Autor</b>"
+
+#: ../ui/welcome.ui:125
+msgid "<b>Recent files:</b>"
+msgstr "<b>Nedávné soubory:</b>"
+
+#: ../ui/welcome.ui:159
+msgid "<b>Tip:</b>"
+msgstr ""
+
+#: ../ui/welcome.ui:179
+msgid "<b><big>label</big></b>"
+msgstr ""
+
+#: ../ui/welcome.ui:214
+msgid "<a href=\"#next_tip\">Next Tip</a>"
+msgstr ""
+
+#: ../ui/welcome.ui:256
+msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
+msgstr ""
+
+#: ../ui/welcome.ui:276
+msgid ""
+"If you are looking for more informations about project, want to download new "
+"version, or you want to start with helping us, see Home page of Mind Map "
+"Architect."
+msgstr ""
+
+#: ../ui/welcome.ui:305
+msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
+msgstr ""
+
+#: ../ui/welcome.ui:325
+msgid ""
+"Is there bug in this program? Is missing some future for you in mmarchitect? "
+"Please tell us more information about that. Thank you for your response."
+msgstr ""
+
+#: ../ui/welcome.ui:355
+msgid ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
+"gtk=1\">Development of project</a>"
+msgstr ""
+
+#: ../ui/welcome.ui:374
+msgid ""
+"If you want to help us with this project, translate messages to your "
+"languege, develop, create package for your distribution, or anything what "
+"you can do for help us, see development page."
+msgstr ""

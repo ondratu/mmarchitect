@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 21:05+0100\n"
+"POT-Creation-Date: 2020-11-24 20:09+0100\n"
 "PO-Revision-Date: 2020-05-09 07:12+0000\n"
 "Last-Translator: Szylu <chipolade@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/mmarchitect/"
@@ -20,69 +20,12 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.1-dev\n"
 
-#: ../src/mindmap.vala:79
-msgid "Main Idea"
-msgstr "Główny pomysł"
-
-#: ../src/main.vala:49
-#, c-format
-msgid "Could not load app UI: %s\n"
-msgstr "Nie można załadować interfejsu użytkownika aplikacji: %s\n"
-
-#: ../src/tips.vala:29
-msgid "Moving with Ideas"
-msgstr "Poruszanie się za pomocą pomysłów"
-
-#: ../src/tips.vala:30
-msgid ""
-"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
-"Left or Right to move with selected Ideas."
-msgstr ""
-"Możesz poruszać się pomysłami za pomocą skrótów klawiszowych. Możesz użyć "
-"CTRL - strzałka w górę, dół, lewo lub prawo, aby przenieść wybrane pomysły."
-
-#: ../src/tips.vala:32
-msgid "Using Mind Maps as TODO list"
-msgstr "Używanie Mind Maps jako listy TODO"
-
-#: ../src/tips.vala:33
-msgid ""
-"Mind Maps could be use as TODO lists. You have more tree like possibility "
-"with mind maps, like categories, importance or difficulty."
-msgstr ""
-"Mapy myśli mogą być używane jako listy TODO. Masz więcej możliwości na "
-"drzewach dzięki mapom umysłu, takim jak kategorie, ważność czy trudność."
-
-#: ../src/editform.vala:306
-msgid "Extends edit"
-msgstr "Rozszerza edycję"
-
-#: ../src/clavertime.vala:29
-msgid "Today %H:%M"
-msgstr "Dzisiaj %H:%M"
-
-#: ../src/clavertime.vala:31
-msgid "Yesterday %H:%M"
-msgstr "Wczoraj %H:%M"
-
-#: ../src/clavertime.vala:48
-msgid "Today"
-msgstr "Dzisiaj"
-
-#: ../src/clavertime.vala:52
-msgid "Yesterday"
-msgstr "Wczoraj"
-
-#: ../src/welcometab.vala:15
-msgid "Start here"
-msgstr "Zacznij tutaj"
-
-#: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
-#: ../src/app.vala:267
+#: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
+#: ../src/welcometab.vala:70
 msgid "Open file"
 msgstr "Otwórz plik"
 
-#: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
+#: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
 msgid "New file"
 msgstr "Nowy plik"
 
@@ -119,9 +62,25 @@ msgstr "Import pliku"
 msgid "_Save"
 msgstr "_Zapisz"
 
-#: ../src/print.vala:62
-msgid "Printing error:"
-msgstr "Błąd drukowania:"
+#: ../src/clavertime.vala:29
+msgid "Today %H:%M"
+msgstr "Dzisiaj %H:%M"
+
+#: ../src/clavertime.vala:31
+msgid "Yesterday %H:%M"
+msgstr "Wczoraj %H:%M"
+
+#: ../src/clavertime.vala:48
+msgid "Today"
+msgstr "Dzisiaj"
+
+#: ../src/clavertime.vala:52
+msgid "Yesterday"
+msgstr "Wczoraj"
+
+#: ../src/editform.vala:306
+msgid "Extends edit"
+msgstr "Rozszerza edycję"
 
 #: ../src/export_dialog.vala:63
 msgid "Export Map as"
@@ -146,6 +105,321 @@ msgstr "Dynamiczna strona internetowa"
 #: ../src/export_dialog.vala:85
 msgid "PNG Image"
 msgstr "Obraz PNG"
+
+#: ../src/main.vala:49
+#, c-format
+msgid "Could not load app UI: %s\n"
+msgstr "Nie można załadować interfejsu użytkownika aplikacji: %s\n"
+
+#: ../src/mindmap.vala:79
+msgid "Main Idea"
+msgstr "Główny pomysł"
+
+#: ../src/print.vala:62
+msgid "Printing error:"
+msgstr "Błąd drukowania:"
+
+#: ../src/tips.vala:29
+msgid "Moving with Ideas"
+msgstr "Poruszanie się za pomocą pomysłów"
+
+#: ../src/tips.vala:30
+msgid ""
+"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
+"Left or Right to move with selected Ideas."
+msgstr ""
+"Możesz poruszać się pomysłami za pomocą skrótów klawiszowych. Możesz użyć "
+"CTRL - strzałka w górę, dół, lewo lub prawo, aby przenieść wybrane pomysły."
+
+#: ../src/tips.vala:32
+msgid "Using Mind Maps as TODO list"
+msgstr "Używanie Mind Maps jako listy TODO"
+
+#: ../src/tips.vala:33
+msgid ""
+"Mind Maps could be use as TODO lists. You have more tree like possibility "
+"with mind maps, like categories, importance or difficulty."
+msgstr ""
+"Mapy myśli mogą być używane jako listy TODO. Masz więcej możliwości na "
+"drzewach dzięki mapom umysłu, takim jak kategorie, ważność czy trudność."
+
+#: ../src/welcometab.vala:15
+msgid "Start here"
+msgstr "Zacznij tutaj"
+
+#: ../ui/about_dialog.ui:8
+msgid "About Application Mind Map Architect"
+msgstr "Informacje o aplikacji Mind Map Architect"
+
+#: ../ui/about_dialog.ui:14
+msgid "Copyright (c) 2011-2017, Ondřej Tůma"
+msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
+
+#: ../ui/about_dialog.ui:15
+msgid "Tool for working with mind maps. "
+msgstr "Narzędzie do pracy z mapami myśli. "
+
+#: ../ui/about_dialog.ui:17
+msgid ""
+"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"Wszelkie prawa zastrzeżone.\n"
+"\n"
+"Redystrybucja i używanie w formie źródłowej i binarnej,\n"
+"z modyfikacjami lub bez, są dozwolone, o ile spełnione są\n"
+"następujące warunki:\n"
+" 1. W przypadku redystrybucji kodu źródłowego należy zachować powyższą\n"
+"     informację o prawach autorskich, niniejszą listę warunków i poniższe "
+"zastrzeżenie.\n"
+" 2. Redystrybucja w formie binarnej musi zawierać powyższą informację\n"
+"     o prawach autorskich, niniejszą listę warunków i poniższe zastrzeżenie "
+"w pliku\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Ani nazwa uniwersytetu, ani nazwy jego autorów nie mogą być używane\n"
+"     do popierania lub promowania produktów pochodzących z tego "
+"oprogramowania\n"
+"     bez uprzedniej pisemnej zgody.\n"
+"\n"
+"NINIEJSZE OPROGRAMOWANIE JEST DOSTARCZANE PRZEZ WŁAŚCICIELI\n"
+"PRAW AUTORSKICH I WSPÓLNIKÓW W STANIE TAKIM, W JAKIM SIĘ ZNAJDUJE\n"
+"(\"JAK JEST\") I ŻADNE BEZPOŚREDNIE LUB DOROZUMIANE GWARANCJE, W TYM\n"
+"DOROZUMIANE GWARANCJE PRZYDATNOŚCI HANDLOWEJ I PRZYDATNOŚCI\n"
+"DO OKREŚLONEGO CELU, ZOSTAJĄ NINIEJSZYM WYKLUCZONE. W ŻADNYM WYPADKU\n"
+"WSPÓŁPRACOWNICY I WSPÓŁPRACOWNICY NIE PONOSZĄ ODPOWIEDZIALNOŚCI\n"
+"ZA ŻADNE BEZPOŚREDNIE, POŚREDNIE, PRZYPADKOWE, SPECJALNE, PRZYKŁADOWE\n"
+"LUB WTÓRNE SZKODY (W TYM MIĘDZY INNYMI, ZAANGAŻOWANIE ZASTĘPCZYCH\n"
+"TOWARÓW LUB USŁUG, UTRATĘ WYKORZYSTANIA, DANYCH LUB ZYSKÓW\n"
+"LUB PRZERWANIE BIZNESU) SPOWODOWANE JEDNAK W JAKIEJKOLWIEK TEORII\n"
+"ODPOWIEDZIALNOŚCI, CZY W KONTRAKCIE, ODPOWIEDZIALNOŚCI PRAWNEJ\n"
+"LUB CZYNNEJ (W TYM ZANIEDBAŃ LUB W INNY SPOSÓB) WYNIKAJĄCE Z JAKIEGOKOLWIEK\n"
+"SPOSOBU WYKORZYSTANIA NINIEJSZEGO OPROGRAMOWANIA, NAWET JEŚLI ZOSTAŁY\n"
+"POINFORMOWANE O MOŻLIWOŚCI WYSTĄPIENIA TAKICH SZKÓD."
+
+#: ../ui/about_dialog.ui:45
+msgid ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
+msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
+
+#: ../ui/close_file_dialog.ui:7
+msgid "Save changes to document ?"
+msgstr "Zapisać zmiany w dokumencie?"
+
+#: ../ui/close_file_dialog.ui:25
+msgid "Close _without save"
+msgstr "Zamknij _bez zapisywania"
+
+#: ../ui/close_file_dialog.ui:107
+msgid "Save changes to document %s before exit?"
+msgstr "Zapisać zmiany w dokumencie %s przed wyjściem?"
+
+#: ../ui/close_file_dialog.ui:125
+msgid "Your changes will be lost, if you don't save the file."
+msgstr "Zmiany zostaną utracone, jeśli plik nie zostanie zapisany."
+
+#: ../ui/color_dialog.ui:40
+msgid "Default color"
+msgstr "Domyślny kolor"
+
+#: ../ui/color_dialog.ui:56
+msgid "Parent color"
+msgstr "Kolor macierzysty"
+
+#: ../ui/color_dialog.ui:73
+msgid "Own color"
+msgstr "Własny kolor"
+
+#: ../ui/main.ui:8
+msgid "Mind Map Architect"
+msgstr "Tworzenie Map Myśli"
+
+#: ../ui/main.ui:28
+msgid "_File"
+msgstr "_Plik"
+
+#: ../ui/main.ui:38
+msgid "New"
+msgstr "Nowy"
+
+#: ../ui/main.ui:54
+msgid "Open"
+msgstr "Otwórz"
+
+#: ../ui/main.ui:64
+msgid "Save"
+msgstr "Zapisz"
+
+#: ../ui/main.ui:74
+msgid "Save As"
+msgstr "Zapisz jako"
+
+#: ../ui/main.ui:84
+msgid "Close"
+msgstr "Zamknij"
+
+#: ../ui/main.ui:100
+msgid "Print"
+msgstr "Drukuj"
+
+#: ../ui/main.ui:116
+msgid "Export"
+msgstr "Eksportuj"
+
+#: ../ui/main.ui:125
+msgid "Import"
+msgstr "Importuj"
+
+#: ../ui/main.ui:140
+msgid "Properties"
+msgstr "Właściwości"
+
+#: ../ui/main.ui:155
+msgid "Quit"
+msgstr "Zamknij"
+
+#: ../ui/main.ui:168
+msgid "_Edit"
+msgstr "_Edycja"
+
+#: ../ui/main.ui:178 ../ui/main.ui:493
+msgid "Expand"
+msgstr "Rozwiń węzeł"
+
+#: ../ui/main.ui:187 ../ui/main.ui:502
+msgid "Collapse"
+msgstr "Zwiń"
+
+#: ../ui/main.ui:202 ../ui/main.ui:511
+msgid "Cut"
+msgstr "Wytnij"
+
+#: ../ui/main.ui:212 ../ui/main.ui:520
+msgid "Copy"
+msgstr "Kopiuj"
+
+#: ../ui/main.ui:222 ../ui/main.ui:529
+msgid "Paste"
+msgstr "Wklej"
+
+#: ../ui/main.ui:232 ../ui/main.ui:538
+msgid "Delete"
+msgstr "Usuń"
+
+#: ../ui/main.ui:247 ../ui/main.ui:484
+msgid "Edit"
+msgstr "Edycja"
+
+#: ../ui/main.ui:262
+msgid "Preferences"
+msgstr "Preferencje"
+
+#: ../ui/main.ui:275
+msgid "_View"
+msgstr "_Widok"
+
+#: ../ui/main.ui:285 ../ui/main.ui:462
+msgid "Expand all branches"
+msgstr "Rozwiń wszystkie gałęzie"
+
+#: ../ui/main.ui:294 ../ui/main.ui:471
+msgid "Collapse all branches"
+msgstr "Zwiń wszystkie gałęzie"
+
+#: ../ui/main.ui:309
+msgid "Home"
+msgstr "Strona główna"
+
+#: ../ui/main.ui:323
+msgid "_Help"
+msgstr "_Pomoc"
+
+#: ../ui/main.ui:547
+msgid "Move"
+msgstr "Przenoszenie"
+
+#: ../ui/main.ui:557
+msgid "Move Up"
+msgstr "Przesuń w górę"
+
+#: ../ui/main.ui:566
+msgid "Move Down"
+msgstr "Przesuń w dół"
+
+#: ../ui/main.ui:575
+msgid "Move Left"
+msgstr "Przesuń w lewo"
+
+#: ../ui/main.ui:583
+msgid "Move Right"
+msgstr "Przesuń w prawo"
+
+#: ../ui/map.ui:30
+msgid "_disable"
+msgstr "_wyłącz"
+
+#: ../ui/map.ui:47
+msgid "count _branches"
+msgstr "licznik _gałęzi"
+
+#: ../ui/map.ui:64
+msgid "count _points"
+msgstr "licznik _punktów"
+
+#: ../ui/map.ui:87
+msgid "<b>Rising method</b>"
+msgstr "<b>Rosnąca metoda</b>"
+
+#: ../ui/map.ui:117
+msgid "Ideas"
+msgstr "Pomysł"
+
+#: ../ui/map.ui:132
+msgid "Branches"
+msgstr "Oddziały"
+
+#: ../ui/map.ui:153
+msgid "<b>Rise elemens</b>"
+msgstr "<b>Powtań elemet</b>"
 
 #: ../ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
@@ -275,144 +549,6 @@ msgstr "Kolory"
 msgid "Map"
 msgstr "Mapa"
 
-#: ../ui/about_dialog.ui:8
-msgid "About Application Mind Map Architect"
-msgstr "Informacje o aplikacji Mind Map Architect"
-
-#: ../ui/about_dialog.ui:14
-msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
-
-#: ../ui/about_dialog.ui:15
-msgid "Tool for working with mind maps. "
-msgstr "Narzędzie do pracy z mapami myśli. "
-
-#: ../ui/about_dialog.ui:17
-msgid ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
-"All rights reserved.\n"
-"\n"
-"Redistribution and use in source and binary forms, with or without\n"
-"modification, are permitted provided that the following conditions\n"
-"are met:\n"
-" 1. Redistributions of source code must retain the above copyright\n"
-"    notice, this list of conditions and the following disclaimer.\n"
-" 2. Redistributions in binary form must reproduce the above copyright\n"
-"    notice, this list of conditions and the following disclaimer in the\n"
-"    documentation and/or other materials provided with the distribution.\n"
-" 3. Neither the name of the University nor the names of its contributors\n"
-"    may be used to endorse or promote products derived from this software\n"
-"    without specific prior written permission.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
-"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
-"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
-"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
-"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
-"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
-"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
-"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
-"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
-"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-msgstr ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
-"Wszelkie prawa zastrzeżone.\n"
-"\n"
-"Redystrybucja i używanie w formie źródłowej i binarnej,\n"
-"z modyfikacjami lub bez, są dozwolone, o ile spełnione są\n"
-"następujące warunki:\n"
-" 1. W przypadku redystrybucji kodu źródłowego należy zachować powyższą\n"
-"     informację o prawach autorskich, niniejszą listę warunków i poniższe "
-"zastrzeżenie.\n"
-" 2. Redystrybucja w formie binarnej musi zawierać powyższą informację\n"
-"     o prawach autorskich, niniejszą listę warunków i poniższe zastrzeżenie "
-"w pliku\n"
-"    documentation and/or other materials provided with the distribution.\n"
-" 3. Ani nazwa uniwersytetu, ani nazwy jego autorów nie mogą być używane\n"
-"     do popierania lub promowania produktów pochodzących z tego "
-"oprogramowania\n"
-"     bez uprzedniej pisemnej zgody.\n"
-"\n"
-"NINIEJSZE OPROGRAMOWANIE JEST DOSTARCZANE PRZEZ WŁAŚCICIELI\n"
-"PRAW AUTORSKICH I WSPÓLNIKÓW W STANIE TAKIM, W JAKIM SIĘ ZNAJDUJE\n"
-"(\"JAK JEST\") I ŻADNE BEZPOŚREDNIE LUB DOROZUMIANE GWARANCJE, W TYM\n"
-"DOROZUMIANE GWARANCJE PRZYDATNOŚCI HANDLOWEJ I PRZYDATNOŚCI\n"
-"DO OKREŚLONEGO CELU, ZOSTAJĄ NINIEJSZYM WYKLUCZONE. W ŻADNYM WYPADKU\n"
-"WSPÓŁPRACOWNICY I WSPÓŁPRACOWNICY NIE PONOSZĄ ODPOWIEDZIALNOŚCI\n"
-"ZA ŻADNE BEZPOŚREDNIE, POŚREDNIE, PRZYPADKOWE, SPECJALNE, PRZYKŁADOWE\n"
-"LUB WTÓRNE SZKODY (W TYM MIĘDZY INNYMI, ZAANGAŻOWANIE ZASTĘPCZYCH\n"
-"TOWARÓW LUB USŁUG, UTRATĘ WYKORZYSTANIA, DANYCH LUB ZYSKÓW\n"
-"LUB PRZERWANIE BIZNESU) SPOWODOWANE JEDNAK W JAKIEJKOLWIEK TEORII\n"
-"ODPOWIEDZIALNOŚCI, CZY W KONTRAKCIE, ODPOWIEDZIALNOŚCI PRAWNEJ\n"
-"LUB CZYNNEJ (W TYM ZANIEDBAŃ LUB W INNY SPOSÓB) WYNIKAJĄCE Z JAKIEGOKOLWIEK\n"
-"SPOSOBU WYKORZYSTANIA NINIEJSZEGO OPROGRAMOWANIA, NAWET JEŚLI ZOSTAŁY\n"
-"POINFORMOWANE O MOŻLIWOŚCI WYSTĄPIENIA TAKICH SZKÓD."
-
-#: ../ui/about_dialog.ui:45
-msgid ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"WaldiS <admin@sto.ugu.pl>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Ettore Atalan <atalanttore@googlemail.com>\n"
-"Frank Endres <frank@endres.fr>"
-msgstr ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"WaldiS <admin@sto.ugu.pl>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Ettore Atalan <atalanttore@googlemail.com>\n"
-"Frank Endres <frank@endres.fr>"
-
-#: ../ui/map.ui:30
-msgid "_disable"
-msgstr "_wyłącz"
-
-#: ../ui/map.ui:47
-msgid "count _branches"
-msgstr "licznik _gałęzi"
-
-#: ../ui/map.ui:64
-msgid "count _points"
-msgstr "licznik _punktów"
-
-#: ../ui/map.ui:87
-msgid "<b>Rising method</b>"
-msgstr "<b>Rosnąca metoda</b>"
-
-#: ../ui/map.ui:117
-msgid "Ideas"
-msgstr "Pomysł"
-
-#: ../ui/map.ui:132
-msgid "Branches"
-msgstr "Oddziały"
-
-#: ../ui/map.ui:153
-msgid "<b>Rise elemens</b>"
-msgstr "<b>Powtań elemet</b>"
-
-#: ../ui/close_file_dialog.ui:7
-msgid "Save changes to document ?"
-msgstr "Zapisać zmiany w dokumencie?"
-
-#: ../ui/close_file_dialog.ui:25
-msgid "Close _without save"
-msgstr "Zamknij _bez zapisywania"
-
-#: ../ui/close_file_dialog.ui:107
-msgid "Save changes to document %s before exit?"
-msgstr "Zapisać zmiany w dokumencie %s przed wyjściem?"
-
-#: ../ui/close_file_dialog.ui:125
-msgid "Your changes will be lost, if you don't save the file."
-msgstr "Zmiany zostaną utracone, jeśli plik nie zostanie zapisany."
-
 #: ../ui/properties.ui:8
 msgid "File properties"
 msgstr "Właściwości pliku"
@@ -445,18 +581,6 @@ msgstr "<b>Plik</b>"
 #: ../ui/properties.ui:222
 msgid "<b>Map</b>"
 msgstr "<b>Mapa</b>"
-
-#: ../ui/color_dialog.ui:40
-msgid "Default color"
-msgstr "Domyślny kolor"
-
-#: ../ui/color_dialog.ui:56
-msgid "Parent color"
-msgstr "Kolor macierzysty"
-
-#: ../ui/color_dialog.ui:73
-msgid "Own color"
-msgstr "Własny kolor"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -492,8 +616,8 @@ msgstr ""
 #: ../ui/welcome.ui:305
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
 msgstr ""
-"<a href=\"https://github.com/ondratu/mmarchitect/issues\">Problemy i "
-"błędy</a>"
+"<a href=\"https://github.com/ondratu/mmarchitect/issues\">Problemy i błędy</"
+"a>"
 
 #: ../ui/welcome.ui:325
 msgid ""
@@ -520,130 +644,6 @@ msgstr ""
 "Jeśli chcesz nam pomóc w tym projekcie, przetłumaczyć wiadomości na język, "
 "opracuj, utwórz pakiet dla swojej dystrybucji lub cokolwiek, co możesz "
 "zrobić, aby nam pomóc, zobacz stronę poświęconą rozwojowi."
-
-#: ../ui/main.ui:8
-msgid "Mind Map Architect"
-msgstr "Tworzenie Map Myśli"
-
-#: ../ui/main.ui:28
-msgid "_File"
-msgstr "_Plik"
-
-#: ../ui/main.ui:38
-msgid "New"
-msgstr "Nowy"
-
-#: ../ui/main.ui:54
-msgid "Open"
-msgstr "Otwórz"
-
-#: ../ui/main.ui:64
-msgid "Save"
-msgstr "Zapisz"
-
-#: ../ui/main.ui:74
-msgid "Save As"
-msgstr "Zapisz jako"
-
-#: ../ui/main.ui:84
-msgid "Close"
-msgstr "Zamknij"
-
-#: ../ui/main.ui:100
-msgid "Print"
-msgstr "Drukuj"
-
-#: ../ui/main.ui:116
-msgid "Export"
-msgstr "Eksportuj"
-
-#: ../ui/main.ui:125
-msgid "Import"
-msgstr "Importuj"
-
-#: ../ui/main.ui:140
-msgid "Properties"
-msgstr "Właściwości"
-
-#: ../ui/main.ui:155
-msgid "Quit"
-msgstr "Zamknij"
-
-#: ../ui/main.ui:168
-msgid "_Edit"
-msgstr "_Edycja"
-
-#: ../ui/main.ui:178 ../ui/main.ui:493
-msgid "Expand"
-msgstr "Rozwiń węzeł"
-
-#: ../ui/main.ui:187 ../ui/main.ui:502
-msgid "Collapse"
-msgstr "Zwiń"
-
-#: ../ui/main.ui:202 ../ui/main.ui:511
-msgid "Cut"
-msgstr "Wytnij"
-
-#: ../ui/main.ui:212 ../ui/main.ui:520
-msgid "Copy"
-msgstr "Kopiuj"
-
-#: ../ui/main.ui:222 ../ui/main.ui:529
-msgid "Paste"
-msgstr "Wklej"
-
-#: ../ui/main.ui:232 ../ui/main.ui:538
-msgid "Delete"
-msgstr "Usuń"
-
-#: ../ui/main.ui:247 ../ui/main.ui:484
-msgid "Edit"
-msgstr "Edycja"
-
-#: ../ui/main.ui:262
-msgid "Preferences"
-msgstr "Preferencje"
-
-#: ../ui/main.ui:275
-msgid "_View"
-msgstr "_Widok"
-
-#: ../ui/main.ui:285 ../ui/main.ui:462
-msgid "Expand all branches"
-msgstr "Rozwiń wszystkie gałęzie"
-
-#: ../ui/main.ui:294 ../ui/main.ui:471
-msgid "Collapse all branches"
-msgstr "Zwiń wszystkie gałęzie"
-
-#: ../ui/main.ui:309
-msgid "Home"
-msgstr "Strona główna"
-
-#: ../ui/main.ui:323
-msgid "_Help"
-msgstr "_Pomoc"
-
-#: ../ui/main.ui:547
-msgid "Move"
-msgstr "Przenoszenie"
-
-#: ../ui/main.ui:557
-msgid "Move Up"
-msgstr "Przesuń w górę"
-
-#: ../ui/main.ui:566
-msgid "Move Down"
-msgstr "Przesuń w dół"
-
-#: ../ui/main.ui:575
-msgid "Move Left"
-msgstr "Przesuń w lewo"
-
-#: ../ui/main.ui:583
-msgid "Move Right"
-msgstr "Przesuń w prawo"
 
 #~ msgid ""
 #~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"

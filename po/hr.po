@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 21:05+0100\n"
+"POT-Creation-Date: 2020-11-24 20:09+0100\n"
 "PO-Revision-Date: 2020-07-17 12:41+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/mmarchitect/"
@@ -20,70 +20,12 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.2-dev\n"
 
-#: ../src/mindmap.vala:79
-msgid "Main Idea"
-msgstr "Glavna ideja"
-
-#: ../src/main.vala:49
-#, c-format
-msgid "Could not load app UI: %s\n"
-msgstr "Neuspjelo učitavanje sučelja programa: %s\n"
-
-#: ../src/tips.vala:29
-msgid "Moving with Ideas"
-msgstr "Kretanje s idejama"
-
-#: ../src/tips.vala:30
-msgid ""
-"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
-"Left or Right to move with selected Ideas."
-msgstr ""
-"Ideje se mogu premještati pomoću tipkovničkih prečaca. Za premještanje "
-"odabranih ideja može se koristiti CTRL - strelica gore, dolje, lijevo ili "
-"desno."
-
-#: ../src/tips.vala:32
-msgid "Using Mind Maps as TODO list"
-msgstr "Upotreba mentalnih karata kao popis ZADATAKA"
-
-#: ../src/tips.vala:33
-msgid ""
-"Mind Maps could be use as TODO lists. You have more tree like possibility "
-"with mind maps, like categories, importance or difficulty."
-msgstr ""
-"Mentalne karte se mogu koristiti kao popis ZADATAKA. One omogućuju stablasti "
-"prikaz kategorija, važnosti ili razine teškoće."
-
-#: ../src/editform.vala:306
-msgid "Extends edit"
-msgstr "Proširuje uređivanje"
-
-#: ../src/clavertime.vala:29
-msgid "Today %H:%M"
-msgstr "Danas, %H:%M"
-
-#: ../src/clavertime.vala:31
-msgid "Yesterday %H:%M"
-msgstr "Jučer, %H∶%M"
-
-#: ../src/clavertime.vala:48
-msgid "Today"
-msgstr "Danas"
-
-#: ../src/clavertime.vala:52
-msgid "Yesterday"
-msgstr "Jučer"
-
-#: ../src/welcometab.vala:15
-msgid "Start here"
-msgstr "Počni ovdje"
-
-#: ../src/welcometab.vala:64 ../src/welcometab.vala:70 ../src/app.vala:86
-#: ../src/app.vala:267
+#: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
+#: ../src/welcometab.vala:70
 msgid "Open file"
 msgstr "Otvori datoteku"
 
-#: ../src/welcometab.vala:66 ../src/welcometab.vala:72 ../src/app.vala:88
+#: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
 msgid "New file"
 msgstr "Nova datoteka"
 
@@ -120,9 +62,25 @@ msgstr "Uvezi datoteku"
 msgid "_Save"
 msgstr "_Spremi"
 
-#: ../src/print.vala:62
-msgid "Printing error:"
-msgstr "Greška u ispisu:"
+#: ../src/clavertime.vala:29
+msgid "Today %H:%M"
+msgstr "Danas, %H:%M"
+
+#: ../src/clavertime.vala:31
+msgid "Yesterday %H:%M"
+msgstr "Jučer, %H∶%M"
+
+#: ../src/clavertime.vala:48
+msgid "Today"
+msgstr "Danas"
+
+#: ../src/clavertime.vala:52
+msgid "Yesterday"
+msgstr "Jučer"
+
+#: ../src/editform.vala:306
+msgid "Extends edit"
+msgstr "Proširuje uređivanje"
 
 #: ../src/export_dialog.vala:63
 msgid "Export Map as"
@@ -147,6 +105,316 @@ msgstr "Dinamična web-stranica"
 #: ../src/export_dialog.vala:85
 msgid "PNG Image"
 msgstr "PNG slika"
+
+#: ../src/main.vala:49
+#, c-format
+msgid "Could not load app UI: %s\n"
+msgstr "Neuspjelo učitavanje sučelja programa: %s\n"
+
+#: ../src/mindmap.vala:79
+msgid "Main Idea"
+msgstr "Glavna ideja"
+
+#: ../src/print.vala:62
+msgid "Printing error:"
+msgstr "Greška u ispisu:"
+
+#: ../src/tips.vala:29
+msgid "Moving with Ideas"
+msgstr "Kretanje s idejama"
+
+#: ../src/tips.vala:30
+msgid ""
+"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
+"Left or Right to move with selected Ideas."
+msgstr ""
+"Ideje se mogu premještati pomoću tipkovničkih prečaca. Za premještanje "
+"odabranih ideja može se koristiti CTRL - strelica gore, dolje, lijevo ili "
+"desno."
+
+#: ../src/tips.vala:32
+msgid "Using Mind Maps as TODO list"
+msgstr "Upotreba mentalnih karata kao popis ZADATAKA"
+
+#: ../src/tips.vala:33
+msgid ""
+"Mind Maps could be use as TODO lists. You have more tree like possibility "
+"with mind maps, like categories, importance or difficulty."
+msgstr ""
+"Mentalne karte se mogu koristiti kao popis ZADATAKA. One omogućuju stablasti "
+"prikaz kategorija, važnosti ili razine teškoće."
+
+#: ../src/welcometab.vala:15
+msgid "Start here"
+msgstr "Počni ovdje"
+
+#: ../ui/about_dialog.ui:8
+msgid "About Application Mind Map Architect"
+msgstr "O programu Mind Map Architect"
+
+#: ../ui/about_dialog.ui:14
+msgid "Copyright (c) 2011-2017, Ondřej Tůma"
+msgstr "Copyright (c) 2011. – 2017., Ondřej Tůma"
+
+#: ../ui/about_dialog.ui:15
+msgid "Tool for working with mind maps. "
+msgstr "Alat za rad s mentalnim kartana. "
+
+#: ../ui/about_dialog.ui:17
+msgid ""
+"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+"Autorska prava (c) 2011. – 2017., Ondřej Tůma\n"
+"Sva prava pridržana.\n"
+"\n"
+"Redistribucija i upotreba u izvornom i binarnom obliku, sa ili bez\n"
+"izmjene, dopuštene su pod sljedećim uvjetima:\n"
+" 1. Redistribucija izvornog koda mora zadržavati gore navedena autorska\n"
+"    prava, ovaj popis uvjeta i sljedeće odricanje odgovornosti.\n"
+" 2. Redistribucije u binarnom obliku moraju sadržavati gore navedena\n"
+"    autorska prava, ovaj popis uvjeta i sljedeće odricanje odgovornosti u\n"
+"    dokumentaciju i/ili drugim dokumentima isporučeni s distribucijom.\n"
+" 3. Ime Sveučilišta, kao niti imena njegovih suradnika ne smiju se "
+"koristiti\n"
+"    za podržavanje ili promoviranje proizvoda proizašlih iz ovog softvera\n"
+"    bez posebnog prethodnog pismenog odobrenja.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+
+#: ../ui/about_dialog.ui:45
+msgid ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
+msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
+
+#: ../ui/close_file_dialog.ui:7
+msgid "Save changes to document ?"
+msgstr "Spremiti promjene u dokument?"
+
+#: ../ui/close_file_dialog.ui:25
+msgid "Close _without save"
+msgstr "Zatvori be_z spremanja"
+
+#: ../ui/close_file_dialog.ui:107
+msgid "Save changes to document %s before exit?"
+msgstr "Spremiti promjene u dokument %s prije zatvaranja programa?"
+
+#: ../ui/close_file_dialog.ui:125
+msgid "Your changes will be lost, if you don't save the file."
+msgstr "Promjene ćeš izgubiti, ako ne spremiš dadoteku."
+
+#: ../ui/color_dialog.ui:40
+msgid "Default color"
+msgstr "Standardna boja"
+
+#: ../ui/color_dialog.ui:56
+msgid "Parent color"
+msgstr "Nadređena boja"
+
+#: ../ui/color_dialog.ui:73
+msgid "Own color"
+msgstr "Vlastita boja"
+
+#: ../ui/main.ui:8
+msgid "Mind Map Architect"
+msgstr "Mind Map Architect"
+
+#: ../ui/main.ui:28
+msgid "_File"
+msgstr "_Datoteka"
+
+#: ../ui/main.ui:38
+msgid "New"
+msgstr "Nova"
+
+#: ../ui/main.ui:54
+msgid "Open"
+msgstr "Otvori"
+
+#: ../ui/main.ui:64
+msgid "Save"
+msgstr "Spremi"
+
+#: ../ui/main.ui:74
+msgid "Save As"
+msgstr "Spremi kao"
+
+#: ../ui/main.ui:84
+msgid "Close"
+msgstr "Zatvori"
+
+#: ../ui/main.ui:100
+msgid "Print"
+msgstr "Ispiši"
+
+#: ../ui/main.ui:116
+msgid "Export"
+msgstr "Izvezi"
+
+#: ../ui/main.ui:125
+msgid "Import"
+msgstr "Uvezi"
+
+#: ../ui/main.ui:140
+msgid "Properties"
+msgstr "Svojstva"
+
+#: ../ui/main.ui:155
+msgid "Quit"
+msgstr "Zatvori program"
+
+#: ../ui/main.ui:168
+msgid "_Edit"
+msgstr "_Uredi"
+
+#: ../ui/main.ui:178 ../ui/main.ui:493
+msgid "Expand"
+msgstr "Rasklopi"
+
+#: ../ui/main.ui:187 ../ui/main.ui:502
+msgid "Collapse"
+msgstr "Sklopi"
+
+#: ../ui/main.ui:202 ../ui/main.ui:511
+msgid "Cut"
+msgstr "Izreži"
+
+#: ../ui/main.ui:212 ../ui/main.ui:520
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: ../ui/main.ui:222 ../ui/main.ui:529
+msgid "Paste"
+msgstr "Umetni"
+
+#: ../ui/main.ui:232 ../ui/main.ui:538
+msgid "Delete"
+msgstr "Izbriši"
+
+#: ../ui/main.ui:247 ../ui/main.ui:484
+msgid "Edit"
+msgstr "Uredi"
+
+#: ../ui/main.ui:262
+msgid "Preferences"
+msgstr "Postavke"
+
+#: ../ui/main.ui:275
+msgid "_View"
+msgstr "_Pogled"
+
+#: ../ui/main.ui:285 ../ui/main.ui:462
+msgid "Expand all branches"
+msgstr "Rasklopi sve grane"
+
+#: ../ui/main.ui:294 ../ui/main.ui:471
+msgid "Collapse all branches"
+msgstr "Sklopi sve grane"
+
+#: ../ui/main.ui:309
+msgid "Home"
+msgstr "Početna"
+
+#: ../ui/main.ui:323
+msgid "_Help"
+msgstr "Po_moć"
+
+#: ../ui/main.ui:547
+msgid "Move"
+msgstr "Premjesti"
+
+#: ../ui/main.ui:557
+msgid "Move Up"
+msgstr "Premjesti gore"
+
+#: ../ui/main.ui:566
+msgid "Move Down"
+msgstr "Premjesti dolje"
+
+#: ../ui/main.ui:575
+msgid "Move Left"
+msgstr "Premjesti lijevo"
+
+#: ../ui/main.ui:583
+msgid "Move Right"
+msgstr "Premjesti desno"
+
+#: ../ui/map.ui:30
+msgid "_disable"
+msgstr "_deaktiviraj"
+
+#: ../ui/map.ui:47
+msgid "count _branches"
+msgstr "_broji grane"
+
+#: ../ui/map.ui:64
+msgid "count _points"
+msgstr "broji _točke"
+
+#: ../ui/map.ui:87
+msgid "<b>Rising method</b>"
+msgstr "<b>Metoda rasta</b>"
+
+#: ../ui/map.ui:117
+msgid "Ideas"
+msgstr "Ideje"
+
+#: ../ui/map.ui:132
+msgid "Branches"
+msgstr "Grane"
+
+#: ../ui/map.ui:153
+msgid "<b>Rise elemens</b>"
+msgstr "<b>Rastući elementi</b>"
 
 #: ../ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
@@ -276,138 +544,6 @@ msgstr "Boje"
 msgid "Map"
 msgstr "Karta"
 
-#: ../ui/about_dialog.ui:8
-msgid "About Application Mind Map Architect"
-msgstr "O programu Mind Map Architect"
-
-#: ../ui/about_dialog.ui:14
-msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr "Copyright (c) 2011. – 2017., Ondřej Tůma"
-
-#: ../ui/about_dialog.ui:15
-msgid "Tool for working with mind maps. "
-msgstr "Alat za rad s mentalnim kartana. "
-
-#: ../ui/about_dialog.ui:17
-msgid ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
-"All rights reserved.\n"
-"\n"
-"Redistribution and use in source and binary forms, with or without\n"
-"modification, are permitted provided that the following conditions\n"
-"are met:\n"
-" 1. Redistributions of source code must retain the above copyright\n"
-"    notice, this list of conditions and the following disclaimer.\n"
-" 2. Redistributions in binary form must reproduce the above copyright\n"
-"    notice, this list of conditions and the following disclaimer in the\n"
-"    documentation and/or other materials provided with the distribution.\n"
-" 3. Neither the name of the University nor the names of its contributors\n"
-"    may be used to endorse or promote products derived from this software\n"
-"    without specific prior written permission.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
-"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
-"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
-"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
-"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
-"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
-"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
-"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
-"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
-"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-msgstr ""
-"Autorska prava (c) 2011. – 2017., Ondřej Tůma\n"
-"Sva prava pridržana.\n"
-"\n"
-"Redistribucija i upotreba u izvornom i binarnom obliku, sa ili bez\n"
-"izmjene, dopuštene su pod sljedećim uvjetima:\n"
-" 1. Redistribucija izvornog koda mora zadržavati gore navedena autorska\n"
-"    prava, ovaj popis uvjeta i sljedeće odricanje odgovornosti.\n"
-" 2. Redistribucije u binarnom obliku moraju sadržavati gore navedena\n"
-"    autorska prava, ovaj popis uvjeta i sljedeće odricanje odgovornosti u\n"
-"    dokumentaciju i/ili drugim dokumentima isporučeni s distribucijom.\n"
-" 3. Ime Sveučilišta, kao niti imena njegovih suradnika ne smiju se "
-"koristiti\n"
-"    za podržavanje ili promoviranje proizvoda proizašlih iz ovog softvera\n"
-"    bez posebnog prethodnog pismenog odobrenja.\n"
-"\n"
-"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
-"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
-"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
-"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
-"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
-"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
-"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
-"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
-"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
-"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-
-#: ../ui/about_dialog.ui:45
-msgid ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"WaldiS <admin@sto.ugu.pl>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Ettore Atalan <atalanttore@googlemail.com>\n"
-"Frank Endres <frank@endres.fr>"
-msgstr ""
-"evanmac <nicola.lomartire@gmail.com>\n"
-"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
-"Allan Nordhøy <epost@anotheragency.no>\n"
-"Heimen Stoffels <vistausss@outlook.com>\n"
-"WaldiS <admin@sto.ugu.pl>\n"
-"Ondřej Tůma <mcbig@zeropage.cz>\n"
-"Ettore Atalan <atalanttore@googlemail.com>\n"
-"Frank Endres <frank@endres.fr>"
-
-#: ../ui/map.ui:30
-msgid "_disable"
-msgstr "_deaktiviraj"
-
-#: ../ui/map.ui:47
-msgid "count _branches"
-msgstr "_broji grane"
-
-#: ../ui/map.ui:64
-msgid "count _points"
-msgstr "broji _točke"
-
-#: ../ui/map.ui:87
-msgid "<b>Rising method</b>"
-msgstr "<b>Metoda rasta</b>"
-
-#: ../ui/map.ui:117
-msgid "Ideas"
-msgstr "Ideje"
-
-#: ../ui/map.ui:132
-msgid "Branches"
-msgstr "Grane"
-
-#: ../ui/map.ui:153
-msgid "<b>Rise elemens</b>"
-msgstr "<b>Rastući elementi</b>"
-
-#: ../ui/close_file_dialog.ui:7
-msgid "Save changes to document ?"
-msgstr "Spremiti promjene u dokument?"
-
-#: ../ui/close_file_dialog.ui:25
-msgid "Close _without save"
-msgstr "Zatvori be_z spremanja"
-
-#: ../ui/close_file_dialog.ui:107
-msgid "Save changes to document %s before exit?"
-msgstr "Spremiti promjene u dokument %s prije zatvaranja programa?"
-
-#: ../ui/close_file_dialog.ui:125
-msgid "Your changes will be lost, if you don't save the file."
-msgstr "Promjene ćeš izgubiti, ako ne spremiš dadoteku."
-
 #: ../ui/properties.ui:8
 msgid "File properties"
 msgstr "Svojstva datoteke"
@@ -440,18 +576,6 @@ msgstr "<b>Datoteka</b>"
 #: ../ui/properties.ui:222
 msgid "<b>Map</b>"
 msgstr "<b>Karta</b>"
-
-#: ../ui/color_dialog.ui:40
-msgid "Default color"
-msgstr "Standardna boja"
-
-#: ../ui/color_dialog.ui:56
-msgid "Parent color"
-msgstr "Nadređena boja"
-
-#: ../ui/color_dialog.ui:73
-msgid "Own color"
-msgstr "Vlastita boja"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -511,127 +635,3 @@ msgid ""
 msgstr ""
 "Ako želiš pomoći ovom projektu – prevoditi, razvijati, izraditi paket za "
 "distribuciju ili bilo što drugo – pogledaj stranicu za razvoj."
-
-#: ../ui/main.ui:8
-msgid "Mind Map Architect"
-msgstr "Mind Map Architect"
-
-#: ../ui/main.ui:28
-msgid "_File"
-msgstr "_Datoteka"
-
-#: ../ui/main.ui:38
-msgid "New"
-msgstr "Nova"
-
-#: ../ui/main.ui:54
-msgid "Open"
-msgstr "Otvori"
-
-#: ../ui/main.ui:64
-msgid "Save"
-msgstr "Spremi"
-
-#: ../ui/main.ui:74
-msgid "Save As"
-msgstr "Spremi kao"
-
-#: ../ui/main.ui:84
-msgid "Close"
-msgstr "Zatvori"
-
-#: ../ui/main.ui:100
-msgid "Print"
-msgstr "Ispiši"
-
-#: ../ui/main.ui:116
-msgid "Export"
-msgstr "Izvezi"
-
-#: ../ui/main.ui:125
-msgid "Import"
-msgstr "Uvezi"
-
-#: ../ui/main.ui:140
-msgid "Properties"
-msgstr "Svojstva"
-
-#: ../ui/main.ui:155
-msgid "Quit"
-msgstr "Zatvori program"
-
-#: ../ui/main.ui:168
-msgid "_Edit"
-msgstr "_Uredi"
-
-#: ../ui/main.ui:178 ../ui/main.ui:493
-msgid "Expand"
-msgstr "Rasklopi"
-
-#: ../ui/main.ui:187 ../ui/main.ui:502
-msgid "Collapse"
-msgstr "Sklopi"
-
-#: ../ui/main.ui:202 ../ui/main.ui:511
-msgid "Cut"
-msgstr "Izreži"
-
-#: ../ui/main.ui:212 ../ui/main.ui:520
-msgid "Copy"
-msgstr "Kopiraj"
-
-#: ../ui/main.ui:222 ../ui/main.ui:529
-msgid "Paste"
-msgstr "Umetni"
-
-#: ../ui/main.ui:232 ../ui/main.ui:538
-msgid "Delete"
-msgstr "Izbriši"
-
-#: ../ui/main.ui:247 ../ui/main.ui:484
-msgid "Edit"
-msgstr "Uredi"
-
-#: ../ui/main.ui:262
-msgid "Preferences"
-msgstr "Postavke"
-
-#: ../ui/main.ui:275
-msgid "_View"
-msgstr "_Pogled"
-
-#: ../ui/main.ui:285 ../ui/main.ui:462
-msgid "Expand all branches"
-msgstr "Rasklopi sve grane"
-
-#: ../ui/main.ui:294 ../ui/main.ui:471
-msgid "Collapse all branches"
-msgstr "Sklopi sve grane"
-
-#: ../ui/main.ui:309
-msgid "Home"
-msgstr "Početna"
-
-#: ../ui/main.ui:323
-msgid "_Help"
-msgstr "Po_moć"
-
-#: ../ui/main.ui:547
-msgid "Move"
-msgstr "Premjesti"
-
-#: ../ui/main.ui:557
-msgid "Move Up"
-msgstr "Premjesti gore"
-
-#: ../ui/main.ui:566
-msgid "Move Down"
-msgstr "Premjesti dolje"
-
-#: ../ui/main.ui:575
-msgid "Move Left"
-msgstr "Premjesti lijevo"
-
-#: ../ui/main.ui:583
-msgid "Move Right"
-msgstr "Premjesti desno"
