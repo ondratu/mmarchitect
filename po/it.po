@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-24 20:09+0100\n"
-"PO-Revision-Date: 2013-01-06 16:35+0100\n"
-"Last-Translator: evanmac <nicola.lomartire@mac.com>\n"
-"Language-Team: evanmac <nicola.lomartire@gmail.com>\n"
-"Language: italian\n"
+"PO-Revision-Date: 2021-06-18 21:33+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/mmarchitect/"
+"translations/it/>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7\n"
 
 #: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
 #: ../src/welcometab.vala:70
@@ -32,7 +34,7 @@ msgstr "Salva file"
 
 #: ../src/app.vala:92 ../src/app.vala:495
 msgid "Save file as"
-msgstr "Salva con nome..."
+msgstr "Salva il file come"
 
 #: ../src/app.vala:122
 msgid "File $fname can't be imported!"
@@ -41,11 +43,11 @@ msgstr "Il file $fname non può essere importato!"
 #: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
 #: ../src/export_dialog.vala:69
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annulla"
 
 #: ../src/app.vala:271 ../src/app.vala:364
 msgid "_Open"
-msgstr ""
+msgstr "_Apri"
 
 #: ../src/app.vala:303
 msgid "File $path not found!"
@@ -57,7 +59,7 @@ msgstr "Importa file"
 
 #: ../src/app.vala:499
 msgid "_Save"
-msgstr ""
+msgstr "_Salva"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
@@ -80,14 +82,12 @@ msgid "Extends edit"
 msgstr "Modifiche estese"
 
 #: ../src/export_dialog.vala:63
-#, fuzzy
 msgid "Export Map as"
-msgstr "Esporta file con nome..."
+msgstr "Esporta la mappa come"
 
 #: ../src/export_dialog.vala:70
-#, fuzzy
 msgid "_Export As"
-msgstr "_Esporta"
+msgstr "_Esporta come"
 
 #: ../src/export_dialog.vala:73
 msgid "Plain Text"
@@ -128,7 +128,7 @@ msgid ""
 "Left or Right to move with selected Ideas."
 msgstr ""
 "Puoi muoverti con le idee con scorciatoie da tastiera. Puoi usare CTRL - "
-"Freccia Su, Giù, Sinistra o Destra per muoverti con le idee selezionate"
+"Freccia Su, Giù, Sinistra o Destra per muoverti con le idee selezionate."
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
@@ -152,13 +152,12 @@ msgid "About Application Mind Map Architect"
 msgstr "Informazioni sull'applicazione Mind Map Architet"
 
 #: ../ui/about_dialog.ui:14
-#, fuzzy
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr "Copyright © 2011-2012, Ondřej Tůma"
+msgstr "Copyright © 2011-2017, Ondřej Tůma"
 
 #: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
-msgstr "Strumenti per lavorare con mind maps."
+msgstr "Strumenti per lavorare con mind maps. "
 
 #: ../ui/about_dialog.ui:17
 #, fuzzy
@@ -190,39 +189,40 @@ msgid ""
 "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
-"Copyright © 2011-2012, Ondřej Tůma\n"
+"Copyright (c) 2011-2017, Ondřej Tůma\n"
 "Tutti i diritti riservati.\n"
 "\n"
-"Ridistribuzione e uso di codice sorgente o binario, con o senza\n"
-"modifiche, sono permesse purché siano rispettate le seguenti condizioni:\n"
-"1. La ridistribuzione del codice sorgente deve contenere il copyright\n"
-"    di cui sopra, questa lista di condizioni e il seguente avvertimento\n"
-"2. La ridistribuzione in forma binaria deve riprodurre il copyright di cui "
-"sopra,\n"
-"    questa lista di condizioni e il seguente avvertimento nella "
-"documentazione\n"
-"    e/o nei materiali forniti con la distribuzione stessa.\n"
-"3. Tutto il materiale pubblicitario che menzioni funzioni o uso di questo "
-"software\n"
-"    deve mostrare il seguente accordo:\n"
-"    Questo prodotto include software sviluppato da Ondřej Tůma.\n"
-"4. Nè il nome dell'autore, né il nome di coloro i quali ocntribuiscono\n"
-"    può essere usato per sostenere e promuovere prodotti\n"
-"    derivati da questo software senza specifica e precedente "
-"autorizzazione.\n"
+"La ridistribuzione e l'uso in forma sorgente e binaria, con o senza\n"
+"modifiche, sono permessi a condizione che le seguenti condizioni\n"
+"siano soddisfatte:\n"
+" 1. Le ridistribuzioni del codice sorgente devono mantenere l'avviso di "
+"copyright\n"
+"    sopra, questo elenco di condizioni e la seguente dichiarazione di non "
+"responsabilità.\n"
+" 2. Le ridistribuzioni in forma binaria devono riprodurre l'avviso di "
+"copyright\n"
+"    sopra, il presente elenco di condizioni e il seguente disclaimer nella\n"
+"    documentazione e/o altro materiale fornito con la distribuzione.\n"
+" 3. Né il nome dell'Università né i nomi dei suoi collaboratori\n"
+"    possono essere usati per sostenere o promuovere prodotti derivati da "
+"questo software\n"
+"    senza una specifica autorizzazione scritta.\n"
 "\n"
-"THIS SOFTWARE IS PROVIDED BY ONDŘEJ TǓMA ''AS IS'' AND ANY\n"
-"EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
-"WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
-"DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
-"DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
-"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
-"SERVICES;\n"
-"LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
-"ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
-"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
-"THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+"QUESTO SOFTWARE È FORNITO DAI DETENTORI DEL COPYRIGHT E DAI COLLABORATORI\n"
+"«COSÌ COM'È» E QUALSIASI GARANZIA ESPLICITA O IMPLICITA, INCLUSE, MA NON\n"
+"LIMITATA ALLE GARANZIE IMPLICITE DI COMMERCIABILITÀ E IDONEITÀ PER UNO SCOPO "
+"PARTICOLARE.\n"
+"UNO SCOPO PARTICOLARE SONO DECLINATE. IN NESSUN CASO I TITOLARI O\n"
+"COLLABORATORI SARANNO RESPONSABILI PER QUALSIASI DANNO DIRETTO, INDIRETTO, "
+"INCIDENTALE, SPECIALE, ESEMPLARE O CONSEQUENZIALE,\n"
+"ESEMPLARE O CONSEGUENTE (INCLUSI, MA NON LIMITATI A,\n"
+"APPROVVIGIONAMENTO DI BENI O SERVIZI SOSTITUTIVI; PERDITA DI USO, DATI O\n"
+"PROFITTI; O INTERRUZIONE DELL'ATTIVITÀ) COMUNQUE CAUSATI E SU QUALSIASI "
+"TEORIA DI\n"
+"RESPONSABILITÀ, SIA PER CONTRATTO, RESPONSABILITÀ OGGETTIVA, O TORTO ("
+"INCLUSO\n"
+"NEGLIGENZA O ALTRO) DERIVANTI IN QUALSIASI MODO DALL'USO DI QUESTO\n"
+"SOFTWARE, ANCHE SE AVVISATI DELLA POSSIBILITÀ DI TALI DANNI."
 
 #: ../ui/about_dialog.ui:45
 msgid ""
@@ -235,6 +235,14 @@ msgid ""
 "Ettore Atalan <atalanttore@googlemail.com>\n"
 "Frank Endres <frank@endres.fr>"
 msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
 
 #: ../ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
@@ -255,7 +263,7 @@ msgstr "I cambiamenti andranno persi se non salvi il file."
 
 #: ../ui/color_dialog.ui:40
 msgid "Default color"
-msgstr "Colore di default"
+msgstr "Colore predefinito"
 
 #: ../ui/color_dialog.ui:56
 msgid "Parent color"
@@ -275,30 +283,27 @@ msgstr "_File"
 
 #: ../ui/main.ui:38
 msgid "New"
-msgstr ""
+msgstr "Nuovo"
 
 #: ../ui/main.ui:54
-#, fuzzy
 msgid "Open"
-msgstr "Apri file"
+msgstr "Apri"
 
 #: ../ui/main.ui:64
-#, fuzzy
 msgid "Save"
-msgstr "Salva file"
+msgstr "Salva"
 
 #: ../ui/main.ui:74
-#, fuzzy
 msgid "Save As"
-msgstr "Salva con nome..."
+msgstr "Salva come"
 
 #: ../ui/main.ui:84
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: ../ui/main.ui:100
 msgid "Print"
-msgstr ""
+msgstr "Stampa"
 
 #: ../ui/main.ui:116
 msgid "Export"
@@ -310,11 +315,11 @@ msgstr "Importa"
 
 #: ../ui/main.ui:140
 msgid "Properties"
-msgstr ""
+msgstr "Proprietà"
 
 #: ../ui/main.ui:155
 msgid "Quit"
-msgstr ""
+msgstr "Esci"
 
 #: ../ui/main.ui:168
 msgid "_Edit"
@@ -330,46 +335,43 @@ msgstr "Contrai"
 
 #: ../ui/main.ui:202 ../ui/main.ui:511
 msgid "Cut"
-msgstr ""
+msgstr "Taglia"
 
 #: ../ui/main.ui:212 ../ui/main.ui:520
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: ../ui/main.ui:222 ../ui/main.ui:529
 msgid "Paste"
-msgstr ""
+msgstr "Incolla"
 
 #: ../ui/main.ui:232 ../ui/main.ui:538
 msgid "Delete"
-msgstr ""
+msgstr "Elimina"
 
 #: ../ui/main.ui:247 ../ui/main.ui:484
-#, fuzzy
 msgid "Edit"
-msgstr "_Modifica"
+msgstr "Modifica"
 
 #: ../ui/main.ui:262
 msgid "Preferences"
-msgstr ""
+msgstr "Preferenze"
 
 #: ../ui/main.ui:275
 msgid "_View"
 msgstr "_Vista"
 
 #: ../ui/main.ui:285 ../ui/main.ui:462
-#, fuzzy
 msgid "Expand all branches"
-msgstr "_Espandi tutti i rami"
+msgstr "Espandi tutti i rami"
 
 #: ../ui/main.ui:294 ../ui/main.ui:471
-#, fuzzy
 msgid "Collapse all branches"
-msgstr "_Contrai tutti i rami"
+msgstr "Contrai tutti i rami"
 
 #: ../ui/main.ui:309
 msgid "Home"
-msgstr ""
+msgstr "Pagina principale"
 
 #: ../ui/main.ui:323
 msgid "_Help"
@@ -377,24 +379,23 @@ msgstr "_Aiuto"
 
 #: ../ui/main.ui:547
 msgid "Move"
-msgstr ""
+msgstr "Sposta"
 
 #: ../ui/main.ui:557
 msgid "Move Up"
-msgstr ""
+msgstr "Sposta in alto"
 
 #: ../ui/main.ui:566
 msgid "Move Down"
-msgstr ""
+msgstr "Sposta in basso"
 
 #: ../ui/main.ui:575
 msgid "Move Left"
-msgstr ""
+msgstr "Spostare a sinistra"
 
 #: ../ui/main.ui:583
-#, fuzzy
 msgid "Move Right"
-msgstr "Altezza"
+msgstr "Sposta a destra"
 
 #: ../ui/map.ui:30
 msgid "_disable"
@@ -405,9 +406,8 @@ msgid "count _branches"
 msgstr "conta _rami"
 
 #: ../ui/map.ui:64
-#, fuzzy
 msgid "count _points"
-msgstr "conta _rami"
+msgstr "conta _punti"
 
 #: ../ui/map.ui:87
 msgid "<b>Rising method</b>"
@@ -555,16 +555,15 @@ msgstr "Mappa"
 
 #: ../ui/properties.ui:8
 msgid "File properties"
-msgstr ""
+msgstr "Proprietà del file"
 
 #: ../ui/properties.ui:88
-#, fuzzy
 msgid "Author"
-msgstr "<b>Autore</b>"
+msgstr "Autore"
 
 #: ../ui/properties.ui:114
 msgid "Created"
-msgstr ""
+msgstr "Creato il"
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
 #: ../ui/welcome.ui:198
@@ -573,21 +572,19 @@ msgstr "etichetta"
 
 #: ../ui/properties.ui:142
 msgid "Modified"
-msgstr ""
+msgstr "Modificato il"
 
 #: ../ui/properties.ui:169
 msgid "Path"
-msgstr ""
+msgstr "Percorso"
 
 #: ../ui/properties.ui:198
-#, fuzzy
 msgid "<b>File</b>"
-msgstr "<b>Suggerimento:</b>"
+msgstr "<b>File</b>"
 
 #: ../ui/properties.ui:222
-#, fuzzy
 msgid "<b>Map</b>"
-msgstr "<b>Suggerimento:</b>"
+msgstr "<b>Mappa</b>"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -620,21 +617,17 @@ msgstr ""
 "vuoi iniziare ad aiutarci, guarda l'Home Page di Mind Map Architet."
 
 #: ../ui/welcome.ui:305
-#, fuzzy
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
-msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Attività ed "
-"errori</a>"
+msgstr "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Problemi</a>"
 
 #: ../ui/welcome.ui:325
-#, fuzzy
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
 msgstr ""
-"C'è qualche errore in questa applicazione? Manca qualcosa secondo te in "
-"mmarchitect? Per favore daci maggiori informazioni al riguardo. Grazie per "
-"la tua risposta."
+"C'è qualche errore in questa programma? Manca qualcosa secondo te in "
+"mmarchitect? Per favore daci maggiori informazioni. Grazie per la tua "
+"risposta."
 
 #: ../ui/welcome.ui:355
 msgid ""
