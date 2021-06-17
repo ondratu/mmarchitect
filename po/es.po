@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-24 20:09+0100\n"
-"PO-Revision-Date: 2013-03-24 21:10+0100\n"
-"Last-Translator: Luis García Sevillano <floss.dev@gmail.com>\n"
-"Language-Team:  <floss.dev@gmail.com>\n"
-"Language: Spanish\n"
+"PO-Revision-Date: 2021-06-18 21:33+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/mmarchitect/"
+"translations/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7\n"
 
 #: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
 #: ../src/welcometab.vala:70
@@ -41,11 +43,11 @@ msgstr "¡El archivo $fname no puede ser importado!"
 #: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
 #: ../src/export_dialog.vala:69
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancelar"
 
 #: ../src/app.vala:271 ../src/app.vala:364
 msgid "_Open"
-msgstr ""
+msgstr "_Abrir"
 
 #: ../src/app.vala:303
 msgid "File $path not found!"
@@ -57,7 +59,7 @@ msgstr "Importar archivo"
 
 #: ../src/app.vala:499
 msgid "_Save"
-msgstr ""
+msgstr "_Guardar"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
@@ -238,6 +240,14 @@ msgid ""
 "Ettore Atalan <atalanttore@googlemail.com>\n"
 "Frank Endres <frank@endres.fr>"
 msgstr ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
 
 #: ../ui/close_file_dialog.ui:7
 msgid "Save changes to document ?"
@@ -277,7 +287,7 @@ msgstr "_Archivo"
 
 #: ../ui/main.ui:38
 msgid "New"
-msgstr ""
+msgstr "Nuevo"
 
 #: ../ui/main.ui:54
 #, fuzzy
@@ -296,11 +306,11 @@ msgstr "Guardar archivo como"
 
 #: ../ui/main.ui:84
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: ../ui/main.ui:100
 msgid "Print"
-msgstr ""
+msgstr "Imprimir"
 
 #: ../ui/main.ui:116
 msgid "Export"
@@ -312,7 +322,7 @@ msgstr "Importar"
 
 #: ../ui/main.ui:140
 msgid "Properties"
-msgstr ""
+msgstr "Propiedades"
 
 #: ../ui/main.ui:155
 msgid "Quit"
