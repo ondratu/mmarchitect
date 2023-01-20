@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-24 20:09+0100\n"
-"PO-Revision-Date: 2023-01-20 11:01+0000\n"
+"PO-Revision-Date: 2023-01-21 11:21+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/es/>\n"
@@ -127,8 +127,9 @@ msgid ""
 "You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
 "Left or Right to move with selected Ideas."
 msgstr ""
-"Puede mover las ideas con atajos de teclado. Use CTRL - Flecha Arriba, "
-"Abajo, Izquierda o Derecha para mover la idea seleccionada"
+"Las ideas se pueden mover usando métodos abreviados de teclado. Para mover "
+"las ideas seleccionadas, puede usar CTRL - flecha arriba, abajo, izquierda o "
+"derecha."
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
@@ -139,8 +140,9 @@ msgid ""
 "Mind Maps could be use as TODO lists. You have more tree like possibility "
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
-"Mind Maps puede ser usado como lista de tareas por hacer. Tiene tres "
-"posibilidades más con mind maps, como categorías, importancia o dificultad"
+"Los mapas mentales se pueden usar como listas de TODO. Tienes más "
+"posibilidades de árboles con mapas mentales, como categorías, importancia o "
+"dificultad."
 
 #: ../src/welcometab.vala:15
 msgid "Start here"
@@ -158,7 +160,7 @@ msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
 # (sounds strange in spanish)
 #: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
-msgstr "Herramienta para trabajar con mind maps."
+msgstr "Herramienta de trabajo con mapas mentales. "
 
 #: ../ui/about_dialog.ui:17
 msgid ""
@@ -428,7 +430,7 @@ msgstr "<b>Subir elemento</b>"
 
 #: ../ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
-msgstr "Preferencias de Mind Map Architect "
+msgstr "Configuración de Mind Map Architect"
 
 #: ../ui/preferences.ui:92
 msgid "<b>Author</b>"
@@ -575,21 +577,19 @@ msgstr "etiqueta"
 
 #: ../ui/properties.ui:142
 msgid "Modified"
-msgstr ""
+msgstr "Modificado"
 
 #: ../ui/properties.ui:169
 msgid "Path"
-msgstr ""
+msgstr "Ruta"
 
 #: ../ui/properties.ui:198
-#, fuzzy
 msgid "<b>File</b>"
-msgstr "<b>Sugerencia:</b>"
+msgstr "<b>Archivo</b>"
 
 #: ../ui/properties.ui:222
-#, fuzzy
 msgid "<b>Map</b>"
-msgstr "<b>Sugerencia:</b>"
+msgstr "<b>Mapa</b>"
 
 #: ../ui/welcome.ui:125
 msgid "<b>Recent files:</b>"
@@ -622,20 +622,16 @@ msgstr ""
 "versión, o ayudarnos, visite la página web de Mind Map Architect."
 
 #: ../ui/welcome.ui:305
-#, fuzzy
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
-msgstr ""
-"<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Tareas y errores</"
-"a>"
+msgstr "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Problemas</a>"
 
 #: ../ui/welcome.ui:325
-#, fuzzy
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
 msgstr ""
-"¿Hay un error en el programa? ¿Echa en falta al en mmarchitect? Por favor, "
-"haganoslo saber. Gracias por su respueta"
+"¿Hay un error en este programa? ¿Te falta algo de futuro en mmarchitect? Por "
+"favor, danos más información al respecto. Gracias por su respuesta."
 
 #: ../ui/welcome.ui:355
 msgid ""
