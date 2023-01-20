@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-24 20:09+0100\n"
-"PO-Revision-Date: 2021-06-18 21:33+0000\n"
-"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2023-01-20 11:01+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7\n"
+"X-Generator: Weblate 4.15.1\n"
 
 #: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
 #: ../src/welcometab.vala:70
@@ -82,14 +82,12 @@ msgid "Extends edit"
 msgstr "Ampliar edición"
 
 #: ../src/export_dialog.vala:63
-#, fuzzy
 msgid "Export Map as"
-msgstr "Exportar archivo como"
+msgstr "Exportar mapa como"
 
 #: ../src/export_dialog.vala:70
-#, fuzzy
 msgid "_Export As"
-msgstr "_Exportar"
+msgstr "_Exportar como"
 
 #: ../src/export_dialog.vala:73
 msgid "Plain Text"
@@ -153,9 +151,8 @@ msgid "About Application Mind Map Architect"
 msgstr "Acerca de la aplicación Mind Map Architet"
 
 #: ../ui/about_dialog.ui:14
-#, fuzzy
 msgid "Copyright (c) 2011-2017, Ondřej Tůma"
-msgstr "Copyright © 2011-2012, Ondřej Tůma"
+msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
 
 # Mind maps --> "Mapas mentales"
 # (sounds strange in spanish)
@@ -164,7 +161,6 @@ msgid "Tool for working with mind maps. "
 msgstr "Herramienta para trabajar con mind maps."
 
 #: ../ui/about_dialog.ui:17
-#, fuzzy
 msgid ""
 "Copyright (c) 2011-2017, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -193,41 +189,41 @@ msgid ""
 "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
-"Copyright © 2011-2012, Ondřej Tůma\n"
+"Copyright © 2011-2017, Ondřej Tůma\n"
 "Todos los derechos reservados.\n"
 "\n"
-"La redistribución y uso del código fuente y formato binario, con o sin\n"
-"modificación, está permitido siempre y cuando se cumplan las siguientes "
-"condiciones:\n"
-"1. La redistribución de código fuente debe mantener el texto de copyright "
-"superior,\n"
-"    esta lista de condiciones y los siguientes avisos legales.\n"
-"2. La redistribución en forma binaria debe mantener el texto de copyright "
-"superior,\n"
-"    esta lista de condiciones y los siguientes avisos legales en la "
-"documentación,\n"
-"     y/o en otros materiales proporcionados con la distribución.\n"
-"3. Todo material publicitario que mencione funcionalidades o use este "
+"Redistribución y uso en formato fuente y binario, con o sin\n"
+"Se permiten modificaciones bajo las siguientes condiciones\n"
+"se cumplen:\n"
+" 1. Al redistribuir el código fuente, se deben conservar los derechos de "
+"autor anteriores.\n"
+"    Observe esta lista de condiciones y el siguiente descargo de "
+"responsabilidad.\n"
+" 2. Las redistribuciones en forma binaria deben reproducir los derechos de "
+"autor anteriores.\n"
+"    Aviso, esta lista de condiciones y el siguiente descargo de "
+"responsabilidad en el\n"
+"    Documentación y/u otros materiales proporcionados con la distribución.\n"
+" 3. Ni el nombre de la universidad ni los nombres de sus colaboradores\n"
+"    puede usarse para respaldar o promocionar productos derivados de este "
 "software\n"
-"    debe mostrar el siguiente reconocimiento:\n"
-"    Este producto incluye software desarrollado por Ondřej Tůma.\n"
-"4. Ni el nombre de los autores ni el nombre de los\n"
-"    colaboradores debe ser usado para avalar o promover productos\n"
-"    derivados de este software sin permiso específico proporcionado "
-"previamente por escrito.\n"
+"    sin autorización expresa previa por escrito.\n"
 "\n"
-"THIS SOFTWARE IS PROVIDED BY ONDŘEJ TǓMA ''AS IS'' AND ANY\n"
-"EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
-"WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
-"DISCLAIMED. IN NO EVENT SHALL ONDŘEJ TǓMA BE LIABLE FOR ANY\n"
-"DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
-"(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR "
-"SERVICES;\n"
-"LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
-"ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
-"(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF "
-"THIS\n"
-"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+"ESTE SOFTWARE ES PROPORCIONADO POR LOS TITULARES DE LOS DERECHOS DE AUTOR Y "
+"LOS CONTRIBUYENTES\n"
+"\"AS IS\" Y TODAS LAS GARANTÍAS, EXPRESAS O IMPLÍCITAS, INCLUYENDO PERO NO "
+"LIMITADO A\n"
+"LIMITADO A LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD E IDONEIDAD PARA\n"
+"UN PROPÓSITO PARTICULAR QUEDAN EXCLUIDOS.  EN NINGÚN CASO LOS TITULARES O\n"
+"LOS COLABORADORES SON RESPONSABLES DE TODOS LOS CASOS DIRECTOS, INDIRECTOS, "
+"INCIDENTALES Y ESPECIALES,\n"
+"DAÑOS EJEMPLARES O CONSECUENTES (INCLUYENDO, PERO NO LIMITADO A,\n"
+"ADQUISICIÓN DE BIENES O SERVICIOS DE SUSTITUCIÓN; PÉRDIDA DE USO, DATOS O\n"
+"GANAR; O INTERRUPCIÓN DEL NEGOCIO) CUALQUIERA QUE SEA CAUSADO Y EN CUALQUIER "
+"TEORÍA DE\n"
+"RESPONSABILIDAD, YA SEA POR CONTRATO, ESTRICTA O AGRAVABLE (INCLUYENDO\n"
+"NEGLIGENCIA O DE OTRO MODO) QUE RESULTE DE CUALQUIER MANERA DEL USO DE ESTE\n"
+"SOFTWARE, INCLUSO SI SE NOTIFICA LA POSIBILIDAD DE DICHOS DAÑOS."
 
 #: ../ui/about_dialog.ui:45
 msgid ""
@@ -290,19 +286,16 @@ msgid "New"
 msgstr "Nuevo"
 
 #: ../ui/main.ui:54
-#, fuzzy
 msgid "Open"
-msgstr "Abrir archivo"
+msgstr "Abrir"
 
 #: ../ui/main.ui:64
-#, fuzzy
 msgid "Save"
-msgstr "Guardar archivo"
+msgstr "Guardar"
 
 #: ../ui/main.ui:74
-#, fuzzy
 msgid "Save As"
-msgstr "Guardar archivo como"
+msgstr "Guardar como"
 
 #: ../ui/main.ui:84
 msgid "Close"
@@ -326,7 +319,7 @@ msgstr "Propiedades"
 
 #: ../ui/main.ui:155
 msgid "Quit"
-msgstr ""
+msgstr "Abandonar"
 
 #: ../ui/main.ui:168
 msgid "_Edit"
@@ -343,46 +336,43 @@ msgstr "Contraer"
 
 #: ../ui/main.ui:202 ../ui/main.ui:511
 msgid "Cut"
-msgstr ""
+msgstr "Cortar"
 
 #: ../ui/main.ui:212 ../ui/main.ui:520
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: ../ui/main.ui:222 ../ui/main.ui:529
 msgid "Paste"
-msgstr ""
+msgstr "Pegar"
 
 #: ../ui/main.ui:232 ../ui/main.ui:538
 msgid "Delete"
-msgstr ""
+msgstr "Borrar"
 
 #: ../ui/main.ui:247 ../ui/main.ui:484
-#, fuzzy
 msgid "Edit"
-msgstr "_Editar"
+msgstr "Editar"
 
 #: ../ui/main.ui:262
 msgid "Preferences"
-msgstr ""
+msgstr "Preferencias"
 
 #: ../ui/main.ui:275
 msgid "_View"
 msgstr "_Ver"
 
 #: ../ui/main.ui:285 ../ui/main.ui:462
-#, fuzzy
 msgid "Expand all branches"
-msgstr "_Expandir todas las ramas"
+msgstr "Expandir todas las ramas"
 
 #: ../ui/main.ui:294 ../ui/main.ui:471
-#, fuzzy
 msgid "Collapse all branches"
-msgstr "_Contraer todas las ramas"
+msgstr "Contraer todas las ramas"
 
 #: ../ui/main.ui:309
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: ../ui/main.ui:323
 msgid "_Help"
@@ -390,24 +380,23 @@ msgstr "A_yuda"
 
 #: ../ui/main.ui:547
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 #: ../ui/main.ui:557
 msgid "Move Up"
-msgstr ""
+msgstr "Subir"
 
 #: ../ui/main.ui:566
 msgid "Move Down"
-msgstr ""
+msgstr "Bajar"
 
 #: ../ui/main.ui:575
 msgid "Move Left"
-msgstr ""
+msgstr "Mover a la izquierda"
 
 #: ../ui/main.ui:583
-#, fuzzy
 msgid "Move Right"
-msgstr "Alto"
+msgstr "Mover a la derecha"
 
 #: ../ui/map.ui:30
 msgid "_disable"
@@ -418,9 +407,8 @@ msgid "count _branches"
 msgstr "contar _ramas"
 
 #: ../ui/map.ui:64
-#, fuzzy
 msgid "count _points"
-msgstr "contar _ramas"
+msgstr "recuento de _puntos"
 
 #: ../ui/map.ui:87
 msgid "<b>Rising method</b>"
@@ -570,16 +558,15 @@ msgstr "Mapa"
 
 #: ../ui/properties.ui:8
 msgid "File properties"
-msgstr ""
+msgstr "Propiedades del archivo"
 
 #: ../ui/properties.ui:88
-#, fuzzy
 msgid "Author"
-msgstr "<b>Autor</b>"
+msgstr "Autor"
 
 #: ../ui/properties.ui:114
 msgid "Created"
-msgstr ""
+msgstr "Creado"
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
 #: ../ui/welcome.ui:198
