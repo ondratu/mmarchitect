@@ -35,7 +35,7 @@ subdir('src')
 summary = [
   '',
   '------',
-  'mmarchitect @0@'.format(version),
+  '@0@ @1@'.format(project_name, version),
   '',
   'Directories:',
   '         prefix: @0@'.format(prefix),
