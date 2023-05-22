@@ -13,7 +13,7 @@ or work planning.
 * plain text notes for each ideas
 * editor styling (fonts, colors, rising)
 
-Please read TODO.md for planing futures.
+Please read [TODO.md](TODO.md) for planing futures.
 
 ## Installation & Licensing
 
@@ -21,11 +21,12 @@ Please read the [INSTALL](INSTALL) and [COPYING](COPYING) files for more informa
 
 ## News & ChangeLog
 
-Please read the ChangeLog
+Please read the [ChangeLog](ChangeLog)
 
 ## Links
 
 * Ondrej Tuma http://zeropage.cz
-* Sourceforge http://sourceforge.net/projects/mmarchitect/
+* Project pages http://mmarchitect.zeropage.cz
+* Sourceforge http://sourceforge.net/projects/mmarchitect
 
 Copyright 2011-2023 Ondrej Tuma
