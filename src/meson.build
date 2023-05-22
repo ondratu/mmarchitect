@@ -25,11 +25,11 @@ conf_data.set('VERSION', version)
 
 sources = files(
     'application.vala',
-    'dialogs.vala',
     'clavertime.vala',
     'consts.vala',
     'color_dialog.vala',
     'css.vala',
+    'dialogs.vala',
     'editform.vala',
     'export_dialog.vala',
     'export.vala',

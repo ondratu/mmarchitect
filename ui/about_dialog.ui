@@ -10,11 +10,11 @@
     <property name="icon_name">emblem-favorite</property>
     <property name="type_hint">normal</property>
     <property name="program_name">Mind Map Architect</property>
-    <property name="version">0.6.0</property>
-    <property name="copyright" translatable="yes">Copyright (c) 2011-2017, Ondřej Tůma</property>
+    <property name="version">0.6.0dev0</property>
+    <property name="copyright" translatable="yes">Copyright (c) 2011-2023, Ondřej Tůma</property>
     <property name="comments" translatable="yes">Tool for working with mind maps. </property>
     <property name="website">http://mmarchitect.zeropage.cz</property>
-    <property name="license" translatable="yes">Copyright (c) 2011-2017, Ondřej Tůma
+    <property name="license" translatable="yes">Copyright (c) 2011-2023, Ondřej Tůma
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

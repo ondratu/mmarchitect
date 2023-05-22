@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-24 20:09+0100\n"
+"POT-Creation-Date: 2023-05-22 18:13+0200\n"
 "PO-Revision-Date: 2013-01-06 16:35+0100\n"
 "Last-Translator: evanmac <nicola.lomartire@mac.com>\n"
 "Language-Team: evanmac <nicola.lomartire@gmail.com>\n"
@@ -16,48 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
-
-#: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
-#: ../src/welcometab.vala:70
-msgid "Open file"
-msgstr "Apri file"
-
-#: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
-msgid "New file"
-msgstr "Nuovo file"
-
-#: ../src/app.vala:90
-msgid "Save file"
-msgstr "Salva file"
-
-#: ../src/app.vala:92 ../src/app.vala:495
-msgid "Save file as"
-msgstr "Salva con nome..."
-
-#: ../src/app.vala:122
-msgid "File $fname can't be imported!"
-msgstr "Il file $fname non può essere importato!"
-
-#: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
-#: ../src/export_dialog.vala:69
-msgid "_Cancel"
-msgstr ""
-
-#: ../src/app.vala:271 ../src/app.vala:364
-msgid "_Open"
-msgstr ""
-
-#: ../src/app.vala:303
-msgid "File $path not found!"
-msgstr "Il file $path non è stato trovato!"
-
-#: ../src/app.vala:360
-msgid "Import file"
-msgstr "Importa file"
-
-#: ../src/app.vala:499
-msgid "_Save"
-msgstr ""
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
@@ -75,44 +33,76 @@ msgstr "Oggi"
 msgid "Yesterday"
 msgstr "Ieri"
 
-#: ../src/editform.vala:306
+#: ../src/editform.vala:176
 msgid "Extends edit"
 msgstr "Modifiche estese"
 
-#: ../src/export_dialog.vala:63
+#: ../src/export_dialog.vala:61
 #, fuzzy
 msgid "Export Map as"
 msgstr "Esporta file con nome..."
 
-#: ../src/export_dialog.vala:70
+#: ../src/export_dialog.vala:67 ../src/main_window.vala:222
+#: ../src/main_window.vala:315 ../src/main_window.vala:433
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/export_dialog.vala:68
 #, fuzzy
 msgid "_Export As"
 msgstr "_Esporta"
 
-#: ../src/export_dialog.vala:73
+#: ../src/export_dialog.vala:71
 msgid "Plain Text"
 msgstr "Testo non formattato"
 
-#: ../src/export_dialog.vala:77
+#: ../src/export_dialog.vala:75
 msgid "Simple Web Page"
 msgstr "Semplice pagina web"
 
-#: ../src/export_dialog.vala:81
+#: ../src/export_dialog.vala:79
 msgid "Dynamic Web Page"
 msgstr "Pagina web dinamica"
 
-#: ../src/export_dialog.vala:85
+#: ../src/export_dialog.vala:83
 msgid "PNG Image"
 msgstr "Immagine PNG"
 
-#: ../src/main.vala:49
-#, c-format
-msgid "Could not load app UI: %s\n"
-msgstr "Non posso caricare l'applicazione per la UI: %s\n"
+#: ../src/main_window.vala:85
+msgid "File $fname can't be imported!"
+msgstr "Il file $fname non può essere importato!"
 
-#: ../src/mindmap.vala:79
+#: ../src/main_window.vala:219
+msgid "Open file"
+msgstr "Apri file"
+
+#: ../src/main_window.vala:223 ../src/main_window.vala:316
+msgid "_Open"
+msgstr ""
+
+#: ../src/main_window.vala:255
+msgid "File $path not found!"
+msgstr "Il file $path non è stato trovato!"
+
+#: ../src/main_window.vala:312
+msgid "Import file"
+msgstr "Importa file"
+
+#: ../src/main_window.vala:430
+msgid "Save file as"
+msgstr "Salva con nome..."
+
+#: ../src/main_window.vala:434
+msgid "_Save"
+msgstr ""
+
+#: ../src/mindmap.vala:76
 msgid "Main Idea"
 msgstr "Idea principale"
+
+#: ../src/preferences.vala:122 ../ui/preferences.ui:886
+msgid "Map"
+msgstr "Mappa"
 
 #: ../src/print.vala:62
 msgid "Printing error:"
@@ -143,7 +133,7 @@ msgstr ""
 "possibiltà simili ad un albero con mind maps, come le categorie, importanza "
 "o difficoltà."
 
-#: ../src/welcometab.vala:15
+#: ../src/welcometab.vala:14
 msgid "Start here"
 msgstr "Inizia qui"
 
@@ -153,7 +143,7 @@ msgstr "Informazioni sull'applicazione Mind Map Architet"
 
 #: ../ui/about_dialog.ui:14
 #, fuzzy
-msgid "Copyright (c) 2011-2017, Ondřej Tůma"
+msgid "Copyright (c) 2011-2023, Ondřej Tůma"
 msgstr "Copyright © 2011-2012, Ondřej Tůma"
 
 #: ../ui/about_dialog.ui:15
@@ -163,7 +153,7 @@ msgstr "Strumenti per lavorare con mind maps."
 #: ../ui/about_dialog.ui:17
 #, fuzzy
 msgid ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"Copyright (c) 2011-2023, Ondřej Tůma\n"
 "All rights reserved.\n"
 "\n"
 "Redistribution and use in source and binary forms, with or without\n"
@@ -236,20 +226,20 @@ msgid ""
 "Frank Endres <frank@endres.fr>"
 msgstr ""
 
-#: ../ui/close_file_dialog.ui:7
+#: ../ui/close_file_dialog.ui:8
 msgid "Save changes to document ?"
 msgstr "Vuoi salvare le modifiche al documento?"
 
-#: ../ui/close_file_dialog.ui:25
+#: ../ui/close_file_dialog.ui:29
 msgid "Close _without save"
 msgstr "Chiudi _senza salvare"
 
-#: ../ui/close_file_dialog.ui:107
+#: ../ui/close_file_dialog.ui:106
 msgid "Save changes to document %s before exit?"
 msgstr ""
 "Vuoi salvare le modifiche al documento %s prima di chiudere il programma?"
 
-#: ../ui/close_file_dialog.ui:125
+#: ../ui/close_file_dialog.ui:123
 msgid "Your changes will be lost, if you don't save the file."
 msgstr "I cambiamenti andranno persi se non salvi il file."
 
@@ -265,133 +255,153 @@ msgstr "Colore padre"
 msgid "Own color"
 msgstr "Proprio colore"
 
-#: ../ui/main.ui:8
+#: ../ui/main_window.ui:8
 msgid "Mind Map Architect"
 msgstr "Mind Map Architet"
 
-#: ../ui/main.ui:28
+#: ../ui/main_window.ui:31
 msgid "_File"
 msgstr "_File"
 
-#: ../ui/main.ui:38
+#: ../ui/main_window.ui:41
 msgid "New"
 msgstr ""
 
-#: ../ui/main.ui:54
+#: ../ui/main_window.ui:57
 #, fuzzy
 msgid "Open"
 msgstr "Apri file"
 
-#: ../ui/main.ui:64
+#: ../ui/main_window.ui:67
 #, fuzzy
 msgid "Save"
 msgstr "Salva file"
 
-#: ../ui/main.ui:74
+#: ../ui/main_window.ui:77
 #, fuzzy
 msgid "Save As"
 msgstr "Salva con nome..."
 
-#: ../ui/main.ui:84
+#: ../ui/main_window.ui:87
 msgid "Close"
 msgstr ""
 
-#: ../ui/main.ui:100
+#: ../ui/main_window.ui:103
 msgid "Print"
 msgstr ""
 
-#: ../ui/main.ui:116
+#: ../ui/main_window.ui:119
 msgid "Export"
 msgstr "Esporta"
 
-#: ../ui/main.ui:125
+#: ../ui/main_window.ui:128
 msgid "Import"
 msgstr "Importa"
 
-#: ../ui/main.ui:140
+#: ../ui/main_window.ui:143
 msgid "Properties"
 msgstr ""
 
-#: ../ui/main.ui:155
+#: ../ui/main_window.ui:158
 msgid "Quit"
 msgstr ""
 
-#: ../ui/main.ui:168
+#: ../ui/main_window.ui:171
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: ../ui/main.ui:178 ../ui/main.ui:493
+#: ../ui/main_window.ui:181 ../ui/main_window.ui:500
 msgid "Expand"
 msgstr "Espandi"
 
-#: ../ui/main.ui:187 ../ui/main.ui:502
+#: ../ui/main_window.ui:190 ../ui/main_window.ui:509
 msgid "Collapse"
 msgstr "Contrai"
 
-#: ../ui/main.ui:202 ../ui/main.ui:511
+#: ../ui/main_window.ui:205 ../ui/main_window.ui:518
 msgid "Cut"
 msgstr ""
 
-#: ../ui/main.ui:212 ../ui/main.ui:520
+#: ../ui/main_window.ui:215 ../ui/main_window.ui:527
 msgid "Copy"
 msgstr ""
 
-#: ../ui/main.ui:222 ../ui/main.ui:529
+#: ../ui/main_window.ui:225 ../ui/main_window.ui:536
 msgid "Paste"
 msgstr ""
 
-#: ../ui/main.ui:232 ../ui/main.ui:538
+#: ../ui/main_window.ui:235 ../ui/main_window.ui:545
 msgid "Delete"
 msgstr ""
 
-#: ../ui/main.ui:247 ../ui/main.ui:484
+#: ../ui/main_window.ui:250 ../ui/main_window.ui:491
 #, fuzzy
 msgid "Edit"
 msgstr "_Modifica"
 
-#: ../ui/main.ui:262
+#: ../ui/main_window.ui:265
 msgid "Preferences"
 msgstr ""
 
-#: ../ui/main.ui:275
+#: ../ui/main_window.ui:278
 msgid "_View"
 msgstr "_Vista"
 
-#: ../ui/main.ui:285 ../ui/main.ui:462
+#: ../ui/main_window.ui:288 ../ui/main_window.ui:469
 #, fuzzy
 msgid "Expand all branches"
 msgstr "_Espandi tutti i rami"
 
-#: ../ui/main.ui:294 ../ui/main.ui:471
+#: ../ui/main_window.ui:297 ../ui/main_window.ui:478
 #, fuzzy
 msgid "Collapse all branches"
 msgstr "_Contrai tutti i rami"
 
-#: ../ui/main.ui:309
+#: ../ui/main_window.ui:312
 msgid "Home"
 msgstr ""
 
-#: ../ui/main.ui:323
+#: ../ui/main_window.ui:326
 msgid "_Help"
 msgstr "_Aiuto"
 
-#: ../ui/main.ui:547
+#: ../ui/main_window.ui:361 ../ui/welcome.ui:76 ../ui/welcome.ui:96
+#, fuzzy
+msgid "Open File"
+msgstr "Apri file"
+
+#: ../ui/main_window.ui:376 ../ui/welcome.ui:35 ../ui/welcome.ui:55
+#, fuzzy
+msgid "New File"
+msgstr "Nuovo file"
+
+#: ../ui/main_window.ui:391
+#, fuzzy
+msgid "Save File"
+msgstr "Salva file"
+
+#: ../ui/main_window.ui:406
+#, fuzzy
+msgid "Save File As"
+msgstr "Salva con nome..."
+
+#: ../ui/main_window.ui:554
 msgid "Move"
 msgstr ""
 
-#: ../ui/main.ui:557
+#: ../ui/main_window.ui:564
 msgid "Move Up"
 msgstr ""
 
-#: ../ui/main.ui:566
+#: ../ui/main_window.ui:573
 msgid "Move Down"
 msgstr ""
 
-#: ../ui/main.ui:575
+#: ../ui/main_window.ui:582
 msgid "Move Left"
 msgstr ""
 
-#: ../ui/main.ui:583
+#: ../ui/main_window.ui:590
 #, fuzzy
 msgid "Move Right"
 msgstr "Altezza"
@@ -549,10 +559,6 @@ msgstr "<b>Definizioni dei colori</b>"
 msgid "Colors"
 msgstr "Colori"
 
-#: ../ui/preferences.ui:886
-msgid "Map"
-msgstr "Mappa"
-
 #: ../ui/properties.ui:8
 msgid "File properties"
 msgstr ""
@@ -567,7 +573,7 @@ msgid "Created"
 msgstr ""
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
-#: ../ui/welcome.ui:198
+#: ../ui/welcome.ui:209
 msgid "label"
 msgstr "etichetta"
 
@@ -589,28 +595,28 @@ msgstr "<b>Suggerimento:</b>"
 msgid "<b>Map</b>"
 msgstr "<b>Suggerimento:</b>"
 
-#: ../ui/welcome.ui:125
+#: ../ui/welcome.ui:136
 msgid "<b>Recent files:</b>"
 msgstr "<b>File recenti</b>"
 
-#: ../ui/welcome.ui:159
+#: ../ui/welcome.ui:169
 msgid "<b>Tip:</b>"
 msgstr "<b>Suggerimento:</b>"
 
-#: ../ui/welcome.ui:179
+#: ../ui/welcome.ui:190
 msgid "<b><big>label</big></b>"
 msgstr "<b><big>etichetta</big></b>"
 
-#: ../ui/welcome.ui:214
+#: ../ui/welcome.ui:225
 msgid "<a href=\"#next_tip\">Next Tip</a>"
 msgstr "<a href=\"#next_tip\">Prossimo suggerimento</a>"
 
-#: ../ui/welcome.ui:256
+#: ../ui/welcome.ui:267
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
 msgstr ""
 "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Pagina web del progetto</a>"
 
-#: ../ui/welcome.ui:276
+#: ../ui/welcome.ui:287
 msgid ""
 "If you are looking for more informations about project, want to download new "
 "version, or you want to start with helping us, see Home page of Mind Map "
@@ -619,14 +625,14 @@ msgstr ""
 "Se cerchi più informazioni sul progetto, vuoi scaricare l'ultima versione, o "
 "vuoi iniziare ad aiutarci, guarda l'Home Page di Mind Map Architet."
 
-#: ../ui/welcome.ui:305
+#: ../ui/welcome.ui:316
 #, fuzzy
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
 msgstr ""
 "<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Attività ed "
 "errori</a>"
 
-#: ../ui/welcome.ui:325
+#: ../ui/welcome.ui:336
 #, fuzzy
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
@@ -636,7 +642,7 @@ msgstr ""
 "mmarchitect? Per favore daci maggiori informazioni al riguardo. Grazie per "
 "la tua risposta."
 
-#: ../ui/welcome.ui:355
+#: ../ui/welcome.ui:366
 msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
@@ -644,7 +650,7 @@ msgstr ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Sviluppo "
 "del progetto</a>"
 
-#: ../ui/welcome.ui:374
+#: ../ui/welcome.ui:385
 msgid ""
 "If you want to help us with this project, translate messages to your "
 "languege, develop, create package for your distribution, or anything what "
@@ -653,6 +659,10 @@ msgstr ""
 "Se ti va di aiutarci con questo progetto, tradurre i messaggi nella tua "
 "lingua, creare pacchetti per la distribuzione, o qualsiasi cosa che tu possa "
 "fare per aiutarci, dai un'occhiata alla pagina dello sviluppo."
+
+#, c-format
+#~ msgid "Could not load app UI: %s\n"
+#~ msgstr "Non posso caricare l'applicazione per la UI: %s\n"
 
 #~ msgid ""
 #~ "<a href=\"http://sourceforge.net/p/mmarchitect/discussion/general/"

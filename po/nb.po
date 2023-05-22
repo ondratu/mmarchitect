@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-24 20:09+0100\n"
+"POT-Creation-Date: 2023-05-22 18:13+0200\n"
 "PO-Revision-Date: 2019-08-01 05:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -18,50 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.8-dev\n"
-
-#: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
-#: ../src/welcometab.vala:70
-msgid "Open file"
-msgstr "Åpne fil"
-
-#: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
-msgid "New file"
-msgstr "Ny fil"
-
-#: ../src/app.vala:90
-msgid "Save file"
-msgstr "Lagre fil"
-
-#: ../src/app.vala:92 ../src/app.vala:495
-msgid "Save file as"
-msgstr "Lagre fil som"
-
-#: ../src/app.vala:122
-#, fuzzy
-msgid "File $fname can't be imported!"
-msgstr "Fila %fname kan ikke importeres."
-
-#: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
-#: ../src/export_dialog.vala:69
-msgid "_Cancel"
-msgstr "_Avbryt"
-
-#: ../src/app.vala:271 ../src/app.vala:364
-msgid "_Open"
-msgstr "_Åpne"
-
-#: ../src/app.vala:303
-#, fuzzy
-msgid "File $path not found!"
-msgstr "Fila $path ble ikke funnet."
-
-#: ../src/app.vala:360
-msgid "Import file"
-msgstr "Importer fil"
-
-#: ../src/app.vala:499
-msgid "_Save"
-msgstr "_Lagre"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
@@ -79,43 +35,77 @@ msgstr "I dag"
 msgid "Yesterday"
 msgstr "I går"
 
-#: ../src/editform.vala:306
+#: ../src/editform.vala:176
 msgid "Extends edit"
 msgstr "Utvider redigering"
 
-#: ../src/export_dialog.vala:63
+#: ../src/export_dialog.vala:61
 #, fuzzy
 msgid "Export Map as"
 msgstr "Eksporter tankekart som"
 
-#: ../src/export_dialog.vala:70
+#: ../src/export_dialog.vala:67 ../src/main_window.vala:222
+#: ../src/main_window.vala:315 ../src/main_window.vala:433
+msgid "_Cancel"
+msgstr "_Avbryt"
+
+#: ../src/export_dialog.vala:68
 msgid "_Export As"
 msgstr "_Eksporter som"
 
-#: ../src/export_dialog.vala:73
+#: ../src/export_dialog.vala:71
 msgid "Plain Text"
 msgstr "Klartekst"
 
-#: ../src/export_dialog.vala:77
+#: ../src/export_dialog.vala:75
 msgid "Simple Web Page"
 msgstr "Enkel nettside"
 
-#: ../src/export_dialog.vala:81
+#: ../src/export_dialog.vala:79
 msgid "Dynamic Web Page"
 msgstr "Dynamisk nettside"
 
-#: ../src/export_dialog.vala:85
+#: ../src/export_dialog.vala:83
 msgid "PNG Image"
 msgstr "PNG-bilde"
 
-#: ../src/main.vala:49
-#, c-format
-msgid "Could not load app UI: %s\n"
-msgstr "Kunne ikke laste inn programbrukergrensesnitt: %s\n"
+#: ../src/main_window.vala:85
+#, fuzzy
+msgid "File $fname can't be imported!"
+msgstr "Fila %fname kan ikke importeres."
 
-#: ../src/mindmap.vala:79
+#: ../src/main_window.vala:219
+msgid "Open file"
+msgstr "Åpne fil"
+
+#: ../src/main_window.vala:223 ../src/main_window.vala:316
+msgid "_Open"
+msgstr "_Åpne"
+
+#: ../src/main_window.vala:255
+#, fuzzy
+msgid "File $path not found!"
+msgstr "Fila $path ble ikke funnet."
+
+#: ../src/main_window.vala:312
+msgid "Import file"
+msgstr "Importer fil"
+
+#: ../src/main_window.vala:430
+msgid "Save file as"
+msgstr "Lagre fil som"
+
+#: ../src/main_window.vala:434
+msgid "_Save"
+msgstr "_Lagre"
+
+#: ../src/mindmap.vala:76
 msgid "Main Idea"
 msgstr "Hovedidé"
+
+#: ../src/preferences.vala:122 ../ui/preferences.ui:886
+msgid "Map"
+msgstr "Tankekart"
 
 #: ../src/print.vala:62
 msgid "Printing error:"
@@ -148,7 +138,7 @@ msgstr ""
 "Tankekart kan brukes som gjøremålslister. Du har en mer tre-lignende "
 "mulighet med tankekart, som kategorier, viktighet eller vanskelighetsgrad."
 
-#: ../src/welcometab.vala:15
+#: ../src/welcometab.vala:14
 msgid "Start here"
 msgstr "Start her"
 
@@ -158,7 +148,8 @@ msgid "About Application Mind Map Architect"
 msgstr "Om"
 
 #: ../ui/about_dialog.ui:14
-msgid "Copyright (c) 2011-2017, Ondřej Tůma"
+#, fuzzy
+msgid "Copyright (c) 2011-2023, Ondřej Tůma"
 msgstr "Kopirett © 2011-1017, Ondřej Tůma"
 
 #: ../ui/about_dialog.ui:15
@@ -169,7 +160,7 @@ msgstr "Verktøy for tankekart. "
 #: ../ui/about_dialog.ui:17
 #, fuzzy
 msgid ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"Copyright (c) 2011-2023, Ondřej Tůma\n"
 "All rights reserved.\n"
 "\n"
 "Redistribution and use in source and binary forms, with or without\n"
@@ -243,20 +234,20 @@ msgstr ""
 "Ondřej Tůma <mcbig@zeropage.cz>\n"
 "WaldiS <admin@sto.ugu.pl>"
 
-#: ../ui/close_file_dialog.ui:7
+#: ../ui/close_file_dialog.ui:8
 #, fuzzy
 msgid "Save changes to document ?"
 msgstr "Lagre endringer i dokumentet?"
 
-#: ../ui/close_file_dialog.ui:25
+#: ../ui/close_file_dialog.ui:29
 msgid "Close _without save"
 msgstr "Lukk _uten å lagre"
 
-#: ../ui/close_file_dialog.ui:107
+#: ../ui/close_file_dialog.ui:106
 msgid "Save changes to document %s before exit?"
 msgstr "Lagre endringer i dokumentet %s før avslutning?"
 
-#: ../ui/close_file_dialog.ui:125
+#: ../ui/close_file_dialog.ui:123
 msgid "Your changes will be lost, if you don't save the file."
 msgstr "Endringene vil gå tapt hvis du ikke lagrer fila."
 
@@ -272,127 +263,147 @@ msgstr "Ovennevnt farge"
 msgid "Own color"
 msgstr "Egen farge"
 
-#: ../ui/main.ui:8
+#: ../ui/main_window.ui:8
 msgid "Mind Map Architect"
 msgstr "Tankekart-arkitekt"
 
-#: ../ui/main.ui:28
+#: ../ui/main_window.ui:31
 msgid "_File"
 msgstr "_Fil"
 
-#: ../ui/main.ui:38
+#: ../ui/main_window.ui:41
 msgid "New"
 msgstr "Nytt"
 
-#: ../ui/main.ui:54
+#: ../ui/main_window.ui:57
 msgid "Open"
 msgstr "Åpne"
 
-#: ../ui/main.ui:64
+#: ../ui/main_window.ui:67
 msgid "Save"
 msgstr "Lagre"
 
-#: ../ui/main.ui:74
+#: ../ui/main_window.ui:77
 msgid "Save As"
 msgstr "Lagre som"
 
-#: ../ui/main.ui:84
+#: ../ui/main_window.ui:87
 msgid "Close"
 msgstr "Lukk"
 
-#: ../ui/main.ui:100
+#: ../ui/main_window.ui:103
 msgid "Print"
 msgstr "Skriv ut"
 
-#: ../ui/main.ui:116
+#: ../ui/main_window.ui:119
 msgid "Export"
 msgstr "Eksporter"
 
-#: ../ui/main.ui:125
+#: ../ui/main_window.ui:128
 msgid "Import"
 msgstr "Importer"
 
-#: ../ui/main.ui:140
+#: ../ui/main_window.ui:143
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: ../ui/main.ui:155
+#: ../ui/main_window.ui:158
 msgid "Quit"
 msgstr "Avslutt"
 
-#: ../ui/main.ui:168
+#: ../ui/main_window.ui:171
 msgid "_Edit"
 msgstr "_Rediger"
 
-#: ../ui/main.ui:178 ../ui/main.ui:493
+#: ../ui/main_window.ui:181 ../ui/main_window.ui:500
 msgid "Expand"
 msgstr "Utvid"
 
-#: ../ui/main.ui:187 ../ui/main.ui:502
+#: ../ui/main_window.ui:190 ../ui/main_window.ui:509
 msgid "Collapse"
 msgstr "Fold sammen"
 
-#: ../ui/main.ui:202 ../ui/main.ui:511
+#: ../ui/main_window.ui:205 ../ui/main_window.ui:518
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: ../ui/main.ui:212 ../ui/main.ui:520
+#: ../ui/main_window.ui:215 ../ui/main_window.ui:527
 msgid "Copy"
 msgstr "Kopier"
 
-#: ../ui/main.ui:222 ../ui/main.ui:529
+#: ../ui/main_window.ui:225 ../ui/main_window.ui:536
 msgid "Paste"
 msgstr "Lim inn"
 
-#: ../ui/main.ui:232 ../ui/main.ui:538
+#: ../ui/main_window.ui:235 ../ui/main_window.ui:545
 msgid "Delete"
 msgstr "Slett"
 
-#: ../ui/main.ui:247 ../ui/main.ui:484
+#: ../ui/main_window.ui:250 ../ui/main_window.ui:491
 msgid "Edit"
 msgstr "Rediger"
 
-#: ../ui/main.ui:262
+#: ../ui/main_window.ui:265
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: ../ui/main.ui:275
+#: ../ui/main_window.ui:278
 msgid "_View"
 msgstr "_Vis"
 
-#: ../ui/main.ui:285 ../ui/main.ui:462
+#: ../ui/main_window.ui:288 ../ui/main_window.ui:469
 msgid "Expand all branches"
 msgstr "Utvid alle forgreninger"
 
-#: ../ui/main.ui:294 ../ui/main.ui:471
+#: ../ui/main_window.ui:297 ../ui/main_window.ui:478
 msgid "Collapse all branches"
 msgstr "Fold sammen alle forgreninger"
 
-#: ../ui/main.ui:309
+#: ../ui/main_window.ui:312
 msgid "Home"
 msgstr "Hjem"
 
-#: ../ui/main.ui:323
+#: ../ui/main_window.ui:326
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../ui/main.ui:547
+#: ../ui/main_window.ui:361 ../ui/welcome.ui:76 ../ui/welcome.ui:96
+#, fuzzy
+msgid "Open File"
+msgstr "Åpne fil"
+
+#: ../ui/main_window.ui:376 ../ui/welcome.ui:35 ../ui/welcome.ui:55
+#, fuzzy
+msgid "New File"
+msgstr "Ny fil"
+
+#: ../ui/main_window.ui:391
+#, fuzzy
+msgid "Save File"
+msgstr "Lagre fil"
+
+#: ../ui/main_window.ui:406
+#, fuzzy
+msgid "Save File As"
+msgstr "Lagre fil som"
+
+#: ../ui/main_window.ui:554
 msgid "Move"
 msgstr "Flytt"
 
-#: ../ui/main.ui:557
+#: ../ui/main_window.ui:564
 msgid "Move Up"
 msgstr "Flytt oppover"
 
-#: ../ui/main.ui:566
+#: ../ui/main_window.ui:573
 msgid "Move Down"
 msgstr "Flytt nedover"
 
-#: ../ui/main.ui:575
+#: ../ui/main_window.ui:582
 msgid "Move Left"
 msgstr "Flytt til venstre"
 
-#: ../ui/main.ui:583
+#: ../ui/main_window.ui:590
 msgid "Move Right"
 msgstr "Flytt til høyre"
 
@@ -556,10 +567,6 @@ msgstr "<b>Fargedefinisjoner</b>"
 msgid "Colors"
 msgstr "Farger"
 
-#: ../ui/preferences.ui:886
-msgid "Map"
-msgstr "Tankekart"
-
 #: ../ui/properties.ui:8
 msgid "File properties"
 msgstr "Filegenskaper"
@@ -574,7 +581,7 @@ msgid "Created"
 msgstr "Opprettet"
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
-#: ../ui/welcome.ui:198
+#: ../ui/welcome.ui:209
 msgid "label"
 msgstr "etikett"
 
@@ -594,29 +601,29 @@ msgstr "<b>Fil</b>"
 msgid "<b>Map</b>"
 msgstr "<b>Tankekart</b>"
 
-#: ../ui/welcome.ui:125
+#: ../ui/welcome.ui:136
 msgid "<b>Recent files:</b>"
 msgstr "<b>Nylige filer:</b>"
 
-#: ../ui/welcome.ui:159
+#: ../ui/welcome.ui:169
 msgid "<b>Tip:</b>"
 msgstr "<b>Tips:</b>"
 
-#: ../ui/welcome.ui:179
+#: ../ui/welcome.ui:190
 msgid "<b><big>label</big></b>"
 msgstr "<b><big>etikett</big></b>"
 
-#: ../ui/welcome.ui:214
+#: ../ui/welcome.ui:225
 msgid "<a href=\"#next_tip\">Next Tip</a>"
 msgstr "<a href=\"#next_tip\">Neste tips</a>"
 
-#: ../ui/welcome.ui:256
+#: ../ui/welcome.ui:267
 #, fuzzy
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
 msgstr ""
 "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Prosjektets nettsider</a>"
 
-#: ../ui/welcome.ui:276
+#: ../ui/welcome.ui:287
 #, fuzzy
 msgid ""
 "If you are looking for more informations about project, want to download new "
@@ -626,14 +633,14 @@ msgstr ""
 "Hvis du ser etter mer informasjon om prosjektet, ønsker å laste ned en ny "
 "versjon, eller vil hjelpe til, sjekk hjemmesiden."
 
-#: ../ui/welcome.ui:305
+#: ../ui/welcome.ui:316
 #, fuzzy
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
 msgstr ""
 "<a href=\"http://sourceforge.net/p/mmarchitect/tickets/\">Oppgaver og feil</"
 "a>"
 
-#: ../ui/welcome.ui:325
+#: ../ui/welcome.ui:336
 #, fuzzy
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
@@ -642,7 +649,7 @@ msgstr ""
 "Feil i programmet? Savner du en funksjon i mmarchitect? Din tilbakemelding "
 "er kjærkommen."
 
-#: ../ui/welcome.ui:355
+#: ../ui/welcome.ui:366
 msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
@@ -650,7 +657,7 @@ msgstr ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?gtk=1\">Utvikling "
 "av prosjektet</a>"
 
-#: ../ui/welcome.ui:374
+#: ../ui/welcome.ui:385
 #, fuzzy
 msgid ""
 "If you want to help us with this project, translate messages to your "
@@ -660,6 +667,10 @@ msgstr ""
 "Hvis du ønsker å hjelpe til med prosjektet, oversette meldinger til ditt "
 "språk, utvikle, lage pakker for din distribusjon, eller hva som helst annet "
 "du kan, se utviklingssiden."
+
+#, c-format
+#~ msgid "Could not load app UI: %s\n"
+#~ msgstr "Kunne ikke laste inn programbrukergrensesnitt: %s\n"
 
 #, fuzzy
 #~ msgid ""

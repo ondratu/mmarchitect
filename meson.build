@@ -1,6 +1,6 @@
 project(
     'mmarchitect', 'vala', 'c',
-    version: '0.6.0',
+    version: '0.6.0dev0',
     license: 'BSD',
     #    license_files: ['COPYING']
     )

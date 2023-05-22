@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-24 20:09+0100\n"
+"POT-Creation-Date: 2023-05-22 18:13+0200\n"
 "PO-Revision-Date: 2017-11-23 10:56+0000\n"
 "Last-Translator: Ondřej Tůma <mcbig@zeropage.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/mmarchitect/"
@@ -19,48 +19,6 @@ msgstr ""
 "X-Generator: Weblate 2.18-dev\n"
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
-
-#: ../src/app.vala:86 ../src/app.vala:267 ../src/welcometab.vala:64
-#: ../src/welcometab.vala:70
-msgid "Open file"
-msgstr "Otevřít soubor"
-
-#: ../src/app.vala:88 ../src/welcometab.vala:66 ../src/welcometab.vala:72
-msgid "New file"
-msgstr "Nový soubor"
-
-#: ../src/app.vala:90
-msgid "Save file"
-msgstr "Uložit soubor"
-
-#: ../src/app.vala:92 ../src/app.vala:495
-msgid "Save file as"
-msgstr "Uložit soubor jako"
-
-#: ../src/app.vala:122
-msgid "File $fname can't be imported!"
-msgstr "Soubor $fname nemohl být importován!"
-
-#: ../src/app.vala:270 ../src/app.vala:363 ../src/app.vala:498
-#: ../src/export_dialog.vala:69
-msgid "_Cancel"
-msgstr "_Zrušit"
-
-#: ../src/app.vala:271 ../src/app.vala:364
-msgid "_Open"
-msgstr "_Otevřít"
-
-#: ../src/app.vala:303
-msgid "File $path not found!"
-msgstr "Soubor $path nenalezen!"
-
-#: ../src/app.vala:360
-msgid "Import file"
-msgstr "Importovat soubor"
-
-#: ../src/app.vala:499
-msgid "_Save"
-msgstr "_Uložit"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
@@ -78,42 +36,74 @@ msgstr "Dnes"
 msgid "Yesterday"
 msgstr "Včera"
 
-#: ../src/editform.vala:306
+#: ../src/editform.vala:176
 msgid "Extends edit"
 msgstr ""
 
-#: ../src/export_dialog.vala:63
+#: ../src/export_dialog.vala:61
 msgid "Export Map as"
 msgstr "Exportovat mapu jako"
 
-#: ../src/export_dialog.vala:70
+#: ../src/export_dialog.vala:67 ../src/main_window.vala:222
+#: ../src/main_window.vala:315 ../src/main_window.vala:433
+msgid "_Cancel"
+msgstr "_Zrušit"
+
+#: ../src/export_dialog.vala:68
 msgid "_Export As"
 msgstr "_Exportovat jako"
 
-#: ../src/export_dialog.vala:73
+#: ../src/export_dialog.vala:71
 msgid "Plain Text"
 msgstr "Prostý text"
 
-#: ../src/export_dialog.vala:77
+#: ../src/export_dialog.vala:75
 msgid "Simple Web Page"
 msgstr "Jednoduchá webová stránka"
 
-#: ../src/export_dialog.vala:81
+#: ../src/export_dialog.vala:79
 msgid "Dynamic Web Page"
 msgstr "Dynamická webové stránka"
 
-#: ../src/export_dialog.vala:85
+#: ../src/export_dialog.vala:83
 msgid "PNG Image"
 msgstr "PNG Obrázek"
 
-#: ../src/main.vala:49
-#, c-format
-msgid "Could not load app UI: %s\n"
-msgstr "Nelze načíst aplikační rozhraní: %s\n"
+#: ../src/main_window.vala:85
+msgid "File $fname can't be imported!"
+msgstr "Soubor $fname nemohl být importován!"
 
-#: ../src/mindmap.vala:79
+#: ../src/main_window.vala:219
+msgid "Open file"
+msgstr "Otevřít soubor"
+
+#: ../src/main_window.vala:223 ../src/main_window.vala:316
+msgid "_Open"
+msgstr "_Otevřít"
+
+#: ../src/main_window.vala:255
+msgid "File $path not found!"
+msgstr "Soubor $path nenalezen!"
+
+#: ../src/main_window.vala:312
+msgid "Import file"
+msgstr "Importovat soubor"
+
+#: ../src/main_window.vala:430
+msgid "Save file as"
+msgstr "Uložit soubor jako"
+
+#: ../src/main_window.vala:434
+msgid "_Save"
+msgstr "_Uložit"
+
+#: ../src/mindmap.vala:76
 msgid "Main Idea"
 msgstr "Hlavní myšlenka"
+
+#: ../src/preferences.vala:122 ../ui/preferences.ui:886
+msgid "Map"
+msgstr "Mapa"
 
 #: ../src/print.vala:62
 msgid "Printing error:"
@@ -139,7 +129,7 @@ msgid ""
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
 
-#: ../src/welcometab.vala:15
+#: ../src/welcometab.vala:14
 msgid "Start here"
 msgstr "Začni zde"
 
@@ -148,7 +138,7 @@ msgid "About Application Mind Map Architect"
 msgstr "O aplikaci Mind Map Architect"
 
 #: ../ui/about_dialog.ui:14
-msgid "Copyright (c) 2011-2017, Ondřej Tůma"
+msgid "Copyright (c) 2011-2023, Ondřej Tůma"
 msgstr ""
 
 #: ../ui/about_dialog.ui:15
@@ -157,7 +147,7 @@ msgstr "Nástroj na práci s myšlenkovými mapami."
 
 #: ../ui/about_dialog.ui:17
 msgid ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"Copyright (c) 2011-2023, Ondřej Tůma\n"
 "All rights reserved.\n"
 "\n"
 "Redistribution and use in source and binary forms, with or without\n"
@@ -197,19 +187,19 @@ msgid ""
 "Frank Endres <frank@endres.fr>"
 msgstr ""
 
-#: ../ui/close_file_dialog.ui:7
+#: ../ui/close_file_dialog.ui:8
 msgid "Save changes to document ?"
 msgstr "Uložit změny do dokumentu ?"
 
-#: ../ui/close_file_dialog.ui:25
+#: ../ui/close_file_dialog.ui:29
 msgid "Close _without save"
 msgstr "Zavřít bez uložení"
 
-#: ../ui/close_file_dialog.ui:107
+#: ../ui/close_file_dialog.ui:106
 msgid "Save changes to document %s before exit?"
 msgstr "Uložit změny do dokumentu %s před ukončením ?"
 
-#: ../ui/close_file_dialog.ui:125
+#: ../ui/close_file_dialog.ui:123
 msgid "Your changes will be lost, if you don't save the file."
 msgstr "Pokud soubor neuložíte, vaše změny budou ztraceny."
 
@@ -225,132 +215,152 @@ msgstr "Barva rodiče"
 msgid "Own color"
 msgstr "Vlastní barva"
 
-#: ../ui/main.ui:8
+#: ../ui/main_window.ui:8
 msgid "Mind Map Architect"
 msgstr ""
 
-#: ../ui/main.ui:28
+#: ../ui/main_window.ui:31
 msgid "_File"
 msgstr "_Soubor"
 
-#: ../ui/main.ui:38
+#: ../ui/main_window.ui:41
 msgid "New"
 msgstr ""
 
-#: ../ui/main.ui:54
+#: ../ui/main_window.ui:57
 msgid "Open"
 msgstr "Otevřít soubor"
 
-#: ../ui/main.ui:64
+#: ../ui/main_window.ui:67
 #, fuzzy
 msgid "Save"
 msgstr "Uložit soubor"
 
-#: ../ui/main.ui:74
+#: ../ui/main_window.ui:77
 #, fuzzy
 msgid "Save As"
 msgstr "Uložit soubor jako"
 
-#: ../ui/main.ui:84
+#: ../ui/main_window.ui:87
 msgid "Close"
 msgstr ""
 
-#: ../ui/main.ui:100
+#: ../ui/main_window.ui:103
 msgid "Print"
 msgstr ""
 
-#: ../ui/main.ui:116
+#: ../ui/main_window.ui:119
 msgid "Export"
 msgstr ""
 
-#: ../ui/main.ui:125
+#: ../ui/main_window.ui:128
 msgid "Import"
 msgstr ""
 
-#: ../ui/main.ui:140
+#: ../ui/main_window.ui:143
 msgid "Properties"
 msgstr ""
 
-#: ../ui/main.ui:155
+#: ../ui/main_window.ui:158
 msgid "Quit"
 msgstr ""
 
-#: ../ui/main.ui:168
+#: ../ui/main_window.ui:171
 msgid "_Edit"
 msgstr "_Editovat"
 
-#: ../ui/main.ui:178 ../ui/main.ui:493
+#: ../ui/main_window.ui:181 ../ui/main_window.ui:500
 msgid "Expand"
 msgstr "_Rozložit"
 
-#: ../ui/main.ui:187 ../ui/main.ui:502
+#: ../ui/main_window.ui:190 ../ui/main_window.ui:509
 msgid "Collapse"
 msgstr "_Složit"
 
-#: ../ui/main.ui:202 ../ui/main.ui:511
+#: ../ui/main_window.ui:205 ../ui/main_window.ui:518
 msgid "Cut"
 msgstr ""
 
-#: ../ui/main.ui:212 ../ui/main.ui:520
+#: ../ui/main_window.ui:215 ../ui/main_window.ui:527
 msgid "Copy"
 msgstr ""
 
-#: ../ui/main.ui:222 ../ui/main.ui:529
+#: ../ui/main_window.ui:225 ../ui/main_window.ui:536
 msgid "Paste"
 msgstr ""
 
-#: ../ui/main.ui:232 ../ui/main.ui:538
+#: ../ui/main_window.ui:235 ../ui/main_window.ui:545
 msgid "Delete"
 msgstr ""
 
-#: ../ui/main.ui:247 ../ui/main.ui:484
+#: ../ui/main_window.ui:250 ../ui/main_window.ui:491
 #, fuzzy
 msgid "Edit"
 msgstr "_Editovat"
 
-#: ../ui/main.ui:262
+#: ../ui/main_window.ui:265
 msgid "Preferences"
 msgstr ""
 
-#: ../ui/main.ui:275
+#: ../ui/main_window.ui:278
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../ui/main.ui:285 ../ui/main.ui:462
+#: ../ui/main_window.ui:288 ../ui/main_window.ui:469
 #, fuzzy
 msgid "Expand all branches"
 msgstr "_Rozložit všechny větve"
 
-#: ../ui/main.ui:294 ../ui/main.ui:471
+#: ../ui/main_window.ui:297 ../ui/main_window.ui:478
 #, fuzzy
 msgid "Collapse all branches"
 msgstr "Složit všechny větvě"
 
-#: ../ui/main.ui:309
+#: ../ui/main_window.ui:312
 msgid "Home"
 msgstr ""
 
-#: ../ui/main.ui:323
+#: ../ui/main_window.ui:326
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../ui/main.ui:547
+#: ../ui/main_window.ui:361 ../ui/welcome.ui:76 ../ui/welcome.ui:96
+#, fuzzy
+msgid "Open File"
+msgstr "Otevřít soubor"
+
+#: ../ui/main_window.ui:376 ../ui/welcome.ui:35 ../ui/welcome.ui:55
+#, fuzzy
+msgid "New File"
+msgstr "Nový soubor"
+
+#: ../ui/main_window.ui:391
+#, fuzzy
+msgid "Save File"
+msgstr "Uložit soubor"
+
+#: ../ui/main_window.ui:406
+#, fuzzy
+msgid "Save File As"
+msgstr "Uložit soubor jako"
+
+#: ../ui/main_window.ui:554
 msgid "Move"
 msgstr ""
 
-#: ../ui/main.ui:557
+#: ../ui/main_window.ui:564
 msgid "Move Up"
 msgstr ""
 
-#: ../ui/main.ui:566
+#: ../ui/main_window.ui:573
 msgid "Move Down"
 msgstr ""
 
-#: ../ui/main.ui:575
+#: ../ui/main_window.ui:582
 msgid "Move Left"
 msgstr ""
 
-#: ../ui/main.ui:583
+#: ../ui/main_window.ui:590
 #, fuzzy
 msgid "Move Right"
 msgstr "Výška"
@@ -507,10 +517,6 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
-#: ../ui/preferences.ui:886
-msgid "Map"
-msgstr "Mapa"
-
 #: ../ui/properties.ui:8
 msgid "File properties"
 msgstr ""
@@ -525,7 +531,7 @@ msgid "Created"
 msgstr ""
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
-#: ../ui/welcome.ui:198
+#: ../ui/welcome.ui:209
 msgid "label"
 msgstr ""
 
@@ -547,52 +553,56 @@ msgstr "<b>Nedávné soubory:</b>"
 msgid "<b>Map</b>"
 msgstr "<b>Autor</b>"
 
-#: ../ui/welcome.ui:125
+#: ../ui/welcome.ui:136
 msgid "<b>Recent files:</b>"
 msgstr "<b>Nedávné soubory:</b>"
 
-#: ../ui/welcome.ui:159
+#: ../ui/welcome.ui:169
 msgid "<b>Tip:</b>"
 msgstr ""
 
-#: ../ui/welcome.ui:179
+#: ../ui/welcome.ui:190
 msgid "<b><big>label</big></b>"
 msgstr ""
 
-#: ../ui/welcome.ui:214
+#: ../ui/welcome.ui:225
 msgid "<a href=\"#next_tip\">Next Tip</a>"
 msgstr ""
 
-#: ../ui/welcome.ui:256
+#: ../ui/welcome.ui:267
 msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
 msgstr ""
 
-#: ../ui/welcome.ui:276
+#: ../ui/welcome.ui:287
 msgid ""
 "If you are looking for more informations about project, want to download new "
 "version, or you want to start with helping us, see Home page of Mind Map "
 "Architect."
 msgstr ""
 
-#: ../ui/welcome.ui:305
+#: ../ui/welcome.ui:316
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
 msgstr ""
 
-#: ../ui/welcome.ui:325
+#: ../ui/welcome.ui:336
 msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
 msgstr ""
 
-#: ../ui/welcome.ui:355
+#: ../ui/welcome.ui:366
 msgid ""
 "<a href=\"http://mmarchitect.zeropage.cz/development.html?"
 "gtk=1\">Development of project</a>"
 msgstr ""
 
-#: ../ui/welcome.ui:374
+#: ../ui/welcome.ui:385
 msgid ""
 "If you want to help us with this project, translate messages to your "
 "languege, develop, create package for your distribution, or anything what "
 "you can do for help us, see development page."
 msgstr ""
+
+#, c-format
+#~ msgid "Could not load app UI: %s\n"
+#~ msgstr "Nelze načíst aplikační rozhraní: %s\n"

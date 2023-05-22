@@ -28,4 +28,4 @@ Please read the ChangeLog
 * Ondrej Tuma http://zeropage.cz
 * Sourceforge http://sourceforge.net/projects/mmarchitect/
 
-Copyright 2011-2017 Ondrej Tuma
+Copyright 2011-2023 Ondrej Tuma
