@@ -32,15 +32,15 @@ enum RisingMethod {
 [GtkTemplate (ui = "/cz/zeropage/mmarchitect/map.ui")]
 public class MapWidgets: Gtk.Box {
     [GtkChild]
-    public Gtk.RadioButton rise_method_disable;
+    public unowned Gtk.RadioButton rise_method_disable;
     [GtkChild]
-    public Gtk.RadioButton rise_method_branches;
+    public unowned Gtk.RadioButton rise_method_branches;
     [GtkChild]
-    public Gtk.RadioButton rise_method_points;
+    public unowned Gtk.RadioButton rise_method_points;
     [GtkChild]
-    public Gtk.CheckButton rise_ideas;
+    public unowned Gtk.CheckButton rise_ideas;
     [GtkChild]
-    public Gtk.CheckButton rise_branches;
+    public unowned Gtk.CheckButton rise_branches;
 
     public void set_rise_method (uint method) {
         if (method == RisingMethod.BRANCHES) {

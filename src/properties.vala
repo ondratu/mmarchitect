@@ -7,18 +7,18 @@ public class PropertiesWidgets : Gtk.Dialog {
 
     // file side
     [GtkChild]
-    public Gtk.Entry author;
+    public unowned Gtk.Entry author;
     [GtkChild]
-    public Gtk.Label created;
+    public unowned Gtk.Label created;
     [GtkChild]
-    public Gtk.Label modified;
+    public unowned Gtk.Label modified;
     [GtkChild]
-    public Gtk.Label filepath;
+    public unowned Gtk.Label filepath;
 
     public MapWidgets box;
 
     [GtkChild]
-    private Gtk.Frame frame_map;
+    private unowned Gtk.Frame frame_map;
 
     public PropertiesWidgets () {
         box = new MapWidgets();

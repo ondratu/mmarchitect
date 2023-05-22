@@ -28,11 +28,11 @@ private class Swatch: Gtk.DrawingArea {
 [GtkTemplate (ui = "/cz/zeropage/mmarchitect/color_dialog.ui")]
 public class ColorDialog : Gtk.ColorChooserDialog {
     [GtkChild]
-    public Gtk.RadioButton radio_default;
+    public unowned Gtk.RadioButton radio_default;
     [GtkChild]
-    public Gtk.RadioButton radio_parent;
+    public unowned Gtk.RadioButton radio_parent;
     [GtkChild]
-    public Gtk.RadioButton radio_own;
+    public unowned Gtk.RadioButton radio_own;
 
     private Node node;
     private bool rgba_lock;

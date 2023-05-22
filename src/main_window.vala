@@ -7,13 +7,10 @@
  * Code is present with BSD licence.
  */
 
-// modules: gtk+-3.0
-// sources: dialogs.vala preferences.vala welcometab.vala tab.vala filetab.vala
-
 [GtkTemplate (ui = "/cz/zeropage/mmarchitect/main_window.ui")]
 public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
-    private Gtk.Notebook notebook;
+    private unowned Gtk.Notebook notebook;
 
     private Gtk.MenuItem menu_item_cut;
     private Gtk.MenuItem menu_item_copy;
@@ -21,9 +18,9 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.MenuItem menu_item_delete;
 
     [GtkChild]
-    private Gtk.Menu nodemenu;
+    private unowned Gtk.Menu nodemenu;
     [GtkChild]
-    private Gtk.Menu mapmenu;
+    private unowned Gtk.Menu mapmenu;
 
     private int tabs_counter = 0;
     private Node ? node_clipboard = null;

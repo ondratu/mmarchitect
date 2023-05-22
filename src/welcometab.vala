@@ -6,8 +6,6 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
-// modules: gtk+-3.0
-// sources: tab.vala tips.vala preferences.vala
 
 [GtkTemplate (ui = "/cz/zeropage/mmarchitect/welcome.ui")]
 public class WelcomeTab : Gtk.ScrolledWindow, ITab {
@@ -22,11 +20,11 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
     private Tip[] tips;
     public uint tip_index { get; private set; }
     [GtkChild]
-    private Gtk.Label tip_title;
+    private unowned Gtk.Label tip_title;
     [GtkChild]
-    private Gtk.Label tip_body;
+    private unowned Gtk.Label tip_body;
     [GtkChild]
-    private Gtk.Box file_box;
+    private unowned Gtk.Box file_box;
 
     private Preferences pref;
 

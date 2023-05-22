@@ -60,58 +60,58 @@ public class RecentFile {
 public class PreferenceWidgets : Gtk.Dialog {
     // general tab
     [GtkChild]
-    public Gtk.Entry author;
+    public unowned Gtk.Entry author;
     [GtkChild]
-    public Gtk.FileChooserButton default_directory;
+    public unowned Gtk.FileChooserButton default_directory;
     [GtkChild]
-    public Gtk.RadioButton start_empty;
+    public unowned Gtk.RadioButton start_empty;
     [GtkChild]
-    public Gtk.RadioButton start_last;
+    public unowned Gtk.RadioButton start_last;
     [GtkChild]
-    public Gtk.RadioButton start_welcome;
+    public unowned Gtk.RadioButton start_welcome;
 
     // style tab
     [GtkChild]
-    public Gtk.CheckButton node_system_font;
+    public unowned Gtk.CheckButton node_system_font;
     [GtkChild]
-    public Gtk.FontButton node_font;
+    public unowned Gtk.FontButton node_font;
     [GtkChild]
-    public Gtk.SpinButton font_rise;
+    public unowned Gtk.SpinButton font_rise;
     [GtkChild]
-    public Gtk.SpinButton line_rise;
+    public unowned Gtk.SpinButton line_rise;
     [GtkChild]
-    public Gtk.SpinButton font_padding;
+    public unowned Gtk.SpinButton font_padding;
     [GtkChild]
-    public Gtk.SpinButton height_padding;
+    public unowned Gtk.SpinButton height_padding;
     [GtkChild]
-    public Gtk.SpinButton width_padding;
+    public unowned Gtk.SpinButton width_padding;
     [GtkChild]
-    public Gtk.CheckButton text_system_font;
+    public unowned Gtk.CheckButton text_system_font;
     [GtkChild]
-    public Gtk.FontButton text_font;
+    public unowned Gtk.FontButton text_font;
     [GtkChild]
-    public Gtk.SpinButton text_height;
+    public unowned Gtk.SpinButton text_height;
 
     // color tab
     [GtkChild]
-    public Gtk.CheckButton system_colors;
+    public unowned Gtk.CheckButton system_colors;
     [GtkChild]
-    public Gtk.ColorButton default_color;
+    public unowned Gtk.ColorButton default_color;
     [GtkChild]
-    public Gtk.ColorButton canvas_color;
+    public unowned Gtk.ColorButton canvas_color;
     [GtkChild]
-    public Gtk.ColorButton text_normal;
+    public unowned Gtk.ColorButton text_normal;
     [GtkChild]
-    public Gtk.ColorButton text_selected;
+    public unowned Gtk.ColorButton text_selected;
     [GtkChild]
-    public Gtk.ColorButton back_normal;
+    public unowned Gtk.ColorButton back_normal;
     [GtkChild]
-    public Gtk.ColorButton back_selected;
+    public unowned Gtk.ColorButton back_selected;
 
     public MapWidgets box;
 
     [GtkChild]
-    private Gtk.Notebook notebook;
+    private unowned Gtk.Notebook notebook;
 
     public PreferenceWidgets () {
         // map tab
