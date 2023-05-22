@@ -7,8 +7,6 @@
  * Code is present with BSD licence.
  */
 
-// modules: Gtk
-
 public class FileTab : Gtk.ScrolledWindow, ITab {
     public TabLabel tablabel { get; protected set; }
     public Gtk.Label menulabel { get; protected set; }

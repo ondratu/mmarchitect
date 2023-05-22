@@ -6,7 +6,6 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
-// modules: gtk+-3.0
 
 public class CloseIco : Gtk.EventBox {
     public CloseIco () {

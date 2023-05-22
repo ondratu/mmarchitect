@@ -1,4 +1,3 @@
-// modules: gtk+-3.0
 
 public int get_dpi (Gtk.Settings ? gtk_sett=null) {
 #if ! WINDOWS
@@ -24,14 +23,22 @@ public string font_to_css (Pango.FontDescription font, string class_name) {
         case Pango.Style.ITALIC:
             style = "font-style: italic;";
             break;
+        case Pango.Style.NORMAL:
+            style = "font-style: normal;";
+            break;
     }
 
     string weight = "";
     switch (font.get_weight ()) {
         case Pango.Weight.BOLD:
+        case Pango.Weight.ULTRABOLD:
+        case Pango.Weight.SEMIBOLD:
+        case Pango.Weight.HEAVY:
+        case Pango.Weight.ULTRAHEAVY:
             weight = "font-weight: bold;";
             break;
-        // other is not supported
+        default:        // other is not supported
+            break;
     }
 
     long size = Math.lrint (font.get_size () / (get_dpi () / 100.0));

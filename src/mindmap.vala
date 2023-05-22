@@ -7,9 +7,6 @@
  * Code is present with BSD licence.
  */
 
-// modules: gtk+-3.0
-// sources: preferences.vala editform.vala properties.vala node.vala
-
 public class MindMap : Gtk.Fixed {
     public Preferences pref;
     public Properties prop;
@@ -460,7 +457,9 @@ public class MindMap : Gtk.Fixed {
 
     public void node_move_up () {
         if (focused != null) {
-            focused.move_up ();
+            var tmp = Node.move_up (focused);
+            focused = null;
+            set_focus (tmp);
             refresh_tree ();
             change ();
         }
@@ -468,7 +467,9 @@ public class MindMap : Gtk.Fixed {
 
     public void node_move_down () {
         if (focused != null) {
-            focused.move_down ();
+            var tmp = Node.move_down (focused);
+            focused = null;
+            set_focus (tmp);
             refresh_tree ();
             change ();
         }
@@ -476,7 +477,9 @@ public class MindMap : Gtk.Fixed {
 
     public void node_move_left () {
         if (focused != null) {
-            focused.move_left ();
+            var tmp = Node.move_left (focused);
+            focused = null;
+            set_focus (tmp);
             refresh_tree ();
             change ();
         }
@@ -484,7 +487,9 @@ public class MindMap : Gtk.Fixed {
 
     public void node_move_right () {
         if (focused != null) {
-            focused.move_right ();
+            var tmp = Node.move_right (focused);
+            focused = null;
+            set_focus (tmp);
             refresh_tree ();
             change ();
         }

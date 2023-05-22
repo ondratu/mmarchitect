@@ -7,9 +7,6 @@
  * Code is present with BSD licence.
  */
 
-// modules: gtk+-3.0 gee-0.8
-// sources: mindmap.vala
-
 public enum Direction {
     LEFT,
     RIGHT,
@@ -102,9 +99,9 @@ public struct CoreNode {
 
 public class Node : GLib.Object {
 
-    public Gdk.Window window;
-    public Node? parent;
-    public MindMap ? map;
+    public unowned Gdk.Window? window;
+    public unowned Node? parent;
+    public unowned MindMap ? map;
     public List<Node> children = new List<Node> ();
     private string _title;
     public string title {get {return _title;} }
@@ -124,6 +121,7 @@ public class Node : GLib.Object {
     public Pango.FontDescription font_desc;
     public bool is_expand = true;
     public bool is_focus {get; private set; default = false; }
+    public bool is_root { get {return parent == null;}}
     public bool visible = true;
     public bool default_color;
     public Gee.HashSet<string> flags = new Gee.HashSet<string> ();
@@ -185,10 +183,15 @@ public class Node : GLib.Object {
         node.is_focus = false;      // is_focus must be fall in copy
         node.visible = visible;
 
+        if (window != null) {
+            node.realize (window);
+            node.rgb = rgb;
+        }
+
         return node;
     }
 
-    public Node add (string title="", uint direction=Direction.AUTO,
+    public unowned Node add (string title="", uint direction=Direction.AUTO,
             bool is_expand = true)
     {
         var child = new Node (title, this, direction);
@@ -200,10 +203,10 @@ public class Node : GLib.Object {
         children.append (child);
         child.count_weight ();
         fce_on_points (false);
-        return child;
+        return children.last().data;
     }
 
-    public void paste (Node node) {
+    public unowned Node paste (owned Node node) {
         node.parent = this;
 
         if (node.direction == Direction.AUTO && direction == Direction.AUTO) {
@@ -212,14 +215,16 @@ public class Node : GLib.Object {
             node.corect_direction (direction);
         }
 
-        node.realize (window);
         children.append (node);
+        node = children.last().data;
+        node.realize (window);
         node.count_weight (true);   // node could be from anoter map
         count_weight ();
         fce_on_points (true);
+        return node;
     }
 
-    public Node insert (int pos){
+    public unowned Node insert (int pos){
         var child = new Node ("", this);
         assert (child != null);
         if (window != null) {
@@ -228,11 +233,11 @@ public class Node : GLib.Object {
         children.insert (child, pos);
         child.count_weight ();
         fce_on_points (true);
-        return child;
+        return children.nth_data (pos);
     }
 
     public static void remove (Node node) {
-        if (node.parent == null) {
+        if (node.is_root) {
             return;
         }
         var parent = node.parent;
@@ -401,8 +406,9 @@ public class Node : GLib.Object {
             for (l = i + 1; l < len; l++) {
                 var b = children.nth_data (l);
                 if (b.direction == (uint) direction) {
+                    var newone = b.copy();
                     children.remove (b);
-                    children.insert (b, i);
+                    children.insert (newone, i);
                     direction = !direction;
                     i++;
                     break;
@@ -416,135 +422,165 @@ public class Node : GLib.Object {
         }
     }
 
-    public void move_up () {
-        if (parent == null) {
-            return;
+    public static unowned Node move_up (Node node) {
+        if (node.parent == null) {
+            return node;
         }
 
-        int pos = get_position ();
+        int pos = node.get_position ();
         if (pos == 0) {
-            return;
+            return node;
         }
 
-        if (parent.parent != null) { // not child of root
-            parent.children.remove (this);
-            parent.children.insert (this, pos - 1);
+        if (node.parent.parent != null) { // not child of root
+            Node newone = node.copy();
+            node.parent.children.remove (node);
+            newone.parent.children.insert (newone, pos - 1);
         } else {
             for (int i = pos - 1; i >= 0; i--) {
-                var node = parent.children.nth_data (i);
-                if (node.direction == this.direction) {
-                    parent.children.remove (this);
-                    parent.children.insert (this, i);
-                    parent.zip ();
-                    return;
+                if (node.parent.children.nth_data (i).direction == node.direction) {
+                    Node newone = node.copy();
+                    node.parent.children.remove (node);
+                    newone.parent.children.insert (newone, i);
+                    newone.parent.zip ();
+                    return newone.parent.children.nth_data(i);
                 }
             }
         }
+        return node;
     }
 
-    public void move_down () {
-        if (parent == null) {
-            return;
+    public static unowned Node move_down (Node node)
+    {
+        if (node.parent == null){
+            return node;
         }
 
-        int pos = get_position ();
-        uint len = parent.children.length ();
+        int pos = node.get_position ();
+        uint len = node.parent.children.length ();
 
         if (pos == len - 1) {
-            return;
+            return node;
         }
 
-        if (parent.parent != null) { // not child of root
-            parent.children.remove (this);
-            parent.children.insert (this, pos + 1);
+        if (node.parent.parent != null) { // not child of root
+            Node newone = node.copy();
+            node.parent.children.remove (node);
+            newone.parent.children.insert (newone, pos + 1);
+            return newone.parent.children.nth_data(pos+1);
         } else {
             for (int i = pos + 1; i < len; i++){
-                var node = parent.children.nth_data (i);
-                if (node.direction == direction) {
-                    parent.children.remove (this);
-                    parent.children.insert (this, i);
-                    parent.zip ();
-                    return;
+                if (node.parent.children.nth_data (i).direction == node.direction) {
+                    Node newone = node.copy();
+                    node.parent.children.remove (node);
+                    newone.parent.children.insert (newone, i);
+                    newone.parent.zip ();
+                    return newone.parent.children.nth_data(i);
                 }
             }
         }
+        return node; // sholdn't happen
     }
 
-    public void move_left () {
-        if (parent == null) {
-            return;
+    public static unowned Node move_left (Node node)
+    {
+        if (node.parent == null) {
+            return node;
         }
 
-        // not right child of root
-        if (!(parent.parent == null && direction == Direction.RIGHT)) {
-            Node new_parent;
-            if (direction == Direction.LEFT) {
-                int pos = get_position ();
-                if (pos > 0) {
-                    new_parent = get_prev (Direction.LEFT);
-                } else if ((pos + 1) < parent.children.length ()) {
-                    new_parent = get_next (Direction.LEFT);
-                } else {
-                    return;
-                }
-
-                parent.children.remove (this);
-                new_parent.paste (this);
-            } else {            // Direction.RIGHT
-                new_parent = parent.parent;
-                parent.children.remove (this);
-                new_parent.children.insert (this, parent.get_position () + 1);
-                parent = new_parent;
-                parent.zip ();
-            }
-        } else {
-            int pos = get_position ();
+        // node is right child of root
+        if (node.parent.is_root && node.direction == Direction.RIGHT)
+        {
+            int pos = node.get_position ();
             if (pos > 0){
-                parent.children.remove (this);
-                parent.children.insert (this, pos - 1);
+                Node newone = node.copy();
+                node.parent.children.remove (node);
+                newone.parent.children.insert (newone, pos - 1);
+                node = newone.parent.children.nth_data (pos - 1);
             }
-            corect_direction (Direction.LEFT);
-            parent.zip ();
-        }
-    }
-
-    public void move_right () {
-        if (parent == null) {
-            return;
-        }
-
-        // not left child of root
-        if (!(parent.parent == null && direction == Direction.LEFT)) {
-            Node new_parent;
-            if (direction == Direction.RIGHT){
-                int pos = get_position ();
+            node.corect_direction (Direction.LEFT);
+            node.parent.zip ();
+        } else {
+            unowned Node new_parent = null;
+            if (node.direction == Direction.LEFT)
+            {
+                int pos = node.get_position ();
                 if (pos > 0) {
-                    new_parent = get_prev (Direction.RIGHT);
-                } else if (pos + 1 < parent.children.length ()) {
-                    new_parent = get_next (Direction.RIGHT);
-                } else {
-                    return;
+                    new_parent = node.get_prev (Direction.LEFT);
+                } else if ((pos + 1) < node.parent.children.length ()) {
+                    new_parent = node.get_next (Direction.LEFT);
+                }
+                if (new_parent == null){    // no way to move
+                    return node;
                 }
 
-                parent.children.remove (this);
-                new_parent.paste (this);
+                Node newone = node.copy();
+                node.parent.children.remove (node);
+                node = new_parent.paste (newone);
             } else {            // Direction.RIGHT
-                new_parent = parent.parent;
-                parent.children.remove (this);
-                new_parent.children.insert (this, parent.get_position () + 1);
-                parent = new_parent;
-                parent.zip ();
+                int pos = node.parent.get_position () + 1;
+                Node newone = node.copy();
+                new_parent = node.parent.parent;
+                node.parent.children.remove (node);
+                new_parent.children.insert (newone, pos);
+                node = new_parent.children.nth_data (pos);
+                node.parent = new_parent;
+                node.parent.zip ();
             }
-        } else {
-            corect_direction (Direction.RIGHT);
-            parent.zip ();
         }
+        return node;
     }
 
-    public Node? get_next (uint direction=Direction.AUTO) {
+    public static unowned Node move_right (Node node)
+    {
+        if (node.parent == null) {
+            return node;
+        }
+
+        // node is left child of root
+        if (node.parent.is_root && node.direction == Direction.LEFT)
+        {
+            node.corect_direction (Direction.RIGHT);
+            node.parent.zip ();
+        } else {
+            unowned Node new_parent = null;
+            if (node.direction == Direction.RIGHT)
+            {
+                debug("reparent to next/prev");
+                int pos = node.get_position ();
+                if (pos > 0) {
+                    new_parent = node.get_prev (Direction.RIGHT);
+                } else if (pos + 1 < node.parent.children.length ()) {
+                    new_parent = node.get_next (Direction.RIGHT);
+                }
+                if (new_parent == null){    // no way to move
+                    debug("\t no way to move");
+                    return node;
+                }
+
+                Node newone = node.copy();
+                node.parent.children.remove (node);
+                node = new_parent.paste (newone);
+            } else {            // Direction.LEFT
+                debug("Move to parent....");
+                Node newone = node.copy();
+                int pos = node.parent.get_position () + 1;
+                new_parent = node.parent.parent;
+                node.parent.children.remove (node);
+                new_parent.children.insert (newone, pos);
+                node = new_parent.children.nth_data (pos);
+                node.parent = new_parent;
+                node.parent.zip ();
+            }
+            debug("node parent %p vs new_parent %p", node.parent, new_parent);
+        }
+        return node;
+    }
+
+    public unowned Node? get_next (uint direction=Direction.AUTO) {
         uint len = parent.children.length ();
         for (int i = get_position () + 1; i < len; i++) {
-            var node = parent.children.nth_data (i);
+            unowned Node node = parent.children.nth_data (i);
             if (direction == Direction.AUTO || node.direction == direction) {
                 return node;
             }
@@ -552,9 +588,9 @@ public class Node : GLib.Object {
         return null;
     }
 
-    public Node? get_prev (uint direction=Direction.AUTO) {
+    public unowned Node? get_prev (uint direction=Direction.AUTO) {
         for (int i = get_position () - 1; i >= 0; i--) {
-            var node = parent.children.nth_data (i);
+            unowned Node node = parent.children.nth_data (i);
             if (direction == Direction.AUTO || node.direction == direction)
                 return node;
         }
@@ -564,7 +600,7 @@ public class Node : GLib.Object {
     public void realize (Gdk.Window window) {
         assert (window != null);
 
-        window = window;
+        this.window = window;
         if (default_color) {
             rgb = map.pref.default_color;
         }

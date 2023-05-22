@@ -6,8 +6,6 @@
  * Copyright (C) Ondrej Tuma 2011
  * Code is present with BSD licence.
  */
-// modules: gtk+-3.0
-// sources: filetab.vala
 
 enum ExportFilterID {
     TXT,
@@ -63,8 +61,8 @@ public class ExportDialog : Gtk.FileChooserDialog {
         title = _("Export Map as");
         action = Gtk.FileChooserAction.SAVE;
 
-        filetab = filetab;
-        default_directory = default_directory;
+        this.filetab = filetab;
+        this.default_directory = default_directory;
 
         add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
         add_button (_("_Export As"), Gtk.ResponseType.ACCEPT);
