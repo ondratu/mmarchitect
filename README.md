@@ -17,7 +17,7 @@ Please read TODO.md for planing futures.
 
 ## Installation & Licensing
 
-Please read the INSTALL and COPYING files for more information.
+Please read the [INSTALL](INSTALL) and [COPYING](COPYING) files for more information.
 
 ## News & ChangeLog
 

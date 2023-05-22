@@ -1,6 +1,3 @@
-// modules: gtk+-3.0
-// sources: main_window.vala dialogs.vala
-
 extern const string GETTEXT_PACKAGE;
 extern const string LOCALEDIR;
 extern const string DATADIR;

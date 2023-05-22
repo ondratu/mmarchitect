@@ -47,3 +47,9 @@ sources = files(
     'tips.vala',
     'welcometab.vala'
 )
+
+executable(project_name,
+  sources: [sources, resources],
+  dependencies: dependencies,
+  vala_args: [resource_args],
+  install: true)

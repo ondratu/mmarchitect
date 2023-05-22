@@ -1,6 +1,9 @@
 project(
     'mmarchitect', 'vala', 'c',
-    version: '0.6.0')
+    version: '0.6.0',
+    license: 'BSD',
+    #    license_files: ['COPYING']
+    )
 
 gnome = import('gnome')
 i18n = import('i18n')
@@ -27,10 +30,17 @@ dependencies = [
 ]
 
 subdir('ui')
-subdir('icons')
+#subdir('icons')
 subdir('misc')
 subdir('po')
 subdir('src')
+
+install_subdir('icons',
+  install_dir: join_paths(pkgdatadir, 'icons'),
+  strip_directory: true)
+install_data(
+  install_dir: pkgdatadir,
+  sources: ['COPYING', 'AUTHORS', 'README.md', 'ChangeLog'])
 
 summary = [
   '',
@@ -44,9 +54,3 @@ summary = [
 ]
 
 message('\n'.join(summary))
-
-executable(
-    project_name,
-    [sources, resources],
-    dependencies: dependencies,
-    vala_args: [resource_args])

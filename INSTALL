@@ -4,9 +4,10 @@ Mind Map Architect (mmarchitect) Instalation
 
 To build and install Mind Map Architect, you can this commands:
 
-    $ make
-    # make install
-    # update-mime-database
+    $ meson build
+    $ ninja -C build
+    $ sudo ninja -C build install
+    $ sudo update-mime-database
 
 By default, mmarchitect will install under /usr/local directory. To configure
 this settings, use PREFIX variable. For more help about configuration and
