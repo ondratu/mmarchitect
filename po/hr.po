@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-22 18:13+0200\n"
-"PO-Revision-Date: 2020-07-17 12:41+0000\n"
+"PO-Revision-Date: 2023-05-25 13:47+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
@@ -143,16 +143,14 @@ msgid "About Application Mind Map Architect"
 msgstr "O programu Mind Map Architect"
 
 #: ../ui/about_dialog.ui:14
-#, fuzzy
 msgid "Copyright (c) 2011-2023, Ondřej Tůma"
-msgstr "Copyright (c) 2011. – 2017., Ondřej Tůma"
+msgstr "Autorska prava (c) 2011. – 2023., Ondřej Tůma"
 
 #: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
-msgstr "Alat za rad s mentalnim kartana. "
+msgstr "Alat za rad s mentalnim kartama. "
 
 #: ../ui/about_dialog.ui:17
-#, fuzzy
 msgid ""
 "Copyright (c) 2011-2023, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -181,7 +179,7 @@ msgid ""
 "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
-"Autorska prava (c) 2011. – 2017., Ondřej Tůma\n"
+"Autorska prava (c) 2011. – 2023., Ondřej Tůma\n"
 "Sva prava pridržana.\n"
 "\n"
 "Redistribucija i upotreba u izvornom i binarnom obliku, sa ili bez\n"
@@ -361,22 +359,18 @@ msgid "_Help"
 msgstr "Po_moć"
 
 #: ../ui/main_window.ui:361 ../ui/welcome.ui:76 ../ui/welcome.ui:96
-#, fuzzy
 msgid "Open File"
 msgstr "Otvori datoteku"
 
 #: ../ui/main_window.ui:376 ../ui/welcome.ui:35 ../ui/welcome.ui:55
-#, fuzzy
 msgid "New File"
 msgstr "Nova datoteka"
 
 #: ../ui/main_window.ui:391
-#, fuzzy
 msgid "Save File"
 msgstr "Spremi datoteku"
 
 #: ../ui/main_window.ui:406
-#, fuzzy
 msgid "Save File As"
 msgstr "Spremi datoteku kao"
 
