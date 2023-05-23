@@ -30,17 +30,24 @@ dependencies = [
 ]
 
 subdir('ui')
-#subdir('icons')
+subdir('icons')
 subdir('misc')
 subdir('po')
 subdir('src')
 
-install_subdir('icons',
-  install_dir: join_paths(pkgdatadir, 'icons'),
-  strip_directory: true)
 install_data(
   install_dir: pkgdatadir,
   sources: ['COPYING', 'AUTHORS', 'README.md', 'ChangeLog'])
+
+install_data(
+    'misc' / project_name + '.desktop',
+    install_dir: datadir / 'applications'
+)
+
+install_data(
+    'misc' / project_name + '.xml',
+    install_dir: datadir / 'mime' / 'packages'
+)
 
 summary = [
   '',

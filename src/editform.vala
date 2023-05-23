@@ -7,9 +7,6 @@
  * Code is present with BSD licence.
  */
 
-// modules: gtk+-3.0
-// sources: preferences.vala color_dialog.vala
-
 public class PointsEntry : Gtk.ComboBoxText {
     public double points;
     public int function;
