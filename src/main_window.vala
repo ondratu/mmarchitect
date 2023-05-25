@@ -26,6 +26,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Node ? node_clipboard = null;
     private Preferences pref = new Preferences ();
     private string _title;
+    private List<Gdk.Pixbuf> icons;
 
     public MainWindow (string filename = "") {
         _title = title;     // title backup....
@@ -37,7 +38,23 @@ public class MainWindow : Gtk.ApplicationWindow {
         notebook.page_reordered.connect (this.on_page_reordered);
 
         destroy.connect (Gtk.main_quit);
+        set_wm_icons();
         new_file_from_args (filename);
+    }
+
+    public void set_wm_icons()
+    {
+        try {
+            int[] sizes = {16, 24, 32, 48, 64, 128};
+            foreach (int size in sizes){
+                icons.append (new Gdk.Pixbuf.from_file_at_scale(
+                        DATADIR + "/icons/mmarchitect.svg",
+                        size, size, true));
+            }
+            set_icon_list (icons);
+        } catch (Error e) {
+            error ("%s", e.message);
+        }
     }
 
     public void set_sensitive_menu_edit (bool sensitive) {
