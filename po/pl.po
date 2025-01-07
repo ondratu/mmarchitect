@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-22 18:13+0200\n"
-"PO-Revision-Date: 2020-05-09 07:12+0000\n"
-"Last-Translator: Szylu <chipolade@gmail.com>\n"
+"PO-Revision-Date: 2025-01-08 15:01+0000\n"
+"Last-Translator: Gadzio742 <daniel.123737@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/pl/>\n"
 "Language: pl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
@@ -55,7 +55,7 @@ msgstr "_Eksportuj jako"
 
 #: ../src/export_dialog.vala:71
 msgid "Plain Text"
-msgstr "Zwykły tekst"
+msgstr "Sam tekst"
 
 #: ../src/export_dialog.vala:75
 msgid "Simple Web Page"
@@ -83,11 +83,11 @@ msgstr "_Otwórz"
 
 #: ../src/main_window.vala:255
 msgid "File $path not found!"
-msgstr "Ścieżka pliku $ nie została odnaleziona!"
+msgstr "Ścieżka $path nie została odnaleziona!"
 
 #: ../src/main_window.vala:312
 msgid "Import file"
-msgstr "Import pliku"
+msgstr "Importuj plik"
 
 #: ../src/main_window.vala:430
 msgid "Save file as"
@@ -123,15 +123,15 @@ msgstr ""
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
-msgstr "Używanie Mind Maps jako listy TODO"
+msgstr "Używanie Map Myśli jako listy TODO"
 
 #: ../src/tips.vala:33
 msgid ""
 "Mind Maps could be use as TODO lists. You have more tree like possibility "
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
-"Mapy myśli mogą być używane jako listy TODO. Masz więcej możliwości na "
-"drzewach dzięki mapom umysłu, takim jak kategorie, ważność czy trudność."
+"Mapy Myśli mogą być używane jako listy TODO. Masz więcej możliwości "
+"rozgałęzień dzięki Mapom Myśli, takich jak kategorie, ważność czy trudność."
 
 #: ../src/welcometab.vala:14
 msgid "Start here"
@@ -139,19 +139,17 @@ msgstr "Zacznij tutaj"
 
 #: ../ui/about_dialog.ui:8
 msgid "About Application Mind Map Architect"
-msgstr "Informacje o aplikacji Mind Map Architect"
+msgstr "Informacje o aplikacji Architekt Map Myśli"
 
 #: ../ui/about_dialog.ui:14
-#, fuzzy
 msgid "Copyright (c) 2011-2023, Ondřej Tůma"
-msgstr "Copyright (c) 2011-2017, Ondřej Tůma"
+msgstr "Copyright (c) 2011-2023, Ondřej Tůma"
 
 #: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
-msgstr "Narzędzie do pracy z mapami myśli. "
+msgstr "Narzędzie do pracy z Mapami Myśli. "
 
 #: ../ui/about_dialog.ui:17
-#, fuzzy
 msgid ""
 "Copyright (c) 2011-2023, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -180,38 +178,41 @@ msgid ""
 "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
 "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 msgstr ""
-"Copyright (c) 2011-2017, Ondřej Tůma\n"
+"Copyright (c) 2011-2023, Ondřej Tůma\n"
 "Wszelkie prawa zastrzeżone.\n"
 "\n"
-"Redystrybucja i używanie w formie źródłowej i binarnej,\n"
-"z modyfikacjami lub bez, są dozwolone, o ile spełnione są\n"
+"Redystrybucja i używanie w formie źródłowej i binarnej, z modyfikacjami lub "
+"bez,\n"
+"są dozwolone, o ile spełnione są\n"
 "następujące warunki:\n"
-" 1. W przypadku redystrybucji kodu źródłowego należy zachować powyższą\n"
-"     informację o prawach autorskich, niniejszą listę warunków i poniższe "
-"zastrzeżenie.\n"
+" 1. Redystrybucje kodu źródłowego muszą zachować powyższą informację\n"
+"    o prawach autorskich, niniejszą listę warunków i poniższe zastrzeżenie.\n"
 " 2. Redystrybucja w formie binarnej musi zawierać powyższą informację\n"
-"     o prawach autorskich, niniejszą listę warunków i poniższe zastrzeżenie "
-"w pliku\n"
-"    documentation and/or other materials provided with the distribution.\n"
+"    o prawach autorskich, niniejszą listę warunków i poniższe zastrzeżenie "
+"w\n"
+"    dokumentacji i/lub inne informacje dołączone do dystrybucji.\n"
 " 3. Ani nazwa uniwersytetu, ani nazwy jego autorów nie mogą być używane\n"
-"     do popierania lub promowania produktów pochodzących z tego "
+"    do popierania lub promowania produktów pochodzących z tego "
 "oprogramowania\n"
-"     bez uprzedniej pisemnej zgody.\n"
+"    bez uprzedniej pisemnej zgody.\n"
 "\n"
-"NINIEJSZE OPROGRAMOWANIE JEST DOSTARCZANE PRZEZ WŁAŚCICIELI\n"
-"PRAW AUTORSKICH I WSPÓLNIKÓW W STANIE TAKIM, W JAKIM SIĘ ZNAJDUJE\n"
-"(\"JAK JEST\") I ŻADNE BEZPOŚREDNIE LUB DOROZUMIANE GWARANCJE, W TYM\n"
-"DOROZUMIANE GWARANCJE PRZYDATNOŚCI HANDLOWEJ I PRZYDATNOŚCI\n"
-"DO OKREŚLONEGO CELU, ZOSTAJĄ NINIEJSZYM WYKLUCZONE. W ŻADNYM WYPADKU\n"
-"WSPÓŁPRACOWNICY I WSPÓŁPRACOWNICY NIE PONOSZĄ ODPOWIEDZIALNOŚCI\n"
-"ZA ŻADNE BEZPOŚREDNIE, POŚREDNIE, PRZYPADKOWE, SPECJALNE, PRZYKŁADOWE\n"
-"LUB WTÓRNE SZKODY (W TYM MIĘDZY INNYMI, ZAANGAŻOWANIE ZASTĘPCZYCH\n"
-"TOWARÓW LUB USŁUG, UTRATĘ WYKORZYSTANIA, DANYCH LUB ZYSKÓW\n"
-"LUB PRZERWANIE BIZNESU) SPOWODOWANE JEDNAK W JAKIEJKOLWIEK TEORII\n"
-"ODPOWIEDZIALNOŚCI, CZY W KONTRAKCIE, ODPOWIEDZIALNOŚCI PRAWNEJ\n"
-"LUB CZYNNEJ (W TYM ZANIEDBAŃ LUB W INNY SPOSÓB) WYNIKAJĄCE Z JAKIEGOKOLWIEK\n"
-"SPOSOBU WYKORZYSTANIA NINIEJSZEGO OPROGRAMOWANIA, NAWET JEŚLI ZOSTAŁY\n"
-"POINFORMOWANE O MOŻLIWOŚCI WYSTĄPIENIA TAKICH SZKÓD."
+"NINIEJSZE OPROGRAMOWANIE JEST DOSTARCZANE PRZEZ WŁAŚCICIELI PRAW AUTORSKICH "
+"I WSPÓLNIKÓW\n"
+"``TAKIE JAKIE JEST'' I ŻADNE JAWNE LUB ZATAJONE GWARANCJE, WŁĄCZNIE Z,\n"
+"ALE NIE TYLKO, ZATAJONYMI GWARANCJAMI HANDLOWYMI I JAKOŚCIOWYMI DLA\n"
+"OKREŚLONEGO CELU, NIE SĄ DOZWOLONE.  W ŻADNYM WYPADKU WŁAŚCICIELE ALBO\n"
+"WSPÓŁPRACOWNICY NIE PONOSZĄ ODPOWIEDZIALNOŚCI ZA ŻADNE BEZPOŚREDNIE, "
+"POŚREDNIE, PRZYPADKOWE, SPECJALNE,\n"
+"PRZYKŁADOWE, LUB WTÓRNE SZKODY (WŁĄCZNIE Z, ALE NIE TYLKO DO\n"
+"NABYWANIA ZASTĘPCZYCH TOWARÓW LUB USŁUG; UTRATY FUNKCJONALNOŚCI, DANYCH LUB\n"
+"ZYSKÓW; LUB PROBLEMÓW BIZNESOWYCH) SPOWODOWANE JEDNAK W JAKIEJKOLWIEK "
+"TEORII\n"
+"ODPOWIEDZIALNOŚCI, CZY TO W UMOWIE, ODPOWIEDZIALNOŚCI PRAWNEJ LUB CZYNNEJ (W "
+"TYM\n"
+"ZANIEDBAŃ I INNYCH) WYNIKAJĄCYCH Z JAKIEGOKOLWIEK SPOSOBU WYKORZYSTANIA "
+"NINIEJSZEGO\n"
+"OPROGRAMOWANIA, NAWET JEŚLI ZOSTAŁY POINFORMOWANE O MOŻLIWOŚCI WYSTĄPIENIA "
+"TAKICH SZKÓD."
 
 #: ../ui/about_dialog.ui:45
 msgid ""
@@ -247,7 +248,7 @@ msgstr "Zapisać zmiany w dokumencie %s przed wyjściem?"
 
 #: ../ui/close_file_dialog.ui:123
 msgid "Your changes will be lost, if you don't save the file."
-msgstr "Zmiany zostaną utracone, jeśli plik nie zostanie zapisany."
+msgstr "Zmiany zostaną utracone, jeśli nie zapiszesz pliku."
 
 #: ../ui/color_dialog.ui:40
 msgid "Default color"
@@ -263,7 +264,7 @@ msgstr "Własny kolor"
 
 #: ../ui/main_window.ui:8
 msgid "Mind Map Architect"
-msgstr "Tworzenie Map Myśli"
+msgstr "Architekt Map Myśli"
 
 #: ../ui/main_window.ui:31
 msgid "_File"
@@ -307,7 +308,7 @@ msgstr "Właściwości"
 
 #: ../ui/main_window.ui:158
 msgid "Quit"
-msgstr "Zamknij"
+msgstr "Wyjdź"
 
 #: ../ui/main_window.ui:171
 msgid "_Edit"
@@ -315,7 +316,7 @@ msgstr "_Edycja"
 
 #: ../ui/main_window.ui:181 ../ui/main_window.ui:500
 msgid "Expand"
-msgstr "Rozwiń węzeł"
+msgstr "Rozwiń"
 
 #: ../ui/main_window.ui:190 ../ui/main_window.ui:509
 msgid "Collapse"
@@ -339,7 +340,7 @@ msgstr "Usuń"
 
 #: ../ui/main_window.ui:250 ../ui/main_window.ui:491
 msgid "Edit"
-msgstr "Edycja"
+msgstr "Edytuj"
 
 #: ../ui/main_window.ui:265
 msgid "Preferences"
@@ -366,28 +367,24 @@ msgid "_Help"
 msgstr "_Pomoc"
 
 #: ../ui/main_window.ui:361 ../ui/welcome.ui:76 ../ui/welcome.ui:96
-#, fuzzy
 msgid "Open File"
-msgstr "Otwórz plik"
+msgstr "Otwórz Plik"
 
 #: ../ui/main_window.ui:376 ../ui/welcome.ui:35 ../ui/welcome.ui:55
-#, fuzzy
 msgid "New File"
-msgstr "Nowy plik"
+msgstr "Nowy Plik"
 
 #: ../ui/main_window.ui:391
-#, fuzzy
 msgid "Save File"
-msgstr "Zapisz plik"
+msgstr "Zapisz Plik"
 
 #: ../ui/main_window.ui:406
-#, fuzzy
 msgid "Save File As"
-msgstr "Zapisz plik jako"
+msgstr "Zapisz Plik jako"
 
 #: ../ui/main_window.ui:554
 msgid "Move"
-msgstr "Przenoszenie"
+msgstr "Przesuń"
 
 #: ../ui/main_window.ui:564
 msgid "Move Up"
@@ -423,19 +420,19 @@ msgstr "<b>Rosnąca metoda</b>"
 
 #: ../ui/map.ui:117
 msgid "Ideas"
-msgstr "Pomysł"
+msgstr "Pomysły"
 
 #: ../ui/map.ui:132
 msgid "Branches"
-msgstr "Oddziały"
+msgstr "Gałęzie"
 
 #: ../ui/map.ui:153
 msgid "<b>Rise elemens</b>"
-msgstr "<b>Powtań elemet</b>"
+msgstr "<b>Podnieś elementy</b>"
 
 #: ../ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
-msgstr "Preferencje Mind Map Architect"
+msgstr "Preferencje Architekta Map Myśli"
 
 #: ../ui/preferences.ui:92
 msgid "<b>Author</b>"
@@ -475,7 +472,7 @@ msgstr "Użyj czcionki systemowej"
 
 #: ../ui/preferences.ui:304
 msgid "<b>Idea font</b>"
-msgstr "<b>Czcionka Idea</b>"
+msgstr "<b>Czcionka Pomysłu</b>"
 
 #: ../ui/preferences.ui:337
 msgid "Font"
@@ -487,23 +484,23 @@ msgstr "Linia"
 
 #: ../ui/preferences.ui:394
 msgid "<b>Rising</b>"
-msgstr "<b>Podniesienie</b>"
+msgstr "<b>Rosnąco</b>"
 
 #: ../ui/preferences.ui:427
 msgid "Text padding"
-msgstr "Uzupełnianie tekstu"
+msgstr "Wyrównywanie tekstu"
 
 #: ../ui/preferences.ui:465
 msgid "Height padding"
-msgstr "Wysokość dopełnienia"
+msgstr "Wyrównywanie wysokości"
 
 #: ../ui/preferences.ui:477
 msgid "Width padding"
-msgstr "Szerokość dopełnienia"
+msgstr "Wyrównywanie szerokości"
 
 #: ../ui/preferences.ui:505
 msgid "<b>Idea's padding</b>"
-msgstr "<b>Podszewka pomysłu</b>"
+msgstr "<b>Wyrównywanie Pomysłu</b>"
 
 #: ../ui/preferences.ui:552
 msgid "Height"
@@ -535,7 +532,7 @@ msgstr "Kolor płótna"
 
 #: ../ui/preferences.ui:788
 msgid "Text normal color"
-msgstr "Tekst normalny kolor"
+msgstr "Normalny kolor tekstu"
 
 #: ../ui/preferences.ui:801
 msgid "Text selected color"
@@ -543,7 +540,7 @@ msgstr "Wybrany kolor tekstu"
 
 #: ../ui/preferences.ui:814
 msgid "Background normal color"
-msgstr "Tło normalny kolor"
+msgstr "Normalny kolor tła"
 
 #: ../ui/preferences.ui:827
 msgid "Background selected color"
@@ -567,7 +564,7 @@ msgstr "Autor"
 
 #: ../ui/properties.ui:114
 msgid "Created"
-msgstr "Utwórz"
+msgstr "Utworzony"
 
 #: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
 #: ../ui/welcome.ui:209
@@ -619,7 +616,7 @@ msgid ""
 "Architect."
 msgstr ""
 "Jeśli szukasz więcej informacji o projekcie, chcesz pobrać nową wersję lub "
-"chcesz zacząć od pomocy, zobacz stronę domową Mind Map Architect."
+"chcesz zacząć nam pomagać, zobacz stronę domową Architekta Map Myśli."
 
 #: ../ui/welcome.ui:316
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
@@ -632,7 +629,7 @@ msgid ""
 "Is there bug in this program? Is missing some future for you in mmarchitect? "
 "Please tell us more information about that. Thank you for your response."
 msgstr ""
-"Czy w tym programie jest błąd? Brakuje Ci jakiejś funkcji w mmarchitect? "
+"Czy w tym programie jest błąd? Brakuje ci jakiejś funkcji w mmarchitect? "
 "Podaj nam więcej informacji na ten temat. Dzięki za odpowiedź."
 
 #: ../ui/welcome.ui:366
@@ -649,8 +646,8 @@ msgid ""
 "languege, develop, create package for your distribution, or anything what "
 "you can do for help us, see development page."
 msgstr ""
-"Jeśli chcesz nam pomóc w tym projekcie, przetłumaczyć wiadomości na język, "
-"opracuj, utwórz pakiet dla swojej dystrybucji lub cokolwiek, co możesz "
+"Jeśli chcesz pomóc nam w tym projekcie, przetłumaczyć wiadomości na twój "
+"język, opracuj, utwórz pakiet dla swojej dystrybucji lub cokolwiek co możesz "
 "zrobić, aby nam pomóc, zobacz stronę poświęconą rozwojowi."
 
 #, c-format
