@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-22 18:13+0200\n"
-"PO-Revision-Date: 2023-11-03 22:33+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"PO-Revision-Date: 2025-05-10 16:03+0000\n"
+"Last-Translator: Dream X <nodem49316@daupload.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/mmarchitect/"
 "translations/es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: ../src/clavertime.vala:29
 msgid "Today %H:%M"
@@ -118,7 +118,7 @@ msgid ""
 "Left or Right to move with selected Ideas."
 msgstr ""
 "Puede mover las ideas con atajos de teclado. Use CTRL - Flecha Arriba, "
-"Abajo, Izquierda o Derecha para mover la idea seleccionada"
+"Abajo, Izquierda o Derecha para mover la idea seleccionada."
 
 #: ../src/tips.vala:32
 msgid "Using Mind Maps as TODO list"
@@ -130,7 +130,7 @@ msgid ""
 "with mind maps, like categories, importance or difficulty."
 msgstr ""
 "Mind Maps puede ser usado como lista de tareas por hacer. Tiene tres "
-"posibilidades más con mind maps, como categorías, importancia o dificultad"
+"posibilidades más con mind maps, como categorías, importancia o dificultad."
 
 #: ../src/welcometab.vala:14
 msgid "Start here"
@@ -148,9 +148,10 @@ msgstr "Copyright (c) 2011-2023, Ondřej Tůma"
 # (sounds strange in spanish)
 #: ../ui/about_dialog.ui:15
 msgid "Tool for working with mind maps. "
-msgstr "Herramienta para trabajar con mind maps."
+msgstr "Herramienta para trabajar con mind maps. "
 
 #: ../ui/about_dialog.ui:17
+#, fuzzy
 msgid ""
 "Copyright (c) 2011-2023, Ondřej Tůma\n"
 "All rights reserved.\n"
@@ -185,7 +186,7 @@ msgstr ""
 "La redistribución y el uso en formato fuente y binario, con o sin\n"
 "modificación, están permitidos siempre que se cumplan las siguientes "
 "condiciones:\n"
-" 1. Las redistribuciones del código fuente deben conservar los derechos de "
+"1. Las redistribuciones del código fuente deben conservar los derechos de "
 "autor anteriores.\n"
 "    aviso, esta lista de condiciones y el siguiente descargo de "
 "responsabilidad.\n"
@@ -435,7 +436,7 @@ msgstr "<b>Subir elemento</b>"
 
 #: ../ui/preferences.ui:8
 msgid "Mind Map Architect Preferences"
-msgstr "Preferencias de Mind Map Architect "
+msgstr "Preferencias de Mind Map Architect"
 
 #: ../ui/preferences.ui:92
 msgid "<b>Author</b>"
