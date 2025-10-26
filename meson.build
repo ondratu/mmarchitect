@@ -18,7 +18,10 @@ datadir = join_paths(prefix, get_option('datadir'))
 localedir = join_paths(prefix, get_option('localedir'))
 pkgdatadir = join_paths(datadir, project_name)
 
+cc = meson.get_compiler('c')
+
 dependencies = [
+    cc.find_library('m', required : false),  # -lm
     dependency('glib-2.0'),
     dependency('gobject-2.0'),
     dependency('gmodule-2.0'),

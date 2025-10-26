@@ -29,6 +29,9 @@ ninja
 
 # install mmarchitect as root
 sudo ninja install
+
+# or local run
+DATADIR=.. ./src/mmarchitect
 ```
 
 # Generating pot file
