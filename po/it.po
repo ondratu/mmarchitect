@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 18:13+0200\n"
+"POT-Creation-Date: 2025-10-26 08:15+0100\n"
 "PO-Revision-Date: 2013-01-06 16:35+0100\n"
 "Last-Translator: evanmac <nicola.lomartire@mac.com>\n"
 "Language-Team: evanmac <nicola.lomartire@gmail.com>\n"
@@ -33,7 +33,7 @@ msgstr "Oggi"
 msgid "Yesterday"
 msgstr "Ieri"
 
-#: ../src/editform.vala:176
+#: ../src/editform.vala:173
 msgid "Extends edit"
 msgstr "Modifiche estese"
 
@@ -42,8 +42,8 @@ msgstr "Modifiche estese"
 msgid "Export Map as"
 msgstr "Esporta file con nome..."
 
-#: ../src/export_dialog.vala:67 ../src/main_window.vala:222
-#: ../src/main_window.vala:315 ../src/main_window.vala:433
+#: ../src/export_dialog.vala:67 ../src/main_window.vala:223
+#: ../src/main_window.vala:316 ../src/main_window.vala:434
 msgid "_Cancel"
 msgstr ""
 
@@ -68,31 +68,31 @@ msgstr "Pagina web dinamica"
 msgid "PNG Image"
 msgstr "Immagine PNG"
 
-#: ../src/main_window.vala:85
+#: ../src/main_window.vala:86
 msgid "File $fname can't be imported!"
 msgstr "Il file $fname non può essere importato!"
 
-#: ../src/main_window.vala:219
+#: ../src/main_window.vala:220
 msgid "Open file"
 msgstr "Apri file"
 
-#: ../src/main_window.vala:223 ../src/main_window.vala:316
+#: ../src/main_window.vala:224 ../src/main_window.vala:317
 msgid "_Open"
 msgstr ""
 
-#: ../src/main_window.vala:255
+#: ../src/main_window.vala:256
 msgid "File $path not found!"
 msgstr "Il file $path non è stato trovato!"
 
-#: ../src/main_window.vala:312
+#: ../src/main_window.vala:313
 msgid "Import file"
 msgstr "Importa file"
 
-#: ../src/main_window.vala:430
+#: ../src/main_window.vala:431
 msgid "Save file as"
 msgstr "Salva con nome..."
 
-#: ../src/main_window.vala:434
+#: ../src/main_window.vala:435
 msgid "_Save"
 msgstr ""
 

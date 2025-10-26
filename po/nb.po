@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 18:13+0200\n"
+"POT-Creation-Date: 2025-10-26 08:15+0100\n"
 "PO-Revision-Date: 2019-08-01 05:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -35,7 +35,7 @@ msgstr "I dag"
 msgid "Yesterday"
 msgstr "I går"
 
-#: ../src/editform.vala:176
+#: ../src/editform.vala:173
 msgid "Extends edit"
 msgstr "Utvider redigering"
 
@@ -44,8 +44,8 @@ msgstr "Utvider redigering"
 msgid "Export Map as"
 msgstr "Eksporter tankekart som"
 
-#: ../src/export_dialog.vala:67 ../src/main_window.vala:222
-#: ../src/main_window.vala:315 ../src/main_window.vala:433
+#: ../src/export_dialog.vala:67 ../src/main_window.vala:223
+#: ../src/main_window.vala:316 ../src/main_window.vala:434
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -69,33 +69,33 @@ msgstr "Dynamisk nettside"
 msgid "PNG Image"
 msgstr "PNG-bilde"
 
-#: ../src/main_window.vala:85
+#: ../src/main_window.vala:86
 #, fuzzy
 msgid "File $fname can't be imported!"
 msgstr "Fila %fname kan ikke importeres."
 
-#: ../src/main_window.vala:219
+#: ../src/main_window.vala:220
 msgid "Open file"
 msgstr "Åpne fil"
 
-#: ../src/main_window.vala:223 ../src/main_window.vala:316
+#: ../src/main_window.vala:224 ../src/main_window.vala:317
 msgid "_Open"
 msgstr "_Åpne"
 
-#: ../src/main_window.vala:255
+#: ../src/main_window.vala:256
 #, fuzzy
 msgid "File $path not found!"
 msgstr "Fila $path ble ikke funnet."
 
-#: ../src/main_window.vala:312
+#: ../src/main_window.vala:313
 msgid "Import file"
 msgstr "Importer fil"
 
-#: ../src/main_window.vala:430
+#: ../src/main_window.vala:431
 msgid "Save file as"
 msgstr "Lagre fil som"
 
-#: ../src/main_window.vala:434
+#: ../src/main_window.vala:435
 msgid "_Save"
 msgstr "_Lagre"
 

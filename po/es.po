@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mind Map Architect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 18:13+0200\n"
+"POT-Creation-Date: 2025-10-26 08:15+0100\n"
 "PO-Revision-Date: 2025-05-10 16:03+0000\n"
 "Last-Translator: Dream X <nodem49316@daupload.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/mmarchitect/"
@@ -35,7 +35,7 @@ msgstr "Hoy"
 msgid "Yesterday"
 msgstr "Ayer"
 
-#: ../src/editform.vala:176
+#: ../src/editform.vala:173
 msgid "Extends edit"
 msgstr "Ampliar edición"
 
@@ -43,8 +43,8 @@ msgstr "Ampliar edición"
 msgid "Export Map as"
 msgstr "Exportar el mapa como"
 
-#: ../src/export_dialog.vala:67 ../src/main_window.vala:222
-#: ../src/main_window.vala:315 ../src/main_window.vala:433
+#: ../src/export_dialog.vala:67 ../src/main_window.vala:223
+#: ../src/main_window.vala:316 ../src/main_window.vala:434
 msgid "_Cancel"
 msgstr "_Cancelar"
 
@@ -68,31 +68,31 @@ msgstr "Página web dinámica"
 msgid "PNG Image"
 msgstr "Imagen PNG"
 
-#: ../src/main_window.vala:85
+#: ../src/main_window.vala:86
 msgid "File $fname can't be imported!"
 msgstr "¡El archivo $fname no puede ser importado!"
 
-#: ../src/main_window.vala:219
+#: ../src/main_window.vala:220
 msgid "Open file"
 msgstr "Abrir archivo"
 
-#: ../src/main_window.vala:223 ../src/main_window.vala:316
+#: ../src/main_window.vala:224 ../src/main_window.vala:317
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/main_window.vala:255
+#: ../src/main_window.vala:256
 msgid "File $path not found!"
 msgstr "¡No se encuentra el archivo $path!"
 
-#: ../src/main_window.vala:312
+#: ../src/main_window.vala:313
 msgid "Import file"
 msgstr "Importar archivo"
 
-#: ../src/main_window.vala:430
+#: ../src/main_window.vala:431
 msgid "Save file as"
 msgstr "Guardar archivo como"
 
-#: ../src/main_window.vala:434
+#: ../src/main_window.vala:435
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -211,8 +211,8 @@ msgstr ""
 "ADQUISICIÓN DE BIENES O SERVICIOS SUSTITUTOS; PÉRDIDA DE USO, DATOS O\n"
 "BENEFICIOS; O INTERRUPCIÓN DEL NEGOCIO) CUALQUIER CAUSA Y BAJO CUALQUIER "
 "TEORÍA DE\n"
-"RESPONSABILIDAD, YA SEA POR CONTRATO, RESPONSABILIDAD ESTRICTA O AGRAVIO ("
-"INCLUYENDO\n"
+"RESPONSABILIDAD, YA SEA POR CONTRATO, RESPONSABILIDAD ESTRICTA O AGRAVIO "
+"(INCLUYENDO\n"
 "NEGLIGENCIA O DE OTRA MANERA) QUE SURJAN DE CUALQUIER MANERA DEL USO DE "
 "ESTE\n"
 "SOFTWARE, AUNQUE SE LE INFORME DE LA POSIBILIDAD DE TALES DAÑOS."
@@ -625,7 +625,8 @@ msgstr ""
 
 #: ../ui/welcome.ui:316
 msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
-msgstr "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Problemas</a>"
+msgstr ""
+"<a href=\"https://github.com/ondratu/mmarchitect/issues\">Problemas</a>"
 
 #: ../ui/welcome.ui:336
 msgid ""
