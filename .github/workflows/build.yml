@@ -51,7 +51,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Start the VM
-        uses: cross-platform-actions/action@v0.29.0
+        uses: cross-platform-actions/action@v1.7.0
         with:
           operating_system: netbsd
           version: "10.1"
