@@ -1,0 +1,587 @@
+# Bengali translations for PACKAGE package.
+# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-26 08:15+0100\n"
+"PO-Revision-Date: 2025-10-26 08:15+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: bn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/clavertime.vala:29
+msgid "Today %H:%M"
+msgstr ""
+
+#: ../src/clavertime.vala:31
+msgid "Yesterday %H:%M"
+msgstr ""
+
+#: ../src/clavertime.vala:48
+msgid "Today"
+msgstr ""
+
+#: ../src/clavertime.vala:52
+msgid "Yesterday"
+msgstr ""
+
+#: ../src/editform.vala:173
+msgid "Extends edit"
+msgstr ""
+
+#: ../src/export_dialog.vala:61
+msgid "Export Map as"
+msgstr ""
+
+#: ../src/export_dialog.vala:67 ../src/main_window.vala:223
+#: ../src/main_window.vala:316 ../src/main_window.vala:434
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/export_dialog.vala:68
+msgid "_Export As"
+msgstr ""
+
+#: ../src/export_dialog.vala:71
+msgid "Plain Text"
+msgstr ""
+
+#: ../src/export_dialog.vala:75
+msgid "Simple Web Page"
+msgstr ""
+
+#: ../src/export_dialog.vala:79
+msgid "Dynamic Web Page"
+msgstr ""
+
+#: ../src/export_dialog.vala:83
+msgid "PNG Image"
+msgstr ""
+
+#: ../src/main_window.vala:86
+msgid "File $fname can't be imported!"
+msgstr ""
+
+#: ../src/main_window.vala:220
+msgid "Open file"
+msgstr ""
+
+#: ../src/main_window.vala:224 ../src/main_window.vala:317
+msgid "_Open"
+msgstr ""
+
+#: ../src/main_window.vala:256
+msgid "File $path not found!"
+msgstr ""
+
+#: ../src/main_window.vala:313
+msgid "Import file"
+msgstr ""
+
+#: ../src/main_window.vala:431
+msgid "Save file as"
+msgstr ""
+
+#: ../src/main_window.vala:435
+msgid "_Save"
+msgstr ""
+
+#: ../src/mindmap.vala:76
+msgid "Main Idea"
+msgstr ""
+
+#: ../src/preferences.vala:122 ../ui/preferences.ui:886
+msgid "Map"
+msgstr ""
+
+#: ../src/print.vala:62
+msgid "Printing error:"
+msgstr ""
+
+#: ../src/tips.vala:29
+msgid "Moving with Ideas"
+msgstr ""
+
+#: ../src/tips.vala:30
+msgid ""
+"You can move with ideas by key shortcuts. You can use CTRL - Arrow UP, Down, "
+"Left or Right to move with selected Ideas."
+msgstr ""
+
+#: ../src/tips.vala:32
+msgid "Using Mind Maps as TODO list"
+msgstr ""
+
+#: ../src/tips.vala:33
+msgid ""
+"Mind Maps could be use as TODO lists. You have more tree like possibility "
+"with mind maps, like categories, importance or difficulty."
+msgstr ""
+
+#: ../src/welcometab.vala:14
+msgid "Start here"
+msgstr ""
+
+#: ../ui/about_dialog.ui:8
+msgid "About Application Mind Map Architect"
+msgstr ""
+
+#: ../ui/about_dialog.ui:14
+msgid "Copyright (c) 2011-2023, Ondřej Tůma"
+msgstr ""
+
+#: ../ui/about_dialog.ui:15
+msgid "Tool for working with mind maps. "
+msgstr ""
+
+#: ../ui/about_dialog.ui:17
+msgid ""
+"Copyright (c) 2011-2023, Ondřej Tůma\n"
+"All rights reserved.\n"
+"\n"
+"Redistribution and use in source and binary forms, with or without\n"
+"modification, are permitted provided that the following conditions\n"
+"are met:\n"
+" 1. Redistributions of source code must retain the above copyright\n"
+"    notice, this list of conditions and the following disclaimer.\n"
+" 2. Redistributions in binary form must reproduce the above copyright\n"
+"    notice, this list of conditions and the following disclaimer in the\n"
+"    documentation and/or other materials provided with the distribution.\n"
+" 3. Neither the name of the University nor the names of its contributors\n"
+"    may be used to endorse or promote products derived from this software\n"
+"    without specific prior written permission.\n"
+"\n"
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR\n"
+"CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\n"
+"EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n"
+"PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\n"
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\n"
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\n"
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+
+#: ../ui/about_dialog.ui:45
+msgid ""
+"evanmac <nicola.lomartire@gmail.com>\n"
+"Luis Garcia Sevillano <floss.dev@gmail.com>\n"
+"Allan Nordhøy <epost@anotheragency.no>\n"
+"Heimen Stoffels <vistausss@outlook.com>\n"
+"WaldiS <admin@sto.ugu.pl>\n"
+"Ondřej Tůma <mcbig@zeropage.cz>\n"
+"Ettore Atalan <atalanttore@googlemail.com>\n"
+"Frank Endres <frank@endres.fr>"
+msgstr ""
+
+#: ../ui/close_file_dialog.ui:8
+msgid "Save changes to document ?"
+msgstr ""
+
+#: ../ui/close_file_dialog.ui:29
+msgid "Close _without save"
+msgstr ""
+
+#: ../ui/close_file_dialog.ui:106
+msgid "Save changes to document %s before exit?"
+msgstr ""
+
+#: ../ui/close_file_dialog.ui:123
+msgid "Your changes will be lost, if you don't save the file."
+msgstr ""
+
+#: ../ui/color_dialog.ui:40
+msgid "Default color"
+msgstr ""
+
+#: ../ui/color_dialog.ui:56
+msgid "Parent color"
+msgstr ""
+
+#: ../ui/color_dialog.ui:73
+msgid "Own color"
+msgstr ""
+
+#: ../ui/main_window.ui:8
+msgid "Mind Map Architect"
+msgstr ""
+
+#: ../ui/main_window.ui:31
+msgid "_File"
+msgstr ""
+
+#: ../ui/main_window.ui:41
+msgid "New"
+msgstr ""
+
+#: ../ui/main_window.ui:57
+msgid "Open"
+msgstr ""
+
+#: ../ui/main_window.ui:67
+msgid "Save"
+msgstr ""
+
+#: ../ui/main_window.ui:77
+msgid "Save As"
+msgstr ""
+
+#: ../ui/main_window.ui:87
+msgid "Close"
+msgstr ""
+
+#: ../ui/main_window.ui:103
+msgid "Print"
+msgstr ""
+
+#: ../ui/main_window.ui:119
+msgid "Export"
+msgstr ""
+
+#: ../ui/main_window.ui:128
+msgid "Import"
+msgstr ""
+
+#: ../ui/main_window.ui:143
+msgid "Properties"
+msgstr ""
+
+#: ../ui/main_window.ui:158
+msgid "Quit"
+msgstr ""
+
+#: ../ui/main_window.ui:171
+msgid "_Edit"
+msgstr ""
+
+#: ../ui/main_window.ui:181 ../ui/main_window.ui:500
+msgid "Expand"
+msgstr ""
+
+#: ../ui/main_window.ui:190 ../ui/main_window.ui:509
+msgid "Collapse"
+msgstr ""
+
+#: ../ui/main_window.ui:205 ../ui/main_window.ui:518
+msgid "Cut"
+msgstr ""
+
+#: ../ui/main_window.ui:215 ../ui/main_window.ui:527
+msgid "Copy"
+msgstr ""
+
+#: ../ui/main_window.ui:225 ../ui/main_window.ui:536
+msgid "Paste"
+msgstr ""
+
+#: ../ui/main_window.ui:235 ../ui/main_window.ui:545
+msgid "Delete"
+msgstr ""
+
+#: ../ui/main_window.ui:250 ../ui/main_window.ui:491
+msgid "Edit"
+msgstr ""
+
+#: ../ui/main_window.ui:265
+msgid "Preferences"
+msgstr ""
+
+#: ../ui/main_window.ui:278
+msgid "_View"
+msgstr ""
+
+#: ../ui/main_window.ui:288 ../ui/main_window.ui:469
+msgid "Expand all branches"
+msgstr ""
+
+#: ../ui/main_window.ui:297 ../ui/main_window.ui:478
+msgid "Collapse all branches"
+msgstr ""
+
+#: ../ui/main_window.ui:312
+msgid "Home"
+msgstr ""
+
+#: ../ui/main_window.ui:326
+msgid "_Help"
+msgstr ""
+
+#: ../ui/main_window.ui:361 ../ui/welcome.ui:76 ../ui/welcome.ui:96
+msgid "Open File"
+msgstr ""
+
+#: ../ui/main_window.ui:376 ../ui/welcome.ui:35 ../ui/welcome.ui:55
+msgid "New File"
+msgstr ""
+
+#: ../ui/main_window.ui:391
+msgid "Save File"
+msgstr ""
+
+#: ../ui/main_window.ui:406
+msgid "Save File As"
+msgstr ""
+
+#: ../ui/main_window.ui:554
+msgid "Move"
+msgstr ""
+
+#: ../ui/main_window.ui:564
+msgid "Move Up"
+msgstr ""
+
+#: ../ui/main_window.ui:573
+msgid "Move Down"
+msgstr ""
+
+#: ../ui/main_window.ui:582
+msgid "Move Left"
+msgstr ""
+
+#: ../ui/main_window.ui:590
+msgid "Move Right"
+msgstr ""
+
+#: ../ui/map.ui:30
+msgid "_disable"
+msgstr ""
+
+#: ../ui/map.ui:47
+msgid "count _branches"
+msgstr ""
+
+#: ../ui/map.ui:64
+msgid "count _points"
+msgstr ""
+
+#: ../ui/map.ui:87
+msgid "<b>Rising method</b>"
+msgstr ""
+
+#: ../ui/map.ui:117
+msgid "Ideas"
+msgstr ""
+
+#: ../ui/map.ui:132
+msgid "Branches"
+msgstr ""
+
+#: ../ui/map.ui:153
+msgid "<b>Rise elemens</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:8
+msgid "Mind Map Architect Preferences"
+msgstr ""
+
+#: ../ui/preferences.ui:92
+msgid "<b>Author</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:121
+msgid "Choose directory"
+msgstr ""
+
+#: ../ui/preferences.ui:130
+msgid "<b>Default dokuments directory</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:160
+msgid "_Welcome tab"
+msgstr ""
+
+#: ../ui/preferences.ui:176
+msgid "_Empty document"
+msgstr ""
+
+#: ../ui/preferences.ui:193
+msgid "_Last opened documents"
+msgstr ""
+
+#: ../ui/preferences.ui:216
+msgid "<b>Start program with</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:234
+msgid "General"
+msgstr ""
+
+#: ../ui/preferences.ui:264 ../ui/preferences.ui:577
+msgid "Use system font"
+msgstr ""
+
+#: ../ui/preferences.ui:304
+msgid "<b>Idea font</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:337
+msgid "Font"
+msgstr ""
+
+#: ../ui/preferences.ui:365
+msgid "Line"
+msgstr ""
+
+#: ../ui/preferences.ui:394
+msgid "<b>Rising</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:427
+msgid "Text padding"
+msgstr ""
+
+#: ../ui/preferences.ui:465
+msgid "Height padding"
+msgstr ""
+
+#: ../ui/preferences.ui:477
+msgid "Width padding"
+msgstr ""
+
+#: ../ui/preferences.ui:505
+msgid "<b>Idea's padding</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:552
+msgid "Height"
+msgstr ""
+
+#: ../ui/preferences.ui:600
+msgid "<b>Note's text</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:622
+msgid "Style"
+msgstr ""
+
+#: ../ui/preferences.ui:647
+msgid "Use system colors"
+msgstr ""
+
+#: ../ui/preferences.ui:662
+msgid "<b>System colors</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:762
+msgid "Default line color"
+msgstr ""
+
+#: ../ui/preferences.ui:775
+msgid "Canvas color"
+msgstr ""
+
+#: ../ui/preferences.ui:788
+msgid "Text normal color"
+msgstr ""
+
+#: ../ui/preferences.ui:801
+msgid "Text selected color"
+msgstr ""
+
+#: ../ui/preferences.ui:814
+msgid "Background normal color"
+msgstr ""
+
+#: ../ui/preferences.ui:827
+msgid "Background selected color"
+msgstr ""
+
+#: ../ui/preferences.ui:842
+msgid "<b>Colors definitions</b>"
+msgstr ""
+
+#: ../ui/preferences.ui:862
+msgid "Colors"
+msgstr ""
+
+#: ../ui/properties.ui:8
+msgid "File properties"
+msgstr ""
+
+#: ../ui/properties.ui:88
+msgid "Author"
+msgstr ""
+
+#: ../ui/properties.ui:114
+msgid "Created"
+msgstr ""
+
+#: ../ui/properties.ui:127 ../ui/properties.ui:154 ../ui/properties.ui:181
+#: ../ui/welcome.ui:209
+msgid "label"
+msgstr ""
+
+#: ../ui/properties.ui:142
+msgid "Modified"
+msgstr ""
+
+#: ../ui/properties.ui:169
+msgid "Path"
+msgstr ""
+
+#: ../ui/properties.ui:198
+msgid "<b>File</b>"
+msgstr ""
+
+#: ../ui/properties.ui:222
+msgid "<b>Map</b>"
+msgstr ""
+
+#: ../ui/welcome.ui:136
+msgid "<b>Recent files:</b>"
+msgstr ""
+
+#: ../ui/welcome.ui:169
+msgid "<b>Tip:</b>"
+msgstr ""
+
+#: ../ui/welcome.ui:190
+msgid "<b><big>label</big></b>"
+msgstr ""
+
+#: ../ui/welcome.ui:225
+msgid "<a href=\"#next_tip\">Next Tip</a>"
+msgstr ""
+
+#: ../ui/welcome.ui:267
+msgid "<a href=\"http://mmarchitect.zeropage.cz/?gtk=1\">Project web pages</a>"
+msgstr ""
+
+#: ../ui/welcome.ui:287
+msgid ""
+"If you are looking for more informations about project, want to download new "
+"version, or you want to start with helping us, see Home page of Mind Map "
+"Architect."
+msgstr ""
+
+#: ../ui/welcome.ui:316
+msgid "<a href=\"https://github.com/ondratu/mmarchitect/issues\">Issues</a>"
+msgstr ""
+
+#: ../ui/welcome.ui:336
+msgid ""
+"Is there bug in this program? Is missing some future for you in mmarchitect? "
+"Please tell us more information about that. Thank you for your response."
+msgstr ""
+
+#: ../ui/welcome.ui:366
+msgid ""
+"<a href=\"http://mmarchitect.zeropage.cz/development.html?"
+"gtk=1\">Development of project</a>"
+msgstr ""
+
+#: ../ui/welcome.ui:385
+msgid ""
+"If you want to help us with this project, translate messages to your "
+"languege, develop, create package for your distribution, or anything what "
+"you can do for help us, see development page."
+msgstr ""
