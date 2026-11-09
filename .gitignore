@@ -1,0 +1,10 @@
+# Build directories
+/build/
+.build/
+
+# Generated translations
+/po/*.mo
+/po/*.pot
+
+# Editor backups
+*~
