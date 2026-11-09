@@ -68,7 +68,7 @@ public class WelcomeTab : Gtk.ScrolledWindow, ITab {
             title.set_attributes (t_attrs);
 
             var osfile = File.new_for_commandline_arg (path);
-            // todo: check permisions
+            // todo: check permissions
             if (osfile.query_exists ()) {
                 title.set_markup (@"<a href=\"#open\" title=\"$path\">$fname</a>");
                 title.activate_link.connect (

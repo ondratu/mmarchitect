@@ -294,7 +294,7 @@ namespace Exporter {
         var surface = new Cairo.ImageSurface (Cairo.Format.RGB24, width, height);
         var cr = new Cairo.Context (surface);
 
-        // fill empty white bacground
+        // fill empty white background
         cr.rectangle (0, 0, width, height);
         cr.set_source_rgb (1, 1, 1);
         cr.fill_preserve ();

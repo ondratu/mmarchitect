@@ -52,4 +52,3 @@ install_data(
     'application' / 'mmarchitect.svg',
     install_dir: pkgdatadir / 'icons'
 )
-

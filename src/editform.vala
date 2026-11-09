@@ -109,7 +109,7 @@ public class ToggleFlagButton : Gtk.ToggleToolButton {
         name = flag;
         set_label ( _(flag));
         set_tooltip_text (_(flag));
-        var icon_path = DATA_DIR + "/icons/" + flag + ".svg";
+        var icon_path = data_dir + "/icons/" + flag + ".svg";
 
         try {
             var pb = new Gdk.Pixbuf.from_file (icon_path);
@@ -224,7 +224,7 @@ public class EditForm : Gtk.Box {
         topbox.pack_start (btn_close);
 
         var ebox = new Gtk.EventBox ();
-        ebox.add (icons_box);   // becouse direct pack_start crash map background
+        ebox.add (icons_box);   // because direct pack_start crash map background
 
         pack_start (topbox);
         pack_start (ebox);
@@ -280,7 +280,7 @@ public class EditForm : Gtk.Box {
                 node.flags.remove (ttb.name);
         });
 
-        // set title at the end, couse set_title call get_size_request on node
+        // set title at the end, cause set_title call get_size_request on node
         node.set_title (entry.get_text ());
     }
 
@@ -330,8 +330,8 @@ public class EditForm : Gtk.Box {
         show_all ();
     }
 
-    // change flag setting of node when toogle tool button is toggled
-    public void flag_toogled (Gtk.ToggleToolButton ttb) {
+    // change flag setting of node when toggle tool button is toggled
+    public void flag_toggled (Gtk.ToggleToolButton ttb) {
         if (ttb.get_active ())
             node.flags.add (ttb.name);
         else if (ttb.name in node.flags)

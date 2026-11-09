@@ -13,6 +13,8 @@
     * de - German by Ettore Atalan
     * fr - French by Frank Endres
  * COUNT function
+ * Continuous integration: build and tests on Linux, NetBSD and Windows
+ * `--version` smoke test and desktop file validation in `meson test`
 
 ### Changed
  * Use Gtk+3 library
@@ -21,16 +23,19 @@
  * select color by new ColorChooserDialog
  * Changelog for users
  * Simple HTML export style
- * Makefile is split to more Makefiles in each directory
+ * Meson is the only build system
+ * Windows is built with MSYS2, see INSTALL
 
 ### Fixed
  * center map when it is possible
  * MIN/MAX bug fix
  * rewrite editform and fix it's UX bugs
  * working gui colors detection
+ * `--version` prints the real version
 
 ### Removed
  * remove extra icons, and use system icons instead
+ * remove the old Makefile build and the Windows installer script for it
 
 ## [0.5.0] - 2014-06-02
 ### Added

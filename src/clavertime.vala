@@ -21,7 +21,7 @@ public struct ClaverTime {
         uint64 ndays = now / 86400;    // 60 * 60 * 24
         uint64 days = ndays - vdays;
 
-        // couse localtime_r is no available on win32
+        // cause localtime_r is no available on win32
 #if ! WINDOWS
         var gtime = GLib.Time.local (val);
 

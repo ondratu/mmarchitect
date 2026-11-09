@@ -14,7 +14,7 @@ public class CloseFileDialog : Gtk.Dialog {
     private unowned Gtk.Label warning_label;
 
     public CloseFileDialog (string filename) {
-        warning_label.label = warning_label.label.replace("%s", filename);
+        warning_label.label = warning_label.label.replace ("%s", filename);
     }
 
 }

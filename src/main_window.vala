@@ -125,7 +125,7 @@ public class MainWindow : Gtk.ApplicationWindow {
                 } else if (osfile.query_exists ()) {
                     open_file_private (it);
                 } else {
-                    pref.remove_last (it);  // remove last file if not extist
+                    pref.remove_last (it);  // remove last file if not exist
                 }
             }
             // when len of last files is zero and no file is open
@@ -363,7 +363,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             if (file.filepath != "") {
                 file.do_save ();
             } else if (!this.on_save_file_as (file)) {
-                return false; // if save as file is cancled, do not close
+                return false; // if save as file is canceled, do not close
             }
         }
         return true;
