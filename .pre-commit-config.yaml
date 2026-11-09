@@ -1,11 +1,32 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0
+    rev: v6.0.0
     hooks:
+      - id: check-yaml
+      - id: check-xml
+      - id: check-merge-conflict
+      - id: check-added-large-files
       - id: end-of-file-fixer
       - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
 
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.38.0
+    hooks:
+      - id: yamllint
+
+  - repo: https://github.com/codespell-project/codespell
+    # Configuration for codespell is in .codespellrc
+    rev: v2.4.3
+    hooks:
+      - id: codespell
+        # Translations are not English, and fixing a typo in the welcome and map
+        # texts would invalidate their translated message ids.
+        exclude: ^(po/|ui/(welcome|map)\.ui$|doc/|COPYING$|ChangeLog$)
+
+  # The tool below is not available through pre-commit, install it from
+  # your distribution (see CONTRIBUTING.md).
   - repo: local
     hooks:
       - id: vala-lint
