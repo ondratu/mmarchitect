@@ -1,0 +1,105 @@
+---
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  meson:
+    name: Build and test with Meson (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y meson valac gettext \
+            libgtk-3-dev libgee-0.8-dev librsvg2-dev libxml2-dev \
+            desktop-file-utils
+      - name: Build
+        run: |
+          meson setup build
+          meson compile -C build
+      - name: Test
+        run: meson test -C build --print-errorlogs
+      - name: Install
+        run: |
+          meson install -C build --destdir "$PWD/stage"
+          test -x stage/usr/local/bin/mmarchitect
+
+  netbsd:
+    name: Build and test on NetBSD
+    runs-on: ubuntu-latest
+    # Best effort: the VM is slow and the pkgsrc package set changes, so a
+    # failure here does not block a merge.
+    continue-on-error: true
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Start the VM
+        uses: cross-platform-actions/action@v0.29.0
+        with:
+          operating_system: netbsd
+          version: "10.1"
+          shell: sh
+      - name: Build and test in the VM
+        # cpa.sh runs the commands inside the VM
+        shell: cpa.sh {0}
+        run: |
+          export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
+          export PKG_CONFIG_PATH=/usr/pkg/lib/pkgconfig:/usr/pkg/share/pkgconfig
+          sudo pkgin -y install meson vala pkgconf gettext-tools gtk3+ \
+            libgee librsvg libxml2 desktop-file-utils
+          meson setup build
+          meson compile -C build
+          meson test -C build --print-errorlogs
+
+  windows:
+    name: Build and test on Windows (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: windows-2025
+            msystem: UCRT64
+          - arch: aarch64
+            runner: windows-11-arm
+            msystem: CLANGARM64
+
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: ${{ matrix.msystem }}
+          update: true
+          pacboy: >-
+            toolchain:p meson:p vala:p pkgconf:p gettext-tools:p
+            gtk3:p libgee:p librsvg:p libxml2:p desktop-file-utils:p
+      - name: Build
+        run: |
+          meson setup build --buildtype=release
+          meson compile -C build
+      - name: Test
+        run: meson test -C build --print-errorlogs
