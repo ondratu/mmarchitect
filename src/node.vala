@@ -162,7 +162,7 @@ public class Node : GLib.Object {
 
     public Node copy () {
         var node = new Node (title, parent, direction);
-        node.map = map;    // if it is copy of parrent
+        node.map = map;    // if it is copy of parent
         node.text = text;
         node.points = points;
         node.function = function;
@@ -203,7 +203,7 @@ public class Node : GLib.Object {
         children.append (child);
         child.count_weight ();
         fce_on_points (false);
-        return children.last().data;
+        return children.last ().data;
     }
 
     public unowned Node paste (owned Node node) {
@@ -216,9 +216,9 @@ public class Node : GLib.Object {
         }
 
         children.append (node);
-        node = children.last().data;
+        node = children.last ().data;
         node.realize (window);
-        node.count_weight (true);   // node could be from anoter map
+        node.count_weight (true);   // node could be from another map
         count_weight ();
         fce_on_points (true);
         return node;
@@ -406,7 +406,7 @@ public class Node : GLib.Object {
             for (l = i + 1; l < len; l++) {
                 var b = children.nth_data (l);
                 if (b.direction == (uint) direction) {
-                    var newone = b.copy();
+                    var newone = b.copy ();
                     children.remove (b);
                     children.insert (newone, i);
                     direction = !direction;
@@ -415,7 +415,7 @@ public class Node : GLib.Object {
                 }
             }
 
-            // if threre is no other children, stop
+            // if there is no other children, stop
             if (l == len) {
                 return;
             }
@@ -433,17 +433,17 @@ public class Node : GLib.Object {
         }
 
         if (node.parent.parent != null) { // not child of root
-            Node newone = node.copy();
+            Node newone = node.copy ();
             node.parent.children.remove (node);
             newone.parent.children.insert (newone, pos - 1);
         } else {
             for (int i = pos - 1; i >= 0; i--) {
                 if (node.parent.children.nth_data (i).direction == node.direction) {
-                    Node newone = node.copy();
+                    Node newone = node.copy ();
                     node.parent.children.remove (node);
                     newone.parent.children.insert (newone, i);
                     newone.parent.zip ();
-                    return newone.parent.children.nth_data(i);
+                    return newone.parent.children.nth_data (i);
                 }
             }
         }
@@ -464,22 +464,22 @@ public class Node : GLib.Object {
         }
 
         if (node.parent.parent != null) { // not child of root
-            Node newone = node.copy();
+            Node newone = node.copy ();
             node.parent.children.remove (node);
             newone.parent.children.insert (newone, pos + 1);
-            return newone.parent.children.nth_data(pos+1);
+            return newone.parent.children.nth_data (pos + 1);
         } else {
             for (int i = pos + 1; i < len; i++){
                 if (node.parent.children.nth_data (i).direction == node.direction) {
-                    Node newone = node.copy();
+                    Node newone = node.copy ();
                     node.parent.children.remove (node);
                     newone.parent.children.insert (newone, i);
                     newone.parent.zip ();
-                    return newone.parent.children.nth_data(i);
+                    return newone.parent.children.nth_data (i);
                 }
             }
         }
-        return node; // sholdn't happen
+        return node; // shouldn't happen
     }
 
     public static unowned Node move_left (Node node)
@@ -493,7 +493,7 @@ public class Node : GLib.Object {
         {
             int pos = node.get_position ();
             if (pos > 0){
-                Node newone = node.copy();
+                Node newone = node.copy ();
                 node.parent.children.remove (node);
                 newone.parent.children.insert (newone, pos - 1);
                 node = newone.parent.children.nth_data (pos - 1);
@@ -514,12 +514,12 @@ public class Node : GLib.Object {
                     return node;
                 }
 
-                Node newone = node.copy();
+                Node newone = node.copy ();
                 node.parent.children.remove (node);
                 node = new_parent.paste (newone);
             } else {            // Direction.RIGHT
                 int pos = node.parent.get_position () + 1;
-                Node newone = node.copy();
+                Node newone = node.copy ();
                 new_parent = node.parent.parent;
                 node.parent.children.remove (node);
                 new_parent.children.insert (newone, pos);
@@ -546,7 +546,7 @@ public class Node : GLib.Object {
             unowned Node new_parent = null;
             if (node.direction == Direction.RIGHT)
             {
-                debug("reparent to next/prev");
+                debug ("reparent to next/prev");
                 int pos = node.get_position ();
                 if (pos > 0) {
                     new_parent = node.get_prev (Direction.RIGHT);
@@ -554,16 +554,16 @@ public class Node : GLib.Object {
                     new_parent = node.get_next (Direction.RIGHT);
                 }
                 if (new_parent == null){    // no way to move
-                    debug("\t no way to move");
+                    debug ("\t no way to move");
                     return node;
                 }
 
-                Node newone = node.copy();
+                Node newone = node.copy ();
                 node.parent.children.remove (node);
                 node = new_parent.paste (newone);
             } else {            // Direction.LEFT
-                debug("Move to parent....");
-                Node newone = node.copy();
+                debug ("Move to parent…");
+                Node newone = node.copy ();
                 int pos = node.parent.get_position () + 1;
                 new_parent = node.parent.parent;
                 node.parent.children.remove (node);
@@ -572,7 +572,7 @@ public class Node : GLib.Object {
                 node.parent = new_parent;
                 node.parent.zip ();
             }
-            debug("node parent %p vs new_parent %p", node.parent, new_parent);
+            debug ("node parent %p vs new_parent %p", node.parent, new_parent);
         }
         return node;
     }
@@ -678,7 +678,7 @@ public class Node : GLib.Object {
 
         width += (ICO_SIZE + 1) * this.flags.size;
 
-        // if there are points or function, thay are visible
+        // if there are points or function, they are visible
         if (fpoints != 0 || function != PointsFce.OWN) {
             str_points = "%1g".printf (fpoints);
 
@@ -932,7 +932,7 @@ public class Node : GLib.Object {
         int f = 0;
         foreach (var flag in flags) {
             int ico_padding = (ICO_SIZE + 1) * f;
-            set_source_svg (cr, DATA_DIR + "/icons/" + flag + ".svg",
+            set_source_svg (cr, data_dir + "/icons/" + flag + ".svg",
                     area.x + ico_padding,
                     area.y + (area.height - ICO_SIZE) / 2,
                     ICO_SIZE, ICO_SIZE);

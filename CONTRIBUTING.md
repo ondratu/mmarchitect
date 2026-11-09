@@ -1,4 +1,4 @@
-# Dependecies
+# Dependencies
 
 MMarchitect need these libraries:
 

@@ -2,13 +2,13 @@ extern const string GETTEXT_PACKAGE;
 extern const string LOCALEDIR;
 extern const string DATADIR;
 
-string ? DATA_DIR = null;
+string ? data_dir = null;
 
 public class Application : Gtk.Application {
     private static bool version = false;
     private static string filename = "";
 
-    private const OptionEntry[] options = {
+    private const OptionEntry[] OPTIONS = {
         { "version", 0,
           0, OptionArg.NONE, ref version,
           "Display version number", null },
@@ -22,25 +22,25 @@ public class Application : Gtk.Application {
         Object (application_id: "cz.zeropage.MMArchitect",
                 flags: ApplicationFlags.HANDLES_COMMAND_LINE);
 
-        add_main_option_entries (options);
+        add_main_option_entries (OPTIONS);
 
-        set_accels_for_action("app.new-window", {"<Control>n", null});
-        set_accels_for_action("app.quit", {"<Control>q", null});
+        set_accels_for_action ("app.new-window", {"<Control>n", null});
+        set_accels_for_action ("app.quit", {"<Control>q", null});
     }
 
     public override void startup () {
         base.startup ();
 
-        var action = new SimpleAction("new-window", null);
+        var action = new SimpleAction ("new-window", null);
         action.activate.connect (() => {
-            hold();
+            hold ();
             add_window (new MainWindow ());
             active_window.present ();
-            release();
+            release ();
         });
         add_action (action);
 
-        action = new SimpleAction("quit", null);
+        action = new SimpleAction ("quit", null);
         action.activate.connect (() => {
             quit ();
         });
@@ -66,9 +66,9 @@ public class Application : Gtk.Application {
         this.release ();
     }
 
-    public bool parse_filename(string option_name, string? val, void* data) {
+    public bool parse_filename (string option_name, string? val, void* data) {
         // TODO: check file extensions, access and so on
-        filename = option_name;     // becaouse there is only one string
+        filename = option_name;     // because there is only one string
         return true;
     }
 
@@ -97,12 +97,12 @@ public class Application : Gtk.Application {
     }
 }
 
-int main(string[] args) {
+int main (string[] args) {
     string ? lc_time = null;
 
-    DATA_DIR = Environment.get_variable ("DATADIR");
-    if (DATA_DIR == null){
-        DATA_DIR = DATADIR;
+    data_dir = Environment.get_variable ("DATADIR");
+    if (data_dir == null){
+        data_dir = DATADIR;
     }
 
     #if ! WINDOWS

@@ -1,5 +1,5 @@
 
-Mind Map Architect (mmarchitect) Instalation
+Mind Map Architect (mmarchitect) Installation
 --------------------------------------------
 
 To build and install Mind Map Architect, you can this commands:
@@ -20,7 +20,7 @@ You set these variables:
     * PREFIX - installation tree target (/usr/local)
     * DATADIR - directory target for UI elements (PREFIX/share/mmarchitect)
     * LOCALEDIR - directory target for locales (PREFIX/share/locale)
-    * CFLAGS - additional FLAGS fo C compiler
+    * CFLAGS - additional FLAGS of C compiler
     * DEBUG - switch which set -g -D DEBUG CFLAGS
     * VALAC - path to vala compiler
     * INSTALL - path to install tool

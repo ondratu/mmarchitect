@@ -553,7 +553,7 @@ public class MindMap : Gtk.Fixed {
             }
         }
 
-        // move editform to left if it is needed allways
+        // move editform to left if it is needed always
         if ((new_x + aloc.width) > allocation.width) {
             new_x = allocation.width - pref.font_padding - aloc.width;
         }

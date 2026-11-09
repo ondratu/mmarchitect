@@ -21,7 +21,7 @@ public class PropertiesWidgets : Gtk.Dialog {
     private unowned Gtk.Frame frame_map;
 
     public PropertiesWidgets () {
-        box = new MapWidgets();
+        box = new MapWidgets ();
         frame_map.add (box);
     }
 }
