@@ -1,37 +1,46 @@
-
 Mind Map Architect (mmarchitect) Installation
---------------------------------------------
+---------------------------------------------
 
-To build and install Mind Map Architect, you can this commands:
+To build and install Mind Map Architect you need Meson, a Vala compiler,
+gettext and the libraries listed in CONTRIBUTING.md:
 
-    $ meson build
-    $ ninja -C build
-    $ sudo ninja -C build install
-    $ sudo update-mime-database
+    $ meson setup build
+    $ meson compile -C build
+    $ meson test -C build
+    $ sudo meson install -C build
+    $ sudo update-mime-database /usr/local/share/mime
 
-By default, mmarchitect will install under /usr/local directory. To configure
-this settings, use PREFIX variable. For more help about configuration and
-installation run:
+By default mmarchitect is installed under the /usr/local directory. Use the
+standard Meson options to change it, for example:
 
-    $ make help
+    $ meson setup build --prefix=/usr
 
-You set these variables:
+To run the program from the build directory without installing it:
 
-    * PREFIX - installation tree target (/usr/local)
-    * DATADIR - directory target for UI elements (PREFIX/share/mmarchitect)
-    * LOCALEDIR - directory target for locales (PREFIX/share/locale)
-    * CFLAGS - additional FLAGS of C compiler
-    * DEBUG - switch which set -g -D DEBUG CFLAGS
-    * VALAC - path to vala compiler
-    * INSTALL - path to install tool
+    $ DATADIR=. ./build/src/mmarchitect
 
-If you can uninstall mmarchitect from source directory, use uninstall rule:
+To uninstall it, run in the build directory:
 
-    # make uninstall
+    $ sudo ninja uninstall
 
-For compiling only from c files (without vala) try to use -c- source package and
-read README.c.
+Windows
+-------
 
-For compiling mmarchitect on windows, please read README.Win32.
+The program is built with MSYS2 (https://www.msys2.org/). In the UCRT64
+shell (or CLANGARM64 on ARM) install the tools and libraries:
 
-Copyright 2011-2018 Ondrej Tuma
+    $ pacman -S --needed mingw-w64-ucrt-x86_64-toolchain \
+        mingw-w64-ucrt-x86_64-meson mingw-w64-ucrt-x86_64-vala \
+        mingw-w64-ucrt-x86_64-pkgconf mingw-w64-ucrt-x86_64-gettext-tools \
+        mingw-w64-ucrt-x86_64-gtk3 mingw-w64-ucrt-x86_64-libgee \
+        mingw-w64-ucrt-x86_64-librsvg mingw-w64-ucrt-x86_64-libxml2
+
+and build it like on Linux:
+
+    $ meson setup build --buildtype=release
+    $ meson compile -C build
+    $ meson test -C build
+
+The CI runs exactly these steps, see .github/workflows/build.yml.
+
+Copyright 2011-2023 Ondrej Tuma
