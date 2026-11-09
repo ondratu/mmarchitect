@@ -48,10 +48,15 @@ sources = files(
     'welcometab.vala'
 )
 
+extra_vala_args = []
+if host_machine.system() == 'windows'
+  extra_vala_args += ['-D', 'WINDOWS']
+endif
+
 mmarchitect = executable(project_name,
   sources: [sources, resources],
   dependencies: dependencies,
-  vala_args: [resource_args],
+  vala_args: [resource_args, extra_vala_args],
   install: true)
 
 # Starts without a display, so it is usable as a smoke test of the build
