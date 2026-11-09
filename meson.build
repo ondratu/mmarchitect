@@ -47,6 +47,12 @@ install_data(
     install_dir: datadir / 'applications'
 )
 
+desktop_file_validate = find_program('desktop-file-validate', required: false)
+if desktop_file_validate.found()
+    test('desktop-file', desktop_file_validate,
+         args: [files('misc' / project_name + '.desktop')])
+endif
+
 install_data(
     'misc' / project_name + '.xml',
     install_dir: datadir / 'mime' / 'packages'

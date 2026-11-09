@@ -48,8 +48,13 @@ sources = files(
     'welcometab.vala'
 )
 
-executable(project_name,
+mmarchitect = executable(project_name,
   sources: [sources, resources],
   dependencies: dependencies,
   vala_args: [resource_args],
   install: true)
+
+# Starts without a display, so it is usable as a smoke test of the build
+test('version', mmarchitect,
+  args: ['--version'],
+  env: {'DATADIR': meson.project_source_root()})

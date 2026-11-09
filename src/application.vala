@@ -74,7 +74,7 @@ public class Application : Gtk.Application {
 
     public override int handle_local_options (VariantDict options) {
         if (version) {
-            stdout.printf ("mmarchitect - Version 0.0.0\n");
+            stdout.printf ("mmarchitect - Version %s\n", VERSION);
             return 0;           // just like help
         }
 
